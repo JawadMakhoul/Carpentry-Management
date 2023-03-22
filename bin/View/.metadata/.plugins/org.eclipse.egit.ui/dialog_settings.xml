@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="RepositorySelectionPage.UsedUris">
+		<item value="https://gitlab.com/jawadmakhol/test.git"/>
+		<item value="https://gitlab.com/hasan.masalha98/final_project.git"/>
+	</list>
+	<list key="EGit.KnownHosts">
+		<item value="bitbucket.org"/>
+		<item value="github.com"/>
+		<item value="git.eclipse.org"/>
+		<item value="gitlab.com"/>
+	</list>
+	<list key="CommitDialog.authorValues">
+		<item value="jawad &lt;jawad@10.0.0.33&gt;"/>
+		<item value="jawad &lt;jawad@10.100.102.84&gt;"/>
+	</list>
+	<list key="CommitDialog.committerValues">
+		<item value="jawad &lt;jawad@10.0.0.33&gt;"/>
+		<item value="jawad &lt;jawad@10.100.102.84&gt;"/>
+	</list>
+	<section name="org.eclipse.egit.ui.internal.staging.StagingView">
+		<item key="MAIN_SASH_FORM_ORIENTATION_VERTICAL" value="false"/>
+		<item key="HORIZONTAL_SASH_FORM_WEIGHT" value="500,500"/>
+		<item key="STAGING_SASH_FORM_WEIGHT" value="500,500"/>
+		<item key="sortItemState" value="false"/>
+	</section>
+	<section name="GitCommitMessageComponent">
+		<list key="C:\Users\jawad\git\final_project\.git">
+			<item value="empty"/>
+		</list>
+		<list key="C:\Users\jawad\git\test\.git">
+			<item value="empty"/>
+		</list>
+		<list key="C:\Users\jawad\git\AwniWoodWork\.git">
+			<item value="empty"/>
+		</list>
+	</section>
+	<section name="org.eclipse.egit.ui.internal.push.PushResultDialog.dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="522"/>
+		<item key="DIALOG_Y_ORIGIN" value="246"/>
+		<item key="DIALOG_WIDTH" value="965"/>
+		<item key="DIALOG_HEIGHT" value="608"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|11.25|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		<list key="sashWeights">
+			<item value="600"/>
+			<item value="400"/>
+		</list>
+	</section>
+</section>

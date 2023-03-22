@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="screen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainScreenController">
+   <children>
+      <MediaView fx:id="mediaView" fitHeight="1080.0" fitWidth="1920.0" />
+      <ImageView fitHeight="172.0" fitWidth="653.0" layoutX="424.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Lib/awni-wood-work-high-resolution-logo-color-on-transparent-background.png" />
+         </image>
+      </ImageView>
+      <PasswordField fx:id="passWord" layoutX="772.0" layoutY="350.0" prefHeight="58.0" prefWidth="418.0" style="-fx-border-color: #551E19 #C56E33 #C56E33 #551E19; -fx-border-width: 5px 5px 5px 5px;" />
+      <ImageView fitHeight="152.0" fitWidth="134.0" layoutX="724.0" layoutY="504.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Lib/log-in.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="LogIn" layoutX="724.0" layoutY="498.0" mnemonicParsing="false" onAction="#Log_In" opacity="0.0" prefHeight="134.0" prefWidth="134.0" />
+      <Text fill="WHITE" layoutX="231.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter you`r password to Log In" wrappingWidth="462.73358154296875">
+         <font>
+            <Font name="Arial Narrow" size="40.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
