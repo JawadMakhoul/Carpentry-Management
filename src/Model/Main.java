@@ -11,6 +11,7 @@ public class Main extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		try {System.out.println("Fffffff");
+		System.out.println("Fffffff");
 			AnchorPane root = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
