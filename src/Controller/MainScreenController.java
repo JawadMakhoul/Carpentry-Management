@@ -36,11 +36,11 @@ public class MainScreenController implements Initializable{
 		private MediaView mediaView;
 	    private Media media;
 		private MediaPlayer backgroundvideo=null;
-		private String id="207188673";
+		private String id1="207188673", id2="206980013" , id3="123";
 	    @FXML
 	    void Log_In(ActionEvent event) throws IOException {
 	    	
-	    	if(passWord.getText().equals(id)) {
+	    	if(passWord.getText().equals(id1)||passWord.getText().equals(id2)||passWord.getText().equals(id3)) {
 	    		Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
