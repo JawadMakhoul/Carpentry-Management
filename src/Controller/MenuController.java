@@ -22,7 +22,7 @@ import javafx.scene.layout.AnchorPane;
 public class MenuController implements Initializable{
 
     @FXML
-    private Button NewProject,Stock,CurrentProjects,MaterialsToOrder,ColorsCatalog,OrderedMaterials,FinancialManaging,ProjectsCatalog;
+    private Button NewProject,Stock,CurrentProjects,MaterialsToOrder,ColorsCatalog,OrderedMaterials,FinancialManaging,ProjectsCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
@@ -32,6 +32,18 @@ public class MenuController implements Initializable{
     	
     	for(Button b: Buttons) {
     		switch(b.getId()) {
+    		
+    		case "Inbox":{
+    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Inbox.fxml"));
+        		Scene scene = new Scene(pane);
+        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        		stage.setScene(scene);
+        		stage.setResizable(false);
+        		stage.setTitle("Awni Wood Work - Inbox");
+        		stage.show();
+        		break;
+    		}
+    		
     		case "NewProject":{
     			Parent pane = FXMLLoader.load(getClass().getResource("/View/NewProject.fxml"));
         		Scene scene = new Scene(pane);
@@ -118,6 +130,17 @@ public class MenuController implements Initializable{
         		stage.show();
         		break;
     		}
+    		
+    		case "BackButton":{
+    			Parent pane = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
+        		Scene scene = new Scene(pane);
+        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        		stage.setScene(scene);
+        		stage.setResizable(false);
+        		stage.setTitle("Awni Wood Work");
+        		stage.show();
+        		break;
+    		}	
     		}
     	}
     	
@@ -134,6 +157,8 @@ public class MenuController implements Initializable{
 		Buttons.add(CurrentProjects);
 		Buttons.add(Stock);
 		Buttons.add(NewProject);
+		Buttons.add(Inbox);
+		Buttons.add(BackButton);
 	}
 
 

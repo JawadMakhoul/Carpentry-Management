@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
@@ -35,15 +36,46 @@ public class MainScreenController implements Initializable{
 		private MediaView mediaView;
 	    private Media media;
 		private MediaPlayer backgroundvideo=null;
+		private String id="207188673";
 	    @FXML
 	    void Log_In(ActionEvent event) throws IOException {
-	    	Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
-			Scene scene = new Scene(pane);
-			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			stage.setScene(scene);
-			stage.setResizable(false);
-			stage.setTitle("Main Menu");
-			stage.show();
+	    	
+	    	if(passWord.getText().equals(id)) {
+	    		Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
+				Scene scene = new Scene(pane);
+				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				stage.setScene(scene);
+				stage.setResizable(false);
+				stage.setTitle("Main Menu");
+				stage.show();
+	    	}
+	    	
+	    	else if(passWord.getText().isEmpty()) {
+	    		try {
+					final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+					alert.setTitle("Error!");
+					alert.setContentText("Press OK to try again.");
+					alert.setHeaderText("Sorry the password field is empty.");
+					alert.showAndWait();
+				} catch (Error e) {
+					e.printStackTrace();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+	    	}
+	    	else {
+	    		try {
+					final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+					alert.setTitle("Error!");
+					alert.setContentText("Press OK to try again.");
+					alert.setHeaderText("Sorry you have entered a wrong passowrd.");
+					alert.showAndWait();
+				} catch (Error e) {
+					e.printStackTrace();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+	    	}
 	    }
 	    
 	    @Override
