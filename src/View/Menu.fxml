@@ -108,7 +108,7 @@
             <Font name="Calibri" size="24.0" />
          </font>
       </Text>
-      <Text fx:id="CurrentProjects" fill="#b96c00f7" layoutX="686.0" layoutY="782.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Projects" wrappingWidth="190.9999999999999">
+      <Text fill="#b96c00f7" layoutX="686.0" layoutY="782.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Projects" wrappingWidth="190.9999999999999">
          <font>
             <Font name="Calibri" size="24.0" />
          </font>
