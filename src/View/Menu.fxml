@@ -19,7 +19,7 @@
             <Image url="@../Lib/project.png" />
          </image>
       </ImageView>
-      <Button fx:id="NewProject" layoutX="367.0" layoutY="281.0" mnemonicParsing="false" onAction="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="150.0" />
+      <Button fx:id="NewProject" layoutX="367.0" layoutY="281.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="150.0" />
       <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="675.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Lib/ready-stock.png" />
@@ -30,13 +30,13 @@
             <Image url="@../Lib/out-of-stock.png" />
          </image>
       </ImageView>
-      <Button fx:id="Stock" layoutX="676.0" layoutY="280.0" mnemonicParsing="false" onAction="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="150.0" />
+      <Button fx:id="Stock" layoutX="676.0" layoutY="280.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="150.0" />
       <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="686.0" layoutY="591.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Lib/process.png" />
          </image>
       </ImageView>
-      <Button fx:id="CurrentProjects" layoutX="665.0" layoutY="588.0" mnemonicParsing="false" onAction="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="182.0" />
+      <Button fx:id="CurrentProjects" layoutX="665.0" layoutY="588.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="182.0" />
       <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="1038.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Lib/wood.png" />
@@ -47,37 +47,37 @@
             <Image url="@../Lib/order-now.png" />
          </image>
       </ImageView>
-      <Button fx:id="MaterialsToOrder" layoutX="1017.0" layoutY="280.0" mnemonicParsing="false" onAction="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="191.0" />
+      <Button fx:id="MaterialsToOrder" layoutX="1017.0" layoutY="280.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="191.0" />
       <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="1038.0" layoutY="591.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Lib/catalog.png" />
          </image>
       </ImageView>
-      <Button fx:id="ColorsCatalog" layoutX="1017.0" layoutY="588.0" mnemonicParsing="false" onAction="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="191.0" />
+      <Button fx:id="ColorsCatalog" layoutX="1017.0" layoutY="588.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="191.0" />
       <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="1357.0" layoutY="283.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Lib/workflow.png" />
          </image>
       </ImageView>
-      <Button fx:id="OrderedMaterials" layoutX="1336.0" layoutY="280.0" mnemonicParsing="false" onAction="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="191.0" />
+      <Button fx:id="OrderedMaterials" layoutX="1336.0" layoutY="280.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="191.0" />
       <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="1357.0" layoutY="591.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Lib/budget.png" />
          </image>
       </ImageView>
-      <Button fx:id="FinancialManaging" layoutX="1336.0" layoutY="588.0" mnemonicParsing="false" onAction="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="191.0" />
+      <Button fx:id="FinancialManaging" layoutX="1336.0" layoutY="588.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="191.0" />
       <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="365.0" layoutY="591.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Lib/binder.png" />
          </image>
       </ImageView>
-      <Button fx:id="ProjectsCatalog" layoutX="344.0" layoutY="588.0" mnemonicParsing="false" onAction="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="191.0" />
+      <Button fx:id="ProjectsCatalog" layoutX="344.0" layoutY="588.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="191.0" />
       <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="58.0" layoutY="821.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Lib/previous.png" />
          </image>
       </ImageView>
-      <Button fx:id="BackButton" layoutX="50.0" layoutY="817.0" mnemonicParsing="false" onAction="#MoveTo" opacity="0.0" prefHeight="108.0" prefWidth="116.0" />
+      <Button fx:id="BackButton" layoutX="50.0" layoutY="817.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="108.0" prefWidth="116.0" />
       <Text fill="#b96c00f7" layoutX="365.0" layoutY="473.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Project" wrappingWidth="150.0">
          <font>
             <Font name="Calibri" size="24.0" />
@@ -123,7 +123,7 @@
             <Image url="@../Lib/inbox-mail.png" />
          </image>
       </ImageView>
-      <Button fx:id="Inbox" layoutX="93.0" layoutY="455.0" mnemonicParsing="false" onAction="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="150.0" />
+      <Button fx:id="Inbox" layoutX="93.0" layoutY="455.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="150.0" />
       <Text fill="#b96c00f7" layoutX="91.0" layoutY="647.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inbox" textAlignment="CENTER" wrappingWidth="150.0">
          <font>
             <Font name="Calibri" size="24.0" />
