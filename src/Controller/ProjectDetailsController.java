@@ -12,28 +12,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class NewProjectController implements Initializable{
+public class ProjectDetailsController implements Initializable{
 
     @FXML
-    private Button projectItems,NewProject,Stock,CurrentProjects,MaterialsToOrder,ColorsCatalog,OrderedMaterials,FinancialManaging,ProjectsCatalog,Inbox,BackButton;
+    private Button NewProject,Stock,CurrentProjects,MaterialsToOrder,ColorsCatalog,OrderedMaterials,FinancialManaging,ProjectsCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
-    
-    @FXML
-    private TextField address,email,phoneNumber;
-
-    @FXML
-    private DatePicker finishDate;
-
-    @FXML
-    private ComboBox<?> projectCategory;
-
     @FXML
     private AnchorPane screen;
 
@@ -153,17 +140,6 @@ public class NewProjectController implements Initializable{
 	        		stage.show();
 	        		break;
 	    		}	
-	    		
-	    		case "projectItems":{
-    				Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectItems.fxml"));
-    				Scene scene = new Scene(pane);
-    				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    				stage.setScene(scene);
-    				stage.setResizable(false);
-    				stage.setTitle("Awni Wood Work - Project Items");
-    				stage.show();
-    				break;
-    			}
     		}
     	}
     		
@@ -184,7 +160,6 @@ public class NewProjectController implements Initializable{
 		Buttons.add(NewProject);
 		Buttons.add(Inbox);
 		Buttons.add(BackButton);
-		Buttons.add(projectItems);
 	}
 
 
