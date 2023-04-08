@@ -5,6 +5,10 @@ import java.net.URL;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
+import Enumeration.ProjectCategory;
+import Model.Customer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,13 +30,13 @@ public class NewProjectController implements Initializable{
     private HashSet<Button> Buttons = new HashSet<Button>();
     
     @FXML
-    private TextField address,email,phoneNumber;
+    private TextField CustomerName,address,email,phoneNumber;
 
     @FXML
     private DatePicker finishDate;
 
     @FXML
-    private ComboBox<?> projectCategory;
+    private ComboBox<ProjectCategory> projectCategory;
 
     @FXML
     private AnchorPane screen;
@@ -155,13 +159,19 @@ public class NewProjectController implements Initializable{
 	    		}	
 	    		
 	    		case "projectItems":{
-    				Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectItems.fxml"));
-    				Scene scene = new Scene(pane);
-    				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    				stage.setScene(scene);
-    				stage.setResizable(false);
-    				stage.setTitle("Awni Wood Work - Project Items");
-    				stage.show();
+//    				Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectItems.fxml"));
+//    				Scene scene = new Scene(pane);
+//    				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//    				stage.setScene(scene);
+//    				stage.setResizable(false);
+//    				stage.setTitle("Awni Wood Work - Project Items");
+//    				stage.show();
+	    			
+	    			if(!CustomerName.equals(null)&& !phoneNumber.equals(null) && !address.equals(null) && !email.equals(null)) { // Creating new customer
+	    				Customer C = new Model.Customer(CustomerName.getText(),phoneNumber.getText(),address.getText(),email.getText());
+	    				
+	    				new Model.ProjectItems(new Model.Project(finishDate.getValue(), C, projectCategory.getValue()).getID());
+	    			}
     				break;
     			}
     		}
@@ -185,6 +195,19 @@ public class NewProjectController implements Initializable{
 		Buttons.add(Inbox);
 		Buttons.add(BackButton);
 		Buttons.add(projectItems);
+		
+		ObservableList<ProjectCategory> projectType = FXCollections.observableArrayList(ProjectCategory.Home,ProjectCategory.Office,ProjectCategory.Institution);
+		projectCategory.getItems().addAll(projectType);
+
+//		AllCategories = Model.Restaurant.getInstance().getComponenets();
+//
+//
+//		for(Component comp: AllComponents.values())
+//		{
+//			components.getItems().add(comp);
+//		}
+//		components.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
 	}
 
 
