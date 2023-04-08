@@ -82,4 +82,15 @@ public class ProjectItemsController{
     void MoveTo(MouseEvent event) {
 
     }
+    
+    @FXML
+    void AddAnotherItem(MouseEvent event) {
+
+    }
+
+    @FXML
+    void AddSection(MouseEvent event) {
+
+    	
+    }
 }

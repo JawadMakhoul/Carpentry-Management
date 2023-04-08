@@ -99,8 +99,8 @@
                   <Button fx:id="finish" layoutX="767.0" layoutY="769.0" mnemonicParsing="false" text="Finish" />
                   <ComboBox fx:id="woodType" layoutX="158.0" layoutY="542.0" prefWidth="150.0" promptText="Wood Type" />
                   <ColorPicker fx:id="color" layoutX="536.0" layoutY="102.0" promptText="Color" />
-                  <Button fx:id="addSection" layoutX="381.0" layoutY="769.0" mnemonicParsing="false" text="Add section" />
-                  <Button fx:id="addItem" layoutX="611.0" layoutY="769.0" mnemonicParsing="false" text="Add anothe item" />
+                  <Button fx:id="addSection" layoutX="381.0" layoutY="769.0" mnemonicParsing="false" onMousePressed="#AddSection" text="Add section" />
+                  <Button fx:id="addItem" layoutX="611.0" layoutY="769.0" mnemonicParsing="false" onMousePressed="#AddAnotherItem" text="Add anothe item" />
                   <ComboBox fx:id="projectSection" layoutX="187.0" layoutY="102.0" prefHeight="31.0" prefWidth="166.0" promptText="Project Section" />
                   <TextField fx:id="ItemName" layoutX="150.0" layoutY="474.0" promptText="Item Name" />
                   <TextField fx:id="quantity" layoutX="473.0" layoutY="551.0" promptText="Quantity" />
