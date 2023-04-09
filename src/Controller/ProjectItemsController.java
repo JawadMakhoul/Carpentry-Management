@@ -1,5 +1,7 @@
 package Controller;
 
+import Enumeration.ProjectSection;
+import Enumeration.WoodType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
@@ -10,73 +12,19 @@ import javafx.scene.input.MouseEvent;
 public class ProjectItemsController{
 
 	@FXML
-    private Button BackButton;
-
-    @FXML
-    private Button ColorsCatalog;
-
-    @FXML
-    private Button CurrentProjects;
-
-    @FXML
-    private Button FinancialManaging;
-
-    @FXML
-    private Button Inbox;
-
-    @FXML
-    private TextField ItemName;
-
-    @FXML
-    private Button MaterialsToOrder;
-
-    @FXML
-    private Button NewProject;
-
-    @FXML
-    private Button OrderedMaterials;
-
-    @FXML
-    private Button ProjectsCatalog;
-
-    @FXML
-    private Button Stock;
-
-    @FXML
-    private Button addItem;
-
-    @FXML
-    private Button addSection;
+    private Button BackButton,ColorsCatalog,CurrentProjects,FinancialManaging,Inbox,MaterialsToOrder,NewProject,OrderedMaterials,ProjectsCatalog,Stock,addItem,addSection,finish;
 
     @FXML
     private ColorPicker color;
 
     @FXML
-    private Button finish;
+    private TextField ItemName,handsModelNumber,handsQuantity,handsQuantity1,height,quantity,width;
 
     @FXML
-    private TextField handsModelNumber;
+    private ComboBox<ProjectSection> projectSection;
 
     @FXML
-    private TextField handsQuantity;
-
-    @FXML
-    private TextField handsQuantity1;
-
-    @FXML
-    private TextField height;
-
-    @FXML
-    private ComboBox<?> projectSection;
-
-    @FXML
-    private TextField quantity;
-
-    @FXML
-    private TextField width;
-
-    @FXML
-    private ComboBox<?> woodType;
+    private ComboBox<WoodType> woodType;
 
     @FXML
     void MoveTo(MouseEvent event) {
@@ -91,6 +39,7 @@ public class ProjectItemsController{
     @FXML
     void AddSection(MouseEvent event) {
 
+    	
     	
     }
 }

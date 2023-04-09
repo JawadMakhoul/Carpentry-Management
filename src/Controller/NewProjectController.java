@@ -159,19 +159,21 @@ public class NewProjectController implements Initializable{
 	    		}	
 	    		
 	    		case "projectItems":{
-//    				Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectItems.fxml"));
-//    				Scene scene = new Scene(pane);
-//    				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//    				stage.setScene(scene);
-//    				stage.setResizable(false);
-//    				stage.setTitle("Awni Wood Work - Project Items");
-//    				stage.show();
+
 	    			
 	    			if(!CustomerName.equals(null)&& !phoneNumber.equals(null) && !address.equals(null) && !email.equals(null)) { // Creating new customer
 	    				Customer C = new Model.Customer(CustomerName.getText(),phoneNumber.getText(),address.getText(),email.getText());
 	    				
 	    				new Model.ProjectItems(new Model.Project(finishDate.getValue(), C, projectCategory.getValue()).getID());
 	    			}
+	    			
+    				Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectItems.fxml"));
+    				Scene scene = new Scene(pane);
+    				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    				stage.setScene(scene);
+    				stage.setResizable(false);
+    				stage.setTitle("Awni Wood Work - Project Items");
+    				stage.show();
     				break;
     			}
     		}
