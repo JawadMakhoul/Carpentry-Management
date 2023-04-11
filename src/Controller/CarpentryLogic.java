@@ -1,6 +1,8 @@
 package Controller;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -172,57 +174,19 @@ public class CarpentryLogic {
 		
 
 		
-		public  boolean addCustomer(String flightNum, Date departureDate, Date landingDate, String status, String srcAirport,
-				String destAirport, String tailNum, String p1, String p2) {
+		public  boolean addCustomer(int personID, String name, String phoneNUMBER, String address, String email) {
 			try {
 				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
-						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_FLIGHT)) {
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_CUSTOMER)) {
 
 					// int i = 1;
-					stmt.setString(1, flightNum); // can't be null
-
-					if (departureDate != null) {
-						stmt.setDate(2, (java.sql.Date) departureDate);
-					} else {
-						stmt.setNull(2, java.sql.Types.DATE);
-					}
-					if (landingDate != null) {
-						stmt.setDate(3, new java.sql.Date(landingDate.getTime()));
-					} else {
-						stmt.setNull(3, java.sql.Types.DATE);
-					}
-					if (status != null) {
-						stmt.setString(4, status);
-					} else {
-						stmt.setNull(4, java.sql.Types.VARCHAR);
-					}
-					if (srcAirport != null) {
-						stmt.setString(5, srcAirport);
-					} else {
-						stmt.setNull(5, java.sql.Types.VARCHAR);
-					}
-					if (destAirport != null) {
-						stmt.setString(6, destAirport);
-					} else {
-						stmt.setNull(6, java.sql.Types.VARCHAR);
-					}
-					if (tailNum != null) {
-						stmt.setString(7, tailNum);
-					} else {
-						stmt.setNull(7, java.sql.Types.VARCHAR);
-					}
-					if (p1 != null) {
-						stmt.setString(8, p1);
-					} else {
-						stmt.setNull(8, java.sql.Types.VARCHAR);
-					}
-
-					if (p2 != null) {
-						stmt.setString(9, p2);
-					} else {
-						stmt.setNull(9, java.sql.Types.VARCHAR);
-					}
+					stmt.setInt(1, personID); // can't be null
+					stmt.setString(2, name);
+					stmt.setString(3, phoneNUMBER);
+					stmt.setString(4, address);
+					stmt.setString(5, email);
+					
 
 					stmt.executeUpdate();
 					return true;
@@ -236,21 +200,16 @@ public class CarpentryLogic {
 			return false;
 		}
 
-		public  boolean addAirAttendantsInFlight(String id, String flightNum) {
+		public  boolean addOrder(int personID, int orderID, int projectID, String status) {
 			try {
 				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
-						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_AIRATTENDANTINFLIGHT)) {
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_ORDERS)) {
 					// int i = 1;
-					stmt.setString(1, id); // can't be null
-
-					if (flightNum != null) {
-						
-						stmt.setString(2, flightNum);
-						
-					} else {
-						stmt.setNull(2, java.sql.Types.VARCHAR);
-					}
+					stmt.setInt(1, personID); // can't be null
+					stmt.setInt(2, orderID);
+					stmt.setInt(3, projectID);
+					stmt.setString(4, status);
 
 					stmt.executeUpdate();
 					
@@ -265,28 +224,19 @@ public class CarpentryLogic {
 			return false;
 		}
 
-		public  boolean addShift(String shiftId, String startTime, String endTime) {
+		public  boolean addProject(int ID,Date date2, int customerID, String projectCategory) {
 			try {
 				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
-						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_SHIFT)) {
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_PROJECTS)) {
 
 					// int i = 1;
-					stmt.setString(1, shiftId); // can't be null
+					stmt.setInt(1,ID);
+					stmt.setDate(2,date2);
+					stmt.setInt(3,customerID);
+					stmt.setString(4, projectCategory); // can't be null
 
-					if (startTime != null) {
-						
-						stmt.setString(2, startTime);
-					} else {
-						stmt.setNull(2, java.sql.Types.VARCHAR);
-					}
-
-					if (endTime != null) {
-						
-						stmt.setString(3, endTime);
-					} else {
-						stmt.setNull(3, java.sql.Types.VARCHAR);
-					}
+					
 
 					stmt.executeUpdate();
 					return true;
@@ -300,29 +250,77 @@ public class CarpentryLogic {
 			return false;
 		}
 		
-		public  boolean addGroundInShift(String AttendantId, String shiftNum, String role) {
+		public  boolean addProjectItems(String itemName, int height, int width, String woodType, int quantity, int projectID,
+				String section, String color, String modelNumberOfHands) {
 			try {
 				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
-						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_GroundInShift)) {
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_PROJECTITEMS)) {
 
 					// int i = 1;
-					stmt.setString(1, AttendantId); // can't be null
+					stmt.setString(1, itemName); // can't be null
+					stmt.setInt(2, height);
+					stmt.setInt(3, width);
+					stmt.setString(4, woodType);
+					stmt.setInt(5, quantity);
+					stmt.setInt(6, projectID);
+					stmt.setString(7, section);
+					stmt.setString(8, color);
+					stmt.setString(9, modelNumberOfHands);
+					
+					
+					stmt.executeUpdate();
+					return true;
 
-					if (shiftNum != null) {
-						
-						stmt.setString(2, shiftNum);
-					} else {
-						stmt.setNull(2, java.sql.Types.VARCHAR);
-					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+		
+		public  boolean addSection(String sectionName,int projectID, int quantityOFhands, int quantityOFaxle, String projectSection) {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_SECTION)) {
 
-					if (role != null) {
-						
-						stmt.setString(3, role);
-					} else {
-						stmt.setNull(3, java.sql.Types.VARCHAR);
-					}
+					// int i = 1;
+					stmt.setString(1, sectionName); // can't be null
+					stmt.setInt(2, projectID);
+					stmt.setInt(3, quantityOFhands);
+					stmt.setInt(4, quantityOFaxle);
+					stmt.setString(5, projectSection);
+					
+					
+					
+					stmt.executeUpdate();
+					return true;
 
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+		
+		public  boolean addStock(String woodName, int quantity) {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_STOCK)) {
+
+					// int i = 1;
+					stmt.setString(1, woodName); // can't be null
+					stmt.setInt(2, quantity);
+					
+					
+					
+					
 					stmt.executeUpdate();
 					return true;
 
@@ -336,4 +334,4 @@ public class CarpentryLogic {
 		}
 	}
 
-}
+
