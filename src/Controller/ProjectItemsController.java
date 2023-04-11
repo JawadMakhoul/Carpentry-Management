@@ -28,7 +28,8 @@ public class ProjectItemsController{
 
     @FXML
     void MoveTo(MouseEvent event) {
-
+    	
+    	// send to the order constructor String status by convert the enum to string
     }
     
     @FXML
