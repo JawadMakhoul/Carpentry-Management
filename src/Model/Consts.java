@@ -18,12 +18,15 @@ public final class Consts {
 		public static final String SQL_SEL_SECTION = "SELECT * FROM Section";
 		public static final String SQL_SEL_STOCK = "SELECT * FROM Stock";
 		
-//		public static final String SQL_INS_FLIGHT = "{ call qryInsFlight(?,?,?,?,?,?,?,?,?) }";
-//		public static final String SQL_INS_AIRATTENDANTINFLIGHT = "{ call qryInsAirAttendantInFlight(?,?) }";
-//		public static final String SQL_INS_SHIFT = "{ call qryInsShift(?,?,?) }";
-//		public static final String SQL_INS_GroundInShift = "{ call qryInsGroundInShift(?,?,?) }";
-//		public static final String UPDATE_STATUS = "{ call upd_status(?) }";
-//		public static final String SET_PILOTS = "{ call set_pilots(?,?) }";
+		public static final String SQL_INS_CUSTOMER = "{ call qryInsCustomer(?,?,?,?,?) }";
+		public static final String SQL_INS_ORDERS = "{ call qryInsOrder(?,?,?,?) }";
+		public static final String SQL_INS_PROJECTS = "{ call qryInsProject(?,?,?,?) }";
+		public static final String SQL_INS_PROJECTITEMS = "{ call qryInsProjectItems(?,?,?,?,?,?,?,?,?) }";
+		public static final String SQL_INS_SECTION = "{ call qryInsSection(?,?,?,?,?) }";
+		public static final String SQL_INS_STOCK = "{ call qryInsStock(?,?) }";
+		
+		public static final String UPDATE_STATUS = "{ call upd_status(?) }";
+		public static final String SET_PILOTS = "{ call set_pilots(?,?) }";
 
 		private static String getDBPath() {
 			try {

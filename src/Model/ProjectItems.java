@@ -29,20 +29,7 @@ public class ProjectItems {
 		this.modelNumberOfHands = modelNumberOfHands;
 	}
 
-	public void ProjectItems_SET(String itemName, int height, int width, WoodType woodType, int quantity, int projectID,
-			Section section, String color, String modelNumberOfHands) {
-		
-		for()
-		ItemName = itemName;
-		this.height = height;
-		this.width = width;
-		this.woodType = woodType;
-		this.quantity = quantity;
-		this.projectID = projectID;
-		this.section = section;
-		this.color = color;
-		this.modelNumberOfHands = modelNumberOfHands;
-	}
+	
 	public ProjectItems(int projectID) {
 		super();
 		this.projectID = projectID;
