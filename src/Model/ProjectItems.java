@@ -1,24 +1,47 @@
 package Model;
 
 import Enumeration.ProjectSection;
+import Enumeration.WoodType;
 
 public class ProjectItems {
 	
+	private String ItemName;
+	private int height;
+	private int width;
+	private String woodType;
+	private int quantity;
 	private int projectID;
-	private ProjectSection section;
+	private String section;
 	private String color;
-	private String modelNumberHands;
-	private int quantityOFhands;
-	private int quantityOFaxle;
-	public ProjectItems(int projectID, ProjectSection section, String color, String modelNumberHands,
-			int quantityOFhands, int quantityOFaxle) {
+	private String modelNumberOfHands;
+
+	public ProjectItems(String itemName, int height, int width, String woodType, int quantity, int projectID,
+			String section, String color, String modelNumberOfHands) {
 		super();
+		ItemName = itemName;
+		this.height = height;
+		this.width = width;
+		this.woodType = woodType;
+		this.quantity = quantity;
 		this.projectID = projectID;
 		this.section = section;
 		this.color = color;
-		this.modelNumberHands = modelNumberHands;
-		this.quantityOFhands = quantityOFhands;
-		this.quantityOFaxle = quantityOFaxle;
+		this.modelNumberOfHands = modelNumberOfHands;
+	}
+
+	public void ProjectItems_SET(String itemName, int height, int width, WoodType woodType, int quantity, int projectID,
+			Section section, String color, String modelNumberOfHands) {
+		
+		for()
+		ItemName = itemName;
+		this.height = height;
+		this.width = width;
+		this.woodType = woodType;
+		this.quantity = quantity;
+		this.projectID = projectID;
+		this.section = section;
+		this.color = color;
+		this.modelNumberOfHands = modelNumberOfHands;
 	}
 	public ProjectItems(int projectID) {
 		super();
@@ -32,24 +55,59 @@ public class ProjectItems {
 		this.color = color;
 	}
 	public String getModelNumberHands() {
-		return modelNumberHands;
+		return modelNumberOfHands;
 	}
 	public void setModelNumberHands(String modelNumberHands) {
-		this.modelNumberHands = modelNumberHands;
+		this.modelNumberOfHands = modelNumberHands;
 	}
-	public int getQuantityOFhands() {
-		return quantityOFhands;
-	}
-	public void setQuantityOFhands(int quantityOFhands) {
-		this.quantityOFhands = quantityOFhands;
-	}
-	public int getQuantityOFaxle() {
-		return quantityOFaxle;
-	}
-	public void setQuantityOFaxle(int quantityOFaxle) {
-		this.quantityOFaxle = quantityOFaxle;
+	
+	public String getItemName() {
+		return ItemName;
 	}
 
+	public void setItemName(String itemName) {
+		ItemName = itemName;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public String getWoodType() {
+		return woodType;
+	}
+
+	public void setWoodType(String woodType) {
+		this.woodType = woodType;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public String getModelNumberOfHands() {
+		return modelNumberOfHands;
+	}
+
+	public void setModelNumberOfHands(String modelNumberOfHands) {
+		this.modelNumberOfHands = modelNumberOfHands;
+	}
 	
 	public int getProjectID() {
 		return projectID;
@@ -57,10 +115,10 @@ public class ProjectItems {
 	public void setProjectID(int projectID) {
 		this.projectID = projectID;
 	}
-	public ProjectSection getSection() {
+	public String getSection() {
 		return section;
 	}
-	public void setSection(ProjectSection section) {
+	public void setSection(String section) {
 		this.section = section;
 	}
 	

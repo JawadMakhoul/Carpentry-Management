@@ -6,15 +6,15 @@ import Enumeration.ProjectCategory;
 
 public class Project {
 	
-	private int ID=1;
+	private static int ID=1;
 	private LocalDate date;
-	private Customer customer;
-	private ProjectCategory projectCategory;
-	public Project(LocalDate date, Customer customer, ProjectCategory projectCategory) {
+	private int customerID;
+	private String projectCategory;
+	public Project(LocalDate date, int customerID, String projectCategory) {
 		super();
 		ID = ID++;
 		this.date = date;
-		this.customer = customer;
+		this.customerID = customerID;
 		this.projectCategory = projectCategory;
 	}
 	public int getID() {
@@ -29,16 +29,16 @@ public class Project {
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
-	public Customer getCustomer() {
-		return customer;
+	public int getCustomer() {
+		return customerID;
 	}
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setCustomer(int customerID) {
+		this.customerID = customerID;
 	}
-	public ProjectCategory getProjectCategory() {
+	public String getProjectCategory() {
 		return projectCategory;
 	}
-	public void setProjectCategory(ProjectCategory projectCategory) {
+	public void setProjectCategory(String projectCategory) {
 		this.projectCategory = projectCategory;
 	}
 	
