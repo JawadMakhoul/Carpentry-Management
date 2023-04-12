@@ -2,6 +2,8 @@ package Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
@@ -31,9 +33,6 @@ public class NewProjectController implements Initializable{
     
     @FXML
     private TextField CustomerName,address,email,phoneNumber;
-
-    @FXML
-    private DatePicker finishDate;
 
     @FXML
     private ComboBox<ProjectCategory> projectCategory;
@@ -162,9 +161,11 @@ public class NewProjectController implements Initializable{
 
 	    			
 	    			if(!CustomerName.equals(null)&& !phoneNumber.equals(null) && !address.equals(null) && !email.equals(null)) { // Creating new customer
-	    				Customer C = new Model.Customer(CustomerName.getText(),phoneNumber.getText(),address.getText(),email.getText());
+	    				CarpentryLogic.getInstance().addCustomer(Customer.getID(),CustomerName.getText(),phoneNumber.getText(),address.getText(),email.getText());
 	    				
-	    				new Model.ProjectItems(new Model.Project(finishDate.getValue(), C, projectCategory.getValue()).getID());
+	    				if(CarpentryLogic.getInstance().addProject( Customer.getID(), projectCategory.getValue().toString()))
+	    					System.out.println("hahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");//CarpentryLogic.getInstance().addProjectItems(CarpentryLogic.getInstance().getProjects().get);
+	    				//new Model.ProjectItems(.get);
 	    			}
 	    			
     				Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectItems.fxml"));
