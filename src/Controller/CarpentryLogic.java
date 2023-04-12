@@ -93,7 +93,7 @@ public class CarpentryLogic {
 						ResultSet rs = stmt.executeQuery()) {
 					while (rs.next()) {
 						int i = 1;
-						results.add(new Project(rs.getDate(i++), rs.getInt(i++), rs.getString(i++)));
+						results.add(new Project( rs.getInt(i++), rs.getString(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -224,17 +224,16 @@ public class CarpentryLogic {
 			return false;
 		}
 
-		public  boolean addProject(int ID,Date date2, int customerID, String projectCategory) {
+		public  boolean addProject( int customerID, String projectCategory) {
 			try {
 				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
 						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_PROJECTS)) {
 
 					// int i = 1;
-					stmt.setInt(1,ID);
-					stmt.setDate(2,date2);
-					stmt.setInt(3,customerID);
-					stmt.setString(4, projectCategory); // can't be null
+					
+					stmt.setInt(2,customerID);
+					stmt.setString(3, projectCategory); // can't be null
 
 					
 
@@ -250,6 +249,35 @@ public class CarpentryLogic {
 			return false;
 		}
 		
+		public  boolean addProjectItemsByProjectID(int projectID) {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_PROJECTITEMS)) {
+
+					// int i = 1;
+//					stmt.setString(1, null); // can't be null
+//					stmt.setInt(2, null);
+//					stmt.setInt(3, null);
+//					stmt.setString(4, null);
+//					stmt.setInt(5, null);
+					stmt.setInt(6, projectID);
+//					stmt.setString(7, null);
+//					stmt.setString(8, null);
+//					stmt.setString(9, null);
+					
+					
+					stmt.executeUpdate();
+					return true;
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
 		public  boolean addProjectItems(String itemName, int height, int width, String woodType, int quantity, int projectID,
 				String section, String color, String modelNumberOfHands) {
 			try {
