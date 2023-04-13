@@ -18,7 +18,7 @@ public final class Consts {
 		public static final String SQL_SEL_SECTION = "SELECT * FROM Section";
 		public static final String SQL_SEL_STOCK = "SELECT * FROM Stock";
 		
-		public static final String SQL_INS_CUSTOMER = "{ call qryInsCustomer(?,?,?,?,?) }";
+		public static final String SQL_INS_CUSTOMER = "{ call qryInsCustomer1(?,?,?,?,?) }";
 		public static final String SQL_INS_ORDERS = "{ call qryInsOrder(?,?,?,?) }";
 		public static final String SQL_INS_PROJECTS = "{ call qryInsProject(?,?,?,?) }";
 		public static final String SQL_INS_PROJECTITEMS = "{ call qryInsProjectItems(?,?,?,?,?,?,?,?,?) }";
@@ -37,7 +37,7 @@ public final class Consts {
 					return decoded + "/DataBase.accdb";
 				} else {
 					decoded = decoded.substring(0, decoded.lastIndexOf("bin/"));
-					System.out.println(decoded);
+					System.out.println(decoded);System.out.println(decoded + "src/Model/DataBase.accdb");
 					return decoded + "src/Model/DataBase.accdb";
 				}
 			} catch (Exception e) {

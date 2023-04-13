@@ -40,6 +40,7 @@ public class NewProjectController implements Initializable{
     @FXML
     private AnchorPane screen;
 
+    
     @FXML
     void MoveTo(MouseEvent event) throws IOException {
     	
@@ -160,12 +161,18 @@ public class NewProjectController implements Initializable{
 	    		case "projectItems":{
 
 	    			
-	    			if(!CustomerName.equals(null)&& !phoneNumber.equals(null) && !address.equals(null) && !email.equals(null)) { // Creating new customer
-	    				CarpentryLogic.getInstance().addCustomer(Customer.getID(),CustomerName.getText(),phoneNumber.getText(),address.getText(),email.getText());
+	    			if(!CustomerName.equals(null)&& !phoneNumber.equals(null) && !address.equals(null) && !email.equals(null)) { // Creating new customer and new project    		
 	    				
-	    				if(CarpentryLogic.getInstance().addProject( Customer.getID(), projectCategory.getValue().toString()))
-	    					System.out.println("hahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");//CarpentryLogic.getInstance().addProjectItems(CarpentryLogic.getInstance().getProjects().get);
-	    				//new Model.ProjectItems(.get);
+	    				
+	    				Customer c = new Customer();
+	    				c.setName(CustomerName.getText());
+	    				c.setPhoneNUMBER(phoneNumber.getText());
+	    				c.setAddress(address.getText());
+	    				c.setEmail(email.getText());
+	    	
+	    				CarpentryLogic.getInstance().addCustomer(c);
+	    				CarpentryLogic.getInstance().addProject(c.getID(), projectCategory.getValue().toString());
+
 	    			}
 	    			
     				Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectItems.fxml"));
