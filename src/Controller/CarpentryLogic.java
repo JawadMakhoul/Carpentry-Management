@@ -45,7 +45,7 @@ public class CarpentryLogic {
 						ResultSet rs = stmt.executeQuery()) {
 					while (rs.next()) {
 						int i = 1;
-						results.add(new Customer(rs.getString(i++), rs.getString(i++),rs.getString(i++),rs.getString(i++)));
+						results.add(new Customer(rs.getInt(i++),rs.getString(i++), rs.getString(i++),rs.getString(i++),rs.getString(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -174,18 +174,19 @@ public class CarpentryLogic {
 		
 
 		
-		public  boolean addCustomer(int personID, String name, String phoneNUMBER, String address, String email) {
+		public  boolean addCustomer(Customer c) {
 			try {
 				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						
 						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_CUSTOMER)) {
 
 					// int i = 1;
-					stmt.setInt(1, personID); // can't be null
-					stmt.setString(2, name);
-					stmt.setString(3, phoneNUMBER);
-					stmt.setString(4, address);
-					stmt.setString(5, email);
+					stmt.setInt(1, c.getID()); // can't be null
+					stmt.setString(2, c.getName());
+					stmt.setString(3, c.getPhoneNUMBER());
+					stmt.setString(4, c.getAddress());
+					stmt.setString(5, c.getEmail());
 					
 
 					stmt.executeUpdate();

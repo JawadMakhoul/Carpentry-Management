@@ -2,26 +2,43 @@ package Model;
 
 public class Customer {
 	
-	private static int personID=0;
+	
+    private static int idCounter=1;
+    private  int personID;
 	private String name;
 	private String phoneNUMBER;
 	private String address;
 	private String email;
 	
 	
-	public Customer(String name, String phoneNUMBER, String address, String email) {
+	public Customer(int personID,String name, String phoneNUMBER, String address, String email) {
 		super();
-		Customer.personID=personID++;
+		
+		this.personID=personID;
 		this.name = name;
 		this.phoneNUMBER = phoneNUMBER;
 		this.address = address;
 		this.email = email;
 	}
-	public static int getID() {
+	
+	public Customer() {
+		
+		
+		this.personID=idCounter++;
+		
+	}
+	public  int getID() {
 		return personID;
 	}
-	public static void setID(int iD) {
-		personID = iD;
+	
+	public static int getIdCounter() {
+		return idCounter;
+	}
+	public static void setIdCounter(int idCounter) {
+		Customer.idCounter = idCounter;
+	}
+	public  void setID(int personID) {
+		this.personID = personID;
 	}
 	public String getName() {
 		return name;
