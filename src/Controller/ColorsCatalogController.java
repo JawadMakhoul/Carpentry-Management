@@ -5,15 +5,23 @@ import java.net.URL;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
 public class ColorsCatalogController implements Initializable{
@@ -21,8 +29,12 @@ public class ColorsCatalogController implements Initializable{
     @FXML
     private Button NewProject,Stock,CurrentProjects,MaterialsToOrder,ColorsCatalog,OrderedMaterials,FinancialManaging,ProjectsCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
+    
     @FXML
-    private AnchorPane screen;
+    private ColorPicker colorPicker;
+    
+    @FXML
+    private AnchorPane screen2;
 
     @FXML
     void MoveTo(MouseEvent event) throws IOException {
@@ -147,6 +159,14 @@ public class ColorsCatalogController implements Initializable{
     	
     }
 
+    
+    @FXML
+    void ChangeColor(ActionEvent event) {
+
+    	Color selectedColor = colorPicker.getValue();
+    	screen2.setBackground(new Background(new BackgroundFill(Paint.valueOf(selectedColor.toString()), null, null)));
+    }
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub

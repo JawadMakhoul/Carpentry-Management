@@ -4,33 +4,59 @@ import Enumeration.OrderStatus;
 
 public class Order {
 
-	private int personID;
-	private int orderID=0;
-	private int projectID;
+	
+	private static int idCounter=1;
+	private String customerID;
+	private String orderID="Order_";
+	private String projectID;
 	private String status;
-	public Order(int personID, int orderID, int projectID, String status) {
+	private char newShekelSign = '\u20AA';
+	private String cost;
+	
+	public Order(String orderID,String customerID, String projectID, String status,String cost) {
 		super();
-		this.personID = personID;
+		this.customerID = customerID;
 		this.orderID = orderID;
 		this.projectID = projectID;
 		this.status = status;
+		this.cost=cost+newShekelSign;
 	}
-	public int getPersonID() {
-		return personID;
+	
+	
+
+	public Order() {
+		this.orderID=this.orderID+""+idCounter++;
 	}
-	public void setPersonID(int personID) {
-		this.personID = personID;
+	public String getCost() {
+		return cost;
 	}
-	public int getOrderID() {
+
+	public void setCost(String cost) {
+		this.cost = cost;
+	}
+	public static int getIdCounter() {
+		return idCounter;
+	}
+
+	public static void setIdCounter(int idCounter) {
+		Order.idCounter = idCounter;
+	}
+	public String getCustomerID() {
+		return customerID;
+	}
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
+	}
+	public String getOrderID() {
 		return orderID;
 	}
-	public void setOrderID(int orderID) {
+	public void setOrderID(String orderID) {
 		this.orderID = orderID;
 	}
-	public int getProjectID() {
+	public String getProjectID() {
 		return projectID;
 	}
-	public void setProjectID(int projectID) {
+	public void setProjectID(String projectID) {
 		this.projectID = projectID;
 	}
 	public String getStatus() {
@@ -40,5 +66,7 @@ public class Order {
 		this.status = status;
 	}
 	
-	
+	public String CalculateCost() {
+		return null;
+	}
 }

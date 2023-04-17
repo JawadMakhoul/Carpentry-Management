@@ -5,20 +5,24 @@ import Enumeration.WoodType;
 
 public class ProjectItems {
 	
+	private static int idCounter=1;
+	
+	private String itemID="Item_";
 	private String ItemName;
 	private int height;
 	private int width;
 	private String woodType;
 	private int quantity;
-	private int projectID;
+	private String projectID;
 	private String section;
 	private String color;
 	private String modelNumberOfHands;
 
-	public ProjectItems(String itemName, int height, int width, String woodType, int quantity, int projectID,
+	public ProjectItems(String itemID,String ItemName, int height, int width, String woodType, int quantity, String projectID,
 			String section, String color, String modelNumberOfHands) {
 		super();
-		ItemName = itemName;
+		this.itemID=itemID;
+		this.ItemName = ItemName;
 		this.height = height;
 		this.width = width;
 		this.woodType = woodType;
@@ -29,8 +33,26 @@ public class ProjectItems {
 		this.modelNumberOfHands = modelNumberOfHands;
 	}
 
-	
-	public ProjectItems(int projectID) {
+	public ProjectItems() {
+		this.itemID=this.itemID+""+idCounter++;
+	}
+	public static int getIdCounter() {
+		return idCounter;
+	}
+
+	public static void setIdCounter(int idCounter) {
+		ProjectItems.idCounter = idCounter;
+	}
+
+	public String getItemID() {
+		return itemID;
+	}
+
+	public void setItemID(String itemID) {
+		this.itemID = itemID;
+	}
+
+	public ProjectItems(String projectID) {
 		super();
 		this.projectID = projectID;
 	}
@@ -41,12 +63,7 @@ public class ProjectItems {
 	public void setColor(String color) {
 		this.color = color;
 	}
-	public String getModelNumberHands() {
-		return modelNumberOfHands;
-	}
-	public void setModelNumberHands(String modelNumberHands) {
-		this.modelNumberOfHands = modelNumberHands;
-	}
+	
 	
 	public String getItemName() {
 		return ItemName;
@@ -96,10 +113,10 @@ public class ProjectItems {
 		this.modelNumberOfHands = modelNumberOfHands;
 	}
 	
-	public int getProjectID() {
+	public String getProjectID() {
 		return projectID;
 	}
-	public void setProjectID(int projectID) {
+	public void setProjectID(String projectID) {
 		this.projectID = projectID;
 	}
 	public String getSection() {

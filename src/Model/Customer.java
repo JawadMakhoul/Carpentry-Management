@@ -4,14 +4,14 @@ public class Customer {
 	
 	
     private static int idCounter=1;
-    private  int personID;
+    private String personID="Customer_";
 	private String name;
 	private String phoneNUMBER;
 	private String address;
 	private String email;
 	
 	
-	public Customer(int personID,String name, String phoneNUMBER, String address, String email) {
+	public Customer(String personID,String name, String phoneNUMBER, String address, String email) {
 		super();
 		
 		this.personID=personID;
@@ -24,10 +24,10 @@ public class Customer {
 	public Customer() {
 		
 		
-		this.personID=idCounter++;
+		this.personID=this.personID+""+idCounter++;
 		
 	}
-	public  int getID() {
+	public  String getID() {
 		return personID;
 	}
 	
@@ -37,7 +37,7 @@ public class Customer {
 	public static void setIdCounter(int idCounter) {
 		Customer.idCounter = idCounter;
 	}
-	public  void setID(int personID) {
+	public  void setID(String personID) {
 		this.personID = personID;
 	}
 	public String getName() {
