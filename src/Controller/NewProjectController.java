@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 
 import Enumeration.ProjectCategory;
 import Model.Customer;
+import Model.Project;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -27,6 +28,7 @@ import javafx.stage.Stage;
 
 public class NewProjectController implements Initializable{
 
+	private String projectID;
     @FXML
     private Button projectItems,NewProject,Stock,CurrentProjects,MaterialsToOrder,ColorsCatalog,OrderedMaterials,FinancialManaging,ProjectsCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
@@ -41,7 +43,15 @@ public class NewProjectController implements Initializable{
     private AnchorPane screen;
 
     
-    @FXML
+    public String getProjectID() {
+		return projectID;
+	}
+
+	public void setProjectID(String projectID) {
+		this.projectID = projectID;
+	}
+
+	@FXML
     void MoveTo(MouseEvent event) throws IOException {
     	
     	for(Button b: Buttons) {
@@ -171,12 +181,17 @@ public class NewProjectController implements Initializable{
 	    				c.setEmail(email.getText());
 	    	
 	    				CarpentryLogic.getInstance().addCustomer(c);
-	    				CarpentryLogic.getInstance().addProject(c.getID(), projectCategory.getValue().toString());
-
+	    				
+	    				Project p = new Project();
+	    				p.setCustomerID(c.getID());
+	    				p.setProjectCategory(projectCategory.getSelectionModel().toString());
+	    				CarpentryLogic.getInstance().addProject(p);
+	    				setProjectID(p.getProjectID());
 	    			}
 	    			
     				Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectItems.fxml"));
     				Scene scene = new Scene(pane);
+    				scene.setUserData(projectID);
     				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     				stage.setScene(scene);
     				stage.setResizable(false);
@@ -209,14 +224,6 @@ public class NewProjectController implements Initializable{
 		ObservableList<ProjectCategory> projectType = FXCollections.observableArrayList(ProjectCategory.Home,ProjectCategory.Office,ProjectCategory.Institution);
 		projectCategory.getItems().addAll(projectType);
 
-//		AllCategories = Model.Restaurant.getInstance().getComponenets();
-//
-//
-//		for(Component comp: AllComponents.values())
-//		{
-//			components.getItems().add(comp);
-//		}
-//		components.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 	}
 

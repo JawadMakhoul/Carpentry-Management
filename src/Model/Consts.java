@@ -12,18 +12,18 @@ public final class Consts {
 		protected static final String DB_FILEPATH = getDBPath();
 		public static final String CONN_STR = "jdbc:ucanaccess://" + getDBPath() + ";COLUMNORDER=DISPLAY";
 		public static final String SQL_SEL_CUSTOMERS = "SELECT * FROM Customer";
-		public static final String SQL_SEL_ORDERS = "SELECT * FROM Order";
+		public static final String SQL_SEL_ORDERS = "SELECT * FROM OrderTbl";
 		public static final String SQL_SEL_PROJECTS = "SELECT * FROM Project";
 		public static final String SQL_SEL_PROJECTITEMS = "SELECT * FROM ProjectItems";
 		public static final String SQL_SEL_SECTION = "SELECT * FROM Section";
 		public static final String SQL_SEL_STOCK = "SELECT * FROM Stock";
 		
 		public static final String SQL_INS_CUSTOMER = "{ call qryInsCustomer1(?,?,?,?,?) }";
-		public static final String SQL_INS_ORDERS = "{ call qryInsOrder(?,?,?,?) }";
-		public static final String SQL_INS_PROJECTS = "{ call qryInsProject(?,?,?,?) }";
-		public static final String SQL_INS_PROJECTITEMS = "{ call qryInsProjectItems(?,?,?,?,?,?,?,?,?) }";
+		public static final String SQL_INS_ORDERS = "{ call qryInsOrder(?,?,?,?,?) }";
+		public static final String SQL_INS_PROJECTS = "{ call qryInsProject(?,?,?) }";
+		public static final String SQL_INS_PROJECTITEMS = "{ call qryInsProjectItems(?,?,?,?,?,?,?,?,?,?) }";
 		public static final String SQL_INS_SECTION = "{ call qryInsSection(?,?,?,?,?) }";
-		public static final String SQL_INS_STOCK = "{ call qryInsStock(?,?) }";
+		public static final String SQL_INS_STOCK = "{ call qryInsStock(?,?,?) }";
 		
 
 

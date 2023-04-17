@@ -6,29 +6,39 @@ import java.time.LocalDate;
 import Enumeration.ProjectCategory;
 
 public class Project {
-	
-	private static int ID=1;
-	private int customerID;
+	private static int idCounter=1;
+	private String projectID="Project_";
+	private String customerID;
 	private String projectCategory;
-	public Project(int customerID, String projectCategory) {
+	
+	public Project(String projectID,String customerID, String projectCategory) {
 		super();
-		ID = ID++;
+		this.projectID = projectID;
 		this.customerID = customerID;
 		this.projectCategory = projectCategory;
 	}
-	public int getID() {
-		return ID;
+	public Project() {
+		this.projectID=this.projectID+""+idCounter++;
 	}
-	public void setID(int iD) {
-		ID = iD;
+	public static int getIdCounter() {
+		return idCounter;
 	}
-	
-	public int getCustomer() {
+	public static void setIdCounter(int idCounter) {
+		Project.idCounter = idCounter;
+	}
+	public String getProjectID() {
+		return projectID;
+	}
+	public void setProjectID(String projectID) {
+		this.projectID = projectID;
+	}
+	public String getCustomerID() {
 		return customerID;
 	}
-	public void setCustomer(int customerID) {
+	public void setCustomerID(String customerID) {
 		this.customerID = customerID;
 	}
+
 	public String getProjectCategory() {
 		return projectCategory;
 	}

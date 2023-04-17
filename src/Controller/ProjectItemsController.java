@@ -5,9 +5,17 @@ import java.net.URL;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
+import Enumeration.OrderStatus;
+import Enumeration.ProjectCategory;
 import Enumeration.ProjectSection;
 import Enumeration.WoodType;
 import Model.Customer;
+import Model.Project;
+import Model.Section;
+import Model.ProjectItems;
+import Model.Order;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,19 +33,20 @@ import javafx.stage.Stage;
 public class ProjectItemsController implements Initializable{
 
 	@FXML
-    private Button BackButton,ColorsCatalog,CurrentProjects,FinancialManaging,Inbox,MaterialsToOrder,NewProject,OrderedMaterials,ProjectsCatalog,Stock,addItem,addSection,finish;
+    private Button ShowProjectDetails,BackButton,ColorsCatalog,CurrentProjects,FinancialManaging,Inbox,MaterialsToOrder,NewProject,OrderedMaterials,ProjectsCatalog,Stock,addItem,addSection,finish;
 	private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private ColorPicker color;
 
     @FXML
-    private TextField ItemName,handsModelNumber,handsQuantity,handsQuantity1,height,quantity,width;
+    private TextField orderStatus,ItemName,handsModelNumber,handsQuantity,axleQuantity,height,quantity,width,CUSTOMERID,ORDERID,PROJECTID,orderCost;
 
     @FXML
     private ComboBox<ProjectSection> projectSection;
 
     @FXML
     private ComboBox<WoodType> woodType;
+    
     
     
     @FXML
@@ -157,7 +166,73 @@ public class ProjectItemsController implements Initializable{
 	        		stage.show();
 	        		break;
 	    		}	
+	    		
+	    		case "finish":{
+	    			Section s = new Section();
+	    	    	s.setSectionName(projectSection.getSelectionModel().toString());
+	    	    	Node node = (Node) event.getSource();
+	    	        Stage stage = (Stage) node.getScene().getWindow();
+	    	        Project p = (Project) stage.getUserData();
+	    	        String projectid = p.getProjectID();
+	    	    	s.setProjectID(projectid);
+	    	    	s.setQuantityOFhands(Integer.parseInt(handsQuantity.getText()));
+	    	    	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
+	    	    	//s.setProjectSection(projectSection.getSelectionModel().toString());
+	    	    	
+	    	    	ProjectItems pi = new ProjectItems();
+	    	    	pi.setItemName(ItemName.getText());
+	    	    	pi.setHeight(Integer.parseInt(height.getText()));
+	    	    	pi.setWidth(Integer.parseInt(width.getText()));
+	    	    	pi.setWoodType(woodType.getSelectionModel().toString());
+	    	    	pi.setQuantity(Integer.parseInt(quantity.getText()));
+	    	    	pi.setProjectID(projectid);
+	    	    	pi.setSection(projectSection.getSelectionModel().toString());
+	    	    	pi.setColor(color.getValue().toString());
+	    	    	pi.setModelNumberOfHands(handsModelNumber.getText());
+	    	    	
+	    	    	CarpentryLogic.getInstance().addProjectItems(pi);
+	    	    	
+	    	    	CarpentryLogic.getInstance().addSection(s);
+	    	    	
+//	    	    	Order o = new Order();
+//	    	    	Node node2 = (Node) event.getSource();
+//	    	        Stage stage2 = (Stage) node2.getScene().getWindow();
+//	    	        Project p2 = (Project) stage2.getUserData();
+//	    	        String customerID = p2.getCustomerID();
+//	    	    	o.setCustomerID(customerID); CUSTOMERID.setText(o.getCustomerID());
+//	    	    	o.setProjectID(projectid); PROJECTID.setText(o.getProjectID());
+//	    	    	o.setStatus(Enumeration.OrderStatus.WaitingProcess.toString()); orderStatus.setText(Enumeration.OrderStatus.WaitingProcess.toString());
+//	    	    	o.setCost(o.CalculateCost()); orderCost.setText(o.getCost());// write function in order class to calculate the cost of the order////////////////////////////////////////////////////////////////////////////////////////////////////////
+//	    			
+	    	    	
+	    	    	Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage1.setScene(scene);
+	        		stage1.setResizable(false);
+	        		stage1.setTitle("Awni Wood Work");
+	        		stage1.show();
+	        		break;
+	        		
+	    		}	
 	    	
+	    		case "ShowProjectDetails":{
+	    			
+	    	    	Order o = new Order();
+	    	    	Node node2 = (Node) event.getSource();
+	    	        Stage stage2 = (Stage) node2.getScene().getWindow();
+	    	        Project p2 = (Project) stage2.getUserData();
+	    	        String customerID = p2.getCustomerID();
+	    	    	o.setCustomerID(customerID); CUSTOMERID.setText(o.getCustomerID());
+	    	    	o.setProjectID(p2.getProjectID()); PROJECTID.setText(o.getProjectID());
+	    	    	o.setStatus(Enumeration.OrderStatus.WaitingProcess.toString()); orderStatus.setText(Enumeration.OrderStatus.WaitingProcess.toString());
+	    	    	o.setCost(o.CalculateCost()); orderCost.setText(o.getCost());// write function in order class to calculate the cost of the order////////////////////////////////////////////////////////////////////////////////////////////////////////
+	    			
+	    	    	CarpentryLogic.getInstance().addOrder(o);
+	        		break;
+	        		
+	        		
+	    		}
     		}
     	}
     		
@@ -171,15 +246,62 @@ public class ProjectItemsController implements Initializable{
     @FXML
     void AddAnotherItem(MouseEvent event) {
 
+    	ProjectItems pi = new ProjectItems();
+    	pi.setItemName(ItemName.getText());
+    	pi.setHeight(Integer.parseInt(height.getText()));
+    	pi.setWidth(Integer.parseInt(width.getText()));
+    	pi.setWoodType(woodType.getSelectionModel().toString());
+    	pi.setQuantity(Integer.parseInt(quantity.getText()));
+    	Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Project p = (Project) stage.getUserData();
+        String projectid = p.getProjectID();
+    	pi.setProjectID(projectid);
+    	pi.setSection(projectSection.getSelectionModel().toString());
+    	pi.setColor(color.getValue().toString());
+    	pi.setModelNumberOfHands(handsModelNumber.getText());
+    	
+    	CarpentryLogic.getInstance().addProjectItems(pi);
+    	
+    	ItemName.setText(null);
+    	height.setText(null);
+    	width.setText(null);
+    	woodType.setSelectionModel(null);
+    	quantity.setText(null);
+    	color.setValue(null);
+    	handsModelNumber.setText(null);
+    	
     }
 
     @FXML
     void AddSection(MouseEvent event) {
-
+    	Section s = new Section();
+    	s.setSectionName(projectSection.getSelectionModel().toString());
+    	Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Project p = (Project) stage.getUserData();
+        String projectid = p.getProjectID();
+    	s.setProjectID(projectid);
+    	s.setQuantityOFhands(Integer.parseInt(handsQuantity.getText()));
+    	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
+    	//s.setProjectSection(projectSection.getSelectionModel().toString());
     	
+    	CarpentryLogic.getInstance().addSection(s);
     	
+    	projectSection.setSelectionModel(null);
+    	handsQuantity.setText(null);
+    	axleQuantity.setText(null);
+    	//projectSection.setSelectionModel(null);
+    	
+    	ItemName.setText(null);
+    	height.setText(null);
+    	width.setText(null);
+    	woodType.setSelectionModel(null);
+    	quantity.setText(null);
+    	color.setValue(null);
+    	handsModelNumber.setText(null);
     }
-
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -193,9 +315,16 @@ public class ProjectItemsController implements Initializable{
 		Buttons.add(NewProject);
 		Buttons.add(Inbox);
 		Buttons.add(BackButton);
-		
+		Buttons.add(ShowProjectDetails);
 //		Buttons.add(addItem);
 //		Buttons.add(addSection);
-//		Buttons.add(finish);
+		Buttons.add(finish);
+		
+		ObservableList<ProjectSection> projectSectionList = FXCollections.observableArrayList(ProjectSection.Kitchen,ProjectSection.Room,ProjectSection.LivingRoom,ProjectSection.Bathroom,ProjectSection.Closet,ProjectSection.Table,ProjectSection.Bed,ProjectSection.Other);
+		projectSection.getItems().addAll(projectSectionList);
+		
+		ObservableList<WoodType> woodTypeList = FXCollections.observableArrayList(WoodType.);
+		woodType.getItems().addAll(woodTypeList);
 	}
+	
 }
