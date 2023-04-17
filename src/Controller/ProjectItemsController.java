@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
+import Enumeration.AxleDegree;
 import Enumeration.OrderStatus;
 import Enumeration.ProjectCategory;
 import Enumeration.ProjectSection;
@@ -47,7 +48,8 @@ public class ProjectItemsController implements Initializable{
     @FXML
     private ComboBox<WoodType> woodType;
     
-    
+    @FXML
+    private ComboBox<AxleDegree> brzolDegree;
     
     @FXML
     void MoveTo(MouseEvent event) throws IOException {
@@ -323,8 +325,11 @@ public class ProjectItemsController implements Initializable{
 		ObservableList<ProjectSection> projectSectionList = FXCollections.observableArrayList(ProjectSection.Kitchen,ProjectSection.Room,ProjectSection.LivingRoom,ProjectSection.Bathroom,ProjectSection.Closet,ProjectSection.Table,ProjectSection.Bed,ProjectSection.Other);
 		projectSection.getItems().addAll(projectSectionList);
 		
-		ObservableList<WoodType> woodTypeList = FXCollections.observableArrayList(WoodType.);
+		ObservableList<WoodType> woodTypeList = FXCollections.observableArrayList(WoodType.Mdf,WoodType.Melamine,WoodType.Particleboard,WoodType.Sandwich,WoodType.Solid_Wood);
 		woodType.getItems().addAll(woodTypeList);
+		
+		ObservableList<AxleDegree> axlesDegree = FXCollections.observableArrayList(AxleDegree.Degree_45,AxleDegree.Degree_155,AxleDegree.Degree_180);
+		brzolDegree.getItems().addAll(axlesDegree);
 	}
 	
 }
