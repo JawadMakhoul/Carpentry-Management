@@ -31,13 +31,13 @@ public final class Consts {
 			try {
 				String path = Consts.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 				String decoded = URLDecoder.decode(path, "UTF-8");
-				 System.out.println(decoded); //- Can help to check the returned path
+				 //System.out.println(decoded); //- Can help to check the returned path
 				if (decoded.contains(".jar")) {
 					decoded = decoded.substring(0, decoded.lastIndexOf('/'));
 					return decoded + "/DataBase.accdb";
 				} else {
 					decoded = decoded.substring(0, decoded.lastIndexOf("bin/"));
-					System.out.println(decoded);System.out.println(decoded + "src/Model/DataBase.accdb");
+					//System.out.println(decoded);System.out.println(decoded + "src/Model/DataBase.accdb");
 					return decoded + "src/Model/DataBase.accdb";
 				}
 			} catch (Exception e) {

@@ -45,7 +45,7 @@ public class CarpentryLogic {
 						ResultSet rs = stmt.executeQuery()) {
 					while (rs.next()) {
 						int i = 1;
-						results.add(new Customer(rs.getString(i++),rs.getString(i++), rs.getString(i++),rs.getString(i++),rs.getString(i++)));
+						results.add(new Customer(rs.getInt(i++),rs.getString(i++), rs.getString(i++),rs.getString(i++),rs.getString(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -69,7 +69,7 @@ public class CarpentryLogic {
 						ResultSet rs = stmt.executeQuery()) {
 					while (rs.next()) {
 						int i = 1;
-						results.add(new Order(rs.getString(i++),rs.getString(i++),rs.getString(i++), rs.getString(i++), rs.getString(i++)));
+						results.add(new Order(rs.getInt(i++),rs.getString(i++),rs.getString(i++), rs.getString(i++), rs.getString(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -93,7 +93,7 @@ public class CarpentryLogic {
 						ResultSet rs = stmt.executeQuery()) {
 					while (rs.next()) {
 						int i = 1;
-						results.add(new Project(rs.getString(i++),rs.getString(i++), rs.getString(i++)));
+						results.add(new Project(rs.getInt(i++),rs.getString(i++), rs.getString(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -117,7 +117,7 @@ public class CarpentryLogic {
 						ResultSet rs = stmt.executeQuery()) {
 					while (rs.next()) {
 						int i = 1;
-						results.add(new ProjectItems(rs.getString(i++),rs.getString(i++),rs.getInt(i++),rs.getInt(i++), rs.getString(i++),rs.getInt(i++),rs.getString(i++),
+						results.add(new ProjectItems(rs.getInt(i++),rs.getString(i++),rs.getInt(i++),rs.getInt(i++), rs.getString(i++),rs.getInt(i++),rs.getString(i++),
 								rs.getString(i++), rs.getString(i++), rs.getString(i++)));
 					}
 				} catch (SQLException e) {
@@ -139,7 +139,7 @@ public class CarpentryLogic {
 						ResultSet rs = stmt.executeQuery()) {
 					while (rs.next()) {
 						int i = 1;
-						results.add(new Section(rs.getString(i++), rs.getString(i++),rs.getString(i++),rs.getInt(i++),rs.getInt(i++)));
+						results.add(new Section(rs.getInt(i++), rs.getString(i++),rs.getString(i++),rs.getInt(i++),rs.getInt(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -160,7 +160,7 @@ public class CarpentryLogic {
 						ResultSet rs = stmt.executeQuery()) {
 					while (rs.next()) {
 						int i = 1;
-						results.add(new Stock(rs.getString(i++),rs.getString(i++), rs.getInt(i++)));
+						results.add(new Stock(rs.getInt(i++),rs.getString(i++), rs.getInt(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -182,7 +182,7 @@ public class CarpentryLogic {
 						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_CUSTOMER)) {
 
 					// int i = 1;
-					stmt.setString(1, c.getID()); // can't be null
+					stmt.setInt(1, c.getID()); // can't be null
 					stmt.setString(2, c.getName());
 					stmt.setString(3, c.getPhoneNUMBER());
 					stmt.setString(4, c.getAddress());
@@ -207,7 +207,7 @@ public class CarpentryLogic {
 				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
 						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_ORDERS)) {
 					// int i = 1;
-					stmt.setString(1, o.getOrderID()); // can't be null
+					stmt.setInt(1, o.getOrderID()); // can't be null
 					stmt.setString(2, o.getCustomerID());
 					stmt.setString(3, o.getProjectID());
 					stmt.setString(4, o.getStatus());
@@ -232,7 +232,7 @@ public class CarpentryLogic {
 						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_PROJECTS)) {
 
 					// int i = 1;
-					stmt.setString(1, p.getProjectID());
+					stmt.setInt(1, p.getProjectID());
 					stmt.setString(2, p.getCustomerID());
 					stmt.setString(3, p.getProjectCategory()); // can't be null
 					
@@ -286,7 +286,7 @@ public class CarpentryLogic {
 						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_PROJECTITEMS)) {
 
 					// int i = 1;
-					stmt.setString(1, pi.getItemID()); // can't be null
+					stmt.setInt(1, pi.getItemID()); // can't be null
 					stmt.setString(2, pi.getItemName());
 					stmt.setInt(3, pi.getHeight());
 					stmt.setInt(4, pi.getWidth());
@@ -317,7 +317,7 @@ public class CarpentryLogic {
 						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_SECTION)) {
 
 					// int i = 1;
-					stmt.setString(1, s.getSectionID()); // can't be null
+					stmt.setInt(1, s.getSectionID()); // can't be null
 					stmt.setString(2, s.getSectionName());
 					stmt.setString(3, s.getProjectID());
 					stmt.setInt(4, s.getQuantityOFhands());
@@ -345,7 +345,7 @@ public class CarpentryLogic {
 						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_STOCK)) {
 
 					// int i = 1;
-					stmt.setString(1, s.getStockID()); // can't be null
+					stmt.setInt(1, s.getStockID()); // can't be null
 					stmt.setString(2, s.getWoodName());
 					stmt.setInt(3, s.getQuantity());
 					

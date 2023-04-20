@@ -1,13 +1,19 @@
 package Model;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import Enumeration.ProjectSection;
 import Enumeration.WoodType;
 
 public class ProjectItems {
 	
-	private static int idCounter=1;
+	private static int idCounter;
 	
-	private String itemID="Item_";
+	private int itemID;
 	private String ItemName;
 	private int height;
 	private int width;
@@ -18,7 +24,7 @@ public class ProjectItems {
 	private String color;
 	private String modelNumberOfHands;
 
-	public ProjectItems(String itemID,String ItemName, int height, int width, String woodType, int quantity, String projectID,
+	public ProjectItems(int itemID,String ItemName, int height, int width, String woodType, int quantity, String projectID,
 			String section, String color, String modelNumberOfHands) {
 		super();
 		this.itemID=itemID;
@@ -34,7 +40,7 @@ public class ProjectItems {
 	}
 
 	public ProjectItems() {
-		this.itemID=this.itemID+""+idCounter++;
+		this.itemID=idCounter++;
 	}
 	public static int getIdCounter() {
 		return idCounter;
@@ -44,11 +50,11 @@ public class ProjectItems {
 		ProjectItems.idCounter = idCounter;
 	}
 
-	public String getItemID() {
+	public int getItemID() {
 		return itemID;
 	}
 
-	public void setItemID(String itemID) {
+	public void setItemID(int itemID) {
 		this.itemID = itemID;
 	}
 
@@ -126,5 +132,26 @@ public class ProjectItems {
 		this.section = section;
 	}
 	
-
+	static {
+        // Load the idCounter value from a file
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("idCounterProjectItems.txt"));
+            idCounter = Integer.parseInt(reader.readLine());
+            reader.close();
+        } catch (IOException e) {
+            // If the file doesn't exist or can't be read, start the counter at 1
+            idCounter = 1;
+        }
+    }
+	
+	public static void saveIdCounter() {
+        // Save the idCounter value to a file
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("idCounterProjectItems.txt"));
+            writer.write(Integer.toString(idCounter));
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

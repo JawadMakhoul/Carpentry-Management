@@ -1,17 +1,32 @@
 package Model;
 
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 public class Customer {
 	
 	
-    private static int idCounter=1;
-    private String personID="Customer_";
+    private static int idCounter;
+    private int personID;
 	private String name;
 	private String phoneNUMBER;
 	private String address;
 	private String email;
 	
-	
-	public Customer(String personID,String name, String phoneNUMBER, String address, String email) {
+	 static {
+	        // Load the idCounter value from a file
+	        try {
+	            BufferedReader reader = new BufferedReader(new FileReader("idCounter.txt"));
+	            idCounter = Integer.parseInt(reader.readLine());
+	            reader.close();
+	        } catch (IOException e) {
+	            // If the file doesn't exist or can't be read, start the counter at 1
+	            idCounter = 1;
+	        }
+	    }
+	public Customer(int personID,String name, String phoneNUMBER, String address, String email) {
 		super();
 		
 		this.personID=personID;
@@ -22,12 +37,10 @@ public class Customer {
 	}
 	
 	public Customer() {
-		
-		
-		this.personID=this.personID+""+idCounter++;
+		this.personID=idCounter++;
 		
 	}
-	public  String getID() {
+	public  int getID() {
 		return personID;
 	}
 	
@@ -37,7 +50,7 @@ public class Customer {
 	public static void setIdCounter(int idCounter) {
 		Customer.idCounter = idCounter;
 	}
-	public  void setID(String personID) {
+	public  void setID(int personID) {
 		this.personID = personID;
 	}
 	public String getName() {
@@ -65,4 +78,14 @@ public class Customer {
 		this.email = email;
 	}
 
+	public static void saveIdCounter() {
+        // Save the idCounter value to a file
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("idCounter.txt"));
+            writer.write(Integer.toString(idCounter));
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
