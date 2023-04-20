@@ -179,24 +179,25 @@ public class NewProjectController implements Initializable{
 	    				c.setPhoneNUMBER(phoneNumber.getText());
 	    				c.setAddress(address.getText());
 	    				c.setEmail(email.getText());
-	    	
+	    				
 	    				CarpentryLogic.getInstance().addCustomer(c);
 	    				
 	    				Project p = new Project();
-	    				p.setCustomerID(c.getID());
-	    				p.setProjectCategory(projectCategory.getSelectionModel().toString());
+	    				Integer ip = c.getID();
+	    				p.setCustomerID(ip.toString());
+	    				p.setProjectCategory(projectCategory.getSelectionModel().getSelectedItem().toString());
 	    				CarpentryLogic.getInstance().addProject(p);
-	    				setProjectID(p.getProjectID());
+	    				Integer i = p.getProjectID();
+	    				setProjectID(i.toString());
 	    			}
 	    			
-    				Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectItems.fxml"));
-    				Scene scene = new Scene(pane);
-    				scene.setUserData(projectID);
-    				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    				stage.setScene(scene);
-    				stage.setResizable(false);
-    				stage.setTitle("Awni Wood Work - Project Items");
-    				stage.show();
+	    			FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectItems.fxml"));
+	    			Parent pane = loader.load();
+	    			Scene scene = new Scene(pane);
+	    			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	    			stage.setScene(scene);
+	    			stage.setTitle("Awni Wood Work - Project Items");
+	    			stage.show();
     				break;
     			}
     		}

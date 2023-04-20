@@ -23,7 +23,12 @@ public class Main extends Application{
 	}
 	public static void main(String[] args) {
 		launch(args);
-		
+		Runtime.getRuntime().addShutdownHook(new Thread(Customer::saveIdCounter));
+		Runtime.getRuntime().addShutdownHook(new Thread(Order::saveIdCounter));
+		Runtime.getRuntime().addShutdownHook(new Thread(Project::saveIdCounter));
+		Runtime.getRuntime().addShutdownHook(new Thread(ProjectItems::saveIdCounter));
+		Runtime.getRuntime().addShutdownHook(new Thread(Section::saveIdCounter));
+		Runtime.getRuntime().addShutdownHook(new Thread(Stock::saveIdCounter));
 		
 	}
 

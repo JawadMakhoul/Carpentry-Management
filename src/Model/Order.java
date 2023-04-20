@@ -1,19 +1,25 @@
 package Model;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import Enumeration.OrderStatus;
 
 public class Order {
 
 	
-	private static int idCounter=1;
+	private static int idCounter;
 	private String customerID;
-	private String orderID="Order_";
+	private int orderID;
 	private String projectID;
 	private String status;
 	private char newShekelSign = '\u20AA';
 	private String cost;
 	
-	public Order(String orderID,String customerID, String projectID, String status,String cost) {
+	public Order(int orderID,String customerID, String projectID, String status,String cost) {
 		super();
 		this.customerID = customerID;
 		this.orderID = orderID;
@@ -25,7 +31,7 @@ public class Order {
 	
 
 	public Order() {
-		this.orderID=this.orderID+""+idCounter++;
+		this.orderID=idCounter++;
 	}
 	public String getCost() {
 		return cost;
@@ -47,10 +53,10 @@ public class Order {
 	public void setCustomerID(String customerID) {
 		this.customerID = customerID;
 	}
-	public String getOrderID() {
+	public int getOrderID() {
 		return orderID;
 	}
-	public void setOrderID(String orderID) {
+	public void setOrderID(int orderID) {
 		this.orderID = orderID;
 	}
 	public String getProjectID() {
@@ -69,4 +75,27 @@ public class Order {
 	public String CalculateCost() {
 		return null;
 	}
+	
+	static {
+        // Load the idCounter value from a file
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("idCounterOrder.txt"));
+            idCounter = Integer.parseInt(reader.readLine());
+            reader.close();
+        } catch (IOException e) {
+            // If the file doesn't exist or can't be read, start the counter at 1
+            idCounter = 1;
+        }
+    }
+	
+	public static void saveIdCounter() {
+        // Save the idCounter value to a file
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("idCounterOrder.txt"));
+            writer.write(Integer.toString(idCounter));
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

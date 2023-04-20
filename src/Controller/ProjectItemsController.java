@@ -10,7 +10,7 @@ import Enumeration.OrderStatus;
 import Enumeration.ProjectCategory;
 import Enumeration.ProjectSection;
 import Enumeration.WoodType;
-import Model.Customer;
+//import Model.Customer;
 import Model.Project;
 import Model.Section;
 import Model.ProjectItems;
@@ -32,7 +32,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class ProjectItemsController implements Initializable{
-
+	
 	@FXML
     private Button ShowProjectDetails,BackButton,ColorsCatalog,CurrentProjects,FinancialManaging,Inbox,MaterialsToOrder,NewProject,OrderedMaterials,ProjectsCatalog,Stock,addItem,addSection,finish;
 	private HashSet<Button> Buttons = new HashSet<Button>();
@@ -175,8 +175,10 @@ public class ProjectItemsController implements Initializable{
 	    	    	Node node = (Node) event.getSource();
 	    	        Stage stage = (Stage) node.getScene().getWindow();
 	    	        Project p = (Project) stage.getUserData();
-	    	        String projectid = p.getProjectID();
-	    	    	s.setProjectID(projectid);
+	    	        Integer i = p.getProjectID();
+	    	    	String s4 = i.toString();
+	    	       
+	    	    	s.setProjectID(s4);
 	    	    	s.setQuantityOFhands(Integer.parseInt(handsQuantity.getText()));
 	    	    	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
 	    	    	//s.setProjectSection(projectSection.getSelectionModel().toString());
@@ -187,7 +189,7 @@ public class ProjectItemsController implements Initializable{
 	    	    	pi.setWidth(Integer.parseInt(width.getText()));
 	    	    	pi.setWoodType(woodType.getSelectionModel().toString());
 	    	    	pi.setQuantity(Integer.parseInt(quantity.getText()));
-	    	    	pi.setProjectID(projectid);
+	    	    	pi.setProjectID(s4);
 	    	    	pi.setSection(projectSection.getSelectionModel().toString());
 	    	    	pi.setColor(color.getValue().toString());
 	    	    	pi.setModelNumberOfHands(handsModelNumber.getText());
@@ -225,8 +227,15 @@ public class ProjectItemsController implements Initializable{
 	    	        Stage stage2 = (Stage) node2.getScene().getWindow();
 	    	        Project p2 = (Project) stage2.getUserData();
 	    	        String customerID = p2.getCustomerID();
-	    	    	o.setCustomerID(customerID); CUSTOMERID.setText(o.getCustomerID());
-	    	    	o.setProjectID(p2.getProjectID()); PROJECTID.setText(o.getProjectID());
+	    	    	o.setCustomerID(customerID); 
+	    	    	//Integer i1 = o.getCustomerID();
+	    	    	String s1 = o.getCustomerID();
+	    	    	CUSTOMERID.setText(s1);
+	    	    	Integer p2id = p2.getProjectID();
+	    	    	o.setProjectID(p2id.toString()); 
+	    	    	//Integer i2 = o.getProjectID();
+	    	    	String s2 = o.getProjectID();
+	    	    	PROJECTID.setText(s2);
 	    	    	o.setStatus(Enumeration.OrderStatus.WaitingProcess.toString()); orderStatus.setText(Enumeration.OrderStatus.WaitingProcess.toString());
 	    	    	o.setCost(o.CalculateCost()); orderCost.setText(o.getCost());// write function in order class to calculate the cost of the order////////////////////////////////////////////////////////////////////////////////////////////////////////
 	    			
@@ -257,8 +266,11 @@ public class ProjectItemsController implements Initializable{
     	Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Project p = (Project) stage.getUserData();
-        String projectid = p.getProjectID();
-    	pi.setProjectID(projectid);
+        
+        Integer i = p.getProjectID();
+    	String s = i.toString();
+        
+    	pi.setProjectID(s);
     	pi.setSection(projectSection.getSelectionModel().toString());
     	pi.setColor(color.getValue().toString());
     	pi.setModelNumberOfHands(handsModelNumber.getText());
@@ -282,8 +294,10 @@ public class ProjectItemsController implements Initializable{
     	Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Project p = (Project) stage.getUserData();
-        String projectid = p.getProjectID();
-    	s.setProjectID(projectid);
+        Integer i = p.getProjectID();
+    	String s3 = i.toString();
+        
+    	s.setProjectID(s3);
     	s.setQuantityOFhands(Integer.parseInt(handsQuantity.getText()));
     	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
     	//s.setProjectSection(projectSection.getSelectionModel().toString());
