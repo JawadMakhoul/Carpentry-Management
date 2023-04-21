@@ -187,8 +187,9 @@ public class NewProjectController implements Initializable{
 	    				p.setCustomerID(ip.toString());
 	    				p.setProjectCategory(projectCategory.getSelectionModel().getSelectedItem().toString());
 	    				CarpentryLogic.getInstance().addProject(p);
-	    				Integer i = p.getProjectID();
-	    				setProjectID(i.toString());
+	    				
+	    				//Integer i = p.getProjectID();
+	    				//setProjectID(i.toString());
 	    			}
 	    			
 	    			FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectItems.fxml"));

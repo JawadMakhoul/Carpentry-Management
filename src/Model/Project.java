@@ -13,18 +13,18 @@ import javafx.scene.control.SingleSelectionModel;
 
 public class Project {
 	private static int idCounter;
-	public static int projectID;
-	private String customerID;
+	private static int projectID;
+	private static String customerID;
 	private String projectCategory;
 	
 	public Project(int projectID,String customerID, String projectCategory) {
 		super();
-		this.projectID = projectID;
+		Project.projectID = projectID;
 		this.customerID = customerID;
 		this.projectCategory = projectCategory;
 	}
 	public Project() {
-		this.projectID=idCounter++;
+		Project.projectID=idCounter++;
 	}
 	public static int getIdCounter() {
 		return idCounter;
@@ -38,11 +38,11 @@ public class Project {
 	public static void setProjectID(int projectID) {
 		Project.projectID = projectID;
 	}
-	public String getCustomerID() {
+	public static String getCustomerID() {
 		return customerID;
 	}
-	public void setCustomerID(String customerID) {
-		this.customerID = customerID;
+	public static void setCustomerID(String customerID) {
+		Project.customerID = customerID;
 	}
 
 	public String getProjectCategory() {

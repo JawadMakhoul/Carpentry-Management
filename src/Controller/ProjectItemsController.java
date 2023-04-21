@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
@@ -168,82 +169,6 @@ public class ProjectItemsController implements Initializable{
 	        		stage.show();
 	        		break;
 	    		}	
-	    		
-	    		case "finish":{
-	    			Section s = new Section();
-	    	    	s.setSectionName(projectSection.getSelectionModel().toString());
-	    	    	Node node = (Node) event.getSource();
-	    	        Stage stage = (Stage) node.getScene().getWindow();
-	    	        Project p = (Project) stage.getUserData();
-	    	        Integer i = p.getProjectID();
-	    	    	String s4 = i.toString();
-	    	       
-	    	    	s.setProjectID(s4);
-	    	    	s.setQuantityOFhands(Integer.parseInt(handsQuantity.getText()));
-	    	    	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
-	    	    	//s.setProjectSection(projectSection.getSelectionModel().toString());
-	    	    	
-	    	    	ProjectItems pi = new ProjectItems();
-	    	    	pi.setItemName(ItemName.getText());
-	    	    	pi.setHeight(Integer.parseInt(height.getText()));
-	    	    	pi.setWidth(Integer.parseInt(width.getText()));
-	    	    	pi.setWoodType(woodType.getSelectionModel().toString());
-	    	    	pi.setQuantity(Integer.parseInt(quantity.getText()));
-	    	    	pi.setProjectID(s4);
-	    	    	pi.setSection(projectSection.getSelectionModel().toString());
-	    	    	pi.setColor(color.getValue().toString());
-	    	    	pi.setModelNumberOfHands(handsModelNumber.getText());
-	    	    	
-	    	    	CarpentryLogic.getInstance().addProjectItems(pi);
-	    	    	
-	    	    	CarpentryLogic.getInstance().addSection(s);
-	    	    	
-//	    	    	Order o = new Order();
-//	    	    	Node node2 = (Node) event.getSource();
-//	    	        Stage stage2 = (Stage) node2.getScene().getWindow();
-//	    	        Project p2 = (Project) stage2.getUserData();
-//	    	        String customerID = p2.getCustomerID();
-//	    	    	o.setCustomerID(customerID); CUSTOMERID.setText(o.getCustomerID());
-//	    	    	o.setProjectID(projectid); PROJECTID.setText(o.getProjectID());
-//	    	    	o.setStatus(Enumeration.OrderStatus.WaitingProcess.toString()); orderStatus.setText(Enumeration.OrderStatus.WaitingProcess.toString());
-//	    	    	o.setCost(o.CalculateCost()); orderCost.setText(o.getCost());// write function in order class to calculate the cost of the order////////////////////////////////////////////////////////////////////////////////////////////////////////
-//	    			
-	    	    	
-	    	    	Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage1 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage1.setScene(scene);
-	        		stage1.setResizable(false);
-	        		stage1.setTitle("Awni Wood Work");
-	        		stage1.show();
-	        		break;
-	        		
-	    		}	
-	    	
-	    		case "ShowProjectDetails":{
-	    			
-	    	    	Order o = new Order();
-	    	    	Node node2 = (Node) event.getSource();
-	    	        Stage stage2 = (Stage) node2.getScene().getWindow();
-	    	        Project p2 = (Project) stage2.getUserData();
-	    	        String customerID = p2.getCustomerID();
-	    	    	o.setCustomerID(customerID); 
-	    	    	//Integer i1 = o.getCustomerID();
-	    	    	String s1 = o.getCustomerID();
-	    	    	CUSTOMERID.setText(s1);
-	    	    	Integer p2id = p2.getProjectID();
-	    	    	o.setProjectID(p2id.toString()); 
-	    	    	//Integer i2 = o.getProjectID();
-	    	    	String s2 = o.getProjectID();
-	    	    	PROJECTID.setText(s2);
-	    	    	o.setStatus(Enumeration.OrderStatus.WaitingProcess.toString()); orderStatus.setText(Enumeration.OrderStatus.WaitingProcess.toString());
-	    	    	o.setCost(o.CalculateCost()); orderCost.setText(o.getCost());// write function in order class to calculate the cost of the order////////////////////////////////////////////////////////////////////////////////////////////////////////
-	    			
-	    	    	CarpentryLogic.getInstance().addOrder(o);
-	        		break;
-	        		
-	        		
-	    		}
     		}
     	}
     		
@@ -261,63 +186,119 @@ public class ProjectItemsController implements Initializable{
     	pi.setItemName(ItemName.getText());
     	pi.setHeight(Integer.parseInt(height.getText()));
     	pi.setWidth(Integer.parseInt(width.getText()));
-    	pi.setWoodType(woodType.getSelectionModel().toString());
+    	pi.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
     	pi.setQuantity(Integer.parseInt(quantity.getText()));
+    	pi.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
+    	pi.setColor(color.getValue().toString());
+    	pi.setModelNumberOfHands(handsModelNumber.getText());
     	Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Project p = (Project) stage.getUserData();
-        
         Integer i = p.getProjectID();
     	String s = i.toString();
-        
     	pi.setProjectID(s);
-    	pi.setSection(projectSection.getSelectionModel().toString());
-    	pi.setColor(color.getValue().toString());
-    	pi.setModelNumberOfHands(handsModelNumber.getText());
     	
     	CarpentryLogic.getInstance().addProjectItems(pi);
     	
     	ItemName.setText(null);
     	height.setText(null);
     	width.setText(null);
-    	woodType.setSelectionModel(null);
     	quantity.setText(null);
-    	color.setValue(null);
-    	handsModelNumber.setText(null);
     	
     }
 
     @FXML
     void AddSection(MouseEvent event) {
     	Section s = new Section();
-    	s.setSectionName(projectSection.getSelectionModel().toString());
+    	s.setSectionName(projectSection.getSelectionModel().getSelectedItem().toString());
     	Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Project p = (Project) stage.getUserData();
         Integer i = p.getProjectID();
     	String s3 = i.toString();
-        
     	s.setProjectID(s3);
     	s.setQuantityOFhands(Integer.parseInt(handsQuantity.getText()));
     	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
-    	//s.setProjectSection(projectSection.getSelectionModel().toString());
-    	
     	CarpentryLogic.getInstance().addSection(s);
     	
-    	projectSection.setSelectionModel(null);
+    	color.setValue(null);
+    	handsModelNumber.setText(null);
     	handsQuantity.setText(null);
     	axleQuantity.setText(null);
-    	//projectSection.setSelectionModel(null);
-    	
     	ItemName.setText(null);
     	height.setText(null);
     	width.setText(null);
-    	woodType.setSelectionModel(null);
     	quantity.setText(null);
-    	color.setValue(null);
-    	handsModelNumber.setText(null);
     }
     
+    @FXML
+    void ShowProjectDetails(MouseEvent event) {
+    	Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Project p = (Project) stage.getUserData();
+    	String customerID = p.getCustomerID();
+    	Order o = new Order();
+    	o.setCustomerID(customerID);
+    	String s1 = o.getCustomerID();
+    	CUSTOMERID.setText(s1);
+    	Integer p2id = p.getProjectID();
+    	o.setProjectID(p2id.toString());
+    	String s2 = o.getProjectID();
+    	PROJECTID.setText(s2);
+    	Integer oid = o.getOrderID();
+    	String soid = oid.toString();
+    	ORDERID.setText(soid);
+    	o.setStatus(Enumeration.OrderStatus.WaitingProcess.toString()); 
+    	orderStatus.setText(Enumeration.OrderStatus.WaitingProcess.toString());
+    	o.setCost(o.CalculateCost()); 
+    	orderCost.setText(o.getCost());// write function in order class to calculate the cost of the order////////////////////////////////////////////////////////////////////////////////////////////////////////
+    	CarpentryLogic.getInstance().addOrder(o);
+    	
+    }
+    
+    @FXML
+    void Finish(MouseEvent event) throws IOException {
+    	Section s = new Section();
+    	s.setSectionName(projectSection.getSelectionModel().getSelectedItem().toString());
+    	Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Project p = (Project) stage.getUserData();
+        Integer i = p.getProjectID();
+    	String s3 = i.toString();
+    	s.setProjectID(s3);
+    	s.setQuantityOFhands(Integer.parseInt(handsQuantity.getText()));
+    	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
+    	CarpentryLogic.getInstance().addSection(s);
+    	
+    	ProjectItems pi = new ProjectItems();
+    	pi.setItemName(ItemName.getText());
+    	pi.setHeight(Integer.parseInt(height.getText()));
+    	pi.setWidth(Integer.parseInt(width.getText()));
+    	pi.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
+    	pi.setQuantity(Integer.parseInt(quantity.getText()));
+    	pi.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
+    	pi.setColor(color.getValue().toString());
+    	pi.setModelNumberOfHands(handsModelNumber.getText());
+    	pi.setProjectID(s3);
+    	CarpentryLogic.getInstance().addProjectItems(pi);
+
+    	String customerID = p.getCustomerID();
+    	Order o = new Order();
+    	o.setCustomerID(customerID);
+    	Integer p2id = p.getProjectID();
+    	o.setProjectID(p2id.toString());
+    	o.setStatus(Enumeration.OrderStatus.WaitingProcess.toString()); 
+    	o.setCost(o.CalculateCost()); 
+    	CarpentryLogic.getInstance().addOrder(o);
+
+    	Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
+		Scene scene = new Scene(pane);
+		Stage stage12 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage12.setScene(scene);
+		stage12.setResizable(false);
+		stage12.setTitle("Awni Wood Work");
+		stage12.show();
+    }
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub

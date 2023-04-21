@@ -18,7 +18,7 @@ public class Customer {
 	 static {
 	        // Load the idCounter value from a file
 	        try {
-	            BufferedReader reader = new BufferedReader(new FileReader("idCounter.txt"));
+	            BufferedReader reader = new BufferedReader(new FileReader("idCounterCustomer.txt"));
 	            idCounter = Integer.parseInt(reader.readLine());
 	            reader.close();
 	        } catch (IOException e) {
@@ -81,7 +81,7 @@ public class Customer {
 	public static void saveIdCounter() {
         // Save the idCounter value to a file
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("idCounter.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("idCounterCustomer.txt"));
             writer.write(Integer.toString(idCounter));
             writer.close();
         } catch (IOException e) {
