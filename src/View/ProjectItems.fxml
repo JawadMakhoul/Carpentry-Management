@@ -97,7 +97,7 @@
                <children>
                   <TextField fx:id="height" layoutX="556.0" layoutY="329.0" promptText="Height" />
                   <TextField fx:id="width" layoutX="814.0" layoutY="329.0" promptText="Width" />
-                  <Button fx:id="finish" layoutX="1129.0" layoutY="877.0" mnemonicParsing="false" onMousePressed="#MoveTo" text="Finish" />
+                  <Button fx:id="finish" layoutX="1129.0" layoutY="877.0" mnemonicParsing="false" onMousePressed="#Finish" text="Finish" />
                   <ComboBox fx:id="woodType" layoutX="229.0" layoutY="397.0" prefWidth="150.0" promptText="Wood Type" />
                   <ColorPicker fx:id="color" layoutX="796.0" layoutY="87.0" promptText="Color" />
                   <Button fx:id="addSection" layoutX="796.0" layoutY="474.0" mnemonicParsing="false" onMousePressed="#AddSection" text="Add section" />
@@ -114,7 +114,7 @@
                   <TextField fx:id="CUSTOMERID" alignment="CENTER" layoutX="992.0" layoutY="650.0" promptText="מזהה לקוח" />
                   <TextField fx:id="orderCost" alignment="CENTER" layoutX="714.0" layoutY="763.0" promptText="עלות פרויקט" />
                   <TextField fx:id="orderStatus" alignment="CENTER" layoutX="161.0" layoutY="650.0" promptText="סטטוס פרויקט" />
-                  <Button fx:id="ShowProjectDetails" layoutX="963.0" layoutY="877.0" mnemonicParsing="false" onMousePressed="#MoveTo" text="הצגת פרטי פרויקט" />
+                  <Button fx:id="ShowProjectDetails" layoutX="963.0" layoutY="877.0" mnemonicParsing="false" onMousePressed="#ShowProjectDetails" text="הצגת פרטי פרויקט" />
                   <ComboBox fx:id="brzolDegree" layoutX="161.0" layoutY="162.0" prefHeight="31.0" prefWidth="166.0" promptText="Axles Degree" />
                   <TextField fx:id="axleQuantity" alignment="CENTER_RIGHT" layoutX="331.0" layoutY="162.0" promptText="כמות צירים" />
                </children></AnchorPane>
