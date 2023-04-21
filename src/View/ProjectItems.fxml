@@ -95,18 +95,18 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="948.0" prefWidth="1075.0" styleClass="backgroundColor2" stylesheets="@../Controller/style.css">
                <children>
-                  <TextField fx:id="height" layoutX="556.0" layoutY="329.0" promptText="Height" />
-                  <TextField fx:id="width" layoutX="814.0" layoutY="329.0" promptText="Width" />
+                  <TextField fx:id="height" layoutX="379.0" layoutY="288.0" promptText="Height" />
+                  <TextField fx:id="width" layoutX="668.0" layoutY="288.0" promptText="Width" />
                   <Button fx:id="finish" layoutX="1129.0" layoutY="877.0" mnemonicParsing="false" onMousePressed="#Finish" text="Finish" />
-                  <ComboBox fx:id="woodType" layoutX="229.0" layoutY="397.0" prefWidth="150.0" promptText="Wood Type" />
-                  <ColorPicker fx:id="color" layoutX="796.0" layoutY="87.0" promptText="Color" />
-                  <Button fx:id="addSection" layoutX="796.0" layoutY="474.0" mnemonicParsing="false" onMousePressed="#AddSection" text="Add section" />
+                  <ComboBox fx:id="woodType" layoutX="61.0" layoutY="348.0" prefWidth="150.0" promptText="Wood Type" />
+                  <ColorPicker fx:id="color" layoutX="518.0" layoutY="87.0" promptText="Color" />
+                  <Button fx:id="addSection" layoutX="890.0" layoutY="475.0" mnemonicParsing="false" onMousePressed="#AddSection" text="Add section" />
                   <Button fx:id="addItem" layoutX="1026.0" layoutY="474.0" mnemonicParsing="false" onMousePressed="#AddAnotherItem" text="Add anothe item" />
                   <ComboBox fx:id="projectSection" layoutX="265.0" layoutY="87.0" prefHeight="31.0" prefWidth="166.0" promptText="Project Section" />
-                  <TextField fx:id="ItemName" layoutX="221.0" layoutY="329.0" promptText="Item Name" />
-                  <TextField fx:id="quantity" layoutX="544.0" layoutY="406.0" promptText="Quantity" />
-                  <TextField fx:id="handsQuantity" alignment="CENTER_RIGHT" layoutX="527.0" layoutY="162.0" promptText="כמות ידיות" />
-                  <TextField fx:id="handsModelNumber" alignment="CENTER_RIGHT" layoutX="872.0" layoutY="162.0" promptText="מספר דגם ידיות" />
+                  <TextField fx:id="ItemName" layoutX="42.0" layoutY="288.0" promptText="Item Name" />
+                  <TextField fx:id="quantity" layoutX="949.0" layoutY="288.0" promptText="Quantity" />
+                  <TextField fx:id="handsQuantity" alignment="CENTER_RIGHT" layoutX="489.0" layoutY="175.0" promptText="כמות ידיות" />
+                  <TextField fx:id="handsModelNumber" alignment="CENTER_RIGHT" layoutX="694.0" layoutY="176.0" promptText="מספר דגם ידיות" />
                   <Separator layoutX="-7.0" layoutY="240.0" prefHeight="10.0" prefWidth="1250.0" />
                   <Separator layoutY="535.0" prefHeight="10.0" prefWidth="1250.0" />
                   <TextField fx:id="PROJECTID" alignment="CENTER" layoutX="424.0" layoutY="650.0" promptText="מזהה פרויקט" />
@@ -115,8 +115,8 @@
                   <TextField fx:id="orderCost" alignment="CENTER" layoutX="714.0" layoutY="763.0" promptText="עלות פרויקט" />
                   <TextField fx:id="orderStatus" alignment="CENTER" layoutX="161.0" layoutY="650.0" promptText="סטטוס פרויקט" />
                   <Button fx:id="ShowProjectDetails" layoutX="963.0" layoutY="877.0" mnemonicParsing="false" onMousePressed="#ShowProjectDetails" text="הצגת פרטי פרויקט" />
-                  <ComboBox fx:id="brzolDegree" layoutX="161.0" layoutY="162.0" prefHeight="31.0" prefWidth="166.0" promptText="Axles Degree" />
-                  <TextField fx:id="axleQuantity" alignment="CENTER_RIGHT" layoutX="331.0" layoutY="162.0" promptText="כמות צירים" />
+                  <ComboBox fx:id="brzolDegree" layoutX="115.0" layoutY="175.0" prefHeight="31.0" prefWidth="166.0" promptText="Axles Degree" />
+                  <TextField fx:id="axleQuantity" alignment="CENTER_RIGHT" layoutX="291.0" layoutY="175.0" promptText="כמות צירים" />
                </children></AnchorPane>
         </items>
       </SplitPane>
