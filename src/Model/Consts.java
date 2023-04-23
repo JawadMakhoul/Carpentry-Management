@@ -22,7 +22,7 @@ public final class Consts {
 		public static final String SQL_INS_ORDERS = "{ call qryInsOrder(?,?,?,?,?) }";
 		public static final String SQL_INS_PROJECTS = "{ call qryInsProject(?,?,?) }";
 		public static final String SQL_INS_PROJECTITEMS = "{ call qryInsProjectItems(?,?,?,?,?,?,?,?,?,?) }";
-		public static final String SQL_INS_SECTION = "{ call qryInsSection(?,?,?,?,?) }";
+		public static final String SQL_INS_SECTION = "{ call qryInsSection(?,?,?,?,?,?) }";
 		public static final String SQL_INS_STOCK = "{ call qryInsStock(?,?,?) }";
 		
 

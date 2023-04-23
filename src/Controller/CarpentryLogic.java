@@ -69,7 +69,7 @@ public class CarpentryLogic {
 						ResultSet rs = stmt.executeQuery()) {
 					while (rs.next()) {
 						int i = 1;
-						results.add(new Order(rs.getInt(i++),rs.getString(i++),rs.getString(i++), rs.getString(i++), rs.getString(i++)));
+						results.add(new Order(rs.getInt(i++),rs.getString(i++),rs.getString(i++), rs.getString(i++), rs.getInt(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -139,7 +139,7 @@ public class CarpentryLogic {
 						ResultSet rs = stmt.executeQuery()) {
 					while (rs.next()) {
 						int i = 1;
-						results.add(new Section(rs.getInt(i++), rs.getString(i++),rs.getString(i++),rs.getInt(i++),rs.getInt(i++)));
+						results.add(new Section(rs.getInt(i++), rs.getString(i++),rs.getString(i++),rs.getInt(i++),rs.getInt(i++),rs.getString(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -211,7 +211,7 @@ public class CarpentryLogic {
 					stmt.setString(2, o.getCustomerID());
 					stmt.setString(3, o.getProjectID());
 					stmt.setString(4, o.getStatus());
-					stmt.setString(5, o.getCost());
+					stmt.setInt(5, o.getCost());
 					stmt.executeUpdate();
 					
 					return true;
@@ -322,6 +322,7 @@ public class CarpentryLogic {
 					stmt.setString(3, s.getProjectID());
 					stmt.setInt(4, s.getQuantityOFhands());
 					stmt.setInt(5, s.getQuantityOFaxle());
+					stmt.setString(6, s.getAxleDegree());
 					//stmt.setString(6, s.getProjectSection());
 					
 					

@@ -14,11 +14,13 @@ public class Section {
 	private String projectID;
 	private int quantityOFhands;
 	private int quantityOFaxle;
+	private String axleDegree;
 	//private String ProjectSection;
 
 	
 	
-	public Section(int sectionID,String sectionName,String projectID, int quantityOFhands, int quantityOFaxle) {
+
+	public Section(int sectionID,String sectionName,String projectID, int quantityOFhands, int quantityOFaxle, String axleDegree ) {
 		super();
 		this.sectionID=sectionID;
 		this.sectionName= sectionName;
@@ -84,6 +86,14 @@ public class Section {
 	public void setQuantityOFaxle(int quantityOFaxle) {
 		this.quantityOFaxle = quantityOFaxle;
 	}
+	public String getAxleDegree() {
+		return axleDegree;
+	}
+
+	public void setAxleDegree(String axleDegree) {
+		this.axleDegree = axleDegree;
+	}
+
 	
 	static {
         // Load the idCounter value from a file

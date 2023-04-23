@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import Controller.CarpentryLogic;
+import Enumeration.AxleDegree;
 import Enumeration.OrderStatus;
 
 public class Order {
@@ -17,9 +19,9 @@ public class Order {
 	private String projectID;
 	private String status;
 	private char newShekelSign = '\u20AA';
-	private String cost;
+	private int cost;
 	
-	public Order(int orderID,String customerID, String projectID, String status,String cost) {
+	public Order(int orderID,String customerID, String projectID, String status,int cost) {
 		super();
 		this.customerID = customerID;
 		this.orderID = orderID;
@@ -33,12 +35,12 @@ public class Order {
 	public Order() {
 		this.orderID=idCounter++;
 	}
-	public String getCost() {
+	public int getCost() {
 		return cost;
 	}
 
-	public void setCost(String cost) {
-		this.cost = cost;
+	public void setCost(int i) {
+		this.cost = i;
 	}
 	public static int getIdCounter() {
 		return idCounter;
@@ -71,10 +73,75 @@ public class Order {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	 //*********** IMPORTANT************
+	 //we have to chane=ge the numbers for a real ones 
 	
-	public String CalculateCost() {
-		return null;
+	public int CalculateCost() {
+		 String p_ID= this.projectID,axleDegree;
+		 Section s1 = null ;
+		 ProjectItems i1 = null;
+		 int price = 0;
+		 for(Section s : CarpentryLogic.getInstance().getSections()) {
+			 		if(s.getProjectID() == p_ID)
+			 			s1= s;
+		 }
+		 switch (s1.getAxleDegree()) {		 
+		 case  "Degree_45" :
+			 price = price + s1.getQuantityOFaxle()*10;
+			 break;
+		 case  "Degree_155" :
+			 price = price + s1.getQuantityOFaxle()*11;
+			 break;
+		 case  "Degree_180" :
+			 price = price + s1.getQuantityOFaxle()*13;
+			 break;
+		 }
+		 for(ProjectItems  i : CarpentryLogic.getInstance().getProjectItems()) {
+			 if (i.getProjectID() == p_ID) {
+				 i1= i;
+			 }
+		 }
+			 switch (i1.getWoodType()) {
+			 
+			 case  "Sandwich" :
+				 price = price + i1.getQuantity()*10;
+				 break;
+			 case  "Mdf" :
+				 price = price + i1.getQuantity()*11;
+				 break;
+			 case  "Solid_Wood" :
+				 price = price + i1.getQuantity()*12;
+				 break;
+			 case  "Melamine" :
+				 price = price + i1.getQuantity()*14;
+				 break;
+			 case  "Particleboard" :
+				 price = price + i1.getQuantity()*15;
+				 break;
+		 }
+			 switch (i1.getModelNumberOfHands()) {
+
+			 case  "s125" :
+				 price = price + s1.getQuantityOFhands()*10;
+				 break;
+			 case  "f120" :
+				 price = price + s1.getQuantityOFhands()*11;
+				 break;
+			 case  "r452" :
+				 price = price + s1.getQuantityOFhands()*12;
+				 break;
+			 case  "gh32" :
+				 price = price + s1.getQuantityOFhands()*14;
+				 break;
+			 case  "a17" :
+				 price = price + s1.getQuantityOFhands()*15;
+				 break;
+		 }
+		
+		 
+		return price;
 	}
+	
 	
 	static {
         // Load the idCounter value from a file

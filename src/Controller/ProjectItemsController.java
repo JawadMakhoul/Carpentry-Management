@@ -1,16 +1,23 @@
 package Controller;
 
+
+
+import Model.Stock ;
+
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.ArrayList;
+
 
 import Enumeration.AxleDegree;
 import Enumeration.OrderStatus;
 import Enumeration.ProjectCategory;
 import Enumeration.ProjectSection;
 import Enumeration.WoodType;
+import Enumeration.handType;
 //import Model.Customer;
 import Model.Project;
 import Model.Section;
@@ -41,10 +48,13 @@ public class ProjectItemsController implements Initializable{
     private ColorPicker color;
 
     @FXML
-    private TextField orderStatus,ItemName,handsModelNumber,handsQuantity,axleQuantity,height,quantity,width,CUSTOMERID,ORDERID,PROJECTID,orderCost;
+    private TextField orderStatus,ItemName,handsQuantity,axleQuantity,height,quantity,width,CUSTOMERID,ORDERID,PROJECTID,orderCost;
 
     @FXML
     private ComboBox<ProjectSection> projectSection;
+    
+    @FXML
+    private ComboBox<handType> handsModelNumber;
 
     @FXML
     private ComboBox<WoodType> woodType;
@@ -190,7 +200,7 @@ public class ProjectItemsController implements Initializable{
     	pi.setQuantity(Integer.parseInt(quantity.getText()));
     	pi.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
     	pi.setColor(color.getValue().toString());
-    	pi.setModelNumberOfHands(handsModelNumber.getText());
+    	pi.setModelNumberOfHands(handsModelNumber.getSelectionModel().getSelectedItem().toString());
     	Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         Project p = (Project) stage.getUserData();
@@ -219,10 +229,10 @@ public class ProjectItemsController implements Initializable{
     	s.setProjectID(s3);
     	s.setQuantityOFhands(Integer.parseInt(handsQuantity.getText()));
     	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
+    	s.setAxleDegree(brzolDegree.getSelectionModel().getSelectedItem().toString());
     	CarpentryLogic.getInstance().addSection(s);
     	
     	color.setValue(null);
-    	handsModelNumber.setText(null);
     	handsQuantity.setText(null);
     	axleQuantity.setText(null);
     	ItemName.setText(null);
@@ -251,7 +261,7 @@ public class ProjectItemsController implements Initializable{
     	o.setStatus(Enumeration.OrderStatus.WaitingProcess.toString()); 
     	orderStatus.setText(Enumeration.OrderStatus.WaitingProcess.toString());
     	o.setCost(o.CalculateCost()); 
-    	orderCost.setText(o.getCost());// write function in order class to calculate the cost of the order////////////////////////////////////////////////////////////////////////////////////////////////////////
+    	//orderCost.setText(o.getCost());// write function in order class to calculate the cost of the order////////////////////////////////////////////////////////////////////////////////////////////////////////
     	CarpentryLogic.getInstance().addOrder(o);
     	
     }
@@ -268,6 +278,7 @@ public class ProjectItemsController implements Initializable{
     	s.setProjectID(s3);
     	s.setQuantityOFhands(Integer.parseInt(handsQuantity.getText()));
     	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
+    	s.setAxleDegree(brzolDegree.getSelectionModel().getSelectedItem().toString());
     	CarpentryLogic.getInstance().addSection(s);
     	
     	ProjectItems pi = new ProjectItems();
@@ -276,9 +287,17 @@ public class ProjectItemsController implements Initializable{
     	pi.setWidth(Integer.parseInt(width.getText()));
     	pi.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
     	pi.setQuantity(Integer.parseInt(quantity.getText()));
+    	ArrayList<Stock> stock1 = new ArrayList<Stock>();
+    	stock1= CarpentryLogic.getInstance().getStocks();
+    	for(Stock s1 : stock1) {
+    		if (s1.getWoodName() == woodType.getSelectionModel().getSelectedItem().toString()) {
+    			s1.setQuantity(s1.getQuantity()-Integer.parseInt(quantity.getText()));
+    		}
+
+    	}
     	pi.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
     	pi.setColor(color.getValue().toString());
-    	pi.setModelNumberOfHands(handsModelNumber.getText());
+    	pi.setModelNumberOfHands(handsModelNumber.getSelectionModel().getSelectedItem().toString());
     	pi.setProjectID(s3);
     	CarpentryLogic.getInstance().addProjectItems(pi);
 
@@ -325,6 +344,9 @@ public class ProjectItemsController implements Initializable{
 		
 		ObservableList<AxleDegree> axlesDegree = FXCollections.observableArrayList(AxleDegree.Degree_45,AxleDegree.Degree_155,AxleDegree.Degree_180);
 		brzolDegree.getItems().addAll(axlesDegree);
+		
+		ObservableList<handType> HANDTYPE = FXCollections.observableArrayList(handType.a17,handType.f120,handType.gh32,handType.r452,handType.s125);
+		handsModelNumber.getItems().addAll(HANDTYPE);
 	}
 	
 }

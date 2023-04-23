@@ -106,7 +106,6 @@
                   <TextField fx:id="ItemName" layoutX="42.0" layoutY="288.0" promptText="Item Name" />
                   <TextField fx:id="quantity" layoutX="949.0" layoutY="288.0" promptText="Quantity" />
                   <TextField fx:id="handsQuantity" alignment="CENTER_RIGHT" layoutX="489.0" layoutY="175.0" promptText="כמות ידיות" />
-                  <TextField fx:id="handsModelNumber" alignment="CENTER_RIGHT" layoutX="694.0" layoutY="176.0" promptText="מספר דגם ידיות" />
                   <Separator layoutX="-7.0" layoutY="240.0" prefHeight="10.0" prefWidth="1250.0" />
                   <Separator layoutY="535.0" prefHeight="10.0" prefWidth="1250.0" />
                   <TextField fx:id="PROJECTID" alignment="CENTER" layoutX="424.0" layoutY="650.0" promptText="מזהה פרויקט" />
@@ -117,6 +116,7 @@
                   <Button fx:id="ShowProjectDetails" layoutX="963.0" layoutY="877.0" mnemonicParsing="false" onMousePressed="#ShowProjectDetails" text="הצגת פרטי פרויקט" />
                   <ComboBox fx:id="brzolDegree" layoutX="115.0" layoutY="175.0" prefHeight="31.0" prefWidth="166.0" promptText="Axles Degree" />
                   <TextField fx:id="axleQuantity" alignment="CENTER_RIGHT" layoutX="291.0" layoutY="175.0" promptText="כמות צירים" />
+                  <ComboBox fx:id="handsModelNumber" layoutX="734.0" layoutY="175.0" prefHeight="31.0" prefWidth="166.0" promptText="דגם ידיות" />
                </children></AnchorPane>
         </items>
       </SplitPane>

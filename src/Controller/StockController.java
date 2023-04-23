@@ -25,6 +25,22 @@ public class StockController implements Initializable{
     private AnchorPane screen;
 
     @FXML
+    private Button addWood;
+
+    @FXML
+    private Button orderWood;
+
+
+    @FXML
+    void add_Wood(MouseEvent event) {
+
+    }
+
+    @FXML
+    void order_Wood(MouseEvent event) {
+
+    }
+    @FXML
     void MoveTo(MouseEvent event) throws IOException {
     	
     	for(Button b: Buttons) {
