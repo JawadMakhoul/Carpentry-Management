@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.ResourceBundle;
-
+import Enumeration.WoodType;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,6 +14,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -25,11 +33,25 @@ public class StockController implements Initializable{
     private AnchorPane screen;
 
     @FXML
-    private Button addWood;
+    private Button addWood,orderWood;
 
     @FXML
-    private Button orderWood;
+    private ProgressIndicator percent;
 
+    @FXML
+    private ComboBox<WoodType> woodType;
+
+    @FXML
+    private TextField quantityOFWood;
+
+    @FXML
+    private TableView<Model.Stock> tableview;
+
+    @FXML
+    private TableColumn<Model.Stock, Integer> quantityColumn;
+   
+    @FXML
+    private TableColumn<Model.Stock, String> woodTypeColumn;
 
     @FXML
     void add_Wood(MouseEvent event) {
@@ -176,6 +198,21 @@ public class StockController implements Initializable{
 		Buttons.add(NewProject);
 		Buttons.add(Inbox);
 		Buttons.add(BackButton);
+		
+		ObservableList<Model.Stock> stocks = FXCollections.observableArrayList();
+		tableview.setItems(stocks);
+
+		// Set up cell value factories for each column
+		woodTypeColumn.setCellValueFactory(new PropertyValueFactory<>("woodName"));
+		quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+
+		// Loop over the stocks and add them to the table
+		for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
+		    stocks.add(s);
+		}
+
+		
+        
 	}
 
 

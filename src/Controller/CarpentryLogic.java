@@ -160,7 +160,7 @@ public class CarpentryLogic {
 						ResultSet rs = stmt.executeQuery()) {
 					while (rs.next()) {
 						int i = 1;
-						results.add(new Stock(rs.getInt(i++),rs.getString(i++), rs.getInt(i++)));
+						results.add(new Stock(rs.getString(i++),rs.getString(i++), rs.getInt(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -346,7 +346,7 @@ public class CarpentryLogic {
 						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_STOCK)) {
 
 					// int i = 1;
-					stmt.setInt(1, s.getStockID()); // can't be null
+					stmt.setString(1, s.getStockID()); // can't be null
 					stmt.setString(2, s.getWoodName());
 					stmt.setInt(3, s.getQuantity());
 					

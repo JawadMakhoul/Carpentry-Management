@@ -1,17 +1,27 @@
 package Controller;
 
 import java.io.IOException;
+import java.io.InputStream;
+import org.apache.commons.io.IOUtils;
+
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 import javafx.scene.control.ListView;
 import javax.mail.search.SearchTerm;
+
+//import com.google.api.client.util.IOUtils;
+
 import javax.mail.Authenticator;
+import javax.mail.BodyPart;
 import javax.mail.Flags;
 import javax.mail.Folder;
 import javax.mail.Message;
@@ -22,6 +32,7 @@ import javax.mail.Session;
 import java.util.Properties;
 import javax.mail.Store;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMultipart;
 import javax.mail.search.FlagTerm;
 
 import Model.Email;
@@ -60,6 +71,8 @@ public class InboxController implements Initializable{
 	 @FXML
 	 private TableColumn<Email, String> subject;
 
+	 @FXML
+	    private ImageView image;
 	 @FXML
 	 private TableColumn<Email, String> content;
 	 @FXML
@@ -204,7 +217,6 @@ public class InboxController implements Initializable{
 	    			inbox.open(Folder.READ_ONLY);
 
 	    			// Create the table view
-	    			TableView<Email> table = new TableView<>();
 	    			ObservableList<Email> emails = FXCollections.observableArrayList();
 	    			tableview.setItems(emails);
 
@@ -213,13 +225,43 @@ public class InboxController implements Initializable{
 	    			subject.setCellValueFactory(new PropertyValueFactory<>("Subject"));
 	    			content.setCellValueFactory(new PropertyValueFactory<>("Content"));
 	    			
-
 	    			// Get the messages and add them to the table
 	    			Message[] messages = inbox.getMessages();
 	    			for (Message message : messages) {
-	    			    Email email = new Email(Arrays.toString(message.getFrom()),message.getSubject(),message.getContent().toString());
+	    			    String from = Arrays.toString(message.getFrom());
+	    			    String subject = message.getSubject();
+	    			    String content = "";
+
+	    			    Object messageContent = message.getContent();
+	    			    if (messageContent instanceof MimeMultipart) {
+	    			        // This message has multiple parts, so we need to extract the content of each part
+	    			        MimeMultipart multipart = (MimeMultipart) messageContent;
+	    			        for (int i = 0; i < multipart.getCount(); i++) {
+	    			            BodyPart bodyPart = multipart.getBodyPart(i);
+	    			            String contentType = bodyPart.getContentType();
+	    			            
+	    			            if (contentType.startsWith("text/plain")) {
+	    			                // This is a text/plain part, so we can just append its content to the email content
+	    			                content += bodyPart.getContent();
+	    			            } else if (contentType.startsWith("image/png")) {
+	    			                // This is an image/png part, so we can decode the content and append it to the email content
+	    			                byte[] imageBytes = IOUtils.toByteArray(bodyPart.getInputStream());
+	    			                String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+	    			                content += "<img src='data:image/png;base64," + base64Image + "' />";
+	    			               
+	    			            } else {
+	    			                // This is not a recognized part type, so we ignore it
+	    			            }
+	    			        }
+	    			    } else {
+	    			        // This message has only one part, which is already the content
+	    			        content = messageContent.toString();
+	    			    }
+
+	    			    Email email = new Email(from, subject, content);
 	    			    emails.add(email);
 	    			}
+
 
 	    			// close the connection and folder
 	    			inbox.close(false);
