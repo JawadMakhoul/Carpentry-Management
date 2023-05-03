@@ -17,6 +17,7 @@ public final class Consts {
 		public static final String SQL_SEL_PROJECTITEMS = "SELECT * FROM ProjectItems";
 		public static final String SQL_SEL_SECTION = "SELECT * FROM Section";
 		public static final String SQL_SEL_STOCK = "SELECT * FROM Stock";
+		public static final String SQL_SEL_ORDEREDMATERIALS = "SELECT * FROM OrderedMaterials";
 		
 		public static final String SQL_INS_CUSTOMER = "{ call qryInsCustomer1(?,?,?,?,?) }";
 		public static final String SQL_INS_ORDERS = "{ call qryInsOrder(?,?,?,?,?) }";
@@ -24,7 +25,11 @@ public final class Consts {
 		public static final String SQL_INS_PROJECTITEMS = "{ call qryInsProjectItems(?,?,?,?,?,?,?,?,?,?) }";
 		public static final String SQL_INS_SECTION = "{ call qryInsSection(?,?,?,?,?,?) }";
 		public static final String SQL_INS_STOCK = "{ call qryInsStock(?,?,?) }";
+		public static final String SQL_INS_ORDEREDMATERIALS = "{ call qryInsOrderedMaterials(?,?,?) }";
 		
+		public static final String SQL_DEL_ORDEREDMATERIALS = "{ call qryDelOrderedMaterials(?,?,?)}";
+		
+		public static final String SQL_UPD_STOCK = "{ call qryUpdateStockQuantity(?,?,?)}";
 
 
 		private static String getDBPath() {

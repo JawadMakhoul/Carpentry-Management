@@ -1,10 +1,48 @@
 package Controller;
 
 import java.io.IOException;
+import java.io.InputStream;
+import org.apache.commons.io.IOUtils;
+
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 import java.net.URL;
+import java.util.Arrays;
+import java.util.Base64;
 import java.util.HashSet;
 import java.util.ResourceBundle;
+import javafx.scene.control.ListView;
+import javax.mail.search.SearchTerm;
 
+//import com.google.api.client.util.IOUtils;
+
+import javax.mail.Authenticator;
+import javax.mail.BodyPart;
+import javax.mail.Flags;
+import javax.mail.Folder;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.NoSuchProviderException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import java.util.Properties;
+import javax.mail.Store;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.mail.search.FlagTerm;
+
+import Model.Email;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,20 +50,41 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-public class FinancialManagingController implements Initializable{
+import java.util.Properties;
+import javax.mail.Folder;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.NoSuchProviderException;
+import javax.mail.Session;
+import javax.mail.Store;
+public class SendController implements Initializable{
 
     @FXML
-    private Button sendEmail,NewProject,Stock,CurrentProjects,ColorsCatalog,OrderedMaterials,FinancialManaging,ProjectsCatalog,Inbox,BackButton;
+    private Button sendEmail,send,NewProject,Stock,CurrentProjects,ColorsCatalog,OrderedMaterials,FinancialManaging,ProjectsCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
 
     @FXML
-    void MoveTo(MouseEvent event) throws IOException {
+    private TextArea messageField;
+
+    @FXML
+    private TextField subjectField,toEmailField;
+    
+    @FXML
+    private Text text;
+	
+	@FXML
+    private ImageView trueORfalse,failedToSend2;
+    @FXML
+    void MoveTo(MouseEvent event) throws IOException, MessagingException {
     	
     	for(Button b: Buttons) {
     		if(b.isPressed()) {
@@ -129,6 +188,7 @@ public class FinancialManagingController implements Initializable{
 	        		stage.show();
 	        		break;
 	    		}
+	    		
 	    		case "sendEmail":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Send.fxml"));
 	        		Scene scene = new Scene(pane);
@@ -139,10 +199,64 @@ public class FinancialManagingController implements Initializable{
 	        		stage.show();
 	        		break;
 	    		}
+	    		case "send":{
+	    			
+	    			String host = "smtp.office365.com";
+	    	        String port = "587";
+	    	        String username = "awniwoodwork@hotmail.com";
+	    	        String password = "Awnihasanjawad";
+	    	        
+	    	        // Sender and recipient email addresses
+	    	       // String fromEmail = "your_hotmail_email@hotmail.com";
+	    	       // String toEmail = "recipient_email@example.com";
+	    	        
+	    	        // Email subject and message body
+	    	        //String subject = "Test email from Hotmail";
+	    	       // String message = "This is a test email sent from a Hotmail account.";
+	    	        
+	    	        // SMTP server properties
+	    	        Properties props = new Properties();
+	    	        props.put("mail.smtp.auth", "true");
+	    	        props.put("mail.smtp.starttls.enable", "true");
+	    	        props.put("mail.smtp.host", host);
+	    	        props.put("mail.smtp.port", port);
+	    	        
+	    	        // Create a session with SMTP server
+	    	        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+	    	            protected PasswordAuthentication getPasswordAuthentication() {
+	    	                return new PasswordAuthentication(username, password);
+	    	            }
+	    	        });
+	    	        
+	    	        try {
+	    	            // Create email message
+	    	            Message emailMessage = new MimeMessage(session);
+	    	            emailMessage.setFrom(new InternetAddress(username));
+	    	            emailMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmailField.getText().toString()));
+	    	            emailMessage.setSubject(subjectField.getText());
+	    	            emailMessage.setText(messageField.getText());
+	    	            
+	    	            // Send email message
+	    	            Transport.send(emailMessage);
+	    	            Image image = new Image(getClass().getResourceAsStream("/Lib/delivered.png"));
+	    	            trueORfalse.setImage(image);
+	    	            text.setText("Successfully sent!");
+	    	            text.setFill(Color.GREEN);
+	    	            
+	    	        } catch (MessagingException e) {
+	    	        	Image image = new Image(getClass().getResourceAsStream("/Lib/email.png"));
+	    	            trueORfalse.setImage(image);
+	    	            Image image2 = new Image(getClass().getResourceAsStream("/Lib/remove.png"));
+	    	            failedToSend2.setImage(image2);
+	    	            text.setText("Failed to send!");
+	    	            text.setFill(Color.RED);
+	    	        }
+	    	    }
+    	}
+    			}
     		}
-    	}
-    		
-    	}
+    	
+    
     	
     }
 
@@ -158,6 +272,7 @@ public class FinancialManagingController implements Initializable{
 		Buttons.add(NewProject);
 		Buttons.add(Inbox);
 		Buttons.add(BackButton);
+		Buttons.add(send);
 		Buttons.add(sendEmail);
 	}
 

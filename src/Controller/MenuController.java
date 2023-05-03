@@ -21,7 +21,7 @@ import javafx.scene.layout.AnchorPane;
 public class MenuController implements Initializable{
 
     @FXML
-    private Button NewProject,Stock,CurrentProjects,MaterialsToOrder,ColorsCatalog,OrderedMaterials,FinancialManaging,ProjectsCatalog,Inbox,BackButton;
+    private Button sendEmail,NewProject,Stock,CurrentProjects,MaterialsToOrder,ColorsCatalog,OrderedMaterials,FinancialManaging,ProjectsCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
@@ -142,6 +142,16 @@ public class MenuController implements Initializable{
 	        		stage.show();
 	        		break;
 	    		}	
+	    		case "sendEmail":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Send.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}
     		}
     	}
     		
@@ -156,12 +166,12 @@ public class MenuController implements Initializable{
 		Buttons.add(FinancialManaging);
 		Buttons.add(OrderedMaterials);
 		Buttons.add(ColorsCatalog);
-		Buttons.add(MaterialsToOrder);
 		Buttons.add(CurrentProjects);
 		Buttons.add(Stock);
 		Buttons.add(NewProject);
 		Buttons.add(Inbox);
 		Buttons.add(BackButton);
+		Buttons.add(sendEmail);
 	}
 
 

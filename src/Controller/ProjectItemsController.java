@@ -42,7 +42,7 @@ import javafx.stage.Stage;
 public class ProjectItemsController implements Initializable{
 	
 	@FXML
-    private Button ShowProjectDetails,BackButton,ColorsCatalog,CurrentProjects,FinancialManaging,Inbox,MaterialsToOrder,NewProject,OrderedMaterials,ProjectsCatalog,Stock,addItem,addSection,finish;
+    private Button sendEmail,ShowProjectDetails,BackButton,ColorsCatalog,CurrentProjects,FinancialManaging,Inbox,NewProject,OrderedMaterials,ProjectsCatalog,Stock,addItem,addSection,finish;
 	private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private ColorPicker color;
@@ -114,17 +114,6 @@ public class ProjectItemsController implements Initializable{
 	        		break;
 	    		}
 	    		
-	    		case "MaterialsToOrder":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/MaterialsToOrder.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work - Order Materials");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
 	    		case "ColorsCatalog":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/ColorsCatalog.fxml"));
 	        		Scene scene = new Scene(pane);
@@ -179,6 +168,17 @@ public class ProjectItemsController implements Initializable{
 	        		stage.show();
 	        		break;
 	    		}	
+	    		
+	    		case "sendEmail":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Send.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}
     		}
     	}
     		
@@ -325,16 +325,14 @@ public class ProjectItemsController implements Initializable{
 		Buttons.add(FinancialManaging);
 		Buttons.add(OrderedMaterials);
 		Buttons.add(ColorsCatalog);
-		Buttons.add(MaterialsToOrder);
 		Buttons.add(CurrentProjects);
 		Buttons.add(Stock);
 		Buttons.add(NewProject);
 		Buttons.add(Inbox);
 		Buttons.add(BackButton);
 		Buttons.add(ShowProjectDetails);
-//		Buttons.add(addItem);
-//		Buttons.add(addSection);
 		Buttons.add(finish);
+		Buttons.add(sendEmail);
 		
 		ObservableList<ProjectSection> projectSectionList = FXCollections.observableArrayList(ProjectSection.Kitchen,ProjectSection.Room,ProjectSection.LivingRoom,ProjectSection.Bathroom,ProjectSection.Closet,ProjectSection.Table,ProjectSection.Bed,ProjectSection.Other);
 		projectSection.getItems().addAll(projectSectionList);

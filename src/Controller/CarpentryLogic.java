@@ -171,7 +171,27 @@ public class CarpentryLogic {
 			return results;
 		}
 
-		
+		public  ArrayList<Model.OrderedMaterials> getOrderedMaterials() {
+
+			ArrayList<Model.OrderedMaterials> results = new ArrayList<Model.OrderedMaterials>();
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						PreparedStatement stmt = conn.prepareStatement(Consts.SQL_SEL_ORDEREDMATERIALS);
+						ResultSet rs = stmt.executeQuery()) {
+					while (rs.next()) {
+						int i = 1;
+						results.add(new Model.OrderedMaterials(rs.getString(i++),rs.getString(i++), rs.getInt(i++)));
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return results;
+		}
+
 
 		
 		public  boolean addCustomer(Customer c) {
@@ -235,6 +255,31 @@ public class CarpentryLogic {
 					stmt.setInt(1, p.getProjectID());
 					stmt.setString(2, p.getCustomerID());
 					stmt.setString(3, p.getProjectCategory()); // can't be null
+					
+					
+
+					stmt.executeUpdate();
+					return true;
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+		
+		public  boolean addOrderedMaterials(Model.OrderedMaterials om) {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_ORDEREDMATERIALS)) {
+
+					// int i = 1;
+					stmt.setString(1, om.getStockID());
+					stmt.setString(2, om.getWoodName());
+					stmt.setInt(3, om.getQuantity()); // can't be null
 					
 					
 
@@ -364,6 +409,55 @@ public class CarpentryLogic {
 			}
 			return false;
 		}
-	}
+		
+		public boolean updateStockQuantity(Stock s,int newQuantity) throws SQLException {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_UPD_STOCK)) {
 
+		        // set the parameter values for the prepared statement
+				stmt.setString(3,s.getStockID());
+				stmt.setString(2, s.getWoodName());
+		        stmt.setInt(1, newQuantity);
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
+		public  boolean DeleteOrderedMaterials(Model.OrderedMaterials om) {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_DEL_ORDEREDMATERIALS)) {
+					System.out.println("mmmmmmmm");
+					// int i = 1;
+					stmt.setString(1, om.getStockID());
+					stmt.setString(2, om.getWoodName());
+					stmt.setInt(3, om.getQuantity()); // can't be null
+					
+					stmt.executeUpdate();
+					return true;
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+}
 

@@ -44,18 +44,7 @@
                      </image>
                   </ImageView>
                   <Button fx:id="CurrentProjects" layoutX="105.0" layoutY="226.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Current Projects" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Lib/wood.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Lib/order-now.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="MaterialsToOrder" layoutX="105.0" layoutY="306.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Materials To Order" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true">
+                 <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/catalog.png" />
                      </image>
@@ -88,6 +77,12 @@
                      <font>
                         <Font name="Calibri" size="24.0" />
                      </font></Button>
+                  <Button fx:id="sendEmail" layoutX="105.0" layoutY="315.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Send Email" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="316.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Lib/send-data.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
           <AnchorPane fx:id="screen2" minHeight="0.0" minWidth="0.0" prefHeight="948.0" prefWidth="1075.0">

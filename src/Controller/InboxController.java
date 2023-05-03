@@ -60,7 +60,7 @@ import javax.mail.Store;
 public class InboxController implements Initializable{
 
     @FXML
-    private Button refresh,NewProject,Stock,CurrentProjects,MaterialsToOrder,ColorsCatalog,OrderedMaterials,FinancialManaging,ProjectsCatalog,Inbox,BackButton;
+    private Button sendEmail,replay,refresh,NewProject,Stock,CurrentProjects,ColorsCatalog,OrderedMaterials,FinancialManaging,ProjectsCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
@@ -68,11 +68,12 @@ public class InboxController implements Initializable{
     @FXML
 	 private TableColumn<Email, String> from;
 
+    public static String replayTo;
 	 @FXML
 	 private TableColumn<Email, String> subject;
 
-	 @FXML
-	    private ImageView image;
+	 public static String subjectTo;
+	 
 	 @FXML
 	 private TableColumn<Email, String> content;
 	 @FXML
@@ -129,17 +130,6 @@ public class InboxController implements Initializable{
 	        		break;
 	    		}
 	    		
-	    		case "MaterialsToOrder":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/MaterialsToOrder.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work - Order Materials");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
 	    		case "ColorsCatalog":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/ColorsCatalog.fxml"));
 	        		Scene scene = new Scene(pane);
@@ -186,6 +176,32 @@ public class InboxController implements Initializable{
 	    		
 	    		case "BackButton":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}
+	    		
+	    		case "sendEmail":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Send.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}
+	    		
+	    		case "replay":{
+	    			
+	    			replayTo=tableview.getSelectionModel().getSelectedItem().getFrom();
+	    			subjectTo=tableview.getSelectionModel().getSelectedItem().getSubject();
+	    			
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/ReplayTo.fxml"));
 	        		Scene scene = new Scene(pane);
 	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 	        		stage.setScene(scene);
@@ -284,13 +300,14 @@ public class InboxController implements Initializable{
 		Buttons.add(FinancialManaging);
 		Buttons.add(OrderedMaterials);
 		Buttons.add(ColorsCatalog);
-		Buttons.add(MaterialsToOrder);
 		Buttons.add(CurrentProjects);
 		Buttons.add(Stock);
 		Buttons.add(NewProject);
 		Buttons.add(Inbox);
 		Buttons.add(BackButton);
 		Buttons.add(refresh);
+		Buttons.add(replay);
+		Buttons.add(sendEmail);
 	}
 
 
