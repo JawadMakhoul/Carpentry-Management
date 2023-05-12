@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Accordion?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.StockController">
       <children>
@@ -91,56 +91,115 @@
                   </ImageView>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="948.0" prefWidth="1075.0" styleClass="backgroundColor2" stylesheets="@../Controller/style.css">
+          <AnchorPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0">
+         <children>
+            <Pane fx:id="pnlOverview" layoutX="-7.0" prefHeight="948.0" prefWidth="1247.0">
                <children>
-                  <TableView fx:id="tableview" layoutX="417.0" layoutY="86.0" prefHeight="193.0" prefWidth="409.0">
-                    <columns>
-                      <TableColumn fx:id="woodTypeColumn" minWidth="-Infinity" prefWidth="205.0" text="wood type" />
-                      <TableColumn fx:id="quantityColumn" prefWidth="203.0" text="quantity" />
-                    </columns>
-                  </TableView>
-                  <Button fx:id="orderWood" layoutX="895.0" layoutY="665.0" mnemonicParsing="false" onMousePressed="#order_Wood" prefHeight="50.0" prefWidth="167.0" text="order wood" />
-                  <Button fx:id="updateWoodQuantity" layoutX="895.0" layoutY="779.0" mnemonicParsing="false" onMousePressed="#UpdateWoodQuantity" prefHeight="50.0" prefWidth="167.0" text="Update quantity" />
-                  <TextField fx:id="quantityOFWood" layoutX="469.0" layoutY="701.0" prefHeight="51.0" prefWidth="234.0" promptText="Quantity" />
-                  <ComboBox fx:id="woodType" layoutX="153.0" layoutY="701.0" prefHeight="51.0" prefWidth="234.0" promptText="Wood Type" />
-                  <ProgressIndicator fx:id="sandwichPercent" cache="true" layoutX="321.0" layoutY="417.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="122.0" prefWidth="150.0" progress="0.33" />
-                  <Text fill="RED" layoutX="356.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sandwich">
+                  <TextField layoutX="1021.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="Search" style="-fx-border-radius: 2em;" />
+                  <Label layoutX="538.0" layoutY="50.0" text="Projects Catalog">
                      <font>
-                        <Font name="System Bold" size="18.0" />
+                        <Font size="24.0" />
                      </font>
-                  </Text>
-                  <ProgressIndicator fx:id="mdfPercent" cache="true" layoutX="772.0" layoutY="417.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="122.0" prefWidth="150.0" progress="0.33" />
-                  <ProgressIndicator fx:id="solidPercent" cache="true" layoutX="99.0" layoutY="423.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="122.0" prefWidth="150.0" progress="0.33" />
-                  <ProgressIndicator fx:id="melaminePercent" cache="true" layoutX="543.0" layoutY="423.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="122.0" prefWidth="150.0" progress="0.33" />
-                  <Text fill="RED" layoutX="822.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mdf" textAlignment="CENTER" wrappingWidth="50.0">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Text>
-                  <Text fill="RED" layoutX="153.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Solid">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Text>
-                  <Text fill="RED" layoutX="578.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Melamine">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Text>
-                  <Text fill="RED" layoutX="1005.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Particle Board">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Text>
-                  <ProgressIndicator fx:id="particlePercent" cache="true" layoutX="990.0" layoutY="423.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="122.0" prefWidth="150.0" progress="0.33" />
-                  <Accordion layoutX="52.0" layoutY="153.0" />
-                  <ImageView fx:id="mdfImage" fitHeight="150.0" fitWidth="200.0" layoutX="747.0" layoutY="399.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="solidImage" fitHeight="150.0" fitWidth="200.0" layoutX="74.0" layoutY="399.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="sandwichImage" fitHeight="150.0" fitWidth="200.0" layoutX="296.0" layoutY="403.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="melamineImage" fitHeight="150.0" fitWidth="200.0" layoutX="518.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="particleImage" fitHeight="150.0" fitWidth="200.0" layoutX="962.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true" />
+                  </Label>
+                  <HBox alignment="CENTER_LEFT" layoutX="217.0" layoutY="155.0" prefHeight="92.0" prefWidth="900.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
+                           <children>
+                              <Label fx:id="totalProjects" text="22000" textFill="#2a73ff">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Total Projects" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
+                           <children>
+                              <Label fx:id="totalDelivered" text="1500" textFill="#26bfbc">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Total delivered" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
+                           <children>
+                              <Label fx:id="totalInProgress" text="1000" textFill="#fa5f7e">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                              </Label>
+                              <Label text="InProgress" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
+                           <children>
+                              <Label fx:id="totalWaiting" text="780" textFill="#de0000">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="137.0" text="Waiting" textAlignment="CENTER" />
+                           </children>
+                        </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
+                                 <children>
+                                    <Label fx:id="totalFinished" text="780" textFill="#c200de">
+                                       <font>
+                                          <Font name="System Bold" size="26.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="137.0" text="Finished" textAlignment="CENTER" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
+                                 <children>
+                                    <Label fx:id="totalCanceled" text="780" textFill="#de6500">
+                                       <font>
+                                          <Font name="System Bold" size="26.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="137.0" text="Canceled" textAlignment="CENTER" />
+                                 </children>
+                              </VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" layoutX="217.0" layoutY="316.0" prefHeight="42.0" prefWidth="900.0" style="-fx-background-color: #e6e9ed;">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="225.0" text="Customer Name" textAlignment="CENTER">
+                           <HBox.margin>
+                              <Insets left="50.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="225.0" text="ProjectID">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="225.0" text="Status">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="225.0" text="Cost">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <ScrollPane fx:id="scrollpane" layoutX="217.0" layoutY="358.0" prefHeight="320.0" prefWidth="900.0" stylesheets="@../Controller/style.css" />
+                  <ImageView fitHeight="42.0" fitWidth="28.0" layoutX="1169.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Lib/search.png" />
+                     </image>
+                  </ImageView>
+                        <Button fx:id="searchBuuton" layoutX="1157.0" layoutY="47.0" mnemonicParsing="false" onAction="#Search" opacity="0.0" prefHeight="39.0" prefWidth="45.0" />
                </children>
-            </AnchorPane>
+            </Pane>
+         </children>
+      </AnchorPane>
         </items>
       </SplitPane>
    </children>

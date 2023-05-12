@@ -25,6 +25,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -57,6 +59,8 @@ public class StockController implements Initializable{
    
     @FXML
     private TableColumn<Model.Stock, String> woodTypeColumn;
+    @FXML
+    private ImageView mdfImage,melamineImage,particleImage,sandwichImage,solidImage;
 
     @FXML
     void UpdateWoodQuantity(MouseEvent event) throws SQLException {
@@ -413,20 +417,50 @@ public class StockController implements Initializable{
 		
 		for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
 			
-			if(s.getWoodName().equals("Sandwich")) 
+			if(s.getWoodName().equals("Sandwich"))  {
+				if((s.getQuantity()/100.0)<0) {
+					Image image = new Image(getClass().getResourceAsStream("/Lib/out-of-stockk.png"));
+					sandwichImage.setImage(image);
+				}
 				sandwichPercent.setProgress(s.getQuantity()/100.0);
-			
-			if(s.getWoodName().equals("Mdf"))
-				mdfPercent.setProgress(s.getQuantity()/100.0);
+			}
 				
-			if(s.getWoodName().equals("Solid_Wood"))
+			
+			if(s.getWoodName().equals("Mdf")) {
+				if((s.getQuantity()/100.0)<0) {
+					Image image = new Image(getClass().getResourceAsStream("/Lib/out-of-stockk.png"));
+					mdfImage.setImage(image);
+				}
+				mdfPercent.setProgress(s.getQuantity()/100.0);
+			}
+				
+				
+			if(s.getWoodName().equals("Solid_Wood")) {
+				if((s.getQuantity()/100.0)<0) {
+					Image image = new Image(getClass().getResourceAsStream("/Lib/out-of-stockk.png"));
+					solidImage.setImage(image);
+				}
 				solidPercent.setProgress(s.getQuantity()/100.0);
+			}
+				
 			
-			if(s.getWoodName().equals("Melamine"))
+			if(s.getWoodName().equals("Melamine")) {
+				if((s.getQuantity()/100.0)<0) {
+					Image image = new Image(getClass().getResourceAsStream("/Lib/out-of-stockk.png"));
+					melamineImage.setImage(image);
+				}
 				melaminePercent.setProgress(s.getQuantity()/100.0);
+			}
+				
 			
-			if(s.getWoodName().equals("Particleboard"))
+			if(s.getWoodName().equals("Particleboard")) {
+				if((s.getQuantity()/100.0)<0) {
+					Image image = new Image(getClass().getResourceAsStream("/Lib/out-of-stockk.png"));
+					particleImage.setImage(image);
+				}
 				particlePercent.setProgress(s.getQuantity()/100.0);
+			}
+				
 				
 		}
 		showStock();

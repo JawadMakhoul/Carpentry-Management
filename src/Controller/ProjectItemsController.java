@@ -7,6 +7,7 @@ import Model.Stock ;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import Enumeration.handType;
 import Model.Project;
 import Model.Section;
 import Model.ProjectItems;
+import Model.Customer;
 import Model.Order;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -218,56 +220,7 @@ public class ProjectItemsController implements Initializable{
     }
 
     @FXML
-    void AddSection(MouseEvent event) {
-    	Section s = new Section();
-    	s.setSectionName(projectSection.getSelectionModel().getSelectedItem().toString());
-    	Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        Project p = (Project) stage.getUserData();
-        Integer i = p.getProjectID();
-    	String s3 = i.toString();
-    	s.setProjectID(s3);
-    	s.setQuantityOFhands(Integer.parseInt(handsQuantity.getText()));
-    	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
-    	s.setAxleDegree(brzolDegree.getSelectionModel().getSelectedItem().toString());
-    	CarpentryLogic.getInstance().addSection(s);
-    	
-    	color.setValue(null);
-    	handsQuantity.setText(null);
-    	axleQuantity.setText(null);
-    	ItemName.setText(null);
-    	height.setText(null);
-    	width.setText(null);
-    	quantity.setText(null);
-    }
-    
-    @FXML
-    void ShowProjectDetails(MouseEvent event) {
-    	Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        Project p = (Project) stage.getUserData();
-    	String customerID = p.getCustomerID();
-    	Order o = new Order();
-    	o.setCustomerID(customerID);
-    	String s1 = o.getCustomerID();
-    	CUSTOMERID.setText(s1);
-    	Integer p2id = p.getProjectID();
-    	o.setProjectID(p2id.toString());
-    	String s2 = o.getProjectID();
-    	PROJECTID.setText(s2);
-    	Integer oid = o.getOrderID();
-    	String soid = oid.toString();
-    	ORDERID.setText(soid);
-    	o.setStatus(Enumeration.OrderStatus.WaitingProcess.toString()); 
-    	orderStatus.setText(Enumeration.OrderStatus.WaitingProcess.toString());
-    	o.setCost(o.CalculateCost()); 
-    	//orderCost.setText(o.getCost());// write function in order class to calculate the cost of the order////////////////////////////////////////////////////////////////////////////////////////////////////////
-    	CarpentryLogic.getInstance().addOrder(o);
-    	
-    }
-    
-    @FXML
-    void Finish(MouseEvent event) throws IOException {
+    void AddSection(MouseEvent event) throws NumberFormatException, SQLException {
     	Section s = new Section();
     	s.setSectionName(projectSection.getSelectionModel().getSelectedItem().toString());
     	Node node = (Node) event.getSource();
@@ -287,11 +240,12 @@ public class ProjectItemsController implements Initializable{
     	pi.setWidth(Integer.parseInt(width.getText()));
     	pi.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
     	pi.setQuantity(Integer.parseInt(quantity.getText()));
-    	ArrayList<Stock> stock1 = new ArrayList<Stock>();
-    	stock1= CarpentryLogic.getInstance().getStocks();
-    	for(Stock s1 : stock1) {
-    		if (s1.getWoodName() == woodType.getSelectionModel().getSelectedItem().toString()) {
+    	ArrayList<Stock> stock = new ArrayList<Stock>();
+    	stock= CarpentryLogic.getInstance().getStocks();
+    	for(Stock s1 : stock) {
+    		if (s1.getWoodName().equals(woodType.getSelectionModel().getSelectedItem().toString())) {
     			s1.setQuantity(s1.getQuantity()-Integer.parseInt(quantity.getText()));
+    			CarpentryLogic.getInstance().updateStockQuantity(s1, s1.getQuantity());
     		}
 
     	}
@@ -299,16 +253,93 @@ public class ProjectItemsController implements Initializable{
     	pi.setColor(color.getValue().toString());
     	pi.setModelNumberOfHands(handsModelNumber.getSelectionModel().getSelectedItem().toString());
     	pi.setProjectID(s3);
+    	
     	CarpentryLogic.getInstance().addProjectItems(pi);
-
-    	String customerID = p.getCustomerID();
+    	
+    	color.setValue(null);
+    	handsQuantity.setText(null);
+    	axleQuantity.setText(null);
+    	ItemName.setText(null);
+    	height.setText(null);
+    	width.setText(null);
+    	quantity.setText(null);
+    }
+    
+    @FXML
+    void ShowProjectDetails(MouseEvent event) {
+    	Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Project p = (Project) stage.getUserData();
+    	String customerName=null;
+    	for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
+			if(Integer.toString(c.getID()).equals(p.getCustomerID())){
+				customerName = c.getName();
+			}
+		}
     	Order o = new Order();
-    	o.setCustomerID(customerID);
+    	o.setCustomerName(customerName);
+    	String s1 = o.getCustomerName();
+    	CUSTOMERID.setText(s1);
     	Integer p2id = p.getProjectID();
     	o.setProjectID(p2id.toString());
+    	String s2 = o.getProjectID();
+    	PROJECTID.setText(s2);
+    	Integer oid = o.getOrderID();
+    	String soid = oid.toString();
+    	ORDERID.setText(soid);
     	o.setStatus(Enumeration.OrderStatus.WaitingProcess.toString()); 
-    	o.setCost(o.CalculateCost()); 
+    	orderStatus.setText(Enumeration.OrderStatus.WaitingProcess.toString());
+    	Integer cost = o.CalculateCost();
+    	String scost = cost.toString(); 
+    	orderCost.setText(scost);
     	CarpentryLogic.getInstance().addOrder(o);
+    	
+    }
+    
+    @FXML
+    void Finish(MouseEvent event) throws IOException {
+    	// Add Section
+//    	Section s = new Section();
+//    	s.setSectionName(projectSection.getSelectionModel().getSelectedItem().toString());
+//    	Node node = (Node) event.getSource();
+//        Stage stage = (Stage) node.getScene().getWindow();
+//        Project p = (Project) stage.getUserData();
+//        Integer i = p.getProjectID();
+//    	String s3 = i.toString();
+//    	s.setProjectID(s3);
+//    	s.setQuantityOFhands(Integer.parseInt(handsQuantity.getText()));
+//    	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
+//    	s.setAxleDegree(brzolDegree.getSelectionModel().getSelectedItem().toString());
+//    	CarpentryLogic.getInstance().addSection(s);
+//    	
+//    	ProjectItems pi = new ProjectItems();
+//    	pi.setItemName(ItemName.getText());
+//    	pi.setHeight(Integer.parseInt(height.getText()));
+//    	pi.setWidth(Integer.parseInt(width.getText()));
+//    	pi.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
+//    	pi.setQuantity(Integer.parseInt(quantity.getText()));
+//    	ArrayList<Stock> stock1 = new ArrayList<Stock>();
+//    	stock1= CarpentryLogic.getInstance().getStocks();
+//    	for(Stock s1 : stock1) {
+//    		if (s1.getWoodName() == woodType.getSelectionModel().getSelectedItem().toString()) {
+//    			s1.setQuantity(s1.getQuantity()-Integer.parseInt(quantity.getText()));
+//    		}
+//
+//    	}
+//    	pi.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
+//    	pi.setColor(color.getValue().toString());
+//    	pi.setModelNumberOfHands(handsModelNumber.getSelectionModel().getSelectedItem().toString());
+//    	pi.setProjectID(s3);
+//    	CarpentryLogic.getInstance().addProjectItems(pi);
+
+//    	String customerID = p.getCustomerID();
+//    	Order o = new Order();
+//    	o.setCustomerID(customerID);
+//    	Integer p2id = p.getProjectID();
+//    	o.setProjectID(p2id.toString());
+//    	o.setStatus(Enumeration.OrderStatus.WaitingProcess.toString()); 
+//    	o.setCost(o.CalculateCost()); 
+//    	CarpentryLogic.getInstance().addOrder(o);
 
     	Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
 		Scene scene = new Scene(pane);

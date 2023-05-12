@@ -27,6 +27,7 @@ public class Section {
 		this.projectID = projectID;
 		this.quantityOFhands = quantityOFhands;
 		this.quantityOFaxle = quantityOFaxle;
+		this.axleDegree=axleDegree;
 		//ProjectSection = projectSection;
 	}
 	

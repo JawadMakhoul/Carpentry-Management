@@ -35,6 +35,10 @@ public class Project {
 	public static int getProjectID() {
 		return projectID;
 	}
+	public int get_ProjectID_nonStatic() {
+		int id=Project.projectID;
+		return id;
+	}
 	public static void setProjectID(int projectID) {
 		Project.projectID = projectID;
 	}

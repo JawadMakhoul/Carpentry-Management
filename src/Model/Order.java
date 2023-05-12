@@ -9,32 +9,45 @@ import java.io.IOException;
 import Controller.CarpentryLogic;
 import Enumeration.AxleDegree;
 import Enumeration.OrderStatus;
+import javafx.scene.control.TableColumn;
 
 public class Order {
 
 	
 	private static int idCounter;
-	private String customerID;
+	private String customerName;
 	private int orderID;
 	private String projectID;
 	private String status;
 	private char newShekelSign = '\u20AA';
 	private int cost;
 	
-	public Order(int orderID,String customerID, String projectID, String status,int cost) {
+	public Order(int orderID,String customerName, String projectID, String status,int cost) {
 		super();
-		this.customerID = customerID;
+		this.customerName = customerName;
 		this.orderID = orderID;
 		this.projectID = projectID;
 		this.status = status;
 		this.cost=cost+newShekelSign;
 	}
 	
+//	public Order(String customerID, String projectID, String status,int cost) {
+//		super();
+//		this.customerID = customerID;
+//		this.projectID = projectID;
+//		this.status = status;
+//		this.cost=cost+newShekelSign;
+//	}
 	
 
 	public Order() {
 		this.orderID=idCounter++;
 	}
+	public Order(TableColumn<Order, String> customerName, TableColumn<Order, String> projectID2,
+			TableColumn<Order, String> projectStatus, TableColumn<Order, Integer> cost2) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getCost() {
 		return cost;
 	}
@@ -49,11 +62,11 @@ public class Order {
 	public static void setIdCounter(int idCounter) {
 		Order.idCounter = idCounter;
 	}
-	public String getCustomerID() {
-		return customerID;
+	public String getCustomerName() {
+		return customerName;
 	}
-	public void setCustomerID(String customerID) {
-		this.customerID = customerID;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 	public int getOrderID() {
 		return orderID;
@@ -78,66 +91,67 @@ public class Order {
 	
 	public int CalculateCost() {
 		 String p_ID= this.projectID,axleDegree;
-		 Section s1 = null ;
-		 ProjectItems i1 = null;
-		 int price = 0;
-		 for(Section s : CarpentryLogic.getInstance().getSections()) {
-			 		if(s.getProjectID() == p_ID)
-			 			s1= s;
-		 }
-		 switch (s1.getAxleDegree()) {		 
-		 case  "Degree_45" :
-			 price = price + s1.getQuantityOFaxle()*10;
-			 break;
-		 case  "Degree_155" :
-			 price = price + s1.getQuantityOFaxle()*11;
-			 break;
-		 case  "Degree_180" :
-			 price = price + s1.getQuantityOFaxle()*13;
-			 break;
-		 }
-		 for(ProjectItems  i : CarpentryLogic.getInstance().getProjectItems()) {
-			 if (i.getProjectID() == p_ID) {
-				 i1= i;
-			 }
-		 }
-			 switch (i1.getWoodType()) {
-			 
-			 case  "Sandwich" :
-				 price = price + i1.getQuantity()*10;
-				 break;
-			 case  "Mdf" :
-				 price = price + i1.getQuantity()*11;
-				 break;
-			 case  "Solid_Wood" :
-				 price = price + i1.getQuantity()*12;
-				 break;
-			 case  "Melamine" :
-				 price = price + i1.getQuantity()*14;
-				 break;
-			 case  "Particleboard" :
-				 price = price + i1.getQuantity()*15;
-				 break;
-		 }
-			 switch (i1.getModelNumberOfHands()) {
-
-			 case  "s125" :
-				 price = price + s1.getQuantityOFhands()*10;
-				 break;
-			 case  "f120" :
-				 price = price + s1.getQuantityOFhands()*11;
-				 break;
-			 case  "r452" :
-				 price = price + s1.getQuantityOFhands()*12;
-				 break;
-			 case  "gh32" :
-				 price = price + s1.getQuantityOFhands()*14;
-				 break;
-			 case  "a17" :
-				 price = price + s1.getQuantityOFhands()*15;
-				 break;
-		 }
 		
+		 int price = 0;
+		 
+		 for(Section s : CarpentryLogic.getInstance().getSections()) {
+			 		if(s.getProjectID().equals(p_ID)) {
+			 			switch (s.getAxleDegree()) {		 
+			 			
+			 			 case  "Degree_45" :
+			 				 price = price + s.getQuantityOFaxle()*10;
+			 				 break;
+			 			 case  "Degree_155" :
+			 				 price = price + s.getQuantityOFaxle()*11;
+			 				 break;
+			 			 case  "Degree_180" :
+			 				 price = price + s.getQuantityOFaxle()*13;
+			 				 break;
+			 			 }
+			 		}
+			 		
+			 		for(ProjectItems  i : CarpentryLogic.getInstance().getProjectItems()) {
+						 if (i.getProjectID() == p_ID) {
+							 switch (i.getWoodType()) {
+							 
+							 case  "Sandwich" :
+								 price = price + i.getQuantity()*10;
+								 break;
+							 case  "Mdf" :
+								 price = price + i.getQuantity()*11;
+								 break;
+							 case  "Solid_Wood" :
+								 price = price + i.getQuantity()*12;
+								 break;
+							 case  "Melamine" :
+								 price = price + i.getQuantity()*14;
+								 break;
+							 case  "Particleboard" :
+								 price = price + i.getQuantity()*15;
+								 break;
+						 }
+							 switch (i.getModelNumberOfHands()) {
+
+							 case  "s125" :
+								 price = price + s.getQuantityOFhands()*10;
+								 break;
+							 case  "f120" :
+								 price = price + s.getQuantityOFhands()*11;
+								 break;
+							 case  "r452" :
+								 price = price + s.getQuantityOFhands()*12;
+								 break;
+							 case  "gh32" :
+								 price = price + s.getQuantityOFhands()*14;
+								 break;
+							 case  "a17" :
+								 price = price + s.getQuantityOFhands()*15;
+								 break;
+						 }
+						 }
+					 }
+			 			
+		 }
 		 
 		return price;
 	}

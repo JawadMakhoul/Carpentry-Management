@@ -109,9 +109,6 @@ public class CarpentryLogic {
 			ArrayList<ProjectItems> results = new ArrayList<ProjectItems>();
 			try {
 				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-
-				String Name = Consts.CONN_STR;
-				System.out.println(Name);
 				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
 						PreparedStatement stmt = conn.prepareStatement(Consts.SQL_SEL_PROJECTITEMS);
 						ResultSet rs = stmt.executeQuery()) {
@@ -228,7 +225,7 @@ public class CarpentryLogic {
 						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_ORDERS)) {
 					// int i = 1;
 					stmt.setInt(1, o.getOrderID()); // can't be null
-					stmt.setString(2, o.getCustomerID());
+					stmt.setString(2, o.getCustomerName());
 					stmt.setString(3, o.getProjectID());
 					stmt.setString(4, o.getStatus());
 					stmt.setInt(5, o.getCost());

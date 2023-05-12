@@ -3,6 +3,9 @@ package Model;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import Controller.CarpentryLogic;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 public class Customer {
@@ -36,6 +39,14 @@ public class Customer {
 		this.email = email;
 	}
 	
+	public String GetCustomerName(String custID) {
+		for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
+			if(Integer.toString(c.getID()).equals(custID)){
+				return c.getName();
+			}
+		}
+		return null;
+	}
 	public Customer() {
 		this.personID=idCounter++;
 		

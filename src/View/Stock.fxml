@@ -104,7 +104,7 @@
                   <TextField fx:id="quantityOFWood" layoutX="469.0" layoutY="701.0" prefHeight="51.0" prefWidth="234.0" promptText="Quantity" />
                   <ComboBox fx:id="woodType" layoutX="153.0" layoutY="701.0" prefHeight="51.0" prefWidth="234.0" promptText="Wood Type" />
                   <ProgressIndicator fx:id="sandwichPercent" cache="true" layoutX="321.0" layoutY="417.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="122.0" prefWidth="150.0" progress="0.33" />
-                  <Text fill="WHITE" layoutX="356.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sandwich">
+                  <Text fill="RED" layoutX="356.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sandwich">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -112,28 +112,33 @@
                   <ProgressIndicator fx:id="mdfPercent" cache="true" layoutX="772.0" layoutY="417.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="122.0" prefWidth="150.0" progress="0.33" />
                   <ProgressIndicator fx:id="solidPercent" cache="true" layoutX="99.0" layoutY="423.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="122.0" prefWidth="150.0" progress="0.33" />
                   <ProgressIndicator fx:id="melaminePercent" cache="true" layoutX="543.0" layoutY="423.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="122.0" prefWidth="150.0" progress="0.33" />
-                  <Text fill="WHITE" layoutX="822.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mdf" textAlignment="CENTER" wrappingWidth="50.0">
+                  <Text fill="RED" layoutX="822.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mdf" textAlignment="CENTER" wrappingWidth="50.0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" layoutX="153.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Solid">
+                  <Text fill="RED" layoutX="153.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Solid">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" layoutX="578.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Melamine">
+                  <Text fill="RED" layoutX="578.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Melamine">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" layoutX="1005.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Particle Board">
+                  <Text fill="RED" layoutX="1005.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Particle Board">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
                   <ProgressIndicator fx:id="particlePercent" cache="true" layoutX="990.0" layoutY="423.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="122.0" prefWidth="150.0" progress="0.33" />
                   <Accordion layoutX="52.0" layoutY="153.0" />
+                  <ImageView fx:id="mdfImage" fitHeight="150.0" fitWidth="200.0" layoutX="747.0" layoutY="399.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="solidImage" fitHeight="150.0" fitWidth="200.0" layoutX="74.0" layoutY="399.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="sandwichImage" fitHeight="150.0" fitWidth="200.0" layoutX="296.0" layoutY="403.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="melamineImage" fitHeight="150.0" fitWidth="200.0" layoutX="518.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="particleImage" fitHeight="150.0" fitWidth="200.0" layoutX="962.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
         </items>
