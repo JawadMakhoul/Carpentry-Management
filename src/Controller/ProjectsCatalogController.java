@@ -218,12 +218,12 @@ public class ProjectsCatalogController implements Initializable{
     		}	
     	}
     	}
-    	/*
+    	
     	
     	 
     	if(filter.getSelectionModel().getSelectedItem().equals("Project ID")) {
-    		for(Project p : CarpentryLogic.getInstance().getProjects()) {
-    			if(searchField.getText().equals(Integer.toString(p.getProjectID()))) {
+//    		for(Project p : CarpentryLogic.getInstance().getProjects()) {
+//    			if(searchField.getText().equals(Integer.toString(p.getProjectID()))) {
     				ObservableList<Order> projOrders = FXCollections.observableArrayList();
     				for(Order o : CarpentryLogic.getInstance().getOrders()) {
     					if(o.getProjectID().equals(searchField.getText())) 
@@ -231,8 +231,8 @@ public class ProjectsCatalogController implements Initializable{
     				}
     				tableView.setItems(projOrders);
     			}
-    		}
-    	}*/
+//    		}
+//    	}
     	
     	if(filter.getSelectionModel().getSelectedItem().equals("Project Status")) {
     		ObservableList<Order> statOrders = FXCollections.observableArrayList();

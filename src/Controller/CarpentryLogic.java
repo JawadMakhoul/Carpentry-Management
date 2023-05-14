@@ -169,7 +169,7 @@ public class CarpentryLogic {
 						ResultSet rs = stmt.executeQuery()) {
 					while (rs.next()) {
 						int i = 1;
-						results.add(new Model.OrderedMaterials(rs.getString(i++),rs.getString(i++), rs.getInt(i++)));
+						results.add(new Model.OrderedMaterials(rs.getInt(i++),rs.getString(i++),rs.getString(i++), rs.getInt(i++),rs.getString(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -265,10 +265,11 @@ public class CarpentryLogic {
 						CallableStatement stmt = conn.prepareCall(Consts.SQL_INS_ORDEREDMATERIALS)) {
 
 					// int i = 1;
-					stmt.setString(1, om.getStockID());
-					stmt.setString(2, om.getWoodName());
-					stmt.setInt(3, om.getQuantity()); // can't be null
-					
+					stmt.setInt(1, om.getOrderMaterialsID());
+					stmt.setString(2, om.getStockID());
+					stmt.setString(3, om.getWoodName());
+					stmt.setInt(4, om.getQuantity()); // can't be null
+					stmt.setString(5, "On_The_Way");
 					
 
 					stmt.executeUpdate();
@@ -431,9 +432,9 @@ public class CarpentryLogic {
 				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
 						CallableStatement stmt = conn.prepareCall(Consts.SQL_DEL_ORDEREDMATERIALS)) {
 					
-					stmt.setString(1, om.getStockID());
-					stmt.setString(2, om.getWoodName());
-					stmt.setInt(3, om.getQuantity()); // can't be null
+					stmt.setInt(1, om.getOrderMaterialsID());
+//					stmt.setString(2, om.getWoodName());
+//					stmt.setInt(3, om.getQuantity()); // can't be null
 					
 					stmt.executeUpdate();
 					return true;

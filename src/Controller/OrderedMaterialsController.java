@@ -2,9 +2,14 @@ package Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
+import Model.Order;
+import Model.OrderedMaterials;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,6 +17,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -23,6 +31,16 @@ public class OrderedMaterialsController implements Initializable{
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
+    
+    @FXML
+    private TableColumn<OrderedMaterials, String> orderStatus;
+
+    @FXML
+    private TableColumn<OrderedMaterials, String> productName;
+
+
+    @FXML
+    private TableView<OrderedMaterials> tableView;
 
     @FXML
     void MoveTo(MouseEvent event) throws IOException {
@@ -148,7 +166,7 @@ public class OrderedMaterialsController implements Initializable{
     }
 
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	public void initialize(URL arg0, ResourceBundle arg1){
 		// TODO Auto-generated method stub
 		Buttons.add(ProjectsCatalog);
 		Buttons.add(FinancialManaging);
@@ -160,6 +178,17 @@ public class OrderedMaterialsController implements Initializable{
 		Buttons.add(Inbox);
 		Buttons.add(BackButton);
 		Buttons.add(sendEmail);
+		
+		orderStatus.setCellValueFactory(new PropertyValueFactory<>("woodName"));
+		productName.setCellValueFactory(new PropertyValueFactory<>("status"));
+     
+
+        // Get the data and add it to the table
+        ObservableList<OrderedMaterials> orderedmaterials = FXCollections.observableArrayList();
+        ArrayList<OrderedMaterials> arraylistOrders = CarpentryLogic.getInstance().getOrderedMaterials();
+        orderedmaterials.addAll(arraylistOrders);
+        
+        tableView.setItems(orderedmaterials);
 	}
 
 

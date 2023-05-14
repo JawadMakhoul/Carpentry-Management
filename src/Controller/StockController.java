@@ -10,6 +10,8 @@ import java.util.ResourceBundle;
 import Enumeration.ProjectCategory;
 import Enumeration.WoodType;
 import Model.Consts;
+import Model.Stock;
+import Controller.CarpentryLogic;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -52,13 +54,13 @@ public class StockController implements Initializable{
     private TextField quantityOFWood;
 
     @FXML
-    private TableView<Model.Stock> tableview;
+    private TableView<Stock> tableview;
 
     @FXML
-    private TableColumn<Model.Stock, Integer> quantityColumn;
+    private TableColumn<Stock, Integer> quantityColumn;
    
     @FXML
-    private TableColumn<Model.Stock, String> woodTypeColumn;
+    private TableColumn<Stock, String> woodTypeColumn;
     @FXML
     private ImageView mdfImage,melamineImage,particleImage,sandwichImage,solidImage;
 
@@ -69,16 +71,15 @@ public class StockController implements Initializable{
     	
     	case "Sandwich":{
     		
-    		for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
+    		for(Stock s: CarpentryLogic.getInstance().getStocks()) {
     			
     			if(s.getWoodName().equals("Sandwich")) {
-    				
     				int q = Integer.parseInt(quantityOFWood.getText());
-    				CarpentryLogic.getInstance().updateStockQuantity(s, q);
+    				CarpentryLogic.getInstance().updateStockQuantity(s, s.getQuantity()+q);
     				showStock();
-    				sandwichPercent.setProgress(q/100.0);
+    				sandwichPercent.setProgress((s.getQuantity()+q)/100.0);
     				
-    				for(Model.OrderedMaterials om: CarpentryLogic.getInstance().getOrderedMaterials()) {
+    				for(OrderedMaterials om: CarpentryLogic.getInstance().getOrderedMaterials()) {
     					if(om.getWoodName().equals("Sandwich"))
     						CarpentryLogic.getInstance().DeleteOrderedMaterials(om);
     				}
@@ -91,19 +92,19 @@ public class StockController implements Initializable{
     	
     	case "Mdf":{
     		
-    		for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
+    		for(Stock s: CarpentryLogic.getInstance().getStocks()) {
     			
     			if(s.getWoodName().equals("Mdf")) {
-    				
     				int q = Integer.parseInt(quantityOFWood.getText());
-    				CarpentryLogic.getInstance().updateStockQuantity(s, q);
+    				CarpentryLogic.getInstance().updateStockQuantity(s, s.getQuantity()+q);
     				showStock();
-    				mdfPercent.setProgress(q/100.0);
+    				mdfPercent.setProgress((s.getQuantity()+q)/100.0);
     				
-    				for(Model.OrderedMaterials om: CarpentryLogic.getInstance().getOrderedMaterials()) {
+    				for(OrderedMaterials om: CarpentryLogic.getInstance().getOrderedMaterials()) {
     					if(om.getWoodName().equals("Mdf"))
     						CarpentryLogic.getInstance().DeleteOrderedMaterials(om);
     				}
+    				
     			}
     		}
     		
@@ -112,19 +113,19 @@ public class StockController implements Initializable{
     	
     	case "Solid_Wood":{
     		
-    		for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
+    		for(Stock s: CarpentryLogic.getInstance().getStocks()) {
     			
     			if(s.getWoodName().equals("Solid_Wood")) {
-    				
     				int q = Integer.parseInt(quantityOFWood.getText());
-    				CarpentryLogic.getInstance().updateStockQuantity(s, q);
+    				CarpentryLogic.getInstance().updateStockQuantity(s, s.getQuantity()+q);
     				showStock();
-    				solidPercent.setProgress(q/100.0);
+    				solidPercent.setProgress((s.getQuantity()+q)/100.0);
     				
-    				for(Model.OrderedMaterials om: CarpentryLogic.getInstance().getOrderedMaterials()) {
+    				for(OrderedMaterials om: CarpentryLogic.getInstance().getOrderedMaterials()) {
     					if(om.getWoodName().equals("Solid_Wood"))
     						CarpentryLogic.getInstance().DeleteOrderedMaterials(om);
     				}
+    				
     			}
     		}
     		
@@ -133,44 +134,45 @@ public class StockController implements Initializable{
 
     	case "Melamine":{
 	
-    		for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
-		
+    		for(Stock s: CarpentryLogic.getInstance().getStocks()) {
+    			
     			if(s.getWoodName().equals("Melamine")) {
-			
     				int q = Integer.parseInt(quantityOFWood.getText());
-    				CarpentryLogic.getInstance().updateStockQuantity(s, q);
+    				CarpentryLogic.getInstance().updateStockQuantity(s, s.getQuantity()+q);
     				showStock();
-    				melaminePercent.setProgress(q/100.0);
+    				melaminePercent.setProgress((s.getQuantity()+q)/100.0);
     				
-    				for(Model.OrderedMaterials om: CarpentryLogic.getInstance().getOrderedMaterials()) {
+    				for(OrderedMaterials om: CarpentryLogic.getInstance().getOrderedMaterials()) {
     					if(om.getWoodName().equals("Melamine"))
     						CarpentryLogic.getInstance().DeleteOrderedMaterials(om);
     				}
+    				
     			}
     		}
-	
+    		
     		break;
     	}
 
     	case "Particleboard":{
 	
-    		for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
-		
+    		for(Stock s: CarpentryLogic.getInstance().getStocks()) {
+    			
     			if(s.getWoodName().equals("Particleboard")) {
-			
     				int q = Integer.parseInt(quantityOFWood.getText());
-    				CarpentryLogic.getInstance().updateStockQuantity(s, q);
+    				CarpentryLogic.getInstance().updateStockQuantity(s, s.getQuantity()+q);
     				showStock();
-    				particlePercent.setProgress(q/100.0);
+    				particlePercent.setProgress((s.getQuantity()+q)/100.0);
     				
-    				for(Model.OrderedMaterials om: CarpentryLogic.getInstance().getOrderedMaterials()) {
+    				for(OrderedMaterials om: CarpentryLogic.getInstance().getOrderedMaterials()) {
     					if(om.getWoodName().equals("Particleboard"))
     						CarpentryLogic.getInstance().DeleteOrderedMaterials(om);
     				}
+    				
     			}
     		}
-	
+    		
     		break;
+
     	}
   
     	}
@@ -190,7 +192,10 @@ public class StockController implements Initializable{
     				if(s.getWoodName().equals("Sandwich")) {
     				
     					int q = Integer.parseInt(quantityOFWood.getText());
-    					OrderedMaterials om = new OrderedMaterials("S1",woodType.getSelectionModel().getSelectedItem().name(),q);
+    					OrderedMaterials om = new OrderedMaterials();
+    					om.setStockID(s.getStockID());
+    					om.setWoodName("Sandwich");
+    					om.setQuantity(q);
     					CarpentryLogic.getInstance().addOrderedMaterials(om);
     				}
     			}
@@ -205,7 +210,10 @@ public class StockController implements Initializable{
     				if(s.getWoodName().equals("Mdf")) {
     				
     					int q = Integer.parseInt(quantityOFWood.getText());
-    					OrderedMaterials om = new OrderedMaterials("S2",woodType.getSelectionModel().getSelectedItem().name(),q);
+    					OrderedMaterials om = new OrderedMaterials();
+    					om.setStockID(s.getStockID());
+    					om.setWoodName("Mdf");
+    					om.setQuantity(q);
     					CarpentryLogic.getInstance().addOrderedMaterials(om);
     				}
     			}
@@ -220,7 +228,10 @@ public class StockController implements Initializable{
     				if(s.getWoodName().equals("Solid_Wood")) {
     				
     					int q = Integer.parseInt(quantityOFWood.getText());
-    					OrderedMaterials om = new OrderedMaterials("S3",woodType.getSelectionModel().getSelectedItem().name(),q);
+    					OrderedMaterials om = new OrderedMaterials();
+    					om.setStockID(s.getStockID());
+    					om.setWoodName("Solid_Wood");
+    					om.setQuantity(q);
     					CarpentryLogic.getInstance().addOrderedMaterials(om);
     				}
     			}
@@ -235,7 +246,10 @@ public class StockController implements Initializable{
     				if(s.getWoodName().equals("Melamine")) {
 			
     					int q = Integer.parseInt(quantityOFWood.getText());
-    					OrderedMaterials om = new OrderedMaterials("S4",woodType.getSelectionModel().getSelectedItem().name(),q);
+    					OrderedMaterials om = new OrderedMaterials();
+    					om.setStockID(s.getStockID());
+    					om.setWoodName("Melamine");
+    					om.setQuantity(q);
     					CarpentryLogic.getInstance().addOrderedMaterials(om);
     				}
     			}
@@ -250,7 +264,10 @@ public class StockController implements Initializable{
     				if(s.getWoodName().equals("Particleboard")) {
 			
     					int q = Integer.parseInt(quantityOFWood.getText());
-    					OrderedMaterials om = new OrderedMaterials("S5",woodType.getSelectionModel().getSelectedItem().name(),q);
+    					OrderedMaterials om = new OrderedMaterials();
+    					om.setStockID(s.getStockID());
+    					om.setWoodName("Particleboard");
+    					om.setQuantity(q);
     					CarpentryLogic.getInstance().addOrderedMaterials(om);
     				}
     			}
@@ -386,7 +403,7 @@ public class StockController implements Initializable{
 
     public void showStock() {
     	
-    	ObservableList<Model.Stock> stocks = FXCollections.observableArrayList();
+    	ObservableList<Stock> stocks = FXCollections.observableArrayList();
 		tableview.setItems(stocks);
 
 		// Set up cell value factories for each column
@@ -394,7 +411,7 @@ public class StockController implements Initializable{
 		quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 
 		// Loop over the stocks and add them to the table
-		for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
+		for(Stock s: CarpentryLogic.getInstance().getStocks()) {
 		    stocks.add(s);
 		}
     }

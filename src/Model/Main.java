@@ -29,7 +29,7 @@ public class Main extends Application{
 		Runtime.getRuntime().addShutdownHook(new Thread(ProjectItems::saveIdCounter));
 		Runtime.getRuntime().addShutdownHook(new Thread(Section::saveIdCounter));
 		Runtime.getRuntime().addShutdownHook(new Thread(Stock::saveIdCounter));
-		
+		Runtime.getRuntime().addShutdownHook(new Thread(OrderedMaterials::saveIdCounter));
 	}
 
 }
