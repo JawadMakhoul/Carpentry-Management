@@ -28,9 +28,10 @@ public final class Consts {
 		public static final String SQL_INS_ORDEREDMATERIALS = "{ call qryInsOrderedMaterials(?,?,?) }";
 		
 		public static final String SQL_DEL_ORDEREDMATERIALS = "{ call qryDelOrderedMaterials(?,?,?)}";
+		public static final String SQL_DEL_ORDER = "{ call qryDelOrder(?)}";
 		
 		public static final String SQL_UPD_STOCK = "{ call qryUpdateStockQuantity(?,?,?)}";
-
+		public static final String SQL_UPD_STATUS = "{ call qryUpdateOrderStatus(?,?)}";
 
 		private static String getDBPath() {
 			try {

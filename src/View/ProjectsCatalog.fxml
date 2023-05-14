@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -91,9 +94,9 @@
                   </ImageView>
                </children>
             </AnchorPane>
-          <AnchorPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0">
+          <AnchorPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0" styleClass="backgroundColor" stylesheets="@../Controller/style.css">
          <children>
-            <Pane fx:id="pnlOverview" layoutX="-7.0" prefHeight="948.0" prefWidth="1247.0">
+            <Pane fx:id="pnlOverview" layoutX="27.0" layoutY="20.0" prefHeight="916.0" prefWidth="1214.0" stylesheets="@../Controller/style.css">
                <children>
                   <TextField fx:id="searchField" layoutX="1021.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="Search" style="-fx-border-radius: 2em;" />
                   <Label layoutX="538.0" layoutY="50.0" text="Projects Catalog">
@@ -101,70 +104,6 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER_LEFT" layoutX="217.0" layoutY="155.0" prefHeight="92.0" prefWidth="900.0">
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
-                           <children>
-                              <Label fx:id="totalProjects" text="22000" textFill="#2a73ff">
-                                 <font>
-                                    <Font name="System Bold" size="26.0" />
-                                 </font>
-                              </Label>
-                              <Label text="Total Projects" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
-                           <children>
-                              <Label fx:id="totalDelivered" text="1500" textFill="#26bfbc">
-                                 <font>
-                                    <Font name="System Bold" size="26.0" />
-                                 </font>
-                              </Label>
-                              <Label text="Total delivered" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
-                           <children>
-                              <Label fx:id="totalInProgress" text="1000" textFill="#fa5f7e">
-                                 <font>
-                                    <Font name="System Bold" size="26.0" />
-                                 </font>
-                              </Label>
-                              <Label text="InProgress" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
-                           <children>
-                              <Label fx:id="totalWaiting" text="780" textFill="#de0000">
-                                 <font>
-                                    <Font name="System Bold" size="26.0" />
-                                 </font>
-                              </Label>
-                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="137.0" text="Waiting" textAlignment="CENTER" />
-                           </children>
-                        </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
-                                 <children>
-                                    <Label fx:id="totalFinished" text="780" textFill="#c200de">
-                                       <font>
-                                          <Font name="System Bold" size="26.0" />
-                                       </font>
-                                    </Label>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="137.0" text="Finished" textAlignment="CENTER" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
-                                 <children>
-                                    <Label fx:id="totalCanceled" text="780" textFill="#de6500">
-                                       <font>
-                                          <Font name="System Bold" size="26.0" />
-                                       </font>
-                                    </Label>
-                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="137.0" text="Canceled" textAlignment="CENTER" />
-                                 </children>
-                              </VBox>
-                     </children>
-                  </HBox>
                   <ImageView fitHeight="42.0" fitWidth="28.0" layoutX="1169.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/search.png" />
@@ -179,6 +118,84 @@
                               <TableColumn fx:id="cost" prefWidth="208.0" text="Cost" />
                           </columns>
                         </TableView>
+                        <ComboBox fx:id="filter" layoutX="801.0" layoutY="47.0" prefHeight="39.0" prefWidth="204.0" promptText="Filter By" />
+                        <Button fx:id="removeFilter" layoutX="1021.0" layoutY="104.0" mnemonicParsing="false" onAction="#RemoveFilter" prefHeight="51.0" prefWidth="183.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Remove Filter" />
+                        <ComboBox fx:id="statusList" layoutX="748.0" layoutY="725.0" prefHeight="51.0" prefWidth="183.0" promptText="Status" />
+                        <Button fx:id="updateStatus" layoutX="960.0" layoutY="725.0" mnemonicParsing="false" onAction="#Update_Status" prefHeight="51.0" prefWidth="183.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Update Status" />
+                        <Button fx:id="deleteOrder" layoutX="960.0" layoutY="814.0" mnemonicParsing="false" onAction="#Delete_Order" prefHeight="51.0" prefWidth="183.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Delete Order" />
+                        <Pane layoutX="191.0" layoutY="210.0" prefHeight="138.0" prefWidth="952.0" stylesheets="@../Controller/style.css">
+                           <styleClass>
+                              <String fx:value="backgroundColor" />
+                              <String fx:value="container" />
+                           </styleClass>
+                           <children>
+                        <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="23.0" prefHeight="92.0" prefWidth="900.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
+                                 <children>
+                                    <Label fx:id="totalProjects" text="22000" textFill="#2a73ff">
+                                       <font>
+                                          <Font name="System Bold" size="26.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Total Projects" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
+                                 <children>
+                                    <Label fx:id="totalDelivered" text="1500" textFill="#26bfbc">
+                                       <font>
+                                          <Font name="System Bold" size="26.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Total delivered" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
+                                 <children>
+                                    <Label fx:id="totalInProgress" text="1000" textFill="#fa5f7e">
+                                       <font>
+                                          <Font name="System Bold" size="26.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="InProgress" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
+                                 <children>
+                                    <Label fx:id="totalWaiting" text="780" textFill="#de0000">
+                                       <font>
+                                          <Font name="System Bold" size="26.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="137.0" text="Waiting" textAlignment="CENTER" />
+                                 </children>
+                              </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
+                                       <children>
+                                          <Label fx:id="totalFinished" text="780" textFill="#c200de">
+                                             <font>
+                                                <Font name="System Bold" size="26.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="137.0" text="Finished" textAlignment="CENTER" />
+                                       </children>
+                                    </VBox>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
+                                       <children>
+                                          <Label fx:id="totalCanceled" text="780" textFill="#de6500">
+                                             <font>
+                                                <Font name="System Bold" size="26.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="137.0" text="Canceled" textAlignment="CENTER" />
+                                       </children>
+                                    </VBox>
+                           </children>
+                        </HBox>
+                           </children>
+                        </Pane>
+                        <PieChart fx:id="pieChart" layoutX="43.0" layoutY="696.0" prefHeight="196.0" prefWidth="378.0" />
                </children>
             </Pane>
          </children>

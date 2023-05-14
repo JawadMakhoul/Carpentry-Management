@@ -2,11 +2,14 @@ package Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
+import Enumeration.OrderStatus;
+import Enumeration.ProjectCategory;
 import Model.Customer;
 import Model.Email;
 import Model.Order;
@@ -22,7 +25,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
@@ -37,11 +42,10 @@ import javafx.stage.Stage;
 public class ProjectsCatalogController implements Initializable{
 
     @FXML
-    private Button searchBuuton,sendEmail,NewProject,Stock,CurrentProjects,ColorsCatalog,OrderedMaterials,FinancialManaging,ProjectsCatalog,Inbox,BackButton;
+    private Button deleteOrder,updateStatus,removeFilter,searchBuuton,sendEmail,NewProject,Stock,CurrentProjects,ColorsCatalog,OrderedMaterials,FinancialManaging,ProjectsCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
-
     @FXML
     private Label totalDelivered,totalInProgress,totalProjects,totalWaiting,totalCanceled,totalFinished;
 
@@ -65,6 +69,15 @@ public class ProjectsCatalogController implements Initializable{
     
     @FXML
     private TextField searchField;
+    
+    @FXML
+    private ComboBox<String> filter;
+    
+    @FXML
+    private ComboBox<OrderStatus> statusList;
+    
+    @FXML
+    private PieChart pieChart;
 
     @FXML
     void MoveTo(MouseEvent event) throws IOException {
@@ -192,52 +205,95 @@ public class ProjectsCatalogController implements Initializable{
     @FXML
     void Search(ActionEvent event) {
     	
-    	tableView.setItems(null);
-    	
-    	for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
+    	//tableView.setItems(null);
+    	if(filter.getSelectionModel().getSelectedItem().equals("Customer Name")) {
+    		for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
     		if(searchField.getText().equals(c.getName())) {
     	    	ObservableList<Order> custOrders = FXCollections.observableArrayList();
     	    	for(Order o: CarpentryLogic.getInstance().getOrders()) {
-    	    		if(o.getCustomerName().equals(searchField.getText())) {System.out.println("vvvvvvvvvvvvvvvvvvvvvvvvvv");
+    	    		if(o.getCustomerName().equals(searchField.getText()))
     	    				custOrders.add(o);
-    	    			}
     	    		}
     	    	tableView.setItems(custOrders);
     		}	
     	}
-    	
-    	for(Project p : CarpentryLogic.getInstance().getProjects()) {
-    		if(searchField.getText().equals(Integer.toString(p.getProjectID()))) {System.out.println("testtttttttttttttttttttttt");
-    			ObservableList<Order> projOrders = FXCollections.observableArrayList();
-    			for(Order o : CarpentryLogic.getInstance().getOrders()) {
-    				if(o.getProjectID().equals(searchField.getText())) {
-    					projOrders.add(o);
-    				}
-    			}
-    	    	tableView.setItems(projOrders);
-    		}
     	}
+    	/*
     	
-    	ObservableList<Order> statOrders = FXCollections.observableArrayList();
-    	for(Order o : CarpentryLogic.getInstance().getOrders()) {
-    		if(searchField.getText().equals(o.getStatus())) {
-    			
-    			statOrders.add(o);
+    	 
+    	if(filter.getSelectionModel().getSelectedItem().equals("Project ID")) {
+    		for(Project p : CarpentryLogic.getInstance().getProjects()) {
+    			if(searchField.getText().equals(Integer.toString(p.getProjectID()))) {
+    				ObservableList<Order> projOrders = FXCollections.observableArrayList();
+    				for(Order o : CarpentryLogic.getInstance().getOrders()) {
+    					if(o.getProjectID().equals(searchField.getText())) 
+    						projOrders.add(o);
+    				}
+    				tableView.setItems(projOrders);
+    			}
+    		}
+    	}*/
+    	
+    	if(filter.getSelectionModel().getSelectedItem().equals("Project Status")) {
+    		ObservableList<Order> statOrders = FXCollections.observableArrayList();
+    		for(Order o : CarpentryLogic.getInstance().getOrders()) {
+    			if(searchField.getText().equals(o.getStatus()))
+    				statOrders.add(o);
     		}
     		tableView.setItems(statOrders);
     	}
     	
-    	ObservableList<Order> costOrders = FXCollections.observableArrayList();
-    	for(Order o : CarpentryLogic.getInstance().getOrders()) {
-    		if(Integer.parseInt(searchField.getText())== o.getCost()) {
-    			
-    			costOrders.add(o);
+    	if(filter.getSelectionModel().getSelectedItem().equals("Project Cost")) {
+    		ObservableList<Order> costOrders = FXCollections.observableArrayList();
+    		for(Order o : CarpentryLogic.getInstance().getOrders()) {
+    			if(Integer.parseInt(searchField.getText())== o.getCost())
+    				costOrders.add(o);
     		}
     		tableView.setItems(costOrders);
     	}
     	
     }
 
+    @FXML
+    void RemoveFilter(ActionEvent event) {
+    	ObservableList<Order> orders = FXCollections.observableArrayList();
+        ArrayList<Order> arraylistOrders = CarpentryLogic.getInstance().getOrders();
+        orders.addAll(arraylistOrders);
+        
+        tableView.setItems(orders);
+    	
+    }
+    @FXML
+    void Update_Status(ActionEvent event) throws SQLException {
+    	
+    	for(Order o : CarpentryLogic.getInstance().getOrders()) {
+    		if(o.getOrderID()==tableView.getSelectionModel().getSelectedItem().getOrderID()) {
+    			CarpentryLogic.getInstance().updateProjectStatus(o, statusList.getSelectionModel().getSelectedItem().toString());
+    		}
+    	}
+    	
+    	 ObservableList<Order> orders = FXCollections.observableArrayList();
+	        ArrayList<Order> arraylistOrders = CarpentryLogic.getInstance().getOrders();
+	        orders.addAll(arraylistOrders);
+	        
+	        tableView.setItems(orders);
+    }
+    
+    @FXML
+    void Delete_Order(ActionEvent event) {
+    	
+    	for(Order o : CarpentryLogic.getInstance().getOrders()) {
+    		if(o.getOrderID()==tableView.getSelectionModel().getSelectedItem().getOrderID()) {
+    			CarpentryLogic.getInstance().DeleteOrder(o);
+    		}
+    	}
+    	 ObservableList<Order> orders = FXCollections.observableArrayList();
+	        ArrayList<Order> arraylistOrders = CarpentryLogic.getInstance().getOrders();
+	        orders.addAll(arraylistOrders);
+	        
+	        tableView.setItems(orders);
+    }
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -251,6 +307,12 @@ public class ProjectsCatalogController implements Initializable{
 		Buttons.add(Inbox);
 		Buttons.add(BackButton);
 		Buttons.add(sendEmail);
+		
+		ObservableList<String> Filter = FXCollections.observableArrayList("Customer Name","Project ID","Project Status","Project Cost");
+		filter.getItems().addAll(Filter);
+		
+		ObservableList<OrderStatus> updatecomboBox = FXCollections.observableArrayList(OrderStatus.WaitingProcess,OrderStatus.Canceled,OrderStatus.Delivered,OrderStatus.Finished,OrderStatus.InProgress);
+		statusList.getItems().addAll(updatecomboBox);
 		
 		int countProjects=0;
 		for(Project p: CarpentryLogic.getInstance().getProjects()) 
@@ -323,6 +385,16 @@ public class ProjectsCatalogController implements Initializable{
 	        orders.addAll(arraylistOrders);
 	        
 	        tableView.setItems(orders);
+	        
+	        
+	        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+	        			new PieChart.Data("Delivered", countDelivered),
+	        new PieChart.Data("InProgress", countInProgress),
+	        new PieChart.Data("WaitingProcess", countWaiting),
+	        new PieChart.Data("Finished", countFinished),
+	        new PieChart.Data("Canceled", countCanceled));
+	        
+	        pieChart.setData(pieChartData);
 	}
 
 

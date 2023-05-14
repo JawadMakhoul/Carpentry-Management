@@ -37,9 +37,6 @@ public class CarpentryLogic {
 			ArrayList<Customer> results = new ArrayList<Customer>();
 			try {
 				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-
-				String Name = Consts.CONN_STR;
-				System.out.println(Name);
 				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
 						PreparedStatement stmt = conn.prepareStatement(Consts.SQL_SEL_CUSTOMERS);
 						ResultSet rs = stmt.executeQuery()) {
@@ -61,9 +58,6 @@ public class CarpentryLogic {
 			ArrayList<Order> results = new ArrayList<Order>();
 			try {
 				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-
-				String Name = Consts.CONN_STR;
-				System.out.println(Name);
 				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
 						PreparedStatement stmt = conn.prepareStatement(Consts.SQL_SEL_ORDERS);
 						ResultSet rs = stmt.executeQuery()) {
@@ -85,9 +79,6 @@ public class CarpentryLogic {
 			ArrayList<Project> results = new ArrayList<Project>();
 			try {
 				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-
-				String Name = Consts.CONN_STR;
-				System.out.println(Name);
 				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
 						PreparedStatement stmt = conn.prepareStatement(Consts.SQL_SEL_PROJECTS);
 						ResultSet rs = stmt.executeQuery()) {
@@ -439,8 +430,7 @@ public class CarpentryLogic {
 				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
 						CallableStatement stmt = conn.prepareCall(Consts.SQL_DEL_ORDEREDMATERIALS)) {
-					System.out.println("mmmmmmmm");
-					// int i = 1;
+					
 					stmt.setString(1, om.getStockID());
 					stmt.setString(2, om.getWoodName());
 					stmt.setInt(3, om.getQuantity()); // can't be null
@@ -456,5 +446,53 @@ public class CarpentryLogic {
 			}
 			return false;
 		}
+		
+		public boolean updateProjectStatus(Order o,String orderStatus) throws SQLException {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_UPD_STATUS)) {
+
+		        // set the parameter values for the prepared statement
+				
+				stmt.setInt(2, o.getOrderID());
+		        stmt.setString(1, orderStatus);
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
+		public  boolean DeleteOrder(Order o) {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_DEL_ORDER)) {
+					
+					stmt.setInt(1, o.getOrderID());
+					
+					stmt.executeUpdate();
+					return true;
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+
 }
 

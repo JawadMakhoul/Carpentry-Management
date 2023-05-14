@@ -6,6 +6,8 @@
 	-fx-background-color: linear-gradient(to bottom, #e0e0d7 0%, rgba(255,255,255,1) 50%, #d7995b 100%);
 }
 
+.backgroundColor{
+	-fx-background-color:rgba(209,184,158,1)}
 .button
 {
 -fx-background-color : #05071F;
@@ -47,4 +49,9 @@
 
 .scroll-pane > .corner {
     -fx-background-color: black;
+}
+
+.container{
+	-fx-background-color: rgba(255,255,255,0.2);
+	-fx-background-radius: 10;
 }
