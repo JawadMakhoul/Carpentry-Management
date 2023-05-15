@@ -277,6 +277,8 @@ public class ProjectsCatalogController implements Initializable{
 	        orders.addAll(arraylistOrders);
 	        
 	        tableView.setItems(orders);
+	        
+	        ShowPieChart();
     }
     
     @FXML
@@ -294,27 +296,9 @@ public class ProjectsCatalogController implements Initializable{
 	        tableView.setItems(orders);
     }
     
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		Buttons.add(ProjectsCatalog);
-		Buttons.add(FinancialManaging);
-		Buttons.add(OrderedMaterials);
-		Buttons.add(ColorsCatalog);
-		Buttons.add(CurrentProjects);
-		Buttons.add(Stock);
-		Buttons.add(NewProject);
-		Buttons.add(Inbox);
-		Buttons.add(BackButton);
-		Buttons.add(sendEmail);
-		
-		ObservableList<String> Filter = FXCollections.observableArrayList("Customer Name","Project ID","Project Status","Project Cost");
-		filter.getItems().addAll(Filter);
-		
-		ObservableList<OrderStatus> updatecomboBox = FXCollections.observableArrayList(OrderStatus.WaitingProcess,OrderStatus.Canceled,OrderStatus.Delivered,OrderStatus.Finished,OrderStatus.InProgress);
-		statusList.getItems().addAll(updatecomboBox);
-		
-		int countProjects=0;
+    public void ShowPieChart() {
+    	
+    	int countProjects=0;
 		for(Project p: CarpentryLogic.getInstance().getProjects()) 
 			countProjects++;
 		totalProjects.setText(Integer.toString(countProjects));
@@ -322,12 +306,12 @@ public class ProjectsCatalogController implements Initializable{
 		int countDelivered=0;
 		for(Order o: CarpentryLogic.getInstance().getOrders()) {
 			if(o.getStatus().equals("Delivered")) {
-				for(Project p : CarpentryLogic.getInstance().getProjects()) {
-					if(Integer.toString(p.getProjectID())==o.getProjectID()) {
+//				for(Project p : CarpentryLogic.getInstance().getProjects()) {
+//					if(Integer.toString(p.getProjectID())==o.getProjectID()) {
 						countDelivered++;
-						
-					}
-				}
+//						
+//					}
+//				}
 			}
 				
 		}
@@ -336,12 +320,12 @@ public class ProjectsCatalogController implements Initializable{
 		int countInProgress=0;
 		for(Order o: CarpentryLogic.getInstance().getOrders()) {
 			if(o.getStatus().equals("InProgress")) {
-				for(Project p : CarpentryLogic.getInstance().getProjects()) {
-					if(Integer.toString(p.getProjectID())==o.getProjectID()) {
+//				for(Project p : CarpentryLogic.getInstance().getProjects()) {
+//					if(Integer.toString(p.getProjectID())==o.getProjectID()) {
 						countInProgress++;
-						
-					}
-				}
+//						
+//					}
+//				}
 			}
 				
 		}
@@ -373,6 +357,36 @@ public class ProjectsCatalogController implements Initializable{
 				
 		}
 		totalCanceled.setText(Integer.toString(countCanceled));
+    	ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+    			new PieChart.Data("Delivered", countDelivered),
+    			new PieChart.Data("InProgress", countInProgress),
+    			new PieChart.Data("WaitingProcess", countWaiting),
+    			new PieChart.Data("Finished", countFinished),
+    			new PieChart.Data("Canceled", countCanceled));
+    
+    	pieChart.setData(pieChartData);
+    }
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		Buttons.add(ProjectsCatalog);
+		Buttons.add(FinancialManaging);
+		Buttons.add(OrderedMaterials);
+		Buttons.add(ColorsCatalog);
+		Buttons.add(CurrentProjects);
+		Buttons.add(Stock);
+		Buttons.add(NewProject);
+		Buttons.add(Inbox);
+		Buttons.add(BackButton);
+		Buttons.add(sendEmail);
+		
+		ObservableList<String> Filter = FXCollections.observableArrayList("Customer Name","Project ID","Project Status","Project Cost");
+		filter.getItems().addAll(Filter);
+		
+		ObservableList<OrderStatus> updatecomboBox = FXCollections.observableArrayList(OrderStatus.WaitingProcess,OrderStatus.Canceled,OrderStatus.Delivered,OrderStatus.Finished,OrderStatus.InProgress);
+		statusList.getItems().addAll(updatecomboBox);
+		
+		
 		
 		customerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
 	        projectID.setCellValueFactory(new PropertyValueFactory<>("projectID"));
@@ -386,15 +400,8 @@ public class ProjectsCatalogController implements Initializable{
 	        
 	        tableView.setItems(orders);
 	        
+	        ShowPieChart(); 
 	        
-	        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-	        			new PieChart.Data("Delivered", countDelivered),
-	        new PieChart.Data("InProgress", countInProgress),
-	        new PieChart.Data("WaitingProcess", countWaiting),
-	        new PieChart.Data("Finished", countFinished),
-	        new PieChart.Data("Canceled", countCanceled));
-	        
-	        pieChart.setData(pieChartData);
 	}
 
 

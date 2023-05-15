@@ -19,7 +19,7 @@ public class Project {
 	
 	public Project(int projectID,String customerID, String projectCategory) {
 		super();
-		Project.projectID = projectID;
+		this.projectID = projectID;
 		this.customerID = customerID;
 		this.projectCategory = projectCategory;
 	}
