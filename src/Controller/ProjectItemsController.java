@@ -33,6 +33,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
@@ -195,33 +196,196 @@ public class ProjectItemsController implements Initializable{
     void AddAnotherItem(MouseEvent event) {
 
     	ProjectItems pi = new ProjectItems();
-    	pi.setItemName(ItemName.getText());
-    	pi.setHeight(Integer.parseInt(height.getText()));
-    	pi.setWidth(Integer.parseInt(width.getText()));
-    	pi.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
-    	pi.setQuantity(Integer.parseInt(quantity.getText()));
-    	pi.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
-    	pi.setColor(color.getValue().toString());
-    	pi.setModelNumberOfHands(handsModelNumber.getSelectionModel().getSelectedItem().toString());
-    	Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        Project p = (Project) stage.getUserData();
-        Integer i = p.getProjectID();
-    	String s = i.toString();
-    	pi.setProjectID(s);
+//    	try {	
+//    	if(projectSection.getSelectionModel().getSelectedItem().equals(null) || ItemName.getText().equals("")|| height.getText().equals("")|| width.getText().equals("") || woodType.getSelectionModel().getSelectedItem().equals(null)||quantity.getText().equals("")
+//    			||color.getValue().toString().equals("") ||handsModelNumber.getSelectionModel().getSelectedItem().equals(null) ) {
+//	        throw new NullPointerException("Project section is null");
+//
+//    		
+//    		try {
+//    		    if (projectSection.getSelectionModel().getSelectedItem() == null) {
+//    		        throw new NullPointerException("Project section is null");
+//    		    }
+//    		    
+//    		    pi.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
+//    			try {
+//        	    	if(ItemName.getText().equals("")) { 
+//        		        throw new NullPointerException("Item name is null");
+//        		    }
+//        		    
+//        			pi.setItemName(ItemName.getText());
+//        			try {
+//            		  	if(height.getText().equals("")) {
+//            		        throw new NullPointerException("height is null");
+//            		    }
+//            		    
+//        	    		pi.setHeight(Integer.parseInt(height.getText()));
+//        	    		try {
+//        		    	  	if(width.getText().equals("")) {
+//        	    		        throw new NullPointerException("width is null");
+//        	    		    }
+//        	    		    
+//        	        		pi.setWidth(Integer.parseInt(width.getText()));
+//        	        		try {
+//        	            	  	if(woodType.getSelectionModel().getSelectedItem().equals(null)) {
+//        	        		        throw new NullPointerException("woodType is null");
+//        	        		    }
+//        	        		    
+//        	                	pi.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
+//        	            		try {
+//        	                      	if(quantity.getText().equals("") || !quantity.getText().matches(".*\\d+.*") ) {
+//        	            		        throw new NullPointerException("quantity is null");
+//        	            		    }
+//        	            		    
+//        	                    	pi.setQuantity(Integer.parseInt(quantity.getText()));
+//        	                    	try {
+//        	                        	if(color.getValue().toString().equals("")) {
+//        	                		        throw new NullPointerException("color is null");
+//        	                		    }
+//        	                		    
+//        	                        	pi.setColor(color.getValue().toString());
+//        	                        	try {
+//        	                              	if(handsModelNumber.getSelectionModel().getSelectedItem().equals(null)) {
+//        	                    		        throw new NullPointerException("handsModelNumber is null");
+//        	                    		    }
+//        	                    		    
+//        	                            	pi.setModelNumberOfHands(handsModelNumber.getSelectionModel().getSelectedItem().toString());
+//        	                    		} catch (NullPointerException e) {
+//        	                    		    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        	                    		    alert.setTitle("Error!");
+//        	                    		    alert.setContentText("Press OK to try again.");
+//        	                    		    alert.setHeaderText("Please enter the phands Model Number.");
+//        	                    		    alert.showAndWait();
+//        	                    		}
+//        	                		} catch (NullPointerException e) {
+//        	                		    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        	                		    alert.setTitle("Error!");
+//        	                		    alert.setContentText("Press OK to try again.");
+//        	                		    alert.setHeaderText("Please enter the color.");
+//        	                		    alert.showAndWait();
+//        	                		}
+//        	            		} catch (NullPointerException e) {
+//        	            		    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        	            		    alert.setTitle("Error!");
+//        	            		    alert.setContentText("Press OK to try again.");
+//        	            		    alert.setHeaderText("Please enter the quantity.");
+//        	            		    alert.showAndWait();
+//        	            		}
+//        	        		} catch (NullPointerException e) {
+//        	        		    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        	        		    alert.setTitle("Error!");
+//        	        		    alert.setContentText("Press OK to try again.");
+//        	        		    alert.setHeaderText("Please enter the woodType.");
+//        	        		    alert.showAndWait();
+//        	        		}
+//        	    		} catch (NullPointerException e) {
+//        	    		    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        	    		    alert.setTitle("Error!");
+//        	    		    alert.setContentText("Press OK to try again.");
+//        	    		    alert.setHeaderText("Please enter the width.");
+//        	    		    alert.showAndWait();
+//        	    		}
+//            		} catch (NullPointerException e) {
+//            		    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            		    alert.setTitle("Error!");
+//            		    alert.setContentText("Press OK to try again.");
+//            		    alert.setHeaderText("Please enter the height.");
+//            		    alert.showAndWait();
+//            		}
+//        		} catch (NullPointerException e) {
+//        		    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        		    alert.setTitle("Error!");
+//        		    alert.setContentText("Press OK to try again.");
+//        		    alert.setHeaderText("Please enter the item name.");
+//        		    alert.showAndWait();
+//        		}
+//    		} catch (NullPointerException e) {
+//    		    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//    		    alert.setTitle("Error!");
+//    		    alert.setContentText("Press OK to try again.");
+//    		    alert.setHeaderText("Please enter the project section.");
+//    		    alert.showAndWait();
+//    		}
+//    	}
+//    	}catch (NullPointerException e) {
+//		    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+////		    alert.setTitle("Error!");
+////		    alert.setContentText("Press OK to try again.");
+////		    alert.setHeaderText("Please enter the project section.");
+////		    alert.showAndWait();
+//    	}
+//    
     	
-    	CarpentryLogic.getInstance().addProjectItems(pi);
+    	try {
+    	    if (projectSection.getSelectionModel().getSelectedItem() == null ||
+    	            ItemName.getText().isEmpty() ||
+    	            height.getText().isEmpty() ||
+    	            width.getText().isEmpty() ||
+    	            woodType.getSelectionModel().getSelectedItem() == null ||
+    	            quantity.getText().isEmpty() ||
+    	            color.getValue() == null )
+    	            {
+
+    	        throw new IllegalArgumentException("Please enter all required fields.");
+    	    }
+    	    pi.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
+    	    pi.setItemName(ItemName.getText());
+    	    pi.setHeight(Integer.parseInt(height.getText()));
+    	    pi.setWidth(Integer.parseInt(width.getText()));
+    	    pi.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
+    	    pi.setQuantity(Integer.parseInt(quantity.getText()));
+    	    pi.setColor(color.getValue().toString());
+    		Node node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+            Project p = (Project) stage.getUserData();
+            Integer i = p.getProjectID();
+        	String s = i.toString();
+        	pi.setProjectID(s);
+        	
+        	CarpentryLogic.getInstance().addProjectItems(pi);
+        	
+        	ItemName.setText(null);
+        	height.setText(null);
+        	width.setText(null);
+        	quantity.setText(null);
+
+    	    // Rest of the code when all fields are valid
+    	} catch (IllegalArgumentException e) {
+    	    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    	    alert.setTitle("Error!");
+    	    alert.setContentText("Press OK to try again.");
+    	    alert.setHeaderText(e.getMessage());
+    	    alert.showAndWait();
+    	}
+
     	
-    	ItemName.setText(null);
-    	height.setText(null);
-    	width.setText(null);
-    	quantity.setText(null);
+    	
+    
+    	
+    	
+    	
+    
+    	
     	
     }
 
     @FXML
     void AddSection(MouseEvent event) throws NumberFormatException, SQLException {
     	Section s = new Section();
+    	try {
+    	    if (projectSection.getSelectionModel().getSelectedItem() == null) {
+    	      	 throw new IllegalArgumentException("Please enter all required fields.");
+    	    }
+    	 	s.setSectionName(projectSection.getSelectionModel().getSelectedItem().toString());
+
+    	}catch (IllegalArgumentException e) {
+    	    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    	    alert.setTitle("Error!");
+    	    alert.setContentText("Press OK to try again.");
+    	    alert.setHeaderText(e.getMessage());
+    	    alert.showAndWait();
+        }
+
     	s.setSectionName(projectSection.getSelectionModel().getSelectedItem().toString());
     	Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
@@ -229,41 +393,92 @@ public class ProjectItemsController implements Initializable{
         Integer i = p.getProjectID();
     	String s3 = i.toString();
     	s.setProjectID(s3);
-    	s.setQuantityOFhands(Integer.parseInt(handsQuantity.getText()));
-    	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
-    	s.setAxleDegree(brzolDegree.getSelectionModel().getSelectedItem().toString());
-    	CarpentryLogic.getInstance().addSection(s);
-    	
-    	ProjectItems pi = new ProjectItems();
-    	pi.setItemName(ItemName.getText());
-    	pi.setHeight(Integer.parseInt(height.getText()));
-    	pi.setWidth(Integer.parseInt(width.getText()));
-    	pi.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
-    	pi.setQuantity(Integer.parseInt(quantity.getText()));
-    	ArrayList<Stock> stock = new ArrayList<Stock>();
-    	stock= CarpentryLogic.getInstance().getStocks();
-    	for(Stock s1 : stock) {
-    		if (s1.getWoodName().equals(woodType.getSelectionModel().getSelectedItem().toString())) {
-    			s1.setQuantity(s1.getQuantity()-Integer.parseInt(quantity.getText()));
-    			CarpentryLogic.getInstance().updateStockQuantity(s1, s1.getQuantity());
-    		}
+    	try {
+    	    if (projectSection.getSelectionModel().getSelectedItem() == null ||
+    	            ItemName.getText().isEmpty() ||
+    	            height.getText().isEmpty() ||
+    	            width.getText().isEmpty() ||
+    	            woodType.getSelectionModel().getSelectedItem() == null ||
+    	            quantity.getText().isEmpty() ||
+    	            color.getValue() == null || handsQuantity.getText().equals("")|| !handsQuantity.getText().matches(".*\\d+.*")
+    	            || axleQuantity.getText().equals("")|| !axleQuantity.getText().matches(".*\\d+.*")|| brzolDegree.getSelectionModel().getSelectedItem().equals(null)
+    	            )
+    	            {
+    	    	 throw new IllegalArgumentException("Please enter all required fields.");
+    	            }
+	    	s.setQuantityOFhands(Integer.parseInt(handsQuantity.getText()));
+	    	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
+	    	s.setAxleDegree(brzolDegree.getSelectionModel().getSelectedItem().toString());
 
+    	ProjectItems pi = new ProjectItems();
+    	
+    	try {
+    	    if (projectSection.getSelectionModel().getSelectedItem() == null ||
+    	            ItemName.getText().isEmpty() ||
+    	            height.getText().isEmpty() ||
+    	            width.getText().isEmpty() ||
+    	            woodType.getSelectionModel().getSelectedItem() == null ||
+    	            quantity.getText().isEmpty() ||
+    	            color.getValue() == null )
+    	            {
+
+    	        throw new IllegalArgumentException("Please enter all required fields.");
+    	    }
+    	    pi.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
+    	    pi.setItemName(ItemName.getText());
+    	    pi.setHeight(Integer.parseInt(height.getText()));
+    	    pi.setWidth(Integer.parseInt(width.getText()));
+    	    pi.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
+    	    pi.setQuantity(Integer.parseInt(quantity.getText()));
+    	    pi.setColor(color.getValue().toString());
+    		Node node1 = (Node) event.getSource();
+            Stage stage1 = (Stage) node1.getScene().getWindow();
+            Project p1 = (Project) stage1.getUserData();
+            Integer i1 = p1.getProjectID();
+        	String s1 = i1.toString();
+        	pi.setProjectID(s1);
+        	pi.setModelNumberOfHands(handsModelNumber.getSelectionModel().getSelectedItem().toString());
+
+        	CarpentryLogic.getInstance().addProjectItems(pi);
+        	ArrayList<Stock> stock = new ArrayList<Stock>();
+        	stock= CarpentryLogic.getInstance().getStocks();
+        	for(Stock s11 : stock) {
+        		if (s11.getWoodName().equals(woodType.getSelectionModel().getSelectedItem().toString())) {
+        			s11.setQuantity(s11.getQuantity()-Integer.parseInt(quantity.getText()));
+        			CarpentryLogic.getInstance().updateStockQuantity(s11, s11.getQuantity());
+        		}
+
+        	}
+        	
+        	color.setValue(null);
+        	handsQuantity.setText(null);
+        	axleQuantity.setText(null);
+        	ItemName.setText(null);
+        	height.setText(null);
+        	width.setText(null);
+        	quantity.setText(null);
+        	//pi.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
+        	//pi.setColor(color.getValue().toString());
+        	        	//pi.setProjectID(s3);
+    	
+
+    	    // Rest of the code when all fields are valid
+    	} catch (IllegalArgumentException e) {
+    	    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    	    alert.setTitle("Error!");
+    	    alert.setContentText("Press OK to try again.");
+    	    alert.setHeaderText(e.getMessage());
+    	    alert.showAndWait();
     	}
-    	pi.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
-    	pi.setColor(color.getValue().toString());
-    	pi.setModelNumberOfHands(handsModelNumber.getSelectionModel().getSelectedItem().toString());
-    	pi.setProjectID(s3);
-    	
-    	CarpentryLogic.getInstance().addProjectItems(pi);
-    	
-    	color.setValue(null);
-    	handsQuantity.setText(null);
-    	axleQuantity.setText(null);
-    	ItemName.setText(null);
-    	height.setText(null);
-    	width.setText(null);
-    	quantity.setText(null);
+    }catch (IllegalArgumentException e) {
+	    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+	    alert.setTitle("Error!");
+	    alert.setContentText("Press OK to try again.");
+	    alert.setHeaderText(e.getMessage());
+	    alert.showAndWait();
     }
+    	}
+    
     
     @FXML
     void ShowProjectDetails(MouseEvent event) {
