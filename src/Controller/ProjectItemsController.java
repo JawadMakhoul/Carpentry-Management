@@ -3,6 +3,7 @@ package Controller;
 
 
 import Model.Stock ;
+import Model.GlobalProjectID;
 
 import java.io.IOException;
 import java.net.URL;
@@ -337,8 +338,8 @@ public class ProjectItemsController implements Initializable{
     	    pi.setColor(color.getValue().toString());
     		Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
-            Project p = (Project) stage.getUserData();
-            Integer i = p.getProjectID();
+            GlobalProjectID gpid = (GlobalProjectID) stage.getUserData();
+            Integer i = gpid.getId();
         	String s = i.toString();
         	pi.setProjectID(s);
         	
@@ -389,8 +390,8 @@ public class ProjectItemsController implements Initializable{
     	s.setSectionName(projectSection.getSelectionModel().getSelectedItem().toString());
     	Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
-        Project p = (Project) stage.getUserData();
-        Integer i = p.getProjectID();
+        GlobalProjectID gpid = (GlobalProjectID) stage.getUserData();
+        Integer i = gpid.getId();
     	String s3 = i.toString();
     	s.setProjectID(s3);
     	try {
@@ -484,10 +485,10 @@ public class ProjectItemsController implements Initializable{
     void ShowProjectDetails(MouseEvent event) {
     	Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
-        Project p = (Project) stage.getUserData();
+        GlobalProjectID gpid = (GlobalProjectID) stage.getUserData();
     	String customerName=null;
     	for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
-			if(Integer.toString(c.getID()).equals(p.getCustomerID())){
+			if(Integer.toString(c.getID()).equals(GlobalProjectID.getCustomerName())){
 				customerName = c.getName();
 			}
 		}
@@ -495,7 +496,7 @@ public class ProjectItemsController implements Initializable{
     	o.setCustomerName(customerName);
     	String s1 = o.getCustomerName();
     	CUSTOMERID.setText(s1);
-    	Integer p2id = p.getProjectID();
+    	Integer p2id = gpid.getId();
     	o.setProjectID(p2id.toString());
     	String s2 = o.getProjectID();
     	PROJECTID.setText(s2);

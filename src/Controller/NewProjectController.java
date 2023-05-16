@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 
 import Enumeration.ProjectCategory;
 import Model.Customer;
+import Model.GlobalProjectID;
 import Model.Project;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -180,6 +181,7 @@ private String projectID;
     }
     } else {
     c.setName(CustomerName.getText());
+    GlobalProjectID.setCustomerName(CustomerName.getText());
     try {
    
        int num = Integer.parseInt((phoneNumber.getText()));
@@ -193,10 +195,12 @@ private String projectID;
     CarpentryLogic.getInstance().addCustomer(c);
    
     Project p = new Project();
+    GlobalProjectID.setId(p.getProjectID());
     Integer ip = c.getID();
     p.setCustomerID(ip.toString());
     p.setProjectCategory(projectCategory.getSelectionModel().getSelectedItem().toString());
     CarpentryLogic.getInstance().addProject(p);
+    
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectItems.fxml"));
     Parent pane = loader.load();
     Scene scene = new Scene(pane);
