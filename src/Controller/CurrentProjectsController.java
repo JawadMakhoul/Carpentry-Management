@@ -385,7 +385,9 @@ public class CurrentProjectsController implements Initializable{
         ObservableList<CurrentProjectsToShow> ObservableList_CP = FXCollections.observableArrayList();
         ArrayList<CurrentProjectsToShow> arraylistToShow = new ArrayList<>();
         for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
-        	for(Project p : CarpentryLogic.getInstance().getProjects()) {System.out.println(p.getProjectID());
+        	for(Project p : CarpentryLogic.getInstance().getProjects()) {
+        		System.out.println(p.getProjectID());
+        	System.out.println("nonstatic "+p.get_ProjectID_nonStatic());
         		if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         			CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands());
         			arraylistToShow.add(cp);

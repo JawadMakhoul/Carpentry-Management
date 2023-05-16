@@ -419,7 +419,7 @@ public class ProjectItemsController implements Initializable{
     	            width.getText().isEmpty() ||
     	            woodType.getSelectionModel().getSelectedItem() == null ||
     	            quantity.getText().isEmpty() ||
-    	            color.getValue() == null )
+    	            color.getValue() == null || handsModelNumber.getSelectionModel().getSelectedItem()==null) 
     	            {
 
     	        throw new IllegalArgumentException("Please enter all required fields.");

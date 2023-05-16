@@ -24,7 +24,7 @@ public class Project {
 		this.projectCategory = projectCategory;
 	}
 	public Project() {
-		Project.projectID=idCounter++;
+		this.projectID=idCounter++;
 	}
 	public static int getIdCounter() {
 		return idCounter;
