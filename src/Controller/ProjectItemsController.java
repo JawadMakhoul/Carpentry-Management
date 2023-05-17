@@ -434,8 +434,8 @@ public class ProjectItemsController implements Initializable{
     	    pi.setColor(color.getValue().toString());
     		Node node1 = (Node) event.getSource();
             Stage stage1 = (Stage) node1.getScene().getWindow();
-            Project p1 = (Project) stage1.getUserData();
-            Integer i1 = p1.getProjectID();
+            GlobalProjectID p1 = (GlobalProjectID) stage1.getUserData();
+            Integer i1 = p1.getId();
         	String s1 = i1.toString();
         	pi.setProjectID(s1);
         	pi.setModelNumberOfHands(handsModelNumber.getSelectionModel().getSelectedItem().toString());
