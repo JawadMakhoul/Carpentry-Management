@@ -316,7 +316,7 @@ public class ProjectItemsController implements Initializable{
 ////		    alert.showAndWait();
 //    	}
 //    
-    	
+    	//
     	try {
     	    if (projectSection.getSelectionModel().getSelectedItem() == null ||
     	            ItemName.getText().isEmpty() ||

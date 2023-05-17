@@ -30,15 +30,7 @@ public class Order {
 		this.status = status;
 		this.cost=cost+newShekelSign;
 	}
-	
-//	public Order(String customerID, String projectID, String status,int cost) {
-//		super();
-//		this.customerID = customerID;
-//		this.projectID = projectID;
-//		this.status = status;
-//		this.cost=cost+newShekelSign;
-//	}
-	
+
 
 	public Order() {
 		this.orderID=idCounter++;
