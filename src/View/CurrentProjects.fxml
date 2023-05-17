@@ -136,9 +136,7 @@
                         </ScrollPane>
                         <ComboBox fx:id="filter" layoutX="801.0" layoutY="47.0" prefHeight="39.0" prefWidth="204.0" promptText="Filter By" />
                         <Button fx:id="removeFilter" layoutX="1021.0" layoutY="104.0" mnemonicParsing="false" onAction="#RemoveFilter" prefHeight="51.0" prefWidth="183.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Remove Filter" />
-                        <ComboBox fx:id="statusList" layoutX="748.0" layoutY="725.0" prefHeight="51.0" prefWidth="183.0" promptText="Status" />
-                        <Button fx:id="updateStatus" layoutX="960.0" layoutY="725.0" mnemonicParsing="false" onAction="#Update_Status" prefHeight="51.0" prefWidth="183.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Update Status" />
-                        <Button fx:id="deleteOrder" layoutX="960.0" layoutY="814.0" mnemonicParsing="false" onAction="#Delete_Order" prefHeight="51.0" prefWidth="183.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Delete Project" />
+                        <Button fx:id="deleteProject" layoutX="960.0" layoutY="814.0" mnemonicParsing="false" onAction="#Delete_Project" prefHeight="51.0" prefWidth="183.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Delete Project" />
                         <Pane layoutX="191.0" layoutY="210.0" prefHeight="138.0" prefWidth="952.0" stylesheets="@../Controller/style.css">
                            <styleClass>
                               <String fx:value="backgroundColor" />

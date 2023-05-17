@@ -320,22 +320,13 @@ public class CurrentProjectsController implements Initializable{
         tableView.setItems(orders);
     	
     }
+    
     @FXML
-    void Update_Status(ActionEvent event) throws SQLException {
-    	
-    	for(Order o : CarpentryLogic.getInstance().getOrders()) {
-//    		if(o.getOrderID()==tableView.getSelectionModel().getSelectedItem().getOrderID()) {
-//    			CarpentryLogic.getInstance().updateProjectStatus(o, statusList.getSelectionModel().getSelectedItem().toString());
-//    		}
+    void Delete_Project(ActionEvent event) {
+
+    	for(Project p : CarpentryLogic.getInstance().getProjects()) {
+    		if()
     	}
-    	
-    	 ObservableList<Order> orders = FXCollections.observableArrayList();
-	        ArrayList<Order> arraylistOrders = CarpentryLogic.getInstance().getOrders();
-	        orders.addAll(arraylistOrders);
-	        
-//	        tableView.setItems(orders);
-//	        
-//	        ShowPieChart();
     }
     
     @FXML
