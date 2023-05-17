@@ -325,7 +325,7 @@ public class CurrentProjectsController implements Initializable{
     void Delete_Project(ActionEvent event) {
 
     	for(Project p : CarpentryLogic.getInstance().getProjects()) {
-    		if()
+    		//if()
     	}
     }
     

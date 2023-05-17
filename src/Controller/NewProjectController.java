@@ -103,7 +103,7 @@ private String projectID;
         stage.show();
         break;
     }
-   
+   //do it
     case "ColorsCatalog":{
     Parent pane = FXMLLoader.load(getClass().getResource("/View/ColorsCatalog.fxml"));
         Scene scene = new Scene(pane);
