@@ -29,6 +29,9 @@ public final class Consts {
 		
 		public static final String SQL_DEL_ORDEREDMATERIALS = "{ call qryDelOrderedMaterials(?)}";
 		public static final String SQL_DEL_ORDER = "{ call qryDelOrder(?)}";
+		public static final String SQL_DEL_PROJECT = "{ call qryDelProject(?)}";
+		public static final String SQL_DEL_PROJECTITEMS = "{ call qryDelProjectItems(?)}";
+		public static final String SQL_DEL_SECTION = "{ call qryDelSection(?)}";
 		
 		public static final String SQL_UPD_STOCK = "{ call qryUpdateStockQuantity(?,?,?)}";
 		public static final String SQL_UPD_STATUS = "{ call qryUpdateOrderStatus(?,?)}";

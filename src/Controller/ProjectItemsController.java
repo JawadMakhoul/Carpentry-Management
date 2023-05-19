@@ -46,7 +46,7 @@ import javafx.stage.Stage;
 public class ProjectItemsController implements Initializable{
 	
 	@FXML
-    private Button sendEmail,ShowProjectDetails,BackButton,ColorsCatalog,CurrentProjects,FinancialManaging,Inbox,NewProject,OrderedMaterials,ProjectsCatalog,Stock,addItem,addSection,finish;
+    private Button sendEmail,ShowProjectDetails,BackButton,ColorsCatalog,CurrentProjects,FinancialManaging,Inbox,NewProject,OrderedMaterials,OrdersCatalog,Stock,addItem,addSection,finish;
 	private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private ColorPicker color;
@@ -151,8 +151,8 @@ public class ProjectItemsController implements Initializable{
 	        		break;
 	    		}
 	    		
-	    		case "ProjectsCatalog":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectsCatalog.fxml"));
+	    		case "OrdersCatalog":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/OrdersCatalog.fxml"));
 	        		Scene scene = new Scene(pane);
 	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 	        		stage.setScene(scene);
@@ -405,13 +405,13 @@ public class ProjectItemsController implements Initializable{
     	            || axleQuantity.getText().equals("")|| !axleQuantity.getText().matches(".*\\d+.*")|| brzolDegree.getSelectionModel().getSelectedItem().equals(null)
     	            )
     	            {
-    	    	 throw new IllegalArgumentException("Please enter all required fields.");
+    	    	 		throw new IllegalArgumentException("Please enter all required fields.");
     	            }
 	    	s.setQuantityOFhands(Integer.parseInt(handsQuantity.getText()));
 	    	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
 	    	s.setAxleDegree(brzolDegree.getSelectionModel().getSelectedItem().toString());
-
-    	ProjectItems pi = new ProjectItems();
+	    	CarpentryLogic.getInstance().addSection(s);
+	    	ProjectItems pi = new ProjectItems();
     	
     	try {
     	    if (projectSection.getSelectionModel().getSelectedItem() == null ||
@@ -488,7 +488,7 @@ public class ProjectItemsController implements Initializable{
         GlobalProjectID gpid = (GlobalProjectID) stage.getUserData();
     	String customerName=null;
     	for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
-			if(Integer.toString(c.getID()).equals(GlobalProjectID.getCustomerName())){
+			if(c.getName().equals(gpid.getCustomerName())){
 				customerName = c.getName();
 			}
 		}
@@ -506,8 +506,13 @@ public class ProjectItemsController implements Initializable{
     	o.setStatus(Enumeration.OrderStatus.WaitingProcess.toString()); 
     	orderStatus.setText(Enumeration.OrderStatus.WaitingProcess.toString());
     	Integer cost = o.CalculateCost();
+    	System.out.println(cost);
+    	o.setCost(cost);
+    	System.out.println(o.getCost());
     	String scost = cost.toString(); 
+    	System.out.println(scost);
     	orderCost.setText(scost);
+    	System.out.println(orderCost.getText());
     	CarpentryLogic.getInstance().addOrder(o);
     	
     }
@@ -568,7 +573,7 @@ public class ProjectItemsController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		Buttons.add(ProjectsCatalog);
+		Buttons.add(OrdersCatalog);
 		Buttons.add(FinancialManaging);
 		Buttons.add(OrderedMaterials);
 		Buttons.add(ColorsCatalog);

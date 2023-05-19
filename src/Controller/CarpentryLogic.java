@@ -494,6 +494,66 @@ public class CarpentryLogic {
 			}
 			return false;
 		}
+		
+		public  boolean DeleteProject(Project p) {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_DEL_PROJECT)) {
+					
+					stmt.setInt(1, p.getProjectID());
+					
+					stmt.executeUpdate();
+					return true;
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+		
+		public  boolean DeleteProjectItems(ProjectItems pi) {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_DEL_PROJECTITEMS)) {
+					
+					stmt.setString(1, pi.getProjectID());
+					
+					stmt.executeUpdate();
+					return true;
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+		
+		public  boolean DeleteSection(Section s) {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_DEL_SECTION)) {
+					
+					stmt.setString(1, s.getProjectID());
+					
+					stmt.executeUpdate();
+					return true;
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
 
 }
 

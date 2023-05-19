@@ -39,10 +39,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class ProjectsCatalogController implements Initializable{
+public class OrdersCatalogController implements Initializable{
 
     @FXML
-    private Button deleteOrder,updateStatus,removeFilter,searchBuuton,sendEmail,NewProject,Stock,CurrentProjects,ColorsCatalog,OrderedMaterials,FinancialManaging,ProjectsCatalog,Inbox,BackButton;
+    private Button deleteOrder,updateStatus,removeFilter,searchBuuton,sendEmail,NewProject,Stock,CurrentProjects,ColorsCatalog,OrderedMaterials,FinancialManaging,OrdersCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
@@ -163,8 +163,8 @@ public class ProjectsCatalogController implements Initializable{
 	        		break;
 	    		}
 	    		
-	    		case "ProjectsCatalog":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectsCatalog.fxml"));
+	    		case "OrdersCatalog":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/OrdersCatalog.fxml"));
 	        		Scene scene = new Scene(pane);
 	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 	        		stage.setScene(scene);
@@ -301,6 +301,7 @@ public class ProjectsCatalogController implements Initializable{
     	int countProjects=0;
 		for(Project p: CarpentryLogic.getInstance().getProjects()) 
 			countProjects++;
+		System.out.println(countProjects);
 		totalProjects.setText(Integer.toString(countProjects));
 		
 		int countDelivered=0;
@@ -369,7 +370,7 @@ public class ProjectsCatalogController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		Buttons.add(ProjectsCatalog);
+		Buttons.add(OrdersCatalog);
 		Buttons.add(FinancialManaging);
 		Buttons.add(OrderedMaterials);
 		Buttons.add(ColorsCatalog);

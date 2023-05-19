@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProjectsCatalogController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.OrdersCatalogController">
       <children>
       <SplitPane dividerPositions="0.22090112640801002" prefHeight="950.0" prefWidth="1600.0">
         <items>
@@ -75,7 +75,7 @@
                         <Image url="@../Lib/binder.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="ProjectsCatalog" layoutX="105.0" layoutY="651.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Projects Catalog" />
+                  <Button fx:id="OrdersCatalog" layoutX="105.0" layoutY="651.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Orders Catalog" />
                   <ImageView fitHeight="76.0" fitWidth="79.0" layoutX="33.0" layoutY="850.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/previous.png" />
@@ -99,7 +99,7 @@
             <Pane fx:id="pnlOverview" layoutX="27.0" layoutY="20.0" prefHeight="916.0" prefWidth="1214.0" stylesheets="@../Controller/style.css">
                <children>
                   <TextField fx:id="searchField" layoutX="1021.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="Search" style="-fx-border-radius: 2em;" />
-                  <Label layoutX="538.0" layoutY="50.0" text="Projects Catalog">
+                  <Label layoutX="538.0" layoutY="50.0" text="Orders Catalog">
                      <font>
                         <Font size="24.0" />
                      </font>

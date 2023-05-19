@@ -28,7 +28,8 @@ public class Order {
 		this.orderID = orderID;
 		this.projectID = projectID;
 		this.status = status;
-		this.cost=cost+newShekelSign;
+		this.cost=cost;
+		//+newShekelSign;
 	}
 
 
@@ -144,7 +145,7 @@ public class Order {
 					 }
 			 			
 		 }
-		 this.cost=price;
+		// this.cost=price;
 		return price;
 	}
 	

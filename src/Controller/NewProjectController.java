@@ -32,7 +32,7 @@ public class NewProjectController implements Initializable{
 
 private String projectID;
     @FXML
-    private Button sendEmail,projectItems,NewProject,Stock,CurrentProjects,ColorsCatalog,OrderedMaterials,FinancialManaging,ProjectsCatalog,Inbox,BackButton;
+    private Button sendEmail,projectItems,NewProject,Stock,CurrentProjects,ColorsCatalog,OrderedMaterials,FinancialManaging,OrdersCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
    
     @FXML
@@ -137,8 +137,8 @@ private String projectID;
         break;
     }
    
-    case "ProjectsCatalog":{
-    Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectsCatalog.fxml"));
+    case "OrdersCatalog":{
+    Parent pane = FXMLLoader.load(getClass().getResource("/View/OrdersCatalog.fxml"));
         Scene scene = new Scene(pane);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
@@ -181,7 +181,9 @@ private String projectID;
     }
     } else {
     c.setName(CustomerName.getText());
+    //System.out.println(c.getName());
     GlobalProjectID.setCustomerName(CustomerName.getText());
+    //System.out.println(GlobalProjectID.getCustomerName());
     try {
    
        int num = Integer.parseInt((phoneNumber.getText()));
@@ -196,8 +198,8 @@ private String projectID;
    
     Project p = new Project();
     GlobalProjectID.setId(p.getProjectID());
-    Integer ip = c.getID();
-    p.setCustomerID(ip.toString());
+    //String ip = c.getName();
+    p.setCustomerID(c.getName());
     p.setProjectCategory(projectCategory.getSelectionModel().getSelectedItem().toString());
     CarpentryLogic.getInstance().addProject(p);
     
@@ -274,7 +276,7 @@ private String projectID;
 @Override
 public void initialize(URL arg0, ResourceBundle arg1) {
 // TODO Auto-generated method stub
-Buttons.add(ProjectsCatalog);
+Buttons.add(OrdersCatalog);
 Buttons.add(FinancialManaging);
 Buttons.add(OrderedMaterials);
 Buttons.add(ColorsCatalog);

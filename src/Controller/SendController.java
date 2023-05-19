@@ -67,7 +67,7 @@ import javax.mail.Store;
 public class SendController implements Initializable{
 
     @FXML
-    private Button sendEmail,send,NewProject,Stock,CurrentProjects,ColorsCatalog,OrderedMaterials,FinancialManaging,ProjectsCatalog,Inbox,BackButton;
+    private Button sendEmail,send,NewProject,Stock,CurrentProjects,ColorsCatalog,OrderedMaterials,FinancialManaging,OrdersCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
@@ -167,8 +167,8 @@ public class SendController implements Initializable{
 	        		break;
 	    		}
 	    		
-	    		case "ProjectsCatalog":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectsCatalog.fxml"));
+	    		case "OrdersCatalog":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/OrdersCatalog.fxml"));
 	        		Scene scene = new Scene(pane);
 	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 	        		stage.setScene(scene);
@@ -263,7 +263,7 @@ public class SendController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		Buttons.add(ProjectsCatalog);
+		Buttons.add(OrdersCatalog);
 		Buttons.add(FinancialManaging);
 		Buttons.add(OrderedMaterials);
 		Buttons.add(ColorsCatalog);
