@@ -21,75 +21,54 @@
       <children>
       <SplitPane dividerPositions="0.22090112640801002" prefHeight="950.0" prefWidth="1600.0">
         <items>
-          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="948.0" prefWidth="350.0" styleClass="backgroundColor1" stylesheets="@../Controller/style.css">
+         <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="948.0" prefWidth="350.0" styleClass="backgroundColor" stylesheets="@../Controller/style.css">
                <children>
-               <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="736.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="50.0" fitWidth="340.0" layoutX="23.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Lib/inbox-mail.png" />
+                        <Image url="@../Lib/email1.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="Inbox" layoutX="105.0" layoutY="741.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Inbox" />
+                  <Button fx:id="Inbox" layoutX="94.0" layoutY="185.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Email" />
                   
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/project.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="NewProject" layoutX="105.0" layoutY="59.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="New Projects" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="44.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="NewProject" layoutX="94.0" layoutY="284.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="New Projects" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="32.0" layoutY="583.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/ready-stock.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="25.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="15.0" layoutY="595.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/out-of-stock.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="Stock" layoutX="105.0" layoutY="136.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Stock" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="Stock" layoutX="94.0" layoutY="595.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Stock" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="490.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/process.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="CurrentProjects" layoutX="105.0" layoutY="226.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Current Projects" />
-                 <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Lib/catalog.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="ColorsCatalog" layoutX="105.0" layoutY="473.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Colors Catalog" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="394.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="CurrentProjects" layoutX="94.0" layoutY="490.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Current Projects" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="699.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/workflow.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="OrderedMaterials" layoutX="105.0" layoutY="394.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Ordered Materials" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="560.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Lib/budget.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="651.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="OrderedMaterials" layoutX="94.0" layoutY="699.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Ordered Materials" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/binder.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="OrdersCatalog" layoutX="105.0" layoutY="651.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Orders Catalog" />
-                  <ImageView fitHeight="76.0" fitWidth="79.0" layoutX="33.0" layoutY="850.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="OrdersCatalog" layoutX="94.0" layoutY="387.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Orders Catalog" />
+                  <Button fx:id="BackButton" layoutX="28.0" layoutY="873.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="51.0" prefWidth="112.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Back" />
+                  <ImageView fitHeight="83.0" fitWidth="302.0" layoutX="23.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Lib/previous.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="BackButton" layoutX="33.0" layoutY="850.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="76.0" prefWidth="76.0" />
-                  <Button fx:id="FinancialManaging" layoutX="105.0" layoutY="563.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Financial Managaing" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Calibri" size="24.0" />
-                     </font></Button>
-                  <Button fx:id="sendEmail" layoutX="105.0" layoutY="315.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Send Email" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="316.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Lib/send-data.png" />
+                        <Image url="@../Lib/awni-wood-work-high-resolution-logo-color-on-transparent-background.png" />
                      </image>
                   </ImageView>
                </children>
@@ -98,40 +77,36 @@
          <children>
             <Pane fx:id="pnlOverview" layoutX="27.0" layoutY="20.0" prefHeight="916.0" prefWidth="1214.0" stylesheets="@../Controller/style.css">
                <children>
-                  <TextField fx:id="searchField" layoutX="1021.0" layoutY="47.0" prefHeight="27.0" prefWidth="183.0" promptText="Search" style="-fx-border-radius: 2em;" />
-                  <Label layoutX="538.0" layoutY="50.0" text="Orders Catalog">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="42.0" fitWidth="28.0" layoutX="1169.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Lib/search.png" />
-                     </image>
-                  </ImageView>
-                        <Button fx:id="searchBuuton" layoutX="1157.0" layoutY="47.0" mnemonicParsing="false" onAction="#Search" opacity="0.0" prefHeight="39.0" prefWidth="45.0" />
-                        <TableView fx:id="tableView" layoutX="191.0" layoutY="358.0" prefHeight="297.0" prefWidth="952.0">
+                  <TextField fx:id="searchField" layoutX="459.0" layoutY="166.0" prefHeight="51.0" prefWidth="213.0" promptText="Search field" styleClass="textField" />
+            <Label layoutX="459.0" layoutY="57.0" prefHeight="87.0" prefWidth="371.0" text="Orders Catalog" textAlignment="CENTER">
+               <font>
+                  <Font size="48.0" />
+               </font>
+            </Label>
+                        <Button fx:id="searchBuuton" layoutX="724.0" layoutY="166.0" mnemonicParsing="false" onAction="#Search" prefHeight="51.0" prefWidth="183.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Search" />
+                  <TableView fx:id="tableView" layoutX="197.0" layoutY="251.0" prefHeight="464.0" prefWidth="609.0">
                           <columns>
-                            <TableColumn fx:id="customerName" prefWidth="252.0" text="Customer Name" />
-                            <TableColumn fx:id="projectID" prefWidth="265.0" text="Project ID" />
-                              <TableColumn fx:id="projectStatus" prefWidth="226.0" text="Project Status" />
-                              <TableColumn fx:id="cost" prefWidth="208.0" text="Cost" />
+                            <TableColumn fx:id="customerName" prefWidth="196.0" text="Customer Name" />
+                            <TableColumn fx:id="projectID" prefWidth="144.0" text="Project ID" />
+                              <TableColumn fx:id="projectStatus" prefWidth="155.0" text="Project Status" />
+                              <TableColumn fx:id="cost" prefWidth="113.0" text="Cost" />
                           </columns>
                         </TableView>
-                        <ComboBox fx:id="filter" layoutX="801.0" layoutY="47.0" prefHeight="39.0" prefWidth="204.0" promptText="Filter By" />
-                        <Button fx:id="removeFilter" layoutX="1021.0" layoutY="104.0" mnemonicParsing="false" onAction="#RemoveFilter" prefHeight="51.0" prefWidth="183.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Remove Filter" />
-                        <ComboBox fx:id="statusList" layoutX="748.0" layoutY="725.0" prefHeight="51.0" prefWidth="183.0" promptText="Status" />
-                        <Button fx:id="updateStatus" layoutX="960.0" layoutY="725.0" mnemonicParsing="false" onAction="#Update_Status" prefHeight="51.0" prefWidth="183.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Update Status" />
-                        <Button fx:id="deleteOrder" layoutX="960.0" layoutY="814.0" mnemonicParsing="false" onAction="#Delete_Order" prefHeight="51.0" prefWidth="183.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Delete Order" />
-                        <Pane layoutX="191.0" layoutY="210.0" prefHeight="138.0" prefWidth="952.0" stylesheets="@../Controller/style.css">
+                        <ComboBox fx:id="filter" layoutX="197.0" layoutY="166.0" prefHeight="51.0" prefWidth="234.0" promptText="Choose search field" styleClass="comboBox" />
+                  <Button fx:id="removeFilter" layoutX="960.0" layoutY="166.0" mnemonicParsing="false" onAction="#RemoveFilter" prefHeight="51.0" prefWidth="183.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Remove Filter" />
+                  
+                        <ComboBox fx:id="statusList" layoutX="197.0" layoutY="782.0" prefHeight="51.0" prefWidth="183.0" promptText="Status" styleClass="comboBox" />
+                        <Button fx:id="updateStatus" layoutX="440.0" layoutY="782.0" mnemonicParsing="false" onAction="#Update_Status" prefHeight="51.0" prefWidth="183.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Update Status" />
+                        <Button fx:id="deleteOrder" layoutX="966.0" layoutY="782.0" mnemonicParsing="false" onAction="#Delete_Order" prefHeight="51.0" prefWidth="183.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Delete Order" />
+                        <Pane layoutX="-365.0" layoutY="389.0" prefHeight="138.0" prefWidth="897.0" rotate="90.0" stylesheets="@../Controller/style.css">
                            <styleClass>
                               <String fx:value="backgroundColor" />
                               <String fx:value="container" />
                            </styleClass>
                            <children>
-                        <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="23.0" prefHeight="92.0" prefWidth="900.0">
+                        <HBox alignment="CENTER_LEFT" layoutX="26.0" layoutY="-2.0" prefHeight="141.0" prefWidth="900.0">
                            <children>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0" rotate="270.0">
                                  <children>
                                     <Label fx:id="totalProjects" text="22000" textFill="#2a73ff">
                                        <font>
@@ -141,7 +116,7 @@
                                     <Label text="Total Projects" />
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0" rotate="270.0">
                                  <children>
                                     <Label fx:id="totalDelivered" text="1500" textFill="#26bfbc">
                                        <font>
@@ -151,7 +126,7 @@
                                     <Label text="Total delivered" />
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0" rotate="270.0">
                                  <children>
                                     <Label fx:id="totalInProgress" text="1000" textFill="#fa5f7e">
                                        <font>
@@ -161,7 +136,7 @@
                                     <Label text="InProgress" />
                                  </children>
                               </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0" rotate="270.0">
                                  <children>
                                     <Label fx:id="totalWaiting" text="780" textFill="#de0000">
                                        <font>
@@ -171,7 +146,7 @@
                                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="137.0" text="Waiting" textAlignment="CENTER" />
                                  </children>
                               </VBox>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0" rotate="270.0">
                                        <children>
                                           <Label fx:id="totalFinished" text="780" textFill="#c200de">
                                              <font>
@@ -181,7 +156,7 @@
                                           <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="137.0" text="Finished" textAlignment="CENTER" />
                                        </children>
                                     </VBox>
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0" rotate="270.0">
                                        <children>
                                           <Label fx:id="totalCanceled" text="780" textFill="#de6500">
                                              <font>
@@ -195,7 +170,7 @@
                         </HBox>
                            </children>
                         </Pane>
-                        <PieChart fx:id="pieChart" layoutX="43.0" layoutY="696.0" prefHeight="196.0" prefWidth="378.0" />
+                        <PieChart fx:id="pieChart" layoutX="816.0" layoutY="251.0" prefHeight="464.0" prefWidth="378.0" />
                </children>
             </Pane>
          </children>

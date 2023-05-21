@@ -32,7 +32,7 @@ public class NewProjectController implements Initializable{
 
 private String projectID;
     @FXML
-    private Button sendEmail,projectItems,NewProject,Stock,CurrentProjects,ColorsCatalog,OrderedMaterials,FinancialManaging,OrdersCatalog,Inbox,BackButton;
+    private Button projectItems,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
    
     @FXML
@@ -53,7 +53,7 @@ private String projectID;
     	this.projectID = projectID;
     }
 
-@FXML
+    @FXML
     void MoveTo(MouseEvent event) throws IOException {
    
     for(Button b: Buttons) {
@@ -103,17 +103,6 @@ private String projectID;
         stage.show();
         break;
     }
-   //do it
-    case "ColorsCatalog":{
-    Parent pane = FXMLLoader.load(getClass().getResource("/View/ColorsCatalog.fxml"));
-        Scene scene = new Scene(pane);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.setTitle("Awni Wood Work - Colors Catalog");
-        stage.show();
-        break;
-    }
    
     case "OrderedMaterials":{
     Parent pane = FXMLLoader.load(getClass().getResource("/View/OrderedMaterials.fxml"));
@@ -122,17 +111,6 @@ private String projectID;
         stage.setScene(scene);
         stage.setResizable(false);
         stage.setTitle("Awni Wood Work - Ordered Materials");
-        stage.show();
-        break;
-    }
-   
-    case "FinancialManaging":{
-    Parent pane = FXMLLoader.load(getClass().getResource("/View/FinancialManaging.fxml"));
-        Scene scene = new Scene(pane);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.setTitle("Awni Wood Work - Financial Managing");
         stage.show();
         break;
     }
@@ -256,16 +234,6 @@ private String projectID;
     break;
     }
    
-    case "sendEmail":{
-    Parent pane = FXMLLoader.load(getClass().getResource("/View/Send.fxml"));
-        Scene scene = new Scene(pane);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.setTitle("Awni Wood Work");
-        stage.show();
-        break;
-    }
     }
     }
    
@@ -277,16 +245,13 @@ private String projectID;
 public void initialize(URL arg0, ResourceBundle arg1) {
 // TODO Auto-generated method stub
 Buttons.add(OrdersCatalog);
-Buttons.add(FinancialManaging);
 Buttons.add(OrderedMaterials);
-Buttons.add(ColorsCatalog);
 Buttons.add(CurrentProjects);
 Buttons.add(Stock);
 Buttons.add(NewProject);
 Buttons.add(Inbox);
 Buttons.add(BackButton);
 Buttons.add(projectItems);
-Buttons.add(sendEmail);
 
 ObservableList<ProjectCategory> projectType = FXCollections.observableArrayList(ProjectCategory.Home,ProjectCategory.Office,ProjectCategory.Institution);
 projectCategory.getItems().addAll(projectType);

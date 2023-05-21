@@ -4,109 +4,107 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.InboxController">
     <children>
       <SplitPane dividerPositions="0.29797979797979796" prefHeight="950.0" prefWidth="1600.0">
         <items>
-          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="948.0" prefWidth="350.0" styleClass="backgroundColor1" stylesheets="@../Controller/style.css">
+          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="948.0" prefWidth="350.0" styleClass="backgroundColor" stylesheets="@../Controller/style.css">
                <children>
-               <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="736.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="50.0" fitWidth="340.0" layoutX="23.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Lib/inbox-mail.png" />
+                        <Image url="@../Lib/email1.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="Inbox" layoutX="105.0" layoutY="741.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Inbox" />
+                  <Button fx:id="Inbox" layoutX="94.0" layoutY="185.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Email" />
                   
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/project.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="NewProject" layoutX="105.0" layoutY="59.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="New Projects" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="44.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="NewProject" layoutX="94.0" layoutY="284.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="New Projects" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="32.0" layoutY="583.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/ready-stock.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="25.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="15.0" layoutY="595.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/out-of-stock.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="Stock" layoutX="105.0" layoutY="136.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Stock" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="Stock" layoutX="94.0" layoutY="595.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Stock" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="490.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/process.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="CurrentProjects" layoutX="105.0" layoutY="226.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Current Projects" />
-                 <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Lib/catalog.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="ColorsCatalog" layoutX="105.0" layoutY="473.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Colors Catalog" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="394.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="CurrentProjects" layoutX="94.0" layoutY="490.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Current Projects" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="699.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/workflow.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="OrderedMaterials" layoutX="105.0" layoutY="394.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Ordered Materials" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="560.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Lib/budget.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="651.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="OrderedMaterials" layoutX="94.0" layoutY="699.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Ordered Materials" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/binder.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="OrdersCatalog" layoutX="105.0" layoutY="651.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Orders Catalog" />
-                  <ImageView fitHeight="76.0" fitWidth="79.0" layoutX="33.0" layoutY="850.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="OrdersCatalog" layoutX="94.0" layoutY="387.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Orders Catalog" />
+                  <Button fx:id="BackButton" layoutX="28.0" layoutY="873.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="51.0" prefWidth="112.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Back" />
+                  <ImageView fitHeight="83.0" fitWidth="302.0" layoutX="23.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Lib/previous.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="BackButton" layoutX="33.0" layoutY="850.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="76.0" prefWidth="76.0" />
-                  <Button fx:id="FinancialManaging" layoutX="105.0" layoutY="563.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Financial Managaing" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Calibri" size="24.0" />
-                     </font></Button>
-                  <Button fx:id="sendEmail" layoutX="105.0" layoutY="315.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Send Email" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="34.0" layoutY="316.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Lib/send-data.png" />
+                        <Image url="@../Lib/awni-wood-work-high-resolution-logo-color-on-transparent-background.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="948.0" prefWidth="1075.0" styleClass="backgroundColor2" stylesheets="@../Controller/style.css">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="948.0" prefWidth="1075.0" styleClass="backgroundColor" stylesheets="@../Controller/style.css">
                <children>
-                  <ImageView fitHeight="112.0" fitWidth="86.0" layoutX="989.0" layoutY="794.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Lib/refresh.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="refresh" layoutX="989.0" layoutY="787.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="100.0" prefWidth="86.0" />
-                  <TableView fx:id="tableview" layoutX="132.0" layoutY="206.0" prefHeight="481.0" prefWidth="959.0">
+                  <TableView fx:id="tableview" layoutX="132.0" layoutY="97.0" prefHeight="352.0" prefWidth="959.0">
                     <columns>
                       <TableColumn fx:id="from" prefWidth="158.0" text="From" />
                       <TableColumn fx:id="subject" minWidth="0.0" prefWidth="323.0" text="Subject" />
                         <TableColumn fx:id="content" minWidth="0.0" prefWidth="477.0" text="Content" />
                     </columns>
                   </TableView>
-                  <ImageView fitHeight="121.0" fitWidth="139.0" layoutX="809.0" layoutY="776.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Lib/replay.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="replay" layoutX="809.0" layoutY="776.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="121.0" prefWidth="139.0" />
+                  <Button fx:id="replay" layoutX="325.0" layoutY="474.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="57.0" prefWidth="208.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Replay To Email" />
+                  <Text fill="#d96e3a" layoutX="566.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="refresh" layoutX="688.0" layoutY="474.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="57.0" prefWidth="164.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Refresh Email" />
+                  <TextField fx:id="toEmailField" layoutX="303.0" layoutY="606.0" styleClass="textField" />
+                  <TextField fx:id="subjectField" layoutX="303.0" layoutY="672.0" styleClass="textField" />
+                  <TextArea fx:id="messageField" layoutX="582.0" layoutY="549.0" prefHeight="223.0" prefWidth="509.0" promptText="Email message" />
+                  <Text fill="#d96e3a" layoutX="132.0" layoutY="698.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email subject" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#d96e3a" layoutX="132.0" layoutY="633.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Send to" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="send" layoutX="955.0" layoutY="839.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="57.0" prefWidth="127.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Send" />
+                  <ImageView fx:id="trueORfalse" fitHeight="119.0" fitWidth="144.0" layoutX="494.0" layoutY="784.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="failedToSend2" fitHeight="57.0" fitWidth="61.0" layoutX="483.0" layoutY="843.0" pickOnBounds="true" preserveRatio="true" />
+                  <Text fx:id="text" layoutX="395.0" layoutY="923.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="302.0">
+                     <font>
+                        <Font name="Arial Bold" size="25.0" />
+                     </font>
+                  </Text>
                </children>
             </AnchorPane>
         </items>

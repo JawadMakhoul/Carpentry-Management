@@ -7,7 +7,7 @@
 }
 
 .backgroundColor{
-	-fx-background-color:rgba(209,184,158,1)}
+	-fx-background-color:#ecd9b3}
 .button
 {
 -fx-background-color : #05071F;
@@ -34,24 +34,27 @@
     -fx-border-color: transparent;
 }
 
-/* .scroll-bar:horizontal .track,
-.scroll-bar:vertical .track{
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-background-radius: 0em;
-}
-
-.scroll-bar:horizontal .thumb,
-.scroll-bar:vertical .thumb {
-    -fx-background-color: #10165F;
-    -fx-background-radius: 5em;
-}
-
-.scroll-pane > .corner {
-    -fx-background-color: black;
-}*/
-
 .container{
-	-fx-background-color: rgba(255,255,255,0.2);
+	-fx-background-color: rgba(255,255,255,0.5);
 	-fx-background-radius: 10;
 }
+
+.container1{
+	-fx-background-color: rgba(255,255,255,0.9);
+	-fx-background-radius: 10;
+}
+
+.textField{
+	-fx-border-color: #d96e3a;
+	-fx-border-width: 3px;
+	}
+	
+.comboBox{
+	-fx-background-color:white;
+	-fx-border-width:0px 5px 0px 5px;
+	-fx-border-color: #d96e3a;
+}	
+
+.default-color0.chart-pie { -fx-pie-color: #d96e3a; }
+
+	

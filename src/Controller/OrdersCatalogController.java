@@ -42,7 +42,7 @@ import javafx.stage.Stage;
 public class OrdersCatalogController implements Initializable{
 
     @FXML
-    private Button deleteOrder,updateStatus,removeFilter,searchBuuton,sendEmail,NewProject,Stock,CurrentProjects,ColorsCatalog,OrderedMaterials,FinancialManaging,OrdersCatalog,Inbox,BackButton;
+    private Button deleteOrder,updateStatus,removeFilter,searchBuuton,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
@@ -130,17 +130,6 @@ public class OrdersCatalogController implements Initializable{
 	        		break;
 	    		}
 	    		
-	    		case "ColorsCatalog":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/ColorsCatalog.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work - Colors Catalog");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
 	    		case "OrderedMaterials":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/OrderedMaterials.fxml"));
 	        		Scene scene = new Scene(pane);
@@ -148,17 +137,6 @@ public class OrdersCatalogController implements Initializable{
 	        		stage.setScene(scene);
 	        		stage.setResizable(false);
 	        		stage.setTitle("Awni Wood Work - Ordered Materials");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
-	    		case "FinancialManaging":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/FinancialManaging.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work - Financial Managing");
 	        		stage.show();
 	        		break;
 	    		}
@@ -185,16 +163,7 @@ public class OrdersCatalogController implements Initializable{
 	        		break;
 	    		}
 	    		
-	    		case "sendEmail":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Send.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work");
-	        		stage.show();
-	        		break;
-	    		}
+	    		
     		}
     	}
     		
@@ -371,15 +340,12 @@ public class OrdersCatalogController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		Buttons.add(OrdersCatalog);
-		Buttons.add(FinancialManaging);
 		Buttons.add(OrderedMaterials);
-		Buttons.add(ColorsCatalog);
 		Buttons.add(CurrentProjects);
 		Buttons.add(Stock);
 		Buttons.add(NewProject);
 		Buttons.add(Inbox);
 		Buttons.add(BackButton);
-		Buttons.add(sendEmail);
 		
 		ObservableList<String> Filter = FXCollections.observableArrayList("Customer Name","Project ID","Project Status","Project Cost");
 		filter.getItems().addAll(Filter);

@@ -7,7 +7,10 @@ import org.apache.commons.io.IOUtils;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
@@ -31,7 +34,9 @@ import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import java.util.Properties;
 import javax.mail.Store;
+import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.search.FlagTerm;
 
@@ -49,6 +54,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.util.Properties;
 import javax.mail.Folder;
@@ -60,7 +67,7 @@ import javax.mail.Store;
 public class InboxController implements Initializable{
 
     @FXML
-    private Button sendEmail,replay,refresh,NewProject,Stock,CurrentProjects,ColorsCatalog,OrderedMaterials,FinancialManaging,OrdersCatalog,Inbox,BackButton;
+    private Button refresh,send,replay,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
@@ -79,6 +86,24 @@ public class InboxController implements Initializable{
 	 @FXML
 	 private TableView<Email> tableview;
 	 
+	 @FXML
+	    private TextField toEmailField,subjectField;
+	 
+	 @FXML
+	    private TextArea messageField;
+	 
+	    
+
+	    private String to_email;
+	    
+	    @FXML
+	    private ImageView trueORfalse,failedToSend2;
+	    
+	    @FXML
+	    private Text text;
+	    
+	    private boolean flag;
+	    
     @FXML
     void MoveTo(MouseEvent event) throws IOException, MessagingException {
     	
@@ -130,17 +155,6 @@ public class InboxController implements Initializable{
 	        		break;
 	    		}
 	    		
-	    		case "ColorsCatalog":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/ColorsCatalog.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work - Colors Catalog");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
 	    		case "OrderedMaterials":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/OrderedMaterials.fxml"));
 	        		Scene scene = new Scene(pane);
@@ -148,17 +162,6 @@ public class InboxController implements Initializable{
 	        		stage.setScene(scene);
 	        		stage.setResizable(false);
 	        		stage.setTitle("Awni Wood Work - Ordered Materials");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
-	    		case "FinancialManaging":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/FinancialManaging.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work - Financial Managing");
 	        		stage.show();
 	        		break;
 	    		}
@@ -185,29 +188,134 @@ public class InboxController implements Initializable{
 	        		break;
 	    		}
 	    		
-	    		case "sendEmail":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Send.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work");
-	        		stage.show();
+	    		case "send":{
+	    			
+	    			if(flag) {
+		    			String host = "smtp.office365.com";
+		    	        String port = "587";
+		    	        String username = "awniwoodwork@hotmail.com";
+		    	        String password = "Awnihasanjawad";
+		    	        
+		    	        // Sender and recipient email addresses
+		    	       // String fromEmail = "your_hotmail_email@hotmail.com";
+		    	   
+		    	        int startIndex = replayTo.indexOf("<");
+		    	        int endIndex = replayTo.indexOf(">");
+		    	        String toEmail = replayTo.substring(startIndex + 1, endIndex);
+		    	        
+		    	       // String subject = result1.substring(startIndex1 + 1, endIndex1);
+		    	    
+		    	       // String message = "This is a test email sent from a Hotmail account.";
+		    	        
+		    	        // SMTP server properties
+		    	        Properties props = new Properties();
+		    	        props.put("mail.smtp.auth", "true");
+		    	        props.put("mail.smtp.starttls.enable", "true");
+		    	        props.put("mail.smtp.host", host);
+		    	        props.put("mail.smtp.port", port);
+		    	        
+		    	        // Create a session with SMTP server
+		    	        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+		    	            protected PasswordAuthentication getPasswordAuthentication() {
+		    	                return new PasswordAuthentication(username, password);
+		    	            }
+		    	        });
+		    	        
+		    	        try {
+		    	            // Create email message
+		    	            Message emailMessage = new MimeMessage(session);
+		    	            emailMessage.setFrom(new InternetAddress(username));
+		    	            
+		    	           
+		    	            emailMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
+		    	            
+		    	            
+		    	            emailMessage.setSubject(subjectTo);
+		    	            emailMessage.setText(messageField.getText());
+		    	            
+		    	            // Send email message
+		    	            Transport.send(emailMessage);
+		    	            Image image = new Image(getClass().getResourceAsStream("/Lib/delivered.png"));
+		    	            trueORfalse.setImage(image);
+		    	            text.setText("Successfully sent!");
+		    	            text.setFill(Color.GREEN);
+		    	            messageField.setText(null);
+			    	        subjectField.setText(null);
+			    	        toEmailField.setText(null);
+		    	            
+		    	        } catch (MessagingException e) {
+		    	        	Image image = new Image(getClass().getResourceAsStream("/Lib/email.png"));
+		    	            trueORfalse.setImage(image);
+		    	            Image image2 = new Image(getClass().getResourceAsStream("/Lib/remove.png"));
+		    	            failedToSend2.setImage(image2);
+		    	            text.setText("Failed to send!");
+		    	            text.setFill(Color.RED);
+		    	        }
+		    	        
+		    	        
+		    	
+	    			}
+	    			
+	    			else {
+	    				String host = "smtp.office365.com";
+		    	        String port = "587";
+		    	        String username = "awniwoodwork@hotmail.com";
+		    	        String password = "Awnihasanjawad";
+		    	        
+		    	        // SMTP server properties
+		    	        Properties props = new Properties();
+		    	        props.put("mail.smtp.auth", "true");
+		    	        props.put("mail.smtp.starttls.enable", "true");
+		    	        props.put("mail.smtp.host", host);
+		    	        props.put("mail.smtp.port", port);
+		    	        
+		    	        // Create a session with SMTP server
+		    	        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+		    	            protected PasswordAuthentication getPasswordAuthentication() {
+		    	                return new PasswordAuthentication(username, password);
+		    	            }
+		    	        });
+		    	        
+		    	        try {
+		    	            // Create email message
+		    	            Message emailMessage = new MimeMessage(session);
+		    	            emailMessage.setFrom(new InternetAddress(username));
+		    	            emailMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmailField.getText().toString()));
+		    	            emailMessage.setSubject(subjectField.getText());
+		    	            emailMessage.setText(messageField.getText());
+		    	            
+		    	            // Send email message
+		    	            Transport.send(emailMessage);
+		    	            Image image = new Image(getClass().getResourceAsStream("/Lib/delivered.png"));
+		    	            trueORfalse.setImage(image);
+		    	            text.setText("Successfully sent!");
+		    	            text.setFill(Color.GREEN);
+		    	            messageField.setText(null);
+			    	        subjectField.setText(null);
+			    	        toEmailField.setText(null);
+		    	            
+		    	        } catch (MessagingException e) {
+		    	        	Image image = new Image(getClass().getResourceAsStream("/Lib/email.png"));
+		    	            trueORfalse.setImage(image);
+		    	            Image image2 = new Image(getClass().getResourceAsStream("/Lib/remove.png"));
+		    	            failedToSend2.setImage(image2);
+		    	            text.setText("Failed to send!");
+		    	            text.setFill(Color.RED);
+		    	        }
+		    	    }
+
 	        		break;
 	    		}
 	    		
 	    		case "replay":{
 	    			
 	    			replayTo=tableview.getSelectionModel().getSelectedItem().getFrom();
+	    			toEmailField.setText(replayTo);
 	    			subjectTo=tableview.getSelectionModel().getSelectedItem().getSubject();
+	    			subjectField.setText(subjectTo);
 	    			
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/ReplayTo.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work");
-	        		stage.show();
+	    			flag=true;      
+	    	    
 	        		break;
 	    		}
 	    		
@@ -243,7 +351,8 @@ public class InboxController implements Initializable{
 	    			
 	    			// Get the messages and add them to the table
 	    			Message[] messages = inbox.getMessages();
-	    			for (Message message : messages) {
+	    			for (int i = messages.length-1;i>=0;i--) {
+	    				Message message = messages[i];
 	    			    String from = Arrays.toString(message.getFrom());
 	    			    String subject = message.getSubject();
 	    			    String content = "";
@@ -252,8 +361,8 @@ public class InboxController implements Initializable{
 	    			    if (messageContent instanceof MimeMultipart) {
 	    			        // This message has multiple parts, so we need to extract the content of each part
 	    			        MimeMultipart multipart = (MimeMultipart) messageContent;
-	    			        for (int i = 0; i < multipart.getCount(); i++) {
-	    			            BodyPart bodyPart = multipart.getBodyPart(i);
+	    			        for (int i1 = 0; i1 < multipart.getCount(); i1++) {
+	    			            BodyPart bodyPart = multipart.getBodyPart(i1);
 	    			            String contentType = bodyPart.getContentType();
 	    			            
 	    			            if (contentType.startsWith("text/plain")) {
@@ -277,29 +386,27 @@ public class InboxController implements Initializable{
 	    			    Email email = new Email(from, subject, content);
 	    			    emails.add(email);
 	    			}
-
+	    		
 
 	    			// close the connection and folder
 	    			inbox.close(false);
 	    			store.close();
 
-	    			    }
+	    			    
+    			
 
-
-	    			break;
-    	}
-    		}}
+	        		break;
+	    		}}}}
+    			}
     
     	
-    }
+    
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		Buttons.add(OrdersCatalog);
-		Buttons.add(FinancialManaging);
 		Buttons.add(OrderedMaterials);
-		Buttons.add(ColorsCatalog);
 		Buttons.add(CurrentProjects);
 		Buttons.add(Stock);
 		Buttons.add(NewProject);
@@ -307,8 +414,144 @@ public class InboxController implements Initializable{
 		Buttons.add(BackButton);
 		Buttons.add(refresh);
 		Buttons.add(replay);
-		Buttons.add(sendEmail);
+		Buttons.add(send);
+		
+//		Properties props = new Properties();
+//		props.setProperty("mail.store.protocol", "imaps");
+//		props.setProperty("mail.imaps.host", "outlook.office365.com");
+//		props.setProperty("mail.imaps.port", "993");
+//		props.setProperty("mail.imaps.ssl.enable", "true");
+//
+//		// create a new session with authentication
+//		Session session = Session.getDefaultInstance(props, new Authenticator() {
+//		    protected PasswordAuthentication getPasswordAuthentication() {
+//		        return new PasswordAuthentication("awniwoodwork@hotmail.com", "Awnihasanjawad");
+//		    }
+//		});
+//
+//		// connect to the email server and open the inbox folder
+//		Store store = null;
+//		try {
+//			store = session.getStore("imaps");
+//		} catch (NoSuchProviderException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		try {
+//			store.connect();
+//		} catch (MessagingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		Folder inbox = null;
+//		try {
+//			inbox = store.getFolder("INBOX");
+//		} catch (MessagingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		try {
+//			inbox.open(Folder.READ_ONLY);
+//		} catch (MessagingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//		// Create the table view
+//		ObservableList<Email> emails = FXCollections.observableArrayList();
+//		tableview.setItems(emails);
+//
+//		// Set the columns
+//		from.setCellValueFactory(new PropertyValueFactory<>("From"));
+//		subject.setCellValueFactory(new PropertyValueFactory<>("Subject"));
+//		content.setCellValueFactory(new PropertyValueFactory<>("Content"));
+//		
+//		// Get the messages and add them to the table
+//		Message[] messages = null;
+//		try {
+//			messages = inbox.getMessages();
+//		} catch (MessagingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		for (int i = messages.length-1;i>=0;i--) {
+//			Message message = messages[i];
+//		    String from = null;
+//			try {
+//				from = Arrays.toString(message.getFrom());
+//			} catch (MessagingException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		    String subject = null;
+//			try {
+//				subject = message.getSubject();
+//			} catch (MessagingException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		    String content = "";
+//
+//		    Object messageContent = null;
+//			try {
+//				messageContent = message.getContent();
+//			} catch (IOException | MessagingException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		    if (messageContent instanceof MimeMultipart) {
+//		        // This message has multiple parts, so we need to extract the content of each part
+//		        MimeMultipart multipart = (MimeMultipart) messageContent;
+//		        try {
+//					for (int i1 = 0; i1 < multipart.getCount(); i1++) {
+//					    BodyPart bodyPart = multipart.getBodyPart(i1);
+//					    String contentType = bodyPart.getContentType();
+//					    
+//					    if (contentType.startsWith("text/plain")) {
+//					        // This is a text/plain part, so we can just append its content to the email content
+//					        content += bodyPart.getContent();
+//					    } else if (contentType.startsWith("image/png")) {
+//					        // This is an image/png part, so we can decode the content and append it to the email content
+//					        byte[] imageBytes = IOUtils.toByteArray(bodyPart.getInputStream());
+//					        String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+//					        content += "<img src='data:image/png;base64," + base64Image + "' />";
+//					       
+//					    } else {
+//					        // This is not a recognized part type, so we ignore it
+//					    }
+//					}
+//				} catch (MessagingException | IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//		    } else {
+//		        // This message has only one part, which is already the content
+//		        content = messageContent.toString();
+//		    }
+//
+//		    Email email = new Email(from, subject, content);
+//		    emails.add(email);
+//		}
+//
+//
+//		// close the connection and folder
+//		try {
+//			inbox.close(false);
+//		} catch (MessagingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		try {
+//			store.close();
+//		} catch (MessagingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+		    }
+
 	}
 
 
-}
+

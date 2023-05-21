@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
+import Enumeration.WoodType;
 import Model.Order;
 import Model.OrderedMaterials;
 import javafx.collections.FXCollections;
@@ -17,8 +18,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -27,10 +30,13 @@ import javafx.stage.Stage;
 public class OrderedMaterialsController implements Initializable{
 
     @FXML
-    private Button sendEmail,NewProject,Stock,CurrentProjects,ColorsCatalog,OrderedMaterials,FinancialManaging,OrdersCatalog,Inbox,BackButton;
+    private Button orderWood,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
+    
+    @FXML
+    private ComboBox<WoodType> woodType;
     
     @FXML
     private TableColumn<OrderedMaterials, String> orderStatus;
@@ -38,9 +44,13 @@ public class OrderedMaterialsController implements Initializable{
     @FXML
     private TableColumn<OrderedMaterials, String> productName;
 
-
+    @FXML
+    private TableColumn<OrderedMaterials, Integer> quantity;
     @FXML
     private TableView<OrderedMaterials> tableView;
+    
+    @FXML
+    private TextField quantityOFWood;
 
     @FXML
     void MoveTo(MouseEvent event) throws IOException {
@@ -93,17 +103,6 @@ public class OrderedMaterialsController implements Initializable{
 	        		break;
 	    		}
 	    		
-	    		case "ColorsCatalog":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/ColorsCatalog.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work - Colors Catalog");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
 	    		case "OrderedMaterials":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/OrderedMaterials.fxml"));
 	        		Scene scene = new Scene(pane);
@@ -111,17 +110,6 @@ public class OrderedMaterialsController implements Initializable{
 	        		stage.setScene(scene);
 	        		stage.setResizable(false);
 	        		stage.setTitle("Awni Wood Work - Ordered Materials");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
-	    		case "FinancialManaging":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/FinancialManaging.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work - Financial Managing");
 	        		stage.show();
 	        		break;
 	    		}
@@ -148,16 +136,7 @@ public class OrderedMaterialsController implements Initializable{
 	        		break;
 	    		}
 	    		
-	    		case "sendEmail":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Send.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work");
-	        		stage.show();
-	        		break;
-	    		}
+	    		
     		}
     	}
     		
@@ -165,22 +144,109 @@ public class OrderedMaterialsController implements Initializable{
     	
     }
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1){
-		// TODO Auto-generated method stub
-		Buttons.add(OrdersCatalog);
-		Buttons.add(FinancialManaging);
-		Buttons.add(OrderedMaterials);
-		Buttons.add(ColorsCatalog);
-		Buttons.add(CurrentProjects);
-		Buttons.add(Stock);
-		Buttons.add(NewProject);
-		Buttons.add(Inbox);
-		Buttons.add(BackButton);
-		Buttons.add(sendEmail);
+    @FXML
+    void order_Wood(MouseEvent event) {
+
+    	switch(woodType.getSelectionModel().getSelectedItem().name()) {
+    	
+    		case "Sandwich":{
+    		
+    			for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
+    			
+    				if(s.getWoodName().equals("Sandwich")) {
+    				
+    					int q = Integer.parseInt(quantityOFWood.getText());
+    					OrderedMaterials om = new OrderedMaterials();
+    					om.setStockID(s.getStockID());
+    					om.setWoodName("Sandwich");
+    					om.setQuantity(q);
+    					CarpentryLogic.getInstance().addOrderedMaterials(om);
+    				}
+    			}
+    			showOrderedMATERIALS();
+    			break;
+    		}
+    	
+    		case "Mdf":{
+    		
+    			for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
+    			
+    				if(s.getWoodName().equals("Mdf")) {
+    				
+    					int q = Integer.parseInt(quantityOFWood.getText());
+    					OrderedMaterials om = new OrderedMaterials();
+    					om.setStockID(s.getStockID());
+    					om.setWoodName("Mdf");
+    					om.setQuantity(q);
+    					CarpentryLogic.getInstance().addOrderedMaterials(om);
+    				}
+    			}
+    			showOrderedMATERIALS();
+    			break;
+    		}
+    	
+    		case "Solid_Wood":{
+    		
+    			for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
+    			
+    				if(s.getWoodName().equals("Solid_Wood")) {
+    				
+    					int q = Integer.parseInt(quantityOFWood.getText());
+    					OrderedMaterials om = new OrderedMaterials();
+    					om.setStockID(s.getStockID());
+    					om.setWoodName("Solid_Wood");
+    					om.setQuantity(q);
+    					CarpentryLogic.getInstance().addOrderedMaterials(om);
+    				}
+    			}
+    			showOrderedMATERIALS();
+    			break;
+    		}
+
+    		case "Melamine":{
+	
+    			for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
 		
-		orderStatus.setCellValueFactory(new PropertyValueFactory<>("woodName"));
-		productName.setCellValueFactory(new PropertyValueFactory<>("status"));
+    				if(s.getWoodName().equals("Melamine")) {
+			
+    					int q = Integer.parseInt(quantityOFWood.getText());
+    					OrderedMaterials om = new OrderedMaterials();
+    					om.setStockID(s.getStockID());
+    					om.setWoodName("Melamine");
+    					om.setQuantity(q);
+    					CarpentryLogic.getInstance().addOrderedMaterials(om);
+    				}
+    			}
+    			showOrderedMATERIALS();
+    			break;
+    		}
+
+    		case "Particleboard":{
+	
+    			for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
+		
+    				if(s.getWoodName().equals("Particleboard")) {
+			
+    					int q = Integer.parseInt(quantityOFWood.getText());
+    					OrderedMaterials om = new OrderedMaterials();
+    					om.setStockID(s.getStockID());
+    					om.setWoodName("Particleboard");
+    					om.setQuantity(q);
+    					CarpentryLogic.getInstance().addOrderedMaterials(om);
+    				}
+    			}
+    			showOrderedMATERIALS();
+    			break;
+    		}
+  
+    	}
+    	
+    }
+    
+    public void showOrderedMATERIALS() {
+    	productName.setCellValueFactory(new PropertyValueFactory<>("woodName"));
+		quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+		orderStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
      
 
         // Get the data and add it to the table
@@ -189,6 +255,23 @@ public class OrderedMaterialsController implements Initializable{
         orderedmaterials.addAll(arraylistOrders);
         
         tableView.setItems(orderedmaterials);
+    }
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1){
+		// TODO Auto-generated method stub
+		Buttons.add(OrdersCatalog);
+		Buttons.add(OrderedMaterials);
+		Buttons.add(CurrentProjects);
+		Buttons.add(Stock);
+		Buttons.add(NewProject);
+		Buttons.add(Inbox);
+		Buttons.add(BackButton);
+		
+		
+		ObservableList<WoodType> woodTypelist = FXCollections.observableArrayList(WoodType.Mdf,WoodType.Melamine,WoodType.Particleboard,WoodType.Sandwich,WoodType.Solid_Wood);
+		woodType.getItems().addAll(woodTypelist);
+		
+		showOrderedMATERIALS();
 	}
 
 
