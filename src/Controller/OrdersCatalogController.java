@@ -327,6 +327,7 @@ public class OrdersCatalogController implements Initializable{
 				
 		}
 		totalCanceled.setText(Integer.toString(countCanceled));
+		
     	ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
     			new PieChart.Data("Delivered", countDelivered),
     			new PieChart.Data("InProgress", countInProgress),

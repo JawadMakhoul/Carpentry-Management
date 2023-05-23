@@ -41,7 +41,7 @@ public class MainScreenController implements Initializable{
 	    void Log_In(ActionEvent event) throws IOException {
 	    	
 	    	if(passWord.getText().equals(id1)||passWord.getText().equals(id2)||passWord.getText().equals(id3)) {
-	    		Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
+	    		Parent pane = FXMLLoader.load(getClass().getResource("/View/AI.fxml"));
 				Scene scene = new Scene(pane);
 				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 				stage.setScene(scene);

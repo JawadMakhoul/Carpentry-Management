@@ -407,15 +407,20 @@ public class CurrentProjectsController implements Initializable{
         
         ObservableList<CurrentProjectsToShow> ObservableList_CP = FXCollections.observableArrayList();
         ArrayList<CurrentProjectsToShow> arraylistToShow = new ArrayList<>();
-        for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
-        	for(Project p : CarpentryLogic.getInstance().getProjects()) {
-        		if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {
-        			CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands());
-        			arraylistToShow.add(cp);
+        for(Project p : CarpentryLogic.getInstance().getProjects()) {
+        	for(Order o: CarpentryLogic.getInstance().getOrders()) {
+        		if(o.getProjectID().equals(Integer.toString(p.getProjectID())) && o.getStatus().equals("InProgress")) {
+        			for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
+        				if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {
+                			CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands());
+                			arraylistToShow.add(cp);
+                		}
+        			}
+        			
         		}
         	}
-        
         }
+       
         
         //arraylistOrder = CarpentryLogic.getInstance().getProjects();
         //ArrayList<?>  arraylistOrder = CarpentryLogic.getInstance().getProjectItems();

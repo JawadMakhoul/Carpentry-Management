@@ -20,6 +20,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ProgressIndicator;
@@ -31,6 +32,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class StockController implements Initializable{
@@ -42,10 +44,13 @@ public class StockController implements Initializable{
     private AnchorPane screen;
 
     @FXML
+    private PieChart piechart;
+    
+    @FXML
     private Button updateWoodQuantity,orderWood;
 
-    @FXML
-    private ProgressIndicator mdfPercent,melaminePercent,particlePercent,sandwichPercent,solidPercent;
+//    @FXML
+//    private ProgressIndicator mdfPercent,melaminePercent,particlePercent,sandwichPercent,solidPercent;
 
     @FXML
     private ComboBox<WoodType> woodType;
@@ -61,9 +66,11 @@ public class StockController implements Initializable{
    
     @FXML
     private TableColumn<Stock, String> woodTypeColumn;
-    @FXML
-    private ImageView mdfImage,melamineImage,particleImage,sandwichImage,solidImage;
 
+    @FXML
+    private Text sandwichPercent,solidPercent,mdfPercent,melaminePercent,particlePercent;
+
+    private int countAll=0;
     @FXML
     void UpdateWoodQuantity(MouseEvent event) throws SQLException {
     	
@@ -82,7 +89,6 @@ public class StockController implements Initializable{
     							CarpentryLogic.getInstance().DeleteOrderedMaterials(om);
     							CarpentryLogic.getInstance().updateStockQuantity(s, s.getQuantity()+q);
     							showStock();
-    							sandwichPercent.setProgress((s.getQuantity()+q)/100.0);
     		    				OutOfStock();
     							flag=false;
     						}
@@ -109,7 +115,6 @@ public class StockController implements Initializable{
     							CarpentryLogic.getInstance().DeleteOrderedMaterials(om);
     							CarpentryLogic.getInstance().updateStockQuantity(s, s.getQuantity()+q);
     							showStock();
-    							mdfPercent.setProgress((s.getQuantity()+q)/100.0);
     		    				OutOfStock();
     							flag=false;
     						}
@@ -135,7 +140,7 @@ public class StockController implements Initializable{
     							CarpentryLogic.getInstance().DeleteOrderedMaterials(om);
     							CarpentryLogic.getInstance().updateStockQuantity(s, s.getQuantity()+q);
     							showStock();
-    							solidPercent.setProgress((s.getQuantity()+q)/100.0);
+    							
     		    				OutOfStock();
     							flag=false;
     						}
@@ -161,7 +166,6 @@ public class StockController implements Initializable{
     							CarpentryLogic.getInstance().DeleteOrderedMaterials(om);
     							CarpentryLogic.getInstance().updateStockQuantity(s, s.getQuantity()+q);
     							showStock();
-    							melaminePercent.setProgress((s.getQuantity()+q)/100.0);
     		    				OutOfStock();
     							flag=false;
     						}
@@ -180,17 +184,13 @@ public class StockController implements Initializable{
     			
     			if(s.getWoodName().equals("Particleboard")) {
     				int q = Integer.parseInt(quantityOFWood.getText());
-    				CarpentryLogic.getInstance().updateStockQuantity(s, s.getQuantity()+q);
-    				showStock();
-    				particlePercent.setProgress((s.getQuantity()+q)/100.0);
-    				OutOfStock();
+    				
     				for(OrderedMaterials om: CarpentryLogic.getInstance().getOrderedMaterials()) {
     					if(om.getWoodName().equals("Particleboard")&& om.getQuantity()==q) {
     						if(flag) {
     							CarpentryLogic.getInstance().DeleteOrderedMaterials(om);
     							CarpentryLogic.getInstance().updateStockQuantity(s, s.getQuantity()+q);
     							showStock();
-    							particlePercent.setProgress((s.getQuantity()+q)/100.0);
     		    				OutOfStock();
     							flag=false;
     						}
@@ -415,54 +415,50 @@ public class StockController implements Initializable{
     }
     
     public void OutOfStock() {
-    	for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
-			
+    	
+    	int sandwichCount=0, mdfCount=0,solidwoodCount=0,melamineCount=0,particleCount=0;
+    	for(Stock s: CarpentryLogic.getInstance().getStocks()) {
+
 			if(s.getWoodName().equals("Sandwich"))  {
-				if((s.getQuantity()/100.0)<0) {
-					Image image = new Image(getClass().getResourceAsStream("/Lib/out-of-stockk.png"));
-					sandwichImage.setImage(image);
-				}
-				sandwichPercent.setProgress(s.getQuantity()/100.0);
+				sandwichCount=s.getQuantity();
+				sandwichPercent.setText(((s.getQuantity()*countAll)/100.0)+"%");
 			}
 				
 			
 			if(s.getWoodName().equals("Mdf")) {
-				if((s.getQuantity()/100.0)<0) {
-					Image image = new Image(getClass().getResourceAsStream("/Lib/out-of-stockk.png"));
-					mdfImage.setImage(image);
-				}
-				mdfPercent.setProgress(s.getQuantity()/100.0);
+				mdfCount=s.getQuantity();
+				mdfPercent.setText((s.getQuantity()*countAll/100.0)+"%");
 			}
 				
 				
 			if(s.getWoodName().equals("Solid_Wood")) {
-				if((s.getQuantity()/100.0)<0) {
-					Image image = new Image(getClass().getResourceAsStream("/Lib/out-of-stockk.png"));
-					solidImage.setImage(image);
-				}
-				solidPercent.setProgress(s.getQuantity()/100.0);
+				solidwoodCount=s.getQuantity();
+				solidPercent.setText((s.getQuantity()*countAll/100.0)+"%");
 			}
 				
 			
 			if(s.getWoodName().equals("Melamine")) {
-				if((s.getQuantity()/100.0)<0) {
-					Image image = new Image(getClass().getResourceAsStream("/Lib/out-of-stockk.png"));
-					melamineImage.setImage(image);
-				}
-				melaminePercent.setProgress(s.getQuantity()/100.0);
+				melamineCount=s.getQuantity();
+				melaminePercent.setText((s.getQuantity()*countAll/100.0)+"%");
 			}
 				
 			
 			if(s.getWoodName().equals("Particleboard")) {
-				if((s.getQuantity()/100.0)<0) {
-					Image image = new Image(getClass().getResourceAsStream("/Lib/out-of-stockk.png"));
-					particleImage.setImage(image);
-				}
-				particlePercent.setProgress(s.getQuantity()/100.0);
+				particleCount=s.getQuantity();
+				particlePercent.setText((s.getQuantity()*countAll/100.0)+"%");
 			}
 				
 				
 		}
+    	
+    	ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+    			new PieChart.Data("Mdf", mdfCount),
+    			new PieChart.Data("Melamine", melamineCount),
+    			new PieChart.Data("Particleboard", particleCount),
+    			new PieChart.Data("Sandwich", sandwichCount),
+    			new PieChart.Data("Solid_Wood", solidwoodCount));
+    
+    	piechart.setData(pieChartData);
     }
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -478,6 +474,10 @@ public class StockController implements Initializable{
 		ObservableList<WoodType> woodTypelist = FXCollections.observableArrayList(WoodType.Mdf,WoodType.Melamine,WoodType.Particleboard,WoodType.Sandwich,WoodType.Solid_Wood);
 		woodType.getItems().addAll(woodTypelist);
 		
+		
+		for(Stock s: CarpentryLogic.getInstance().getStocks()) {
+			countAll=countAll+s.getQuantity();
+		}
 		OutOfStock();
 		showStock();
         
