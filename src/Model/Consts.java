@@ -35,6 +35,8 @@ public final class Consts {
 		
 		public static final String SQL_UPD_STOCK = "{ call qryUpdateStockQuantity(?,?,?)}";
 		public static final String SQL_UPD_STATUS = "{ call qryUpdateOrderStatus(?,?)}";
+		
+		public static final String SQL_ADD_PROJECTIMAGE = "{call qryAddProjectImage(?,?)}";
 
 		private static String getDBPath() {
 			try {

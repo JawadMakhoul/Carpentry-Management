@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -22,66 +24,105 @@
                   </ImageView>
                   <Button fx:id="Inbox" layoutX="94.0" layoutY="185.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Email" />
                   
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/project.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="NewProject" layoutX="94.0" layoutY="284.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="New Projects" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="32.0" layoutY="583.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="NewProject" layoutX="94.0" layoutY="276.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="New Projects" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="32.0" layoutY="538.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/ready-stock.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="15.0" layoutY="595.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="15.0" layoutY="550.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/out-of-stock.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="Stock" layoutX="94.0" layoutY="595.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Stock" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="490.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="Stock" layoutX="94.0" layoutY="550.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Stock" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="22.0" layoutY="371.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/process.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="CurrentProjects" layoutX="94.0" layoutY="490.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Current Projects" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="699.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="CurrentProjects" layoutX="93.0" layoutY="371.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Current Projects" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="638.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/workflow.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="OrderedMaterials" layoutX="94.0" layoutY="699.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Ordered Materials" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="OrderedMaterials" layoutX="94.0" layoutY="638.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Ordered Materials" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="22.0" layoutY="459.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/binder.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="OrdersCatalog" layoutX="94.0" layoutY="387.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Orders Catalog" />
+                  <Button fx:id="OrdersCatalog" layoutX="93.0" layoutY="459.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Orders Catalog" />
                   <Button fx:id="BackButton" layoutX="28.0" layoutY="873.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="51.0" prefWidth="112.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Back" />
                   <ImageView fitHeight="83.0" fitWidth="302.0" layoutX="23.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/awni-wood-work-high-resolution-logo-color-on-transparent-background.png" />
                      </image>
                   </ImageView>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="22.0" layoutY="724.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Lib/illustrator.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="generateimages" layoutX="93.0" layoutY="724.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Generate images" />
+                  <ImageView fitHeight="50.0" fitWidth="29.0" layoutX="14.0" layoutY="724.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Lib/magic-wand.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="948.0" prefWidth="1075.0" styleClass="backgroundColor" stylesheets="@../Controller/style.css">
                <children>
-                  <TextArea fx:id="textInput" layoutX="260.0" layoutY="274.0" prefHeight="200.0" prefWidth="689.0" />
-                  <Text fill="#d96e3a" layoutX="421.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generate AI images">
+                  <Text fill="#d96e3a" layoutX="421.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generate AI images">
                      <font>
                         <Font name="System Bold" size="40.0" />
                      </font>
                   </Text>
-                  <Text fill="#d96e3a" layoutX="260.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the image description">
+                  <TextArea fx:id="textInput" layoutX="270.0" layoutY="165.0" prefHeight="200.0" prefWidth="706.0" />
+                  <Button fx:id="generate" layoutX="989.0" layoutY="290.0" mnemonicParsing="false" onMousePressed="#GenerateImages" prefHeight="51.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Generate" />
+                  <Text fill="#d96e3a" layoutX="14.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter the image description:" wrappingWidth="243.6640625">
                      <font>
-                        <Font name="System Bold" size="40.0" />
+                        <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <ImageView fx:id="image1" fitHeight="337.0" fitWidth="387.0" layoutX="34.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="image2" fitHeight="337.0" fitWidth="387.0" layoutX="427.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="image3" fitHeight="337.0" fitWidth="387.0" layoutX="839.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="generate" layoutX="1033.0" layoutY="349.0" mnemonicParsing="false" onMousePressed="#GenerateImages" prefHeight="51.0" prefWidth="157.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Generate" />
+                  <Pane layoutX="45.0" layoutY="447.0" prefHeight="222.0" prefWidth="218.0" styleClass="container1" />
+                  <Pane layoutX="278.0" layoutY="447.0" prefHeight="222.0" prefWidth="218.0" styleClass="container1" />
+                  <Pane layoutX="511.0" layoutY="447.0" prefHeight="222.0" prefWidth="218.0" styleClass="container1" />
+                  <Pane layoutX="742.0" layoutY="447.0" prefHeight="222.0" prefWidth="218.0" styleClass="container1" />
+                  <Pane layoutX="970.0" layoutY="447.0" prefHeight="222.0" prefWidth="218.0" styleClass="container1" />
+                  <Pane layoutX="45.0" layoutY="681.0" prefHeight="222.0" prefWidth="218.0" styleClass="container1" />
+                  <Pane layoutX="278.0" layoutY="681.0" prefHeight="222.0" prefWidth="218.0" styleClass="container1" />
+                  <Pane layoutX="511.0" layoutY="681.0" prefHeight="222.0" prefWidth="218.0" styleClass="container1" />
+                  <Pane layoutX="742.0" layoutY="681.0" prefHeight="222.0" prefWidth="218.0" styleClass="container1" />
+                  <Pane layoutX="970.0" layoutY="681.0" prefHeight="222.0" prefWidth="218.0" styleClass="container1" />
+                  <ImageView fx:id="image1" fitHeight="200.0" fitWidth="200.0" layoutX="54.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="image2" fitHeight="200.0" fitWidth="200.0" layoutX="287.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="image3" fitHeight="200.0" fitWidth="200.0" layoutX="520.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="image4" fitHeight="200.0" fitWidth="200.0" layoutX="751.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="image6" fitHeight="200.0" fitWidth="200.0" layoutX="54.0" layoutY="692.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="image7" fitHeight="200.0" fitWidth="200.0" layoutX="287.0" layoutY="692.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="image8" fitHeight="200.0" fitWidth="200.0" layoutX="520.0" layoutY="692.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="image5" fitHeight="200.0" fitWidth="200.0" layoutX="979.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="image9" fitHeight="200.0" fitWidth="200.0" layoutX="751.0" layoutY="692.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="image10" fitHeight="200.0" fitWidth="200.0" layoutX="979.0" layoutY="692.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="image1btn" layoutX="54.0" layoutY="458.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
+                  <Button fx:id="image2btn" layoutX="287.0" layoutY="458.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
+                  <Button fx:id="image9btn" layoutX="751.0" layoutY="692.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
+                  <Button fx:id="image8btn" layoutX="520.0" layoutY="692.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
+                  <Button fx:id="image7btn" layoutX="287.0" layoutY="692.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
+                  <Button fx:id="image6btn" layoutX="54.0" layoutY="692.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
+                  <Button fx:id="image5btn" layoutX="979.0" layoutY="458.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
+                  <Button fx:id="image4btn" layoutX="751.0" layoutY="458.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
+                  <Button fx:id="image3btn" layoutX="520.0" layoutY="458.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
+                  <Button fx:id="image10btn" layoutX="979.0" layoutY="692.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
+                  <ComboBox fx:id="projectID" layoutX="989.0" layoutY="214.0" prefHeight="51.0" prefWidth="234.0" promptText="Project ID" styleClass="comboBox" />
                </children>
             </AnchorPane>
         </items>

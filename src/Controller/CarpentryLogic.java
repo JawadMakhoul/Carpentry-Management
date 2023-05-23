@@ -426,6 +426,33 @@ public class CarpentryLogic {
 
 	}
 		
+		public boolean addProjectImage(int p, String image) throws SQLException {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_ADD_PROJECTIMAGE)) {
+
+		        // set the parameter values for the prepared statement
+				
+				stmt.setString(1, image);
+		        stmt.setInt(2, p);
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
 		public  boolean DeleteOrderedMaterials(Model.OrderedMaterials om) {
 			try {
 				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");

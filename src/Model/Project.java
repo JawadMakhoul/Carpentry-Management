@@ -16,7 +16,14 @@ public class Project {
 	private int projectID;
 	private String customerID;
 	private String projectCategory;
+	private String image=null;
 	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
 	public Project(int projectID,String customerID, String projectCategory) {
 		super();
 		this.projectID = projectID;
