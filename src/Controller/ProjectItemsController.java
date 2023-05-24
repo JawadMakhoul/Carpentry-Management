@@ -5,7 +5,9 @@ package Controller;
 import Model.Stock ;
 import Model.GlobalProjectID;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
@@ -46,7 +48,7 @@ import javafx.stage.Stage;
 public class ProjectItemsController implements Initializable{
 	
 	@FXML
-    private Button ShowProjectDetails,BackButton,CurrentProjects,Inbox,NewProject,OrderedMaterials,OrdersCatalog,Stock,addItem,addSection,finish;
+    private Button GenerateByAI,ShowProjectDetails,BackButton,CurrentProjects,Inbox,NewProject,OrderedMaterials,OrdersCatalog,Stock,addItem,addSection,finish;
 	private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private ColorPicker color;
@@ -140,6 +142,17 @@ public class ProjectItemsController implements Initializable{
 	        		break;
 	    		}
 	    		
+	    		case "GenerateByAI":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/AI.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work - Generate By Images Ai");
+	        		stage.show();
+	        		break;
+	    		}
+	    		
 	    		case "BackButton":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
 	        		Scene scene = new Scene(pane);
@@ -166,126 +179,7 @@ public class ProjectItemsController implements Initializable{
     void AddAnotherItem(MouseEvent event) {
 
     	ProjectItems pi = new ProjectItems();
-//    	try {	
-//    	if(projectSection.getSelectionModel().getSelectedItem().equals(null) || ItemName.getText().equals("")|| height.getText().equals("")|| width.getText().equals("") || woodType.getSelectionModel().getSelectedItem().equals(null)||quantity.getText().equals("")
-//    			||color.getValue().toString().equals("") ||handsModelNumber.getSelectionModel().getSelectedItem().equals(null) ) {
-//	        throw new NullPointerException("Project section is null");
-//
-//    		
-//    		try {
-//    		    if (projectSection.getSelectionModel().getSelectedItem() == null) {
-//    		        throw new NullPointerException("Project section is null");
-//    		    }
-//    		    
-//    		    pi.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
-//    			try {
-//        	    	if(ItemName.getText().equals("")) { 
-//        		        throw new NullPointerException("Item name is null");
-//        		    }
-//        		    
-//        			pi.setItemName(ItemName.getText());
-//        			try {
-//            		  	if(height.getText().equals("")) {
-//            		        throw new NullPointerException("height is null");
-//            		    }
-//            		    
-//        	    		pi.setHeight(Integer.parseInt(height.getText()));
-//        	    		try {
-//        		    	  	if(width.getText().equals("")) {
-//        	    		        throw new NullPointerException("width is null");
-//        	    		    }
-//        	    		    
-//        	        		pi.setWidth(Integer.parseInt(width.getText()));
-//        	        		try {
-//        	            	  	if(woodType.getSelectionModel().getSelectedItem().equals(null)) {
-//        	        		        throw new NullPointerException("woodType is null");
-//        	        		    }
-//        	        		    
-//        	                	pi.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
-//        	            		try {
-//        	                      	if(quantity.getText().equals("") || !quantity.getText().matches(".*\\d+.*") ) {
-//        	            		        throw new NullPointerException("quantity is null");
-//        	            		    }
-//        	            		    
-//        	                    	pi.setQuantity(Integer.parseInt(quantity.getText()));
-//        	                    	try {
-//        	                        	if(color.getValue().toString().equals("")) {
-//        	                		        throw new NullPointerException("color is null");
-//        	                		    }
-//        	                		    
-//        	                        	pi.setColor(color.getValue().toString());
-//        	                        	try {
-//        	                              	if(handsModelNumber.getSelectionModel().getSelectedItem().equals(null)) {
-//        	                    		        throw new NullPointerException("handsModelNumber is null");
-//        	                    		    }
-//        	                    		    
-//        	                            	pi.setModelNumberOfHands(handsModelNumber.getSelectionModel().getSelectedItem().toString());
-//        	                    		} catch (NullPointerException e) {
-//        	                    		    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        	                    		    alert.setTitle("Error!");
-//        	                    		    alert.setContentText("Press OK to try again.");
-//        	                    		    alert.setHeaderText("Please enter the phands Model Number.");
-//        	                    		    alert.showAndWait();
-//        	                    		}
-//        	                		} catch (NullPointerException e) {
-//        	                		    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        	                		    alert.setTitle("Error!");
-//        	                		    alert.setContentText("Press OK to try again.");
-//        	                		    alert.setHeaderText("Please enter the color.");
-//        	                		    alert.showAndWait();
-//        	                		}
-//        	            		} catch (NullPointerException e) {
-//        	            		    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        	            		    alert.setTitle("Error!");
-//        	            		    alert.setContentText("Press OK to try again.");
-//        	            		    alert.setHeaderText("Please enter the quantity.");
-//        	            		    alert.showAndWait();
-//        	            		}
-//        	        		} catch (NullPointerException e) {
-//        	        		    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        	        		    alert.setTitle("Error!");
-//        	        		    alert.setContentText("Press OK to try again.");
-//        	        		    alert.setHeaderText("Please enter the woodType.");
-//        	        		    alert.showAndWait();
-//        	        		}
-//        	    		} catch (NullPointerException e) {
-//        	    		    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        	    		    alert.setTitle("Error!");
-//        	    		    alert.setContentText("Press OK to try again.");
-//        	    		    alert.setHeaderText("Please enter the width.");
-//        	    		    alert.showAndWait();
-//        	    		}
-//            		} catch (NullPointerException e) {
-//            		    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            		    alert.setTitle("Error!");
-//            		    alert.setContentText("Press OK to try again.");
-//            		    alert.setHeaderText("Please enter the height.");
-//            		    alert.showAndWait();
-//            		}
-//        		} catch (NullPointerException e) {
-//        		    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        		    alert.setTitle("Error!");
-//        		    alert.setContentText("Press OK to try again.");
-//        		    alert.setHeaderText("Please enter the item name.");
-//        		    alert.showAndWait();
-//        		}
-//    		} catch (NullPointerException e) {
-//    		    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//    		    alert.setTitle("Error!");
-//    		    alert.setContentText("Press OK to try again.");
-//    		    alert.setHeaderText("Please enter the project section.");
-//    		    alert.showAndWait();
-//    		}
-//    	}
-//    	}catch (NullPointerException e) {
-//		    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
-////		    alert.setTitle("Error!");
-////		    alert.setContentText("Press OK to try again.");
-////		    alert.setHeaderText("Please enter the project section.");
-////		    alert.showAndWait();
-//    	}
-//    
-    	//
+
     	try {
     	    if (projectSection.getSelectionModel().getSelectedItem() == null ||
     	            ItemName.getText().isEmpty() ||
@@ -327,16 +221,6 @@ public class ProjectItemsController implements Initializable{
     	    alert.setHeaderText(e.getMessage());
     	    alert.showAndWait();
     	}
-
-    	
-    	
-    
-    	
-    	
-    	
-    
-    	
-    	
     }
 
     @FXML
@@ -427,10 +311,6 @@ public class ProjectItemsController implements Initializable{
         	height.setText(null);
         	width.setText(null);
         	quantity.setText(null);
-        	//pi.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
-        	//pi.setColor(color.getValue().toString());
-        	        	//pi.setProjectID(s3);
-    	
 
     	    // Rest of the code when all fields are valid
     	} catch (IllegalArgumentException e) {
@@ -487,51 +367,35 @@ public class ProjectItemsController implements Initializable{
     }
     
     @FXML
-    void Finish(MouseEvent event) throws IOException {
-    	// Add Section
-//    	Section s = new Section();
-//    	s.setSectionName(projectSection.getSelectionModel().getSelectedItem().toString());
-//    	Node node = (Node) event.getSource();
-//        Stage stage = (Stage) node.getScene().getWindow();
-//        Project p = (Project) stage.getUserData();
-//        Integer i = p.getProjectID();
-//    	String s3 = i.toString();
-//    	s.setProjectID(s3);
-//    	s.setQuantityOFhands(Integer.parseInt(handsQuantity.getText()));
-//    	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
-//    	s.setAxleDegree(brzolDegree.getSelectionModel().getSelectedItem().toString());
-//    	CarpentryLogic.getInstance().addSection(s);
-//    	
-//    	ProjectItems pi = new ProjectItems();
-//    	pi.setItemName(ItemName.getText());
-//    	pi.setHeight(Integer.parseInt(height.getText()));
-//    	pi.setWidth(Integer.parseInt(width.getText()));
-//    	pi.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
-//    	pi.setQuantity(Integer.parseInt(quantity.getText()));
-//    	ArrayList<Stock> stock1 = new ArrayList<Stock>();
-//    	stock1= CarpentryLogic.getInstance().getStocks();
-//    	for(Stock s1 : stock1) {
-//    		if (s1.getWoodName() == woodType.getSelectionModel().getSelectedItem().toString()) {
-//    			s1.setQuantity(s1.getQuantity()-Integer.parseInt(quantity.getText()));
-//    		}
-//
-//    	}
-//    	pi.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
-//    	pi.setColor(color.getValue().toString());
-//    	pi.setModelNumberOfHands(handsModelNumber.getSelectionModel().getSelectedItem().toString());
-//    	pi.setProjectID(s3);
-//    	CarpentryLogic.getInstance().addProjectItems(pi);
+    void Finish(MouseEvent event) throws IOException, InterruptedException {
 
-//    	String customerID = p.getCustomerID();
-//    	Order o = new Order();
-//    	o.setCustomerID(customerID);
-//    	Integer p2id = p.getProjectID();
-//    	o.setProjectID(p2id.toString());
-//    	o.setStatus(Enumeration.OrderStatus.WaitingProcess.toString()); 
-//    	o.setCost(o.CalculateCost()); 
-//    	CarpentryLogic.getInstance().addOrder(o);
+    	Process p = null;
+   	 try {
+   		 
+   		 
+   		    ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py", "green kitchen");
+   		    p = pb.start();
 
-    	Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
+   	        // Read output
+   	        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+   	        String output;
+   	        while ((output = in.readLine()) != null) {
+   	            System.out.println(output);
+   	        }
+
+   	        // Read any errors from the attempted command
+   	        BufferedReader err = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+   	        String error;
+   	        while ((error = err.readLine()) != null) {
+   	            System.err.println("Error: " + error);
+   	        }
+   		} catch (IOException e) {
+   		    e.printStackTrace();
+   		}
+
+   	     
+   	 p.waitFor();
+    	Parent pane = FXMLLoader.load(getClass().getResource("/View/AI_Auto.fxml"));
 		Scene scene = new Scene(pane);
 		Stage stage12 = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage12.setScene(scene);
@@ -551,6 +415,7 @@ public class ProjectItemsController implements Initializable{
 		Buttons.add(BackButton);
 		Buttons.add(ShowProjectDetails);
 		Buttons.add(finish);
+		Buttons.add(GenerateByAI);
 		
 		ObservableList<ProjectSection> projectSectionList = FXCollections.observableArrayList(ProjectSection.Kitchen,ProjectSection.Room,ProjectSection.LivingRoom,ProjectSection.Bathroom,ProjectSection.Closet,ProjectSection.Table,ProjectSection.Bed,ProjectSection.Other);
 		projectSection.getItems().addAll(projectSectionList);

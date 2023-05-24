@@ -32,7 +32,7 @@ public class NewProjectController implements Initializable{
 
 private String projectID;
     @FXML
-    private Button projectItems,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
+    private Button GenerateByAI,projectItems,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
    
     @FXML
@@ -126,6 +126,17 @@ private String projectID;
         break;
     }
    
+    case "GenerateByAI":{
+		Parent pane = FXMLLoader.load(getClass().getResource("/View/AI.fxml"));
+		Scene scene = new Scene(pane);
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.setTitle("Awni Wood Work - Generate By Images Ai");
+		stage.show();
+		break;
+	}
+    
     case "BackButton":{
     Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
         Scene scene = new Scene(pane);
@@ -252,7 +263,7 @@ Buttons.add(NewProject);
 Buttons.add(Inbox);
 Buttons.add(BackButton);
 Buttons.add(projectItems);
-
+Buttons.add(GenerateByAI);
 ObservableList<ProjectCategory> projectType = FXCollections.observableArrayList(ProjectCategory.Home,ProjectCategory.Office,ProjectCategory.Institution);
 projectCategory.getItems().addAll(projectType);
 

@@ -37,7 +37,7 @@ public class AIController implements Initializable{
 	private HashSet<Button> Buttons = new HashSet<Button>();
 	private HashSet<Button> imagebtns = new HashSet<Button>();
     @FXML
-    private Button BackButton,CurrentProjects,Inbox,NewProject,OrderedMaterials,OrdersCatalog,Stock,generate;
+    private Button GenerateByAI,BackButton,CurrentProjects,Inbox,NewProject,OrderedMaterials,OrdersCatalog,Stock,generate;
     
     @FXML
     private Button image1btn,image2btn,image3btn,image4btn,image5btn,image6btn,image7btn,image8btn,image9btn,image10btn;
@@ -124,6 +124,16 @@ public class AIController implements Initializable{
 	        		break;
 	    		}
 	    		
+	    		case "GenerateByAI":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/AI.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work - Generate By Images Ai");
+	        		stage.show();
+	        		break;
+	    		}
 	    		case "BackButton":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
 	        		Scene scene = new Scene(pane);
@@ -149,7 +159,7 @@ public class AIController implements Initializable{
 	 try {
 		 
 		 
-		    ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\OneDrive\\Desktop\\AI\\demo.py", textInput.getText());
+		    ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py", textInput.getText());
 		    p = pb.start();
 
 	        // Read output
@@ -279,6 +289,7 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	Buttons.add(NewProject);
 	Buttons.add(Inbox);
 	Buttons.add(BackButton);
+	Buttons.add(GenerateByAI);
 	
 	imagebtns.add(image1btn);
 	imagebtns.add(image2btn);

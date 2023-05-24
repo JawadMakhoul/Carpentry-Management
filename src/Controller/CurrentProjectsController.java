@@ -41,7 +41,7 @@ import javafx.stage.Stage;
 public class CurrentProjectsController implements Initializable{
 
     @FXML
-    private Button NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
+    private Button GenerateByAI,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
@@ -181,6 +181,17 @@ public class CurrentProjectsController implements Initializable{
 	        		stage.setScene(scene);
 	        		stage.setResizable(false);
 	        		stage.setTitle("Awni Wood Work - Projects Catalog");
+	        		stage.show();
+	        		break;
+	    		}
+	    		
+	    		case "GenerateByAI":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/AI.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work - Generate By Images Ai");
 	        		stage.show();
 	        		break;
 	    		}
@@ -388,6 +399,7 @@ public class CurrentProjectsController implements Initializable{
 		Buttons.add(NewProject);
 		Buttons.add(Inbox);
 		Buttons.add(BackButton);
+		Buttons.add(GenerateByAI);
 		
 		ObservableList<String> Filter = FXCollections.observableArrayList("Customer Name","Project ID","Project Category","Item Name");
 		filter.getItems().addAll(Filter);

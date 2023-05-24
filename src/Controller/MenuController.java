@@ -21,7 +21,7 @@ import javafx.scene.layout.AnchorPane;
 public class MenuController implements Initializable{
 
     @FXML
-    private Button NewProject,Stock,CurrentProjects,MaterialsToOrder,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
+    private Button GenerateByAI,NewProject,Stock,CurrentProjects,MaterialsToOrder,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
@@ -110,6 +110,16 @@ public class MenuController implements Initializable{
 	        		break;
 	    		}
 	    		
+	    		case "GenerateByAI":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/AI.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work - Generate By Images Ai");
+	        		stage.show();
+	        		break;
+	    		}
 	    		case "BackButton":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/MainScreen.fxml"));
 	        		Scene scene = new Scene(pane);
@@ -138,6 +148,7 @@ public class MenuController implements Initializable{
 		Buttons.add(NewProject);
 		Buttons.add(Inbox);
 		Buttons.add(BackButton);
+		Buttons.add(GenerateByAI);
 	}
 
 

@@ -67,7 +67,7 @@ import javax.mail.Store;
 public class InboxController implements Initializable{
 
     @FXML
-    private Button refresh,send,replay,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
+    private Button GenerateByAI,refresh,send,replay,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
@@ -173,6 +173,17 @@ public class InboxController implements Initializable{
 	        		stage.setScene(scene);
 	        		stage.setResizable(false);
 	        		stage.setTitle("Awni Wood Work - Projects Catalog");
+	        		stage.show();
+	        		break;
+	    		}
+	    		
+	    		case "GenerateByAI":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/AI.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work - Generate By Images Ai");
 	        		stage.show();
 	        		break;
 	    		}
@@ -415,7 +426,7 @@ public class InboxController implements Initializable{
 		Buttons.add(refresh);
 		Buttons.add(replay);
 		Buttons.add(send);
-		
+		Buttons.add(GenerateByAI);
 //		Properties props = new Properties();
 //		props.setProperty("mail.store.protocol", "imaps");
 //		props.setProperty("mail.imaps.host", "outlook.office365.com");

@@ -19,52 +19,63 @@
         <items>
           <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="948.0" prefWidth="350.0" styleClass="backgroundColor" stylesheets="@../Controller/style.css">
                <children>
-               <ImageView fitHeight="50.0" fitWidth="340.0" layoutX="23.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="50.0" fitWidth="340.0" layoutX="23.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/email1.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="Inbox" layoutX="94.0" layoutY="185.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Email" />
+                  <Button fx:id="Inbox" layoutX="94.0" layoutY="275.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Email" />
                   
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="366.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/project.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="NewProject" layoutX="94.0" layoutY="284.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="New Projects" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="32.0" layoutY="583.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="NewProject" layoutX="94.0" layoutY="366.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="New Projects" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="32.0" layoutY="628.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/ready-stock.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="15.0" layoutY="595.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="15.0" layoutY="640.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/out-of-stock.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="Stock" layoutX="94.0" layoutY="595.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Stock" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="490.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="Stock" layoutX="94.0" layoutY="640.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Stock" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="22.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/process.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="CurrentProjects" layoutX="94.0" layoutY="490.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Current Projects" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="699.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="CurrentProjects" layoutX="93.0" layoutY="461.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Current Projects" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="728.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/workflow.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="OrderedMaterials" layoutX="94.0" layoutY="699.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Ordered Materials" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="OrderedMaterials" layoutX="94.0" layoutY="728.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Ordered Materials" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="22.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/binder.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="OrdersCatalog" layoutX="94.0" layoutY="387.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Orders Catalog" />
+                  <Button fx:id="OrdersCatalog" layoutX="93.0" layoutY="549.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Orders Catalog" />
                   <Button fx:id="BackButton" layoutX="28.0" layoutY="873.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="51.0" prefWidth="112.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Back" />
                   <ImageView fitHeight="83.0" fitWidth="302.0" layoutX="23.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/awni-wood-work-high-resolution-logo-color-on-transparent-background.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="22.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Lib/illustrator.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="GenerateByAI" layoutX="93.0" layoutY="186.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Generate images" />
+                  <ImageView fitHeight="50.0" fitWidth="29.0" layoutX="14.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Lib/magic-wand.png" />
                      </image>
                   </ImageView>
                </children>
@@ -116,7 +127,7 @@
                         <Button fx:id="addItem" layoutX="145.0" layoutY="379.0" mnemonicParsing="false" onMousePressed="#AddAnotherItem" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Add another item" />
                      </children>
                   </Pane>
-                  <Button fx:id="finish" layoutX="1063.0" layoutY="877.0" mnemonicParsing="false" onMousePressed="#Finish" prefHeight="51.0" prefWidth="130.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Create" />
+                  <Button fx:id="finish" layoutX="963.0" layoutY="877.0" mnemonicParsing="false" onMousePressed="#Finish" prefHeight="51.0" prefWidth="230.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Create Project Item" />
                   <ColorPicker fx:id="color" layoutX="257.0" layoutY="177.0" prefHeight="39.0" prefWidth="224.0" promptText="Color" styleClass="comboBox" stylesheets="@../Controller/style.css" />
                   <ComboBox fx:id="projectSection" layoutX="257.0" layoutY="115.0" prefHeight="39.0" prefWidth="224.0" promptText="Project Section" styleClass="comboBox" stylesheets="@../Controller/style.css" />
                   <TextField fx:id="handsQuantity" alignment="CENTER_RIGHT" layoutX="257.0" layoutY="422.0" styleClass="textField" />
@@ -165,7 +176,7 @@
                   <TextField fx:id="CUSTOMERID" alignment="CENTER" layoutX="305.0" layoutY="665.0" styleClass="textField" />
                   <TextField fx:id="orderCost" alignment="CENTER" layoutX="305.0" layoutY="779.0" styleClass="textField" />
                   <TextField fx:id="orderStatus" alignment="CENTER" layoutX="857.0" layoutY="722.0" styleClass="textField" />
-                  <Button fx:id="ShowProjectDetails" layoutX="876.0" layoutY="777.0" mnemonicParsing="false" onMousePressed="#ShowProjectDetails" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Show order info" />
+                  <Button fx:id="ShowProjectDetails" layoutX="876.0" layoutY="777.0" mnemonicParsing="false" onMousePressed="#ShowProjectDetails" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Create Order" />
                   <Text fill="#d96e3a" layoutX="67.0" layoutY="644.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Details" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="40.0" />
