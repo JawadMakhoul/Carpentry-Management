@@ -16,6 +16,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -98,6 +100,50 @@ public class MainScreenController implements Initializable{
 			}
 			mediaView.toBack();
 		}
+	    
+	    @FXML
+	    void LogIn(KeyEvent event)  throws IOException {
+	    	
+	    	if(event.getCode() == KeyCode.ENTER ) {
+	    		if(passWord.getText().equals(id1)||passWord.getText().equals(id2)||passWord.getText().equals(id3)) {
+		    		Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
+					Scene scene = new Scene(pane);
+					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					stage.setScene(scene);
+					stage.setResizable(false);
+					stage.setTitle("Main Menu");
+					stage.show();
+		    	}
+		    	
+		    	else if(passWord.getText().isEmpty()) {
+		    		try {
+						final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+						alert.setTitle("Error!");
+						alert.setContentText("Press OK to try again.");
+						alert.setHeaderText("Sorry the password field is empty.");
+						alert.showAndWait();
+					} catch (Error e) {
+						e.printStackTrace();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+		    	}
+		    	else {
+		    		try {
+						final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+						alert.setTitle("Error!");
+						alert.setContentText("Press OK to try again.");
+						alert.setHeaderText("Sorry you have entered a wrong passowrd.");
+						alert.showAndWait();
+					} catch (Error e) {
+						e.printStackTrace();
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+		    	}
+	    	}
+	    	
+	    }
 
 		
 }

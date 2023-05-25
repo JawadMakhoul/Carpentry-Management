@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -95,25 +96,31 @@
                      </font>
                   </Text>
                   <Button fx:id="refresh" layoutX="688.0" layoutY="474.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="57.0" prefWidth="164.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Refresh Email" />
-                  <TextField fx:id="toEmailField" layoutX="303.0" layoutY="606.0" styleClass="textField" />
-                  <TextField fx:id="subjectField" layoutX="303.0" layoutY="672.0" styleClass="textField" />
-                  <TextArea fx:id="messageField" layoutX="582.0" layoutY="549.0" prefHeight="223.0" prefWidth="509.0" promptText="Email message" />
-                  <Text fill="#d96e3a" layoutX="132.0" layoutY="698.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email subject" textAlignment="CENTER">
+                  <TextField fx:id="toEmailField" layoutX="303.0" layoutY="645.0" styleClass="textField" />
+                  <TextField fx:id="subjectField" layoutX="303.0" layoutY="717.0" styleClass="textField" />
+                  <TextArea fx:id="messageField" layoutX="582.0" layoutY="569.0" prefHeight="223.0" prefWidth="509.0" promptText="Email message" />
+                  <Text fill="#d96e3a" layoutX="99.0" layoutY="747.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email subject" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text fill="#d96e3a" layoutX="132.0" layoutY="633.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Send to" textAlignment="CENTER">
+                  <Text fill="#d96e3a" layoutX="99.0" layoutY="675.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Send to" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
                   <Button fx:id="send" layoutX="955.0" layoutY="839.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="57.0" prefWidth="127.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Send" />
-                  <ImageView fx:id="trueORfalse" fitHeight="119.0" fitWidth="144.0" layoutX="494.0" layoutY="784.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="failedToSend2" fitHeight="57.0" fitWidth="61.0" layoutX="483.0" layoutY="843.0" pickOnBounds="true" preserveRatio="true" />
-                  <Text fx:id="text" layoutX="395.0" layoutY="923.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="302.0">
+                  <ImageView fx:id="trueORfalse" fitHeight="94.0" fitWidth="139.0" layoutX="582.0" layoutY="805.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="failedToSend2" fitHeight="45.0" fitWidth="36.0" layoutX="582.0" layoutY="852.0" pickOnBounds="true" preserveRatio="true" />
+                  <Text fx:id="text" layoutX="478.0" layoutY="919.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="302.0">
                      <font>
                         <Font name="Arial Bold" size="25.0" />
+                     </font>
+                  </Text>
+                  <ComboBox fx:id="emails" layoutX="303.0" layoutY="590.0" prefHeight="39.0" prefWidth="230.0" promptText="Email" styleClass="comboBox" />
+                  <Text fill="#d96e3a" layoutX="99.0" layoutY="617.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customers email list" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
                </children>

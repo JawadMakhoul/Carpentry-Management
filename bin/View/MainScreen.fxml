@@ -17,7 +17,7 @@
             <Image url="@../Lib/awni-wood-work-high-resolution-logo-color-on-transparent-background.png" />
          </image>
       </ImageView>
-      <PasswordField fx:id="passWord" layoutX="772.0" layoutY="350.0" prefHeight="58.0" prefWidth="418.0" style="-fx-border-color: #551E19 #C56E33 #C56E33 #551E19; -fx-border-width: 5px 5px 5px 5px;" />
+      <PasswordField fx:id="passWord" layoutX="772.0" layoutY="350.0" onKeyPressed="#LogIn" prefHeight="58.0" prefWidth="418.0" style="-fx-border-color: #551E19 #C56E33 #C56E33 #551E19; -fx-border-width: 5px 5px 5px 5px;" />
       <Button fx:id="LogIn" layoutX="724.0" layoutY="574.0" mnemonicParsing="false" onAction="#Log_In" prefHeight="58.0" prefWidth="134.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Login" />
       <Text fill="WHITE" layoutX="231.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter you`r password to Log In" wrappingWidth="462.73358154296875">
          <font>

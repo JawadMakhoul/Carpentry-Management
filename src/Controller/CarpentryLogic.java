@@ -243,7 +243,7 @@ public class CarpentryLogic {
 					stmt.setInt(1, p.getProjectID());
 					stmt.setString(2, p.getCustomerID());
 					stmt.setString(3, p.getProjectCategory()); // can't be null
-					
+					stmt.setString(4, null);
 					
 
 					stmt.executeUpdate();

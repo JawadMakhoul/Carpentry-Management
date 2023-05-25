@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import org.apache.commons.io.IOUtils;
 
+import Enumeration.ProjectSection;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
@@ -14,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.HashSet;
@@ -40,6 +42,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.search.FlagTerm;
 
+import Model.Customer;
 import Model.Email;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -50,6 +53,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
@@ -72,6 +76,8 @@ public class InboxController implements Initializable{
     @FXML
     private AnchorPane screen;
 
+    @FXML
+    private ComboBox<String> emails;
     @FXML
 	 private TableColumn<Email, String> from;
 
@@ -102,7 +108,7 @@ public class InboxController implements Initializable{
 	    @FXML
 	    private Text text;
 	    
-	    private boolean flag;
+	    private boolean flag=false;
 	    
     @FXML
     void MoveTo(MouseEvent event) throws IOException, MessagingException {
@@ -201,7 +207,7 @@ public class InboxController implements Initializable{
 	    		
 	    		case "send":{
 	    			
-	    			if(flag) {
+	    			if(flag) { // if flag =true the email is a replay for someone else the destination email is input 
 		    			String host = "smtp.office365.com";
 		    	        String port = "587";
 		    	        String username = "awniwoodwork@hotmail.com";
@@ -291,8 +297,14 @@ public class InboxController implements Initializable{
 		    	            // Create email message
 		    	            Message emailMessage = new MimeMessage(session);
 		    	            emailMessage.setFrom(new InternetAddress(username));
-		    	            emailMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmailField.getText().toString()));
-		    	            emailMessage.setSubject(subjectField.getText());
+		    	            
+		    	            if(!emails.getSelectionModel().getSelectedItem().equals(null))
+		    	            	emailMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emails.getSelectionModel().getSelectedItem()));
+		    	            
+		    	            else {
+		    	            	emailMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmailField.getText().toString()));
+		    	            }
+		    	            	emailMessage.setSubject(subjectField.getText());
 		    	            emailMessage.setText(messageField.getText());
 		    	            
 		    	            // Send email message
@@ -403,12 +415,12 @@ public class InboxController implements Initializable{
 	    			inbox.close(false);
 	    			store.close();
 
-	    			    
-    			
-
 	        		break;
-	    		}}}}
-    			}
+	    		}
+	    	}
+    	}
+    }
+}
     
     	
     
@@ -427,142 +439,20 @@ public class InboxController implements Initializable{
 		Buttons.add(replay);
 		Buttons.add(send);
 		Buttons.add(GenerateByAI);
-//		Properties props = new Properties();
-//		props.setProperty("mail.store.protocol", "imaps");
-//		props.setProperty("mail.imaps.host", "outlook.office365.com");
-//		props.setProperty("mail.imaps.port", "993");
-//		props.setProperty("mail.imaps.ssl.enable", "true");
-//
-//		// create a new session with authentication
-//		Session session = Session.getDefaultInstance(props, new Authenticator() {
-//		    protected PasswordAuthentication getPasswordAuthentication() {
-//		        return new PasswordAuthentication("awniwoodwork@hotmail.com", "Awnihasanjawad");
-//		    }
-//		});
-//
-//		// connect to the email server and open the inbox folder
-//		Store store = null;
-//		try {
-//			store = session.getStore("imaps");
-//		} catch (NoSuchProviderException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		try {
-//			store.connect();
-//		} catch (MessagingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		Folder inbox = null;
-//		try {
-//			inbox = store.getFolder("INBOX");
-//		} catch (MessagingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		try {
-//			inbox.open(Folder.READ_ONLY);
-//		} catch (MessagingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//		// Create the table view
-//		ObservableList<Email> emails = FXCollections.observableArrayList();
-//		tableview.setItems(emails);
-//
-//		// Set the columns
-//		from.setCellValueFactory(new PropertyValueFactory<>("From"));
-//		subject.setCellValueFactory(new PropertyValueFactory<>("Subject"));
-//		content.setCellValueFactory(new PropertyValueFactory<>("Content"));
-//		
-//		// Get the messages and add them to the table
-//		Message[] messages = null;
-//		try {
-//			messages = inbox.getMessages();
-//		} catch (MessagingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		for (int i = messages.length-1;i>=0;i--) {
-//			Message message = messages[i];
-//		    String from = null;
-//			try {
-//				from = Arrays.toString(message.getFrom());
-//			} catch (MessagingException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		    String subject = null;
-//			try {
-//				subject = message.getSubject();
-//			} catch (MessagingException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		    String content = "";
-//
-//		    Object messageContent = null;
-//			try {
-//				messageContent = message.getContent();
-//			} catch (IOException | MessagingException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		    if (messageContent instanceof MimeMultipart) {
-//		        // This message has multiple parts, so we need to extract the content of each part
-//		        MimeMultipart multipart = (MimeMultipart) messageContent;
-//		        try {
-//					for (int i1 = 0; i1 < multipart.getCount(); i1++) {
-//					    BodyPart bodyPart = multipart.getBodyPart(i1);
-//					    String contentType = bodyPart.getContentType();
-//					    
-//					    if (contentType.startsWith("text/plain")) {
-//					        // This is a text/plain part, so we can just append its content to the email content
-//					        content += bodyPart.getContent();
-//					    } else if (contentType.startsWith("image/png")) {
-//					        // This is an image/png part, so we can decode the content and append it to the email content
-//					        byte[] imageBytes = IOUtils.toByteArray(bodyPart.getInputStream());
-//					        String base64Image = Base64.getEncoder().encodeToString(imageBytes);
-//					        content += "<img src='data:image/png;base64," + base64Image + "' />";
-//					       
-//					    } else {
-//					        // This is not a recognized part type, so we ignore it
-//					    }
-//					}
-//				} catch (MessagingException | IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//		    } else {
-//		        // This message has only one part, which is already the content
-//		        content = messageContent.toString();
-//		    }
-//
-//		    Email email = new Email(from, subject, content);
-//		    emails.add(email);
-//		}
-//
-//
-//		// close the connection and folder
-//		try {
-//			inbox.close(false);
-//		} catch (MessagingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		try {
-//			store.close();
-//		} catch (MessagingException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-		    }
+		
+		
+		ArrayList<String> CustEmails = new ArrayList<>();
+		for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
+			CustEmails.add(c.getEmail());
+		}
+		
+		ObservableList<String> customersEmails = FXCollections.observableArrayList(CustEmails);
+		emails.getItems().addAll(customersEmails);
+		
 
 	}
+
+}
 
 
 

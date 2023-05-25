@@ -20,6 +20,7 @@ import Enumeration.AxleDegree;
 import Enumeration.OrderStatus;
 import Enumeration.ProjectCategory;
 import Enumeration.ProjectSection;
+import Enumeration.SectionColor;
 import Enumeration.WoodType;
 import Enumeration.handType;
 //import Model.Customer;
@@ -50,9 +51,8 @@ public class ProjectItemsController implements Initializable{
 	@FXML
     private Button GenerateByAI,ShowProjectDetails,BackButton,CurrentProjects,Inbox,NewProject,OrderedMaterials,OrdersCatalog,Stock,addItem,addSection,finish;
 	private HashSet<Button> Buttons = new HashSet<Button>();
-    @FXML
-    private ColorPicker color;
-
+    
+	
     @FXML
     private TextField orderStatus,ItemName,handsQuantity,axleQuantity,height,quantity,width,CUSTOMERID,ORDERID,PROJECTID,orderCost;
 
@@ -67,6 +67,12 @@ public class ProjectItemsController implements Initializable{
     
     @FXML
     private ComboBox<AxleDegree> brzolDegree;
+    
+    @FXML
+    private ComboBox<SectionColor> color;
+    
+    private Section s = new Section();
+    private ProjectItems pi = new ProjectItems();
     
     @FXML
     void MoveTo(MouseEvent event) throws IOException {
@@ -178,7 +184,7 @@ public class ProjectItemsController implements Initializable{
     @FXML
     void AddAnotherItem(MouseEvent event) {
 
-    	ProjectItems pi = new ProjectItems();
+    	ProjectItems pi2 = new ProjectItems();
 
     	try {
     	    if (projectSection.getSelectionModel().getSelectedItem() == null ||
@@ -192,21 +198,21 @@ public class ProjectItemsController implements Initializable{
 
     	        throw new IllegalArgumentException("Please enter all required fields.");
     	    }
-    	    pi.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
-    	    pi.setItemName(ItemName.getText());
-    	    pi.setHeight(Integer.parseInt(height.getText()));
-    	    pi.setWidth(Integer.parseInt(width.getText()));
-    	    pi.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
-    	    pi.setQuantity(Integer.parseInt(quantity.getText()));
-    	    pi.setColor(color.getValue().toString());
+    	    pi2.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
+    	    pi2.setItemName(ItemName.getText());
+    	    pi2.setHeight(Integer.parseInt(height.getText()));
+    	    pi2.setWidth(Integer.parseInt(width.getText()));
+    	    pi2.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
+    	    pi2.setQuantity(Integer.parseInt(quantity.getText()));
+    	    pi2.setColor(color.getValue().toString());
     		Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
             GlobalProjectID gpid = (GlobalProjectID) stage.getUserData();
             Integer i = gpid.getId();
         	String s = i.toString();
-        	pi.setProjectID(s);
+        	pi2.setProjectID(s);
         	
-        	CarpentryLogic.getInstance().addProjectItems(pi);
+        	CarpentryLogic.getInstance().addProjectItems(pi2);
         	
         	ItemName.setText(null);
         	height.setText(null);
@@ -225,7 +231,7 @@ public class ProjectItemsController implements Initializable{
 
     @FXML
     void AddSection(MouseEvent event) throws NumberFormatException, SQLException {
-    	Section s = new Section();
+    	
     	try {
     	    if (projectSection.getSelectionModel().getSelectedItem() == null) {
     	      	 throw new IllegalArgumentException("Please enter all required fields.");
@@ -264,7 +270,7 @@ public class ProjectItemsController implements Initializable{
 	    	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
 	    	s.setAxleDegree(brzolDegree.getSelectionModel().getSelectedItem().toString());
 	    	CarpentryLogic.getInstance().addSection(s);
-	    	ProjectItems pi = new ProjectItems();
+	    	
     	
     	try {
     	    if (projectSection.getSelectionModel().getSelectedItem() == null ||
@@ -284,7 +290,46 @@ public class ProjectItemsController implements Initializable{
     	    pi.setWidth(Integer.parseInt(width.getText()));
     	    pi.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
     	    pi.setQuantity(Integer.parseInt(quantity.getText()));
-    	    pi.setColor(color.getValue().toString());
+    	    
+    	    switch(color.getSelectionModel().getSelectedItem().toString()) {
+    	  
+    	    	case "Weathered_Barnboard","Pearl_Gray","Desert_Sand","Drift_Gray","Beige_Gray","Mushroom","Blueridge_Gray","Light_Oak","Smoke_Blue","Aspen_Tan":{
+    	    		
+    	    		pi.setColor("Beige");
+    	    		break;
+    	    	}
+    	    	
+    	    	case "Brick_Red","Sierra","Russet","Rosewood","Clove_Brown","Teak","Tobacco","Redwood","Dark_Mahogany","Walnut","Oxford_Brown":{
+    	    		
+    	    		pi.setColor("Brown");
+    	    		break;
+    	    	}
+    	    	
+    	    	case "Naturaltone_Fir","Redwood_Naturaltone","Cinnamon","Caramel","Cedar_Naturaltone":{
+    	    		
+    	    		pi.setColor("Camel");
+    	    		break;
+    	    	}
+    	    	
+    	    	case "Light_Mocha","Ginger","Avocado","Coffee","Espresso","Olive_Brown","Dark_Oak","Dark_Tahoe","Black_Walnut":{
+    	    		
+    	    		pi.setColor("Lite brown");
+    	    		break;
+    	    	}
+    	    	
+    	    	case "Black_Oak","Ebony","Cinder":{
+    	    		
+    	    		pi.setColor("Black");
+    	    		break;
+    	    	}
+    	    	
+    	    	case "Polar_Gray","Storm_Gray":{
+    	    		
+    	    		pi.setColor("Lite blue");
+    	    		break;
+    	    	}
+    	    }
+    	    
     		Node node1 = (Node) event.getSource();
             Stage stage1 = (Stage) node1.getScene().getWindow();
             GlobalProjectID p1 = (GlobalProjectID) stage1.getUserData();
@@ -304,7 +349,7 @@ public class ProjectItemsController implements Initializable{
 
         	}
         	
-        	color.setValue(null);
+        	color.setSelectionModel(null);
         	handsQuantity.setText(null);
         	axleQuantity.setText(null);
         	ItemName.setText(null);
@@ -369,39 +414,51 @@ public class ProjectItemsController implements Initializable{
     @FXML
     void Finish(MouseEvent event) throws IOException, InterruptedException {
 
-    	Process p = null;
-   	 try {
-   		 
-   		 
-   		    ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py", "green kitchen");
-   		    p = pb.start();
+    	if(!s.getSectionName().equals("Other")) {
+    	
+    		Process p = null;
+   	 		try {
+   	 			ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py", s.getSectionName() +" with " + pi.getColor() + "color.");
+   	 			p = pb.start();
 
-   	        // Read output
-   	        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-   	        String output;
-   	        while ((output = in.readLine()) != null) {
-   	            System.out.println(output);
-   	        }
+   	 			// Read output
+   	 			BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+   	 			String output;
+   	 			while ((output = in.readLine()) != null) {
+   	 				System.out.println(output);
+   	 			}
 
-   	        // Read any errors from the attempted command
-   	        BufferedReader err = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-   	        String error;
-   	        while ((error = err.readLine()) != null) {
-   	            System.err.println("Error: " + error);
-   	        }
-   		} catch (IOException e) {
+   	 			// Read any errors from the attempted command
+   	 			BufferedReader err = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+   	 			String error;
+   	 			while ((error = err.readLine()) != null) {
+   	 				System.err.println("Error: " + error);
+   	 			}
+   	 		} catch (IOException e) {
    		    e.printStackTrace();
-   		}
-
-   	     
-   	 p.waitFor();
-    	Parent pane = FXMLLoader.load(getClass().getResource("/View/AI_Auto.fxml"));
-		Scene scene = new Scene(pane);
-		Stage stage12 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage12.setScene(scene);
-		stage12.setResizable(false);
-		stage12.setTitle("Awni Wood Work");
-		stage12.show();
+   	 		}
+   	 		p.waitFor();
+   	 		
+   	 		/////////////////////////////////////////////////////////////////////////////////////////////
+   	 		Parent pane = FXMLLoader.load(getClass().getResource("/View/AI_Auto.fxml"));
+   	 		Scene scene = new Scene(pane);
+   	 		Stage stage12 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+   	 		stage12.setScene(scene);
+   	 		stage12.setResizable(false);
+   	 		stage12.setTitle("Awni Wood Work");
+   	 		stage12.show();
+    		}
+    	
+    	else {
+    		////////////////////////////////////////////////////////////////////////////////////////
+    		Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
+   	 		Scene scene = new Scene(pane);
+   	 		Stage stage12 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+   	 		stage12.setScene(scene);
+   	 		stage12.setResizable(false);
+   	 		stage12.setTitle("Awni Wood Work");
+   	 		stage12.show();
+    	}
     }
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -428,6 +485,9 @@ public class ProjectItemsController implements Initializable{
 		
 		ObservableList<handType> HANDTYPE = FXCollections.observableArrayList(handType.a17,handType.f120,handType.gh32,handType.r452,handType.s125);
 		handsModelNumber.getItems().addAll(HANDTYPE);
+		
+		ObservableList<SectionColor> section_Colors = FXCollections.observableArrayList(SectionColor.Aspen_Tan,SectionColor.Avocado,SectionColor.Beige_Gray,SectionColor.Black_Oak,SectionColor.Black_Walnut,SectionColor.Blueridge_Gray,SectionColor.Brick_Red,SectionColor.Caramel,SectionColor.Cedar_Naturaltone,SectionColor.Cinder,SectionColor.Cinnamon,SectionColor.Clove_Brown,SectionColor.Coffee,SectionColor.Dark_Mahogany,SectionColor.Dark_Oak,SectionColor.Dark_Tahoe,SectionColor.Desert_Sand,SectionColor.Drift_Gray,SectionColor.Ebony,SectionColor.Espresso,SectionColor.Ginger,SectionColor.Light_Mocha,SectionColor.Light_Oak,SectionColor.Mushroom,SectionColor.Naturaltone_Fir,SectionColor.Olive_Brown,SectionColor.Oxford_Brown,SectionColor.Pearl_Gray,SectionColor.Polar_Gray,SectionColor.Redwood,SectionColor.Redwood_Naturaltone,SectionColor.Rosewood,SectionColor.Russet,SectionColor.Sierra,SectionColor.Smoke_Blue,SectionColor.Storm_Gray,SectionColor.Teak,SectionColor.Tobacco,SectionColor.Walnut,SectionColor.Weathered_Barnboard);
+		color.getItems().addAll(section_Colors);
 	}
 	
 }
