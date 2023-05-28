@@ -1,16 +1,30 @@
 package Controller;
 
 import java.io.IOException;
+import javafx.scene.image.Image;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
-import Enumeration.WoodType;
+import javax.swing.JOptionPane;
+
+import Enumeration.OrderStatus;
+import Model.CurrentProjectsToShow;
+import Model.Customer;
+import Model.GlobalProjectID;
 import Model.Order;
-import Model.OrderedMaterials;
+import Model.Project;
+import Model.ProjectDetailsToShow;
+import Model.ProjectItems;
+import Model.Section;
+import javafx.beans.property.ReadOnlyIntegerWrapper;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,39 +33,66 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
-public class OrderedMaterialsController implements Initializable{
+public class ProjectDetailsToShowController implements Initializable{
 
     @FXML
-    private Button ProjectDetails,GenerateByAI,orderWood,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
+    private Button ProjectDetails,GenerateByAI,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
     
     @FXML
-    private ComboBox<WoodType> woodType;
+    private TableColumn<ProjectDetailsToShow, String> color;
+
+    @FXML
+    private TableColumn<ProjectDetailsToShow, String> itemHeight;
+
+    @FXML
+    private TableColumn<ProjectDetailsToShow, String> itemID;
+
+    @FXML
+    private TableColumn<ProjectDetailsToShow, String> itemName;
+
+    @FXML
+    private TableColumn<ProjectDetailsToShow, String> itemWidth;
+
+    @FXML
+    private Pane pnlOverview;
+
+    @FXML
+    private TableColumn<ProjectDetailsToShow, String> quantity;
+
+
+    @FXML
+    private TableView<ProjectDetailsToShow> tableView;
+
+    @FXML
+    private TableColumn<ProjectDetailsToShow, String> woodType;
     
     @FXML
-    private TableColumn<OrderedMaterials, String> orderStatus;
-
-    @FXML
-    private TableColumn<OrderedMaterials, String> productName;
-
-    @FXML
-    private TableColumn<OrderedMaterials, Integer> quantity;
-    @FXML
-    private TableView<OrderedMaterials> tableView;
+    private ScrollPane pnl;
     
     @FXML
-    private TextField quantityOFWood;
+    private TextField sectionField,projectCategoryField,projectIDField,customerNameField,handsField;
+    
+    @FXML
+    private ImageView projectImage;
 
+    private ProjectDetailsToShow pdts1;
     @FXML
     void MoveTo(MouseEvent event) throws IOException {
     	
@@ -158,128 +199,27 @@ public class OrderedMaterialsController implements Initializable{
 	        		break;
 	    		}
 	    		
-	    		
+	    		case "sendEmail":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Send.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}
     		}
     	}
     		
-    	}
-    	
-    }
-
-    @FXML
-    void order_Wood(MouseEvent event) {
-
-    	switch(woodType.getSelectionModel().getSelectedItem().name()) {
-    	
-    		case "Sandwich":{
-    		
-    			for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
-    			
-    				if(s.getWoodName().equals("Sandwich")) {
-    				
-    					int q = Integer.parseInt(quantityOFWood.getText());
-    					OrderedMaterials om = new OrderedMaterials();
-    					om.setStockID(s.getStockID());
-    					om.setWoodName("Sandwich");
-    					om.setQuantity(q);
-    					CarpentryLogic.getInstance().addOrderedMaterials(om);
-    				}
-    			}
-    			showOrderedMATERIALS();
-    			break;
-    		}
-    	
-    		case "Mdf":{
-    		
-    			for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
-    			
-    				if(s.getWoodName().equals("Mdf")) {
-    				
-    					int q = Integer.parseInt(quantityOFWood.getText());
-    					OrderedMaterials om = new OrderedMaterials();
-    					om.setStockID(s.getStockID());
-    					om.setWoodName("Mdf");
-    					om.setQuantity(q);
-    					CarpentryLogic.getInstance().addOrderedMaterials(om);
-    				}
-    			}
-    			showOrderedMATERIALS();
-    			break;
-    		}
-    	
-    		case "Solid_Wood":{
-    		
-    			for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
-    			
-    				if(s.getWoodName().equals("Solid_Wood")) {
-    				
-    					int q = Integer.parseInt(quantityOFWood.getText());
-    					OrderedMaterials om = new OrderedMaterials();
-    					om.setStockID(s.getStockID());
-    					om.setWoodName("Solid_Wood");
-    					om.setQuantity(q);
-    					CarpentryLogic.getInstance().addOrderedMaterials(om);
-    				}
-    			}
-    			showOrderedMATERIALS();
-    			break;
-    		}
-
-    		case "Melamine":{
-	
-    			for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
-		
-    				if(s.getWoodName().equals("Melamine")) {
-			
-    					int q = Integer.parseInt(quantityOFWood.getText());
-    					OrderedMaterials om = new OrderedMaterials();
-    					om.setStockID(s.getStockID());
-    					om.setWoodName("Melamine");
-    					om.setQuantity(q);
-    					CarpentryLogic.getInstance().addOrderedMaterials(om);
-    				}
-    			}
-    			showOrderedMATERIALS();
-    			break;
-    		}
-
-    		case "Particleboard":{
-	
-    			for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
-		
-    				if(s.getWoodName().equals("Particleboard")) {
-			
-    					int q = Integer.parseInt(quantityOFWood.getText());
-    					OrderedMaterials om = new OrderedMaterials();
-    					om.setStockID(s.getStockID());
-    					om.setWoodName("Particleboard");
-    					om.setQuantity(q);
-    					CarpentryLogic.getInstance().addOrderedMaterials(om);
-    				}
-    			}
-    			showOrderedMATERIALS();
-    			break;
-    		}
-  
     	}
     	
     }
     
-    public void showOrderedMATERIALS() {
-    	productName.setCellValueFactory(new PropertyValueFactory<>("woodName"));
-		quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-		orderStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-     
-
-        // Get the data and add it to the table
-        ObservableList<OrderedMaterials> orderedmaterials = FXCollections.observableArrayList();
-        ArrayList<OrderedMaterials> arraylistOrders = CarpentryLogic.getInstance().getOrderedMaterials();
-        orderedmaterials.addAll(arraylistOrders);
-        
-        tableView.setItems(orderedmaterials);
-    }
+   
+    
 	@Override
-	public void initialize(URL arg0, ResourceBundle arg1){
+	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		Buttons.add(OrdersCatalog);
 		Buttons.add(OrderedMaterials);
@@ -290,11 +230,41 @@ public class OrderedMaterialsController implements Initializable{
 		Buttons.add(BackButton);
 		Buttons.add(GenerateByAI);
 		Buttons.add(ProjectDetails);
-		
-		ObservableList<WoodType> woodTypelist = FXCollections.observableArrayList(WoodType.Mdf,WoodType.Melamine,WoodType.Particleboard,WoodType.Sandwich,WoodType.Solid_Wood);
-		woodType.getItems().addAll(woodTypelist);
-		
-		showOrderedMATERIALS();
+	
+        ProjectDetailsToShow pdts = ProjectItemsController.getPdts();
+        ObservableList<ProjectDetailsToShow> ObservableList_CP = FXCollections.observableArrayList();
+        ArrayList<ProjectDetailsToShow> arraylistToShow = new ArrayList<>();
+        for(Project p : CarpentryLogic.getInstance().getProjects()) {
+        			for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
+        			if((pi.getProjectID().equals(Integer.toString(p.getProjectID())))&& (pdts.getProjectID().equals(pi.getProjectID()))) {
+
+        				
+        					
+        					
+        					sectionField.setText(pdts.getSection());
+        					projectCategoryField.setText(pdts.getProjectCategory());
+        					projectIDField.setText(pdts.getProjectID());
+        					customerNameField.setText(pdts.getCustomerName());
+        					handsField.setText(pdts.getModelNumberOFhands());
+        					itemID.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pdts.getItemID()));
+        					itemName.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pdts.getItemName()));
+        					itemHeight.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pdts.getItemHeight()));
+        					itemWidth.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pdts.getItemWidth()));
+        					woodType.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pdts.getWoodType()));
+        					quantity.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pdts.getQuantity()));
+        					color.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pdts.getColor()));
+        					
+        					arraylistToShow.add(pdts);
+                		}
+        			}
+        			
+        }
+        ObservableList_CP.addAll(arraylistToShow);
+        
+        tableView.setItems(ObservableList_CP);
+        
+        Image i = new Image(pdts.getImage());
+        projectImage.setImage(i);
 	}
 
 

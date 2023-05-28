@@ -52,7 +52,7 @@
             <String fx:value="container" />
          </styleClass>
       </Pane>
-      <Pane layoutX="215.0" layoutY="404.0" prefHeight="214.0" prefWidth="200.0" stylesheets="@../Controller/style.css">
+      <Pane layoutX="139.0" layoutY="276.0" prefHeight="214.0" prefWidth="200.0" stylesheets="@../Controller/style.css">
          <styleClass>
             <String fx:value="backgroundColor" />
             <String fx:value="container" />
@@ -63,6 +63,17 @@
                   <Font name="Calibri" size="24.0" />
                </font>
             </Text>
+            <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="25.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Lib/illustrator.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="GenerateByAI" layoutX="29.0" layoutY="5.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="150.0" />
+            <ImageView fitHeight="150.0" fitWidth="100.0" layoutX="-33.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Lib/magic-wand.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="865.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
@@ -138,16 +149,22 @@
             <Font name="Calibri" size="24.0" />
          </font>
       </Text>
-      <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="240.0" layoutY="418.0" pickOnBounds="true" preserveRatio="true">
+      <Pane layoutX="137.0" layoutY="561.0" prefHeight="214.0" prefWidth="200.0" stylesheets="@../Controller/style.css">
+         <styleClass>
+            <String fx:value="backgroundColor" />
+            <String fx:value="container" />
+         </styleClass>
+      </Pane>
+      <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="162.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Lib/illustrator.png" />
+            <Image url="@../Lib/clipboard.png" />
          </image>
       </ImageView>
-      <Button fx:id="GenerateByAI" layoutX="244.0" layoutY="415.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="150.0" />
-      <ImageView fitHeight="150.0" fitWidth="100.0" layoutX="182.0" layoutY="420.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Lib/magic-wand.png" />
-         </image>
-      </ImageView>
+      <Button fx:id="ProjectDetails" layoutX="141.0" layoutY="568.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="191.0" />
+      <Text fill="#b96c00f7" layoutX="136.0" layoutY="762.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Details" textAlignment="CENTER" wrappingWidth="206.9999999999999">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

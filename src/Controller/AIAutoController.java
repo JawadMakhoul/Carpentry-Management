@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 import Model.GlobalProjectID;
+import Model.ProjectDetailsToShow;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,7 +23,7 @@ public class AIAutoController implements Initializable{
 	private HashSet<Button> Buttons = new HashSet<Button>();
 	private HashSet<Button> imagebtns = new HashSet<Button>();
     @FXML
-    private Button BackButton,CurrentProjects,Inbox,NewProject,OrderedMaterials,OrdersCatalog,Stock,generate;
+    private Button ProjectDetails,BackButton,CurrentProjects,Inbox,NewProject,OrderedMaterials,OrdersCatalog,Stock,generate;
     
     @FXML
     private Button image1btn,image2btn,image3btn,image4btn,image5btn,image6btn,image7btn,image8btn,image9btn,image10btn;
@@ -35,6 +36,17 @@ public class AIAutoController implements Initializable{
     
 //    @FXML
 //    private ComboBox<Integer> projectID;
+    
+    private  static ProjectDetailsToShow pdts;
+
+
+	public static ProjectDetailsToShow getPdts() {
+		return pdts;
+	}
+
+	public static void setPdts(ProjectDetailsToShow pdts) {
+		AIAutoController.pdts = pdts;
+	}
 
     @FXML
  void MoveTo(MouseEvent event) throws IOException {
@@ -119,6 +131,17 @@ public class AIAutoController implements Initializable{
 	        		stage.show();
 	        		break;
 	    		}
+	    		
+	    		case "ProjectDetails":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetailsButton.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}	
 	    		case "BackButton":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
 	        		Scene scene = new Scene(pane);
@@ -202,7 +225,7 @@ public class AIAutoController implements Initializable{
 // }
  
  @FXML
- void UpdateProjectImage(MouseEvent event) throws SQLException {
+ void UpdateProjectImage(MouseEvent event) throws SQLException, IOException {
 
 	 for(Button b : imagebtns) {
 		 if(b.isPressed()) {
@@ -210,57 +233,74 @@ public class AIAutoController implements Initializable{
 		 switch(b.getId()) {
 		 	case "image1btn":{
 		 		CarpentryLogic.getInstance().addProjectImage(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_1.jpg");
+		 		ProjectItemsController.getPdts().setImage("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_1.jpg");
 		 		break;
 		 	}
 		 	
 		 	case "image2btn":{
 		 		CarpentryLogic.getInstance().addProjectImage(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_2.jpg");
+		 		ProjectItemsController.getPdts().setImage("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_2.jpg");
 		 		break;
 		 	}
 
 		 	case "image3btn":{
 		 		CarpentryLogic.getInstance().addProjectImage(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_3.jpg");
+		 		ProjectItemsController.getPdts().setImage("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_3.jpg");
 		 		break;
 		 	}
 
 		 	case "image4btn":{
 		 		CarpentryLogic.getInstance().addProjectImage(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_4.jpg");
+		 		ProjectItemsController.getPdts().setImage("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_4.jpg");
 		 		break;
 		 	}
 
 		 	case "image5btn":{
 		 		CarpentryLogic.getInstance().addProjectImage(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_5.jpg");
+		 		ProjectItemsController.getPdts().setImage("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_5.jpg");
 		 		break;
 		 	}
 
 		 	case "image6btn":{
 		 		CarpentryLogic.getInstance().addProjectImage(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_6.jpg");
+		 		ProjectItemsController.getPdts().setImage("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_6.jpg");
 		 		break;
 		 	}
 
 		 	case "image7btn":{
 		 		CarpentryLogic.getInstance().addProjectImage(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_7.jpg");
+		 		ProjectItemsController.getPdts().setImage("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_7.jpg");
 		 		break;
 		 	}
 
 		 	case "image8btn":{
-		System.out.println("8");
 		 		CarpentryLogic.getInstance().addProjectImage(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_8.jpg");
+		 		ProjectItemsController.getPdts().setImage("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_8.jpg");
 		 		break;
 		 	}
 
 		 	case "image9btn":{
-		 		System.out.println("9");
 		 		CarpentryLogic.getInstance().addProjectImage(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_9.jpg");
+		 		ProjectItemsController.getPdts().setImage("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_9.jpg");
 		 		break;
 		 	}
 
 		 	case "image10btn":{
-		 		System.out.println("10");
 		 		CarpentryLogic.getInstance().addProjectImage(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_10.jpg");
+		 		ProjectItemsController.getPdts().setImage("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_10.jpg");
 		 		break;
 		 	}
+		 	
 		 }
+		 
+		
+		Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetails.fxml"));
+ 		Scene scene = new Scene(pane);
+ 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+ 		stage.setScene(scene);
+ 		stage.setResizable(false);
+ 		stage.setTitle("Awni Wood Work - Generate By Images Ai");
+ 		stage.show();
 	 }
 	 }
  }
@@ -274,7 +314,7 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	Buttons.add(NewProject);
 	Buttons.add(Inbox);
 	Buttons.add(BackButton);
-	//Buttons.add(GenerateByAI);
+	Buttons.add(ProjectDetails);
 	
 	imagebtns.add(image1btn);
 	imagebtns.add(image2btn);

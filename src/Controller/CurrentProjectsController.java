@@ -14,6 +14,7 @@ import Model.CurrentProjectsToShow;
 import Model.Customer;
 import Model.Order;
 import Model.Project;
+import Model.ProjectDetailsToShow;
 import Model.ProjectItems;
 import Model.Section;
 import javafx.collections.FXCollections;
@@ -41,7 +42,7 @@ import javafx.stage.Stage;
 public class CurrentProjectsController implements Initializable{
 
     @FXML
-    private Button GenerateByAI,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
+    private Button ProjectDetails,GenerateByAI,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
@@ -112,7 +113,18 @@ public class CurrentProjectsController implements Initializable{
     @FXML
     private ScrollPane pnl;
 
-    @FXML
+    private  static ProjectDetailsToShow pdts;
+
+
+	public static ProjectDetailsToShow getPdts() {
+		return pdts;
+	}
+
+	public static void setPdts(ProjectDetailsToShow pdts) {
+		CurrentProjectsController.pdts = pdts;
+	}
+
+	@FXML
     void MoveTo(MouseEvent event) throws IOException {
     	
     	for(Button b: Buttons) {
@@ -209,6 +221,17 @@ public class CurrentProjectsController implements Initializable{
 	    		
 	    		case "sendEmail":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Send.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}
+	    		
+	    		case "ProjectDetails":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetailsButton.fxml"));
 	        		Scene scene = new Scene(pane);
 	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 	        		stage.setScene(scene);
@@ -319,14 +342,18 @@ public class CurrentProjectsController implements Initializable{
     void RemoveFilter(ActionEvent event) {
     	ObservableList<CurrentProjectsToShow> ObservableList_CP = FXCollections.observableArrayList();
         ArrayList<CurrentProjectsToShow> arraylistToShow = new ArrayList<>();
-        for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
-        	for(Project p : CarpentryLogic.getInstance().getProjects()) {
-        		if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {
-        			CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands());
-        			arraylistToShow.add(cp);
+        for(Project p : CarpentryLogic.getInstance().getProjects()) {
+        	for(Order o: CarpentryLogic.getInstance().getOrders()) {
+        		if(o.getProjectID().equals(Integer.toString(p.getProjectID())) && o.getStatus().equals("InProgress")) {
+        			for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
+        				if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {
+                			CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands());
+                			arraylistToShow.add(cp);
+                		}
+        			}
+        			
         		}
         	}
-        
         }
         ObservableList_CP.addAll(arraylistToShow);
         
@@ -360,14 +387,18 @@ public class CurrentProjectsController implements Initializable{
 	    	
 	    	ObservableList<CurrentProjectsToShow> ObservableList_CP = FXCollections.observableArrayList();
 	        ArrayList<CurrentProjectsToShow> arraylistToShow = new ArrayList<>();
-	        for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
-	        	for(Project p : CarpentryLogic.getInstance().getProjects()) {
-	        		if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {
-	        			CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands());
-	        			arraylistToShow.add(cp);
+	        for(Project p : CarpentryLogic.getInstance().getProjects()) {
+	        	for(Order o: CarpentryLogic.getInstance().getOrders()) {
+	        		if(o.getProjectID().equals(Integer.toString(p.getProjectID())) && o.getStatus().equals("InProgress")) {
+	        			for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
+	        				if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {
+	                			CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands());
+	                			arraylistToShow.add(cp);
+	                		}
+	        			}
+	        			
 	        		}
 	        	}
-	        
 	        }
 	        ObservableList_CP.addAll(arraylistToShow);
 	        
@@ -389,6 +420,33 @@ public class CurrentProjectsController implements Initializable{
 	        
 	       // tableView.setItems(orders);
     }
+    
+    @FXML
+    void ShowProjectDetails(ActionEvent event) throws IOException {
+    	//tableView
+    	
+    	pdts.setCustomerName(tableView.getSelectionModel().getSelectedItem().getCustomerName());
+    	pdts.setProjectID(tableView.getSelectionModel().getSelectedItem().getProjectID());
+    	pdts.setProjectCategory(tableView.getSelectionModel().getSelectedItem().getProjectCategory());
+    	pdts.setItemID(tableView.getSelectionModel().getSelectedItem().getItemID());
+    	pdts.setItemName(tableView.getSelectionModel().getSelectedItem().getItemName());
+    	pdts.setItemHeight(tableView.getSelectionModel().getSelectedItem().getItemHeight());
+    	pdts.setItemWidth(tableView.getSelectionModel().getSelectedItem().getItemWidth());
+    	pdts.setWoodType(tableView.getSelectionModel().getSelectedItem().getWoodType());
+    	pdts.setQuantity(tableView.getSelectionModel().getSelectedItem().getQuantity());
+    	pdts.setSection(tableView.getSelectionModel().getSelectedItem().getSection());
+    	pdts.setColor(tableView.getSelectionModel().getSelectedItem().getColor());
+    	pdts.setModelNumberOFhands(tableView.getSelectionModel().getSelectedItem().getModelNumberOFhands());
+    	
+    	Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetails.fxml"));
+		Scene scene = new Scene(pane);
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.setTitle("Awni Wood Work - Projects Catalog");
+		stage.show();
+    }
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -400,6 +458,7 @@ public class CurrentProjectsController implements Initializable{
 		Buttons.add(Inbox);
 		Buttons.add(BackButton);
 		Buttons.add(GenerateByAI);
+		Buttons.add(ProjectDetails);
 		
 		ObservableList<String> Filter = FXCollections.observableArrayList("Customer Name","Project ID","Project Category","Item Name");
 		filter.getItems().addAll(Filter);

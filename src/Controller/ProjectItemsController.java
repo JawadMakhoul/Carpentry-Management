@@ -25,6 +25,7 @@ import Enumeration.WoodType;
 import Enumeration.handType;
 //import Model.Customer;
 import Model.Project;
+import Model.ProjectDetailsToShow;
 import Model.Section;
 import Model.ProjectItems;
 import Model.Customer;
@@ -49,7 +50,7 @@ import javafx.stage.Stage;
 public class ProjectItemsController implements Initializable{
 	
 	@FXML
-    private Button GenerateByAI,ShowProjectDetails,BackButton,CurrentProjects,Inbox,NewProject,OrderedMaterials,OrdersCatalog,Stock,addItem,addSection,finish;
+    private Button ProjectDetails,GenerateByAI,ShowProjectDetails,BackButton,CurrentProjects,Inbox,NewProject,OrderedMaterials,OrdersCatalog,Stock,addItem,addSection,finish;
 	private HashSet<Button> Buttons = new HashSet<Button>();
     
 	
@@ -73,6 +74,17 @@ public class ProjectItemsController implements Initializable{
     
     private Section s = new Section();
     private ProjectItems pi = new ProjectItems();
+    
+    private  static ProjectDetailsToShow pdts;
+
+
+	public static ProjectDetailsToShow getPdts() {
+		return pdts;
+	}
+
+	public static void setPdts(ProjectDetailsToShow pdts) {
+		ProjectItemsController.pdts = pdts;
+	}
     
     @FXML
     void MoveTo(MouseEvent event) throws IOException {
@@ -155,6 +167,17 @@ public class ProjectItemsController implements Initializable{
 	        		stage.setScene(scene);
 	        		stage.setResizable(false);
 	        		stage.setTitle("Awni Wood Work - Generate By Images Ai");
+	        		stage.show();
+	        		break;
+	    		}
+	    		
+	    		case "ProjectDetails":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetailsButton.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
 	        		stage.show();
 	        		break;
 	    		}
@@ -372,6 +395,16 @@ public class ProjectItemsController implements Initializable{
 	    alert.setHeaderText(e.getMessage());
 	    alert.showAndWait();
     }
+    	
+    	pdts.setItemID(Integer.toString(pi.getItemID()));
+    	pdts.setItemName(pi.getItemName());
+    	pdts.setItemHeight(Integer.toString(pi.getHeight()));
+    	pdts.setItemWidth(Integer.toString(pi.getWidth()));
+    	pdts.setWoodType(pi.getWoodType());
+    	pdts.setQuantity(Integer.toString(pi.getQuantity()));
+    	pdts.setSection(pi.getSection());
+    	pdts.setColor(pi.getColor());
+    	pdts.setModelNumberOFhands(pi.getModelNumberOfHands());
     	}
     
     
@@ -386,14 +419,23 @@ public class ProjectItemsController implements Initializable{
 				customerName = c.getName();
 			}
 		}
+    	
+    	for(Project p : CarpentryLogic.getInstance().getProjects()) {
+    		if(Integer.toString(p.getProjectID()).equals(GlobalProjectID.getId())) {
+    			System.out.println("qwqwqwqwqwqwqwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+    			pdts.setProjectCategory(p.getProjectCategory());
+    		}
+    	}
     	Order o = new Order();
     	o.setCustomerName(customerName);
     	String s1 = o.getCustomerName();
     	CUSTOMERID.setText(s1);
+    	pdts.setCustomerName(o.getCustomerName());
     	Integer p2id = gpid.getId();
     	o.setProjectID(p2id.toString());
     	String s2 = o.getProjectID();
     	PROJECTID.setText(s2);
+    	pdts.setProjectID(o.getProjectID());
     	Integer oid = o.getOrderID();
     	String soid = oid.toString();
     	ORDERID.setText(soid);
@@ -473,6 +515,7 @@ public class ProjectItemsController implements Initializable{
 		Buttons.add(ShowProjectDetails);
 		Buttons.add(finish);
 		Buttons.add(GenerateByAI);
+		Buttons.add(ProjectDetails);
 		
 		ObservableList<ProjectSection> projectSectionList = FXCollections.observableArrayList(ProjectSection.Kitchen,ProjectSection.Room,ProjectSection.LivingRoom,ProjectSection.Bathroom,ProjectSection.Closet,ProjectSection.Table,ProjectSection.Bed,ProjectSection.Other);
 		projectSection.getItems().addAll(projectSectionList);

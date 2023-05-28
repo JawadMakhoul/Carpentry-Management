@@ -32,7 +32,7 @@ public class NewProjectController implements Initializable{
 
 private String projectID;
     @FXML
-    private Button GenerateByAI,projectItems,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
+    private Button ProjectDetails,GenerateByAI,projectItems,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
    
     @FXML
@@ -147,12 +147,23 @@ private String projectID;
         stage.show();
         break;
     }
+    
+    case "ProjectDetails":{
+		Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetailsButton.fxml"));
+		Scene scene = new Scene(pane);
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.setTitle("Awni Wood Work");
+		stage.show();
+		break;
+	}
    
     case "projectItems":{
 
    
     if(!CustomerName.getText().equals("") && !phoneNumber.getText().equals("") && !address.getText().equals("") && !email.getText().equals("")) { // Creating new customer and new project    
-    System.out.println("innnnnnnnnn");
+    
    
     Customer c = new Customer();
     if(CustomerName.getText().matches(".*\\d+.*")) {
@@ -264,6 +275,7 @@ Buttons.add(Inbox);
 Buttons.add(BackButton);
 Buttons.add(projectItems);
 Buttons.add(GenerateByAI);
+Buttons.add(ProjectDetails);
 ObservableList<ProjectCategory> projectType = FXCollections.observableArrayList(ProjectCategory.Home,ProjectCategory.Office,ProjectCategory.Institution);
 projectCategory.getItems().addAll(projectType);
 

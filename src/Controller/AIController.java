@@ -37,7 +37,7 @@ public class AIController implements Initializable{
 	private HashSet<Button> Buttons = new HashSet<Button>();
 	private HashSet<Button> imagebtns = new HashSet<Button>();
     @FXML
-    private Button GenerateByAI,BackButton,CurrentProjects,Inbox,NewProject,OrderedMaterials,OrdersCatalog,Stock,generate;
+    private Button ProjectDetails,GenerateByAI,BackButton,CurrentProjects,Inbox,NewProject,OrderedMaterials,OrdersCatalog,Stock,generate;
     
     @FXML
     private Button image1btn,image2btn,image3btn,image4btn,image5btn,image6btn,image7btn,image8btn,image9btn,image10btn;
@@ -134,6 +134,18 @@ public class AIController implements Initializable{
 	        		stage.show();
 	        		break;
 	    		}
+	    		
+	    		case "ProjectDetails":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetailsButton.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}
+	    		
 	    		case "BackButton":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
 	        		Scene scene = new Scene(pane);
@@ -290,6 +302,7 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	Buttons.add(Inbox);
 	Buttons.add(BackButton);
 	Buttons.add(GenerateByAI);
+	Buttons.add(ProjectDetails);
 	
 	imagebtns.add(image1btn);
 	imagebtns.add(image2btn);
