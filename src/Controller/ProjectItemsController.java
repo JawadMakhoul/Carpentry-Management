@@ -228,6 +228,7 @@ public class ProjectItemsController implements Initializable{
     	    pi2.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
     	    pi2.setQuantity(Integer.parseInt(quantity.getText()));
     	    pi2.setColor(color.getValue().toString());
+    	    pi2.setModelNumberOfHands(handsModelNumber.getSelectionModel().getSelectedItem().toString());
     		Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
             GlobalProjectID gpid = (GlobalProjectID) stage.getUserData();
@@ -465,28 +466,28 @@ public class ProjectItemsController implements Initializable{
     	System.out.println(sec.getSectionName());
     	if(!sec.getSectionName().equals("Other")) {
     	
-    		Process p = null;
-   	 		try {
-   	 			ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py", sec.getSectionName() +" with " + pi.getColor() + "color.");
-   	 			p = pb.start();
-
-   	 			// Read output
-   	 			BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-   	 			String output;
-   	 			while ((output = in.readLine()) != null) {
-   	 				System.out.println(output);
-   	 			}
-
-   	 			// Read any errors from the attempted command
-   	 			BufferedReader err = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-   	 			String error;
-   	 			while ((error = err.readLine()) != null) {
-   	 				System.err.println("Error: " + error);
-   	 			}
-   	 		} catch (IOException e) {
-   		    e.printStackTrace();
-   	 		}
-   	 		p.waitFor();
+//    		Process p = null;
+//   	 		try {
+//   	 			ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py", sec.getSectionName() +" with " + pi.getColor() + "color.");
+//   	 			p = pb.start();
+//
+//   	 			// Read output
+//   	 			BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+//   	 			String output;
+//   	 			while ((output = in.readLine()) != null) {
+//   	 				System.out.println(output);
+//   	 			}
+//
+//   	 			// Read any errors from the attempted command
+//   	 			BufferedReader err = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+//   	 			String error;
+//   	 			while ((error = err.readLine()) != null) {
+//   	 				System.err.println("Error: " + error);
+//   	 			}
+//   	 		} catch (IOException e) {
+//   		    e.printStackTrace();
+//   	 		}
+//   	 		p.waitFor();
    	 		
    	 		/////////////////////////////////////////////////////////////////////////////////////////////
    	 		Parent pane = FXMLLoader.load(getClass().getResource("/View/AI_Auto.fxml"));
