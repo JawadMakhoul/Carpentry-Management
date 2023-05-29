@@ -212,6 +212,7 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
+                  <ImageView fx:id="loading" fitHeight="256.0" fitWidth="256.0" layoutX="450.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" />
                </children></AnchorPane>
         </items>
       </SplitPane>

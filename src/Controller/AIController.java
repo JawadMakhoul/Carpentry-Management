@@ -1,25 +1,23 @@
 package Controller;
 import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.URL;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardWatchEventKinds;
-import java.nio.file.WatchKey;
-import java.nio.file.WatchService;
+import java.io.InputStreamReader;
 import java.sql.SQLException;
+import javafx.concurrent.Task;
+import javafx.fxml.FXML;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import javafx.application.Platform;
+
+import java.util.*;
+import java.net.URL;
 import java.util.HashSet;
 import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
-
-import Enumeration.WoodType;
 import Model.Project;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -29,9 +27,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.scene.image.Image;
+
 public class AIController implements Initializable{
 
 	private HashSet<Button> Buttons = new HashSet<Button>();
@@ -43,7 +41,7 @@ public class AIController implements Initializable{
     private Button image1btn,image2btn,image3btn,image4btn,image5btn,image6btn,image7btn,image8btn,image9btn,image10btn;
 
     @FXML
-    private ImageView image1,image2,image3,image4,image5,image6,image7,image8,image9,image10;
+    private ImageView image1,image2,image3,image4,image5,image6,image7,image8,image9,image10, loading;
 
     @FXML
     private TextArea textInput;
@@ -165,68 +163,84 @@ public class AIController implements Initializable{
     	
     }
 
- @FXML
- void GenerateImages(MouseEvent event) throws IOException, InterruptedException, SQLException {
-	 Process p = null;
-	 try {
-		 
-		 
-		    ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py", textInput.getText());
-		    p = pb.start();
+    @FXML
+    void GenerateImages(MouseEvent event) throws IOException, InterruptedException, SQLException {
+    	
+    	Image loadingImage = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\737.gif");
+        loading.setImage(loadingImage);
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                Process p = null;
+                try {
+                    ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py", textInput.getText());
+                    p = pb.start();
 
-	        // Read output
-	        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-	        String output;
-	        while ((output = in.readLine()) != null) {
-	            System.out.println(output);
-	        }
+                    // Read output
+                    BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                    String output;
+                    while ((output = in.readLine()) != null) {
+                        System.out.println(output);
+                    }
 
-	        // Read any errors from the attempted command
-	        BufferedReader err = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-	        String error;
-	        while ((error = err.readLine()) != null) {
-	            System.err.println("Error: " + error);
-	        }
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
+                    // Read any errors from the attempted command
+                    BufferedReader err = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+                    String error;
+                    while ((error = err.readLine()) != null) {
+                        System.err.println("Error: " + error);
+                    }
 
-	     
-	 p.waitFor();
+                    p.waitFor();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
-	 
-	 Image i1 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_1.jpg");
-	 image1.setImage(i1);
-    
-	 Image i2 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_2.jpg");
-	 image2.setImage(i2);
-	 
-	 Image i3 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_3.jpg");
-	 image3.setImage(i3);
-	
-	 Image i4 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_4.jpg");
-	 image4.setImage(i4);
-    
-	 Image i5 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_5.jpg");
-	 image5.setImage(i5);
-	 
-	 Image i6 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_6.jpg");
-	 image6.setImage(i6);
-    
-	 Image i7 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_7.jpg");
-	 image7.setImage(i7);
-	 
-	 Image i8 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_8.jpg");
-	 image8.setImage(i8);
-    
-	 Image i9 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_9.jpg");
-	 image9.setImage(i9);
-	 
-	 Image i10 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_10.jpg");
-	 image10.setImage(i10);
-	 
-	 
- }
+                Platform.runLater(() -> {
+                    try {
+                    	
+                    	loading.setImage(null);
+                    	
+                        Image i1 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_1.jpg");
+                        image1.setImage(i1);
+
+                        Image i2 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_2.jpg");
+                        image2.setImage(i2);
+
+                        Image i3 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_3.jpg");
+                        image3.setImage(i3);
+
+                        Image i4 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_4.jpg");
+                        image4.setImage(i4);
+
+                        Image i5 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_5.jpg");
+                        image5.setImage(i5);
+
+                        Image i6 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_6.jpg");
+                        image6.setImage(i6);
+
+                        Image i7 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_7.jpg");
+                        image7.setImage(i7);
+
+                        Image i8 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_8.jpg");
+                        image8.setImage(i8);
+
+                        Image i9 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_9.jpg");
+                        image9.setImage(i9);
+
+                        Image i10 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_10.jpg");
+                        image10.setImage(i10);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+
+                return null;
+            }
+        };
+
+        new Thread(task).start(); // Start the task in a new thread
+    }
+
  
  @FXML
  void UpdateProjectImage(MouseEvent event) throws SQLException {

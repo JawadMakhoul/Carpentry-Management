@@ -160,69 +160,6 @@ public class AIAutoController implements Initializable{
     	}
     	
     }
-
-// @FXML
-// void GenerateImages(MouseEvent event) throws IOException, InterruptedException, SQLException {
-//	 Process p = null;
-//	 try {
-//		 
-//		 
-//		    ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py", textInput.getText());
-//		    p = pb.start();
-//
-//	        // Read output
-//	        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-//	        String output;
-//	        while ((output = in.readLine()) != null) {
-//	            System.out.println(output);
-//	        }
-//
-//	        // Read any errors from the attempted command
-//	        BufferedReader err = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-//	        String error;
-//	        while ((error = err.readLine()) != null) {
-//	            System.err.println("Error: " + error);
-//	        }
-//		} catch (IOException e) {
-//		    e.printStackTrace();
-//		}
-//
-//	     
-//	 p.waitFor();
-//
-//	 
-//	 Image i1 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_1.jpg");
-//	 image1.setImage(i1);
-//    
-//	 Image i2 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_2.jpg");
-//	 image2.setImage(i2);
-//	 
-//	 Image i3 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_3.jpg");
-//	 image3.setImage(i3);
-//	
-//	 Image i4 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_4.jpg");
-//	 image4.setImage(i4);
-//    
-//	 Image i5 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_5.jpg");
-//	 image5.setImage(i5);
-//	 
-//	 Image i6 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_6.jpg");
-//	 image6.setImage(i6);
-//    
-//	 Image i7 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_7.jpg");
-//	 image7.setImage(i7);
-//	 
-//	 Image i8 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_8.jpg");
-//	 image8.setImage(i8);
-//    
-//	 Image i9 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_9.jpg");
-//	 image9.setImage(i9);
-//	 
-//	 Image i10 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_10.jpg");
-//	 image10.setImage(i10);
-//	 
-//	 
-// }
  
  @FXML
  void UpdateProjectImage(MouseEvent event) throws SQLException, IOException {
@@ -326,13 +263,6 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	imagebtns.add(image8btn);
 	imagebtns.add(image9btn);
 	imagebtns.add(image10btn);
-	
-//	ArrayList<Integer> IDs = new ArrayList<>();
-//	for(Project p : CarpentryLogic.getInstance().getProjects()) {
-//		IDs.add(p.getProjectID());
-//	}
-//	ObservableList<Integer> projectIDs = FXCollections.observableArrayList(IDs);
-//	projectID.getItems().addAll(projectIDs);
 	
 	Image i1 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_1.jpg");
 	 image1.setImage(i1);

@@ -19,6 +19,8 @@ public final class Consts {
 		public static final String SQL_SEL_STOCK = "SELECT * FROM Stock";
 		public static final String SQL_SEL_ORDEREDMATERIALS = "SELECT * FROM OrderedMaterials";
 		
+		public static final String SQL_SEL_PROJECT_IMAGE = "{call qryGETImage(?)}";
+		
 		public static final String SQL_INS_CUSTOMER = "{ call qryInsCustomer1(?,?,?,?,?) }";
 		public static final String SQL_INS_ORDERS = "{ call qryInsOrder(?,?,?,?,?) }";
 		public static final String SQL_INS_PROJECTS = "{ call qryInsProject(?,?,?,?) }";

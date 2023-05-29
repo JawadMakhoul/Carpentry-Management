@@ -16,6 +16,7 @@ import Model.GlobalProjectID;
 import Model.Order;
 import Model.Project;
 import Model.ProjectDetailsToShow;
+import Model.ProjectDetailsToShowNonStatic;
 import Model.ProjectItems;
 import Model.Section;
 import javafx.beans.property.ReadOnlyIntegerWrapper;
@@ -39,6 +40,7 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -55,35 +57,35 @@ public class ProjectDetailsButtonController implements Initializable{
     private AnchorPane screen;
     
     @FXML
-    private TableColumn<ProjectDetailsToShow, String> color;
+    private TableColumn<ProjectDetailsToShowNonStatic, String> color;
 
     @FXML
-    private TableColumn<ProjectDetailsToShow, String> itemHeight;
+    private TableColumn<ProjectDetailsToShowNonStatic, String> itemHeight;
 
     @FXML
-    private TableColumn<ProjectDetailsToShow, String> itemID;
+    private TableColumn<ProjectDetailsToShowNonStatic, String> itemID;
 
     @FXML
-    private TableColumn<ProjectDetailsToShow, String> itemName;
+    private TableColumn<ProjectDetailsToShowNonStatic, String> itemName;
 
     @FXML
-    private TableColumn<ProjectDetailsToShow, String> itemWidth;
+    private TableColumn<ProjectDetailsToShowNonStatic, String> itemWidth;
 
     @FXML
     private Pane pnlOverview;
 
     @FXML
-    private TableColumn<ProjectDetailsToShow, String> quantity;
+    private TableColumn<ProjectDetailsToShowNonStatic, String> quantity;
 
 
     @FXML
-    private TableView<ProjectDetailsToShow> tableView;
+    private TableView<ProjectDetailsToShowNonStatic> tableView;
 
     @FXML
-    private TableColumn<ProjectDetailsToShow, String> woodType;
+    private TableColumn<ProjectDetailsToShowNonStatic, String> woodType;
     
     @FXML
-    private TableColumn<ProjectDetailsToShow, String> sectionField;
+    private TableColumn<ProjectDetailsToShowNonStatic, String> sectionField;
     @FXML
     private ScrollPane pnl;
     
@@ -224,8 +226,8 @@ public class ProjectDetailsButtonController implements Initializable{
     void showProjectDetails(ActionEvent event) {
 
     	ProjectDetailsToShow pdts = null;
-    	 ArrayList<ProjectDetailsToShow> arraylistToShow = new ArrayList<>();
-    	 ObservableList<ProjectDetailsToShow> ObservableList_CP = FXCollections.observableArrayList();
+    	 ArrayList<ProjectDetailsToShowNonStatic> arraylistToShow = new ArrayList<>();
+    	 ObservableList<ProjectDetailsToShowNonStatic> ObservableList_CP = FXCollections.observableArrayList();
        for(Project p : CarpentryLogic.getInstance().getProjects()) {
     	   if(projectIDComboBox.getSelectionModel().getSelectedItem()== p.getProjectID()) {
        			for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
@@ -234,27 +236,31 @@ public class ProjectDetailsButtonController implements Initializable{
        				
        					
        					
-       					//sectionField.setText(pi.getSection());
-       					projectCategoryField.setText(p.getProjectCategory());
-       					projectIDField.setText(pi.getProjectID());
-       					customerNameField.setText(p.getCustomerID());
-       					handsField.setText(pi.getModelNumberOfHands());
-       					
-//       					itemName.setCellValueFactory(new PropertyValueFactory<>("ItemName"));
-//       			        itemHeight.setCellValueFactory(new PropertyValueFactory<>("itemHeight"));
-//       			        itemWidth.setCellValueFactory(new PropertyValueFactory<>("itemWidth"));
-//       			        woodType.setCellValueFactory(new PropertyValueFactory<>("woodType"));
-//       			        quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-       					sectionField.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pi.getSection()));
-      					itemID.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(Integer.toString(pi.getItemID())));
-       					itemName.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pi.getItemName()));
-       					itemHeight.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(Integer.toString(pi.getHeight())));
-      					itemWidth.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(Integer.toString(pi.getWidth())));
-       					woodType.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pi.getWoodType()));
-       					quantity.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(Integer.toString(pi.getQuantity())));
-       					color.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pi.getColor()));
-//       					
-       					arraylistToShow.add(pdts);
+       				projectCategoryField.setText(p.getProjectCategory());
+					projectIDField.setText(pi.getProjectID());
+					customerNameField.setText(p.getCustomerID());
+					handsField.setText(pi.getModelNumberOfHands());
+					sectionField.setCellValueFactory(new PropertyValueFactory<>("section"));
+					itemID.setCellValueFactory(new PropertyValueFactory<>("itemID"));
+					itemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+					itemHeight.setCellValueFactory(new PropertyValueFactory<>("itemHeight"));
+					itemWidth.setCellValueFactory(new PropertyValueFactory<>("itemWidth"));
+					woodType.setCellValueFactory(new PropertyValueFactory<>("woodType"));
+					quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+					color.setCellValueFactory(new PropertyValueFactory<>("color"));
+					
+//					if(p.getImage()==null)
+//						projectImage.setImage(null);
+//					
+				//	else{
+						String imageSTR = CarpentryLogic.getInstance().GetImage(p);
+						Image i = new Image(imageSTR);
+						projectImage.setImage(i);
+				//	}
+			        
+					ProjectDetailsToShowNonStatic pdtsToArray = new ProjectDetailsToShowNonStatic(p.getCustomerID(),pi.getProjectID(),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands(),pdts.getImage());
+					
+					arraylistToShow.add(pdtsToArray);
                		}
        			}
     	   }

@@ -30,8 +30,10 @@ import Model.Section;
 import Model.ProjectItems;
 import Model.Customer;
 import Model.Order;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -43,6 +45,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -65,6 +69,9 @@ public class ProjectItemsController implements Initializable{
 
     @FXML
     private ComboBox<WoodType> woodType;
+    
+    @FXML
+    private ImageView loading;
     
     @FXML
     private ComboBox<AxleDegree> brzolDegree;
@@ -234,7 +241,6 @@ public class ProjectItemsController implements Initializable{
             GlobalProjectID gpid = (GlobalProjectID) stage.getUserData();
             Integer i = gpid.getId();
         	String s = i.toString();
-        	System.out.println(s);
         	pi2.setProjectID(s);
         	
         	CarpentryLogic.getInstance().addProjectItems(pi2);
@@ -433,10 +439,9 @@ public class ProjectItemsController implements Initializable{
 		}
     	
     	for(Project p : CarpentryLogic.getInstance().getProjects()) {
-    		if(p.getProjectID()==GlobalProjectID.getId()) {
-    			System.out.println("qwqwqwqwqwqwqwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+    		if(p.getProjectID()==GlobalProjectID.getId()) 
     			pdts.setProjectCategory(p.getProjectCategory());
-    		}
+    		
     	}
     	Order o = new Order();
     	o.setCustomerName(customerName);
@@ -463,53 +468,79 @@ public class ProjectItemsController implements Initializable{
     
     @FXML
     void Finish(MouseEvent event) throws IOException, InterruptedException {
-    	System.out.println(sec.getSectionName());
-    	if(!sec.getSectionName().equals("Other")) {
-    	
-//    		Process p = null;
-//   	 		try {
-//   	 			ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py", sec.getSectionName() +" with " + pi.getColor() + "color.");
-//   	 			p = pb.start();
-//
-//   	 			// Read output
-//   	 			BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-//   	 			String output;
-//   	 			while ((output = in.readLine()) != null) {
-//   	 				System.out.println(output);
-//   	 			}
-//
-//   	 			// Read any errors from the attempted command
-//   	 			BufferedReader err = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-//   	 			String error;
-//   	 			while ((error = err.readLine()) != null) {
-//   	 				System.err.println("Error: " + error);
-//   	 			}
-//   	 		} catch (IOException e) {
-//   		    e.printStackTrace();
-//   	 		}
-//   	 		p.waitFor();
-   	 		
-   	 		/////////////////////////////////////////////////////////////////////////////////////////////
-   	 		Parent pane = FXMLLoader.load(getClass().getResource("/View/AI_Auto.fxml"));
-   	 		Scene scene = new Scene(pane);
-   	 		Stage stage12 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-   	 		stage12.setScene(scene);
-   	 		stage12.setResizable(false);
-   	 		stage12.setTitle("Awni Wood Work");
-   	 		stage12.show();
-    		}
-    	
-    	else {
-    		////////////////////////////////////////////////////////////////////////////////////////
-    		Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
-   	 		Scene scene = new Scene(pane);
-   	 		Stage stage12 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-   	 		stage12.setScene(scene);
-   	 		stage12.setResizable(false);
-   	 		stage12.setTitle("Awni Wood Work");
-   	 		stage12.show();
-    	}
+        if(!sec.getSectionName().equals("Other")) {
+            // Set initial loading image
+            Image loadingImage = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\737.gif");
+            loading.setImage(loadingImage);
+
+            Task<Void> task = new Task<Void>() {
+                @Override
+                protected Void call() throws Exception {
+                    Process p = null;
+                    try {
+                        ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py", sec.getSectionName() +" with " + pi.getColor() + "color.");
+                        p = pb.start();
+
+                        // Read output
+                        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                        String output;
+                        while ((output = in.readLine()) != null) {
+                            System.out.println(output);
+                        }
+
+                        // Read any errors from the attempted command
+                        BufferedReader err = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+                        String error;
+                        while ((error = err.readLine()) != null) {
+                            System.err.println("Error: " + error);
+                        }
+
+                        p.waitFor();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    Platform.runLater(() -> {
+                        try {
+                            loading.setImage(null);  // Set loading image to null
+
+                            // Open new Scene
+                            try {
+                                Parent pane = FXMLLoader.load(getClass().getResource("/View/AI_Auto.fxml"));
+                                Scene scene = new Scene(pane);
+                                Stage stage12 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                stage12.setScene(scene);
+                                stage12.setResizable(false);
+                                stage12.setTitle("Awni Wood Work");
+                                stage12.show();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            // Do the same for other ImageViews...
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    });
+
+                    return null;
+                }
+            };
+
+            new Thread(task).start(); // Start the task in a new thread
+        }
+        else {
+            ////////////////////////////////////////////////////////////////////////////////////////
+            Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
+            Scene scene = new Scene(pane);
+            Stage stage12 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage12.setScene(scene);
+            stage12.setResizable(false);
+            stage12.setTitle("Awni Wood Work");
+            stage12.show();
+        }
     }
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub

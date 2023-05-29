@@ -581,6 +581,31 @@ public class CarpentryLogic {
 			}
 			return false;
 		}
+		
+		public  String GetImage(Project p) {
+			
+			String result = null;
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_SEL_PROJECT_IMAGE)) {
+					
+					stmt.setInt(1, p.getProjectID());
+					
+					 ResultSet rs = stmt.executeQuery();
+			            
+			            // If the ResultSet has a result, assign it to the 'result' variable
+			            if (rs.next()) {
+			                result = rs.getString(1); // Adjust this if your image is not the first column in the ResultSet
+			            }
+			        } catch (SQLException e) {
+			            e.printStackTrace();
+			        }
+			    } catch (ClassNotFoundException e) {
+			        e.printStackTrace();
+			    }
+			    return result;
+		}
 
 }
 

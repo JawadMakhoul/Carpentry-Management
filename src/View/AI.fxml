@@ -129,6 +129,12 @@
                   <Button fx:id="image3btn" layoutX="520.0" layoutY="458.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
                   <Button fx:id="image10btn" layoutX="979.0" layoutY="692.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
                   <ComboBox fx:id="projectID" layoutX="989.0" layoutY="214.0" prefHeight="51.0" prefWidth="234.0" promptText="Project ID" styleClass="comboBox" />
+                  <Text fill="#d96e3a" layoutX="405.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose image to the project">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Text>
+                  <ImageView fx:id="loading" fitHeight="256.0" fitWidth="256.0" layoutX="464.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
         </items>

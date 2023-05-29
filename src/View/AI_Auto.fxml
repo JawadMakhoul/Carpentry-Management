@@ -119,6 +119,11 @@
                   <Button fx:id="image4btn" layoutX="755.0" layoutY="269.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
                   <Button fx:id="image3btn" layoutX="524.0" layoutY="269.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
                   <Button fx:id="image10btn" layoutX="983.0" layoutY="503.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
+                  <Text fill="#d96e3a" layoutX="421.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose image to the project">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Text>
                </children>
             </AnchorPane>
         </items>

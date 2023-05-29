@@ -236,50 +236,54 @@ public class ProjectDetailsToShowController implements Initializable{
 		Buttons.add(ProjectDetails);
 	
         ProjectDetailsToShow pdts = ProjectItemsController.getPdts();
+        System.out.println(pdts.getProjectID());
         ObservableList<ProjectDetailsToShowNonStatic> ObservableList_CP = FXCollections.observableArrayList();
         ArrayList<ProjectDetailsToShowNonStatic> arraylistToShow = new ArrayList<>();
+        
         for(Project p : CarpentryLogic.getInstance().getProjects()) {
-        for(Section s : CarpentryLogic.getInstance().getSections()) {
+        	
+        	if(pdts.getProjectID().equals(Integer.toString(p.getProjectID()))) {
+        		
+        	
+        		for(Section s : CarpentryLogic.getInstance().getSections()) {
         	
        
         
-        	if(s.getProjectID().equals(Integer.toString(p.getProjectID()))) {
+        		if(s.getProjectID().equals(Integer.toString(p.getProjectID()))) {
         			for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
         			if(pi.getProjectID().equals(Integer.toString(p.getProjectID())) && (s.getSectionName().equals(pi.getSection()))) {
-        				System.out.println(pi.getItemID());
         				
-        					
-        					
-        					//sectionField.setText(pdts.getSection());
         					projectCategoryField.setText(p.getProjectCategory());
         					projectIDField.setText(pi.getProjectID());
         					customerNameField.setText(p.getCustomerID());
         					handsField.setText(pi.getModelNumberOfHands());
-        					sectionField.setCellValueFactory(cellData -> new ReadOnlyStringWrapper (pi.getSection()));
-        					itemID.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(Integer.toString(pi.getItemID())));
-        					itemName.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pi.getItemName()));
-        					itemHeight.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(Integer.toString(pi.getHeight())));
-        					itemWidth.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(Integer.toString(pi.getWidth())));
-        					woodType.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pi.getWoodType()));
-        					quantity.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(Integer.toString(pi.getQuantity())));
-        					color.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pi.getColor()));
+        					sectionField.setCellValueFactory(new PropertyValueFactory<>("section"));
+        					itemID.setCellValueFactory(new PropertyValueFactory<>("itemID"));
+        					itemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+        					itemHeight.setCellValueFactory(new PropertyValueFactory<>("itemHeight"));
+        					itemWidth.setCellValueFactory(new PropertyValueFactory<>("itemWidth"));
+        					woodType.setCellValueFactory(new PropertyValueFactory<>("woodType"));
+        					quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        					color.setCellValueFactory(new PropertyValueFactory<>("color"));
         					
         					Image i = new Image(pdts.getImage());
         			        projectImage.setImage(i);
         					ProjectDetailsToShowNonStatic pdtsToArray = new ProjectDetailsToShowNonStatic(p.getCustomerID(),pi.getProjectID(),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands(),pdts.getImage());
         					
-        				//	pdts.setWoodType();
-        					
         					arraylistToShow.add(pdtsToArray);
+        					
+        					
                 		}
         			}
         			
-        	}
-        	} // end of projects loop
+        		}
+        	
+        	}// end of section loop
+        } // end of the if
         
-        }// end of section loop
+        }// end of projects loop
         ObservableList_CP.addAll(arraylistToShow);
-        
+       
         tableView.setItems(ObservableList_CP);
         
         
