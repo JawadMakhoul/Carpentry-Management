@@ -17,6 +17,7 @@ import Model.GlobalProjectID;
 import Model.Order;
 import Model.Project;
 import Model.ProjectDetailsToShow;
+import Model.ProjectDetailsToShowNonStatic;
 import Model.ProjectItems;
 import Model.Section;
 import javafx.beans.property.ReadOnlyIntegerWrapper;
@@ -56,35 +57,35 @@ public class ProjectDetailsToShowController implements Initializable{
     private AnchorPane screen;
     
     @FXML
-    private TableColumn<ProjectDetailsToShow, String> color;
+    private TableColumn<ProjectDetailsToShowNonStatic, String> color;
 
     @FXML
-    private TableColumn<ProjectDetailsToShow, String> itemHeight;
+    private TableColumn<ProjectDetailsToShowNonStatic, String> itemHeight;
 
     @FXML
-    private TableColumn<ProjectDetailsToShow, String> itemID;
+    private TableColumn<ProjectDetailsToShowNonStatic, String> itemID;
 
     @FXML
-    private TableColumn<ProjectDetailsToShow, String> itemName;
+    private TableColumn<ProjectDetailsToShowNonStatic, String> itemName;
 
     @FXML
-    private TableColumn<ProjectDetailsToShow, String> itemWidth;
+    private TableColumn<ProjectDetailsToShowNonStatic, String> itemWidth;
 
     @FXML
     private Pane pnlOverview;
 
     @FXML
-    private TableColumn<ProjectDetailsToShow, String> quantity;
+    private TableColumn<ProjectDetailsToShowNonStatic, String> quantity;
 
 
     @FXML
-    private TableView<ProjectDetailsToShow> tableView;
+    private TableView<ProjectDetailsToShowNonStatic> tableView;
 
     @FXML
-    private TableColumn<ProjectDetailsToShow, String> woodType;
+    private TableColumn<ProjectDetailsToShowNonStatic, String> woodType;
     
     @FXML
-    private TableColumn<ProjectDetailsToShow, String> sectionField;
+    private TableColumn<ProjectDetailsToShowNonStatic, String> sectionField;
     
     @FXML
     private ScrollPane pnl;
@@ -235,12 +236,17 @@ public class ProjectDetailsToShowController implements Initializable{
 		Buttons.add(ProjectDetails);
 	
         ProjectDetailsToShow pdts = ProjectItemsController.getPdts();
-        ObservableList<ProjectDetailsToShow> ObservableList_CP = FXCollections.observableArrayList();
-        ArrayList<ProjectDetailsToShow> arraylistToShow = new ArrayList<>();
+        ObservableList<ProjectDetailsToShowNonStatic> ObservableList_CP = FXCollections.observableArrayList();
+        ArrayList<ProjectDetailsToShowNonStatic> arraylistToShow = new ArrayList<>();
         for(Project p : CarpentryLogic.getInstance().getProjects()) {
+        for(Section s : CarpentryLogic.getInstance().getSections()) {
+        	
+       
+        
+        	if(s.getProjectID().equals(Integer.toString(p.getProjectID()))) {
         			for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
-        			if((pi.getProjectID().equals(Integer.toString(p.getProjectID())))&& (pdts.getProjectID().equals(pi.getProjectID()))) {
-        				System.out.println(pi.getProjectID());
+        			if(pi.getProjectID().equals(Integer.toString(p.getProjectID())) && (s.getSectionName().equals(pi.getSection()))) {
+        				System.out.println(pi.getItemID());
         				
         					
         					
@@ -258,30 +264,25 @@ public class ProjectDetailsToShowController implements Initializable{
         					quantity.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(Integer.toString(pi.getQuantity())));
         					color.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pi.getColor()));
         					
-        					ProjectDetailsToShow pdtsToArray = null;
-        					pdtsToArray.setColor(pi.getColor());
-        					pdtsToArray.setCustomerName(p.getCustomerID());
-        					pdtsToArray.setItemHeight(Integer.toString(pi.getHeight()));
-        					pdtsToArray.setItemID(Integer.toString(pi.getItemID()));
-        					pdtsToArray.setItemName(pi.getItemName());
-        					pdtsToArray.setItemWidth(Integer.toString(pi.getWidth()));
-        					pdtsToArray.setModelNumberOFhands(pi.getModelNumberOfHands());
-        					pdtsToArray.setProjectCategory(p.getProjectCategory());
-        					pdtsToArray.setProjectID(pi.getProjectID());
-        					pdtsToArray.setQuantity(Integer.toString(pi.getQuantity()));
-        					pdtsToArray.setSection(pi.getSection());
-        					pdtsToArray.setWoodType(pi.getWoodType());
+        					Image i = new Image(pdts.getImage());
+        			        projectImage.setImage(i);
+        					ProjectDetailsToShowNonStatic pdtsToArray = new ProjectDetailsToShowNonStatic(p.getCustomerID(),pi.getProjectID(),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands(),pdts.getImage());
+        					
+        				//	pdts.setWoodType();
+        					
         					arraylistToShow.add(pdtsToArray);
                 		}
         			}
         			
-        }
+        	}
+        	} // end of projects loop
+        
+        }// end of section loop
         ObservableList_CP.addAll(arraylistToShow);
         
         tableView.setItems(ObservableList_CP);
         
-        Image i = new Image(pdts.getImage());
-        projectImage.setImage(i);
+        
 	}
 
 

@@ -83,69 +83,91 @@ public class Order {
 	 //we have to chane=ge the numbers for a real ones 
 	
 	public int CalculateCost() {
-		 String p_ID= this.projectID,axleDegree;
-		
+		 String p_ID= this.projectID;
+		 boolean flag=true;
 		 int price = 0;
 		 
-		 for(Section s : CarpentryLogic.getInstance().getSections()) {
+		 for(Section s : CarpentryLogic.getInstance().getSections()) {System.out.println("1");
 			 		if(s.getProjectID().equals(p_ID)) {
 			 			switch (s.getAxleDegree()) {		 
 			 			
-			 			 case  "Degree_45" :
+			 			 case  "Degree_45" :{
 			 				 price = price + s.getQuantityOFaxle()*10;
-			 				 break;
-			 			 case  "Degree_155" :
+			 				 System.out.println("45/ "+price);
+			 				 break;}
+			 			 case  "Degree_155" :{
 			 				 price = price + s.getQuantityOFaxle()*11;
-			 				 break;
-			 			 case  "Degree_180" :
+			 				System.out.println("155/ "+price);
+			 				 break;}
+			 			 case  "Degree_180" :{
 			 				 price = price + s.getQuantityOFaxle()*13;
-			 				 break;
+			 				System.out.println("180/ "+price);
+			 				 break;}
 			 			 }
-			 		}
+			 		
 			 		
 			 		for(ProjectItems  i : CarpentryLogic.getInstance().getProjectItems()) {
-						 if (i.getProjectID() == p_ID) {
+						 if (i.getProjectID().equals(p_ID)) {
 							 switch (i.getWoodType()) {
 							 
-							 case  "Sandwich" :
+							 case  "Sandwich" :{
 								 price = price + i.getQuantity()*125;
-								 break;
-							 case  "Mdf" :
+								 System.out.println("Sandwich "+price);
+								 break;}
+							 case  "Mdf" :{
 								 price = price + i.getQuantity()*170;
-								 break;
-							 case  "Solid_Wood" :
+								 System.out.println("Mdf "+price);
+								 break;}
+							 case  "Solid_Wood" :{
 								 price = price + i.getQuantity()*110;
-								 break;
-							 case  "Melamine" :
+								 System.out.println("Solid "+price);
+								 break;}
+							 case  "Melamine" :{
 								 price = price + i.getQuantity()*115;
-								 break;
-							 case  "Particleboard" :
+								 System.out.println("melamine "+price);
+								 break;}
+							 case  "Particleboard" :{
 								 price = price + i.getQuantity()*80;
-								 break;
+								 System.out.println("Particleboard "+price);
+								 break;}
 						 }
+							 if(flag) {
 							 switch (i.getModelNumberOfHands()) {
 
-							 case  "s125" :
+							 case  "s125" :{
 								 price = price + s.getQuantityOFhands()*10;
-								 break;
-							 case  "f120" :
+								 System.out.println("s125 "+price);
+								 flag=false;
+								 break;}
+							 case  "f120" :{
 								 price = price + s.getQuantityOFhands()*11;
-								 break;
-							 case  "r452" :
+								 System.out.println("f120 "+price);
+								 flag=false;
+								 break;}
+							 case  "r452" :{
 								 price = price + s.getQuantityOFhands()*12;
-								 break;
-							 case  "gh32" :
+								 System.out.println("r452 "+price);
+								 flag=false;
+								 break;}
+							 case  "gh32" :{
 								 price = price + s.getQuantityOFhands()*14;
-								 break;
-							 case  "a17" :
+								 System.out.println("gh32 "+price);
+								 flag=false;
+								 break;}
+							 case  "a17" :{
 								 price = price + s.getQuantityOFhands()*15;
-								 break;
+								 System.out.println("a17 "+price);
+								 flag=false;
+								 break;}
+							 
+							 
 						 }
+							 }
 						 }
 					 }
 			 			
-		 }
-		// this.cost=price;
+		 }}
+		 this.cost=price;
 		return price;
 	}
 	
