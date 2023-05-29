@@ -84,10 +84,13 @@ public class ProjectDetailsToShowController implements Initializable{
     private TableColumn<ProjectDetailsToShow, String> woodType;
     
     @FXML
+    private TableColumn<ProjectDetailsToShow, String> sectionField;
+    
+    @FXML
     private ScrollPane pnl;
     
     @FXML
-    private TextField sectionField,projectCategoryField,projectIDField,customerNameField,handsField;
+    private TextField projectCategoryField,projectIDField,customerNameField,handsField;
     
     @FXML
     private ImageView projectImage;
@@ -237,24 +240,38 @@ public class ProjectDetailsToShowController implements Initializable{
         for(Project p : CarpentryLogic.getInstance().getProjects()) {
         			for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
         			if((pi.getProjectID().equals(Integer.toString(p.getProjectID())))&& (pdts.getProjectID().equals(pi.getProjectID()))) {
-
+        				System.out.println(pi.getProjectID());
         				
         					
         					
-        					sectionField.setText(pdts.getSection());
-        					projectCategoryField.setText(pdts.getProjectCategory());
-        					projectIDField.setText(pdts.getProjectID());
-        					customerNameField.setText(pdts.getCustomerName());
-        					handsField.setText(pdts.getModelNumberOFhands());
-        					itemID.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pdts.getItemID()));
-        					itemName.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pdts.getItemName()));
-        					itemHeight.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pdts.getItemHeight()));
-        					itemWidth.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pdts.getItemWidth()));
-        					woodType.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pdts.getWoodType()));
-        					quantity.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pdts.getQuantity()));
-        					color.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pdts.getColor()));
+        					//sectionField.setText(pdts.getSection());
+        					projectCategoryField.setText(p.getProjectCategory());
+        					projectIDField.setText(pi.getProjectID());
+        					customerNameField.setText(p.getCustomerID());
+        					handsField.setText(pi.getModelNumberOfHands());
+        					sectionField.setCellValueFactory(cellData -> new ReadOnlyStringWrapper (pi.getSection()));
+        					itemID.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(Integer.toString(pi.getItemID())));
+        					itemName.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pi.getItemName()));
+        					itemHeight.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(Integer.toString(pi.getHeight())));
+        					itemWidth.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(Integer.toString(pi.getWidth())));
+        					woodType.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pi.getWoodType()));
+        					quantity.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(Integer.toString(pi.getQuantity())));
+        					color.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pi.getColor()));
         					
-        					arraylistToShow.add(pdts);
+        					ProjectDetailsToShow pdtsToArray = null;
+        					pdtsToArray.setColor(pi.getColor());
+        					pdtsToArray.setCustomerName(p.getCustomerID());
+        					pdtsToArray.setItemHeight(Integer.toString(pi.getHeight()));
+        					pdtsToArray.setItemID(Integer.toString(pi.getItemID()));
+        					pdtsToArray.setItemName(pi.getItemName());
+        					pdtsToArray.setItemWidth(Integer.toString(pi.getWidth()));
+        					pdtsToArray.setModelNumberOFhands(pi.getModelNumberOfHands());
+        					pdtsToArray.setProjectCategory(p.getProjectCategory());
+        					pdtsToArray.setProjectID(pi.getProjectID());
+        					pdtsToArray.setQuantity(Integer.toString(pi.getQuantity()));
+        					pdtsToArray.setSection(pi.getSection());
+        					pdtsToArray.setWoodType(pi.getWoodType());
+        					arraylistToShow.add(pdtsToArray);
                 		}
         			}
         			

@@ -72,7 +72,7 @@ public class ProjectItemsController implements Initializable{
     @FXML
     private ComboBox<SectionColor> color;
     
-    private Section s = new Section();
+    private Section sec = new Section();
     private ProjectItems pi = new ProjectItems();
     
     private  static ProjectDetailsToShow pdts;
@@ -207,7 +207,7 @@ public class ProjectItemsController implements Initializable{
     @FXML
     void AddAnotherItem(MouseEvent event) {
 
-    	ProjectItems pi = new ProjectItems();
+    	ProjectItems pi2 = new ProjectItems();
 
     	try {
     	    if (projectSection.getSelectionModel().getSelectedItem() == null ||
@@ -221,27 +221,39 @@ public class ProjectItemsController implements Initializable{
 
     	        throw new IllegalArgumentException("Please enter all required fields.");
     	    }
-    	    pi.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
-    	    pi.setItemName(ItemName.getText());
-    	    pi.setHeight(Integer.parseInt(height.getText()));
-    	    pi.setWidth(Integer.parseInt(width.getText()));
-    	    pi.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
-    	    pi.setQuantity(Integer.parseInt(quantity.getText()));
-    	    pi.setColor(color.getValue().toString());
+    	    pi2.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
+    	    pi2.setItemName(ItemName.getText());
+    	    pi2.setHeight(Integer.parseInt(height.getText()));
+    	    pi2.setWidth(Integer.parseInt(width.getText()));
+    	    pi2.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
+    	    pi2.setQuantity(Integer.parseInt(quantity.getText()));
+    	    pi2.setColor(color.getValue().toString());
     		Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
             GlobalProjectID gpid = (GlobalProjectID) stage.getUserData();
             Integer i = gpid.getId();
         	String s = i.toString();
-        	pi.setProjectID(s);
+        	System.out.println(s);
+        	pi2.setProjectID(s);
         	
-        	CarpentryLogic.getInstance().addProjectItems(pi);
+        	CarpentryLogic.getInstance().addProjectItems(pi2);
         	
         	ItemName.setText(null);
         	height.setText(null);
         	width.setText(null);
         	//quantity.setText(null);
         	//woodType.setValue(null);
+        	
+        	pdts.setItemID(Integer.toString(pi2.getItemID()));
+        	pdts.setItemName(pi2.getItemName());
+        	pdts.setItemHeight(Integer.toString(pi2.getHeight()));
+        	pdts.setItemWidth(Integer.toString(pi2.getWidth()));
+        	pdts.setWoodType(pi2.getWoodType());
+        	pdts.setQuantity(Integer.toString(pi2.getQuantity()));
+        	pdts.setSection(pi2.getSection());
+        	pdts.setColor(pi2.getColor());
+        	pdts.setModelNumberOFhands(pi2.getModelNumberOfHands());
+        	
     	    // Rest of the code when all fields are valid
     	} catch (IllegalArgumentException e) {
     	    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -293,6 +305,10 @@ public class ProjectItemsController implements Initializable{
 	    	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
 	    	s.setAxleDegree(brzolDegree.getSelectionModel().getSelectedItem().toString());
 	    	CarpentryLogic.getInstance().addSection(s);
+	    	
+	    	if(!s.getSectionName().equals("Other")){
+	    		sec.setSectionName(s.getSectionName());
+	    	}
 	    	
     	
 //    	try {
@@ -361,7 +377,7 @@ public class ProjectItemsController implements Initializable{
 //        	pi.setProjectID(s1);
 //        	pi.setModelNumberOfHands(handsModelNumber.getSelectionModel().getSelectedItem().toString());
 
-        	CarpentryLogic.getInstance().addProjectItems(pi);
+        //	CarpentryLogic.getInstance().addProjectItems(pi);
         	ArrayList<Stock> stock = new ArrayList<Stock>();
         	stock= CarpentryLogic.getInstance().getStocks();
         	for(Stock s11 : stock) {
@@ -399,15 +415,7 @@ public class ProjectItemsController implements Initializable{
 //	    alert.showAndWait();
 //    }
     	
-    	pdts.setItemID(Integer.toString(pi.getItemID()));
-    	pdts.setItemName(pi.getItemName());
-    	pdts.setItemHeight(Integer.toString(pi.getHeight()));
-    	pdts.setItemWidth(Integer.toString(pi.getWidth()));
-    	pdts.setWoodType(pi.getWoodType());
-    	pdts.setQuantity(Integer.toString(pi.getQuantity()));
-    	pdts.setSection(pi.getSection());
-    	pdts.setColor(pi.getColor());
-    	pdts.setModelNumberOFhands(pi.getModelNumberOfHands());
+    	
     	}
     
     
@@ -424,7 +432,7 @@ public class ProjectItemsController implements Initializable{
 		}
     	
     	for(Project p : CarpentryLogic.getInstance().getProjects()) {
-    		if(Integer.toString(p.getProjectID()).equals(GlobalProjectID.getId())) {
+    		if(p.getProjectID()==GlobalProjectID.getId()) {
     			System.out.println("qwqwqwqwqwqwqwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
     			pdts.setProjectCategory(p.getProjectCategory());
     		}
@@ -454,12 +462,12 @@ public class ProjectItemsController implements Initializable{
     
     @FXML
     void Finish(MouseEvent event) throws IOException, InterruptedException {
-
-    	if(!s.getSectionName().equals("Other")) {
+    	System.out.println(sec.getSectionName());
+    	if(!sec.getSectionName().equals("Other")) {
     	
     		Process p = null;
    	 		try {
-   	 			ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py", s.getSectionName() +" with " + pi.getColor() + "color.");
+   	 			ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py", sec.getSectionName() +" with " + pi.getColor() + "color.");
    	 			p = pb.start();
 
    	 			// Read output
