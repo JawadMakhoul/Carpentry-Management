@@ -95,6 +95,7 @@
             </Label>
                   <TableView fx:id="tableView" layoutX="37.0" layoutY="546.0" prefHeight="377.0" prefWidth="829.0">
                     <columns>
+                        <TableColumn fx:id="sectionField" minWidth="0.0" prefWidth="110.0" text="Section" />
                         <TableColumn fx:id="itemID" minWidth="0.0" prefWidth="110.0" text="Item ID" />
                         <TableColumn fx:id="itemName" minWidth="0.0" prefWidth="127.0" text="Item Name" />
                         <TableColumn fx:id="itemHeight" prefWidth="132.0" text="Item Height" />
@@ -107,11 +108,9 @@
                   <TextField fx:id="customerNameField" layoutX="270.0" layoutY="217.0" />
                   <TextField fx:id="projectIDField" layoutX="243.0" layoutY="378.0" />
                   <TextField fx:id="handsField" layoutX="818.0" layoutY="410.0" />
-                  <TextField fx:id="sectionField" layoutX="839.0" layoutY="299.0" />
                   <TextField fx:id="projectCategoryField" layoutX="830.0" layoutY="197.0" />
                   <Text layoutX="50.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name" />
                   <Text layoutX="612.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Model of hands" />
-                  <Text layoutX="636.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Section" />
                   <Text layoutX="598.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project category" />
                   <Text layoutX="50.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project ID" />
                   <ImageView fx:id="projectImage" fitHeight="150.0" fitWidth="200.0" layoutX="930.0" layoutY="598.0" pickOnBounds="true" preserveRatio="true" />

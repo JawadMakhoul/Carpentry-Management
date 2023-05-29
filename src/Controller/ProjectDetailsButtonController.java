@@ -83,13 +83,15 @@ public class ProjectDetailsButtonController implements Initializable{
     private TableColumn<ProjectDetailsToShow, String> woodType;
     
     @FXML
+    private TableColumn<ProjectDetailsToShow, String> sectionField;
+    @FXML
     private ScrollPane pnl;
     
     @FXML
     private ComboBox<Integer> projectIDComboBox;
     
     @FXML
-    private TextField sectionField,projectCategoryField,projectIDField,customerNameField,handsField;
+    private TextField projectCategoryField,projectIDField,customerNameField,handsField;
     
     @FXML
     private ImageView projectImage;
@@ -232,7 +234,7 @@ public class ProjectDetailsButtonController implements Initializable{
        				
        					
        					
-       					sectionField.setText(pi.getSection());
+       					//sectionField.setText(pi.getSection());
        					projectCategoryField.setText(p.getProjectCategory());
        					projectIDField.setText(pi.getProjectID());
        					customerNameField.setText(p.getCustomerID());
@@ -243,6 +245,7 @@ public class ProjectDetailsButtonController implements Initializable{
 //       			        itemWidth.setCellValueFactory(new PropertyValueFactory<>("itemWidth"));
 //       			        woodType.setCellValueFactory(new PropertyValueFactory<>("woodType"));
 //       			        quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+       					sectionField.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pi.getSection()));
       					itemID.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(Integer.toString(pi.getItemID())));
        					itemName.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pi.getItemName()));
        					itemHeight.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(Integer.toString(pi.getHeight())));
@@ -282,37 +285,7 @@ public class ProjectDetailsButtonController implements Initializable{
 		}
 		ObservableList<Integer> projectIDs = FXCollections.observableArrayList(IDs);
 		projectIDComboBox.getItems().addAll(projectIDs);
-//        ProjectDetailsToShow pdts = CurrentProjectsController.getPdts();
-//        ObservableList<ProjectDetailsToShow> ObservableList_CP = FXCollections.observableArrayList();
-//        ArrayList<ProjectDetailsToShow> arraylistToShow = new ArrayList<>();
-//        for(Project p : CarpentryLogic.getInstance().getProjects()) {
-//        			for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
-//        			if((pi.getProjectID().equals(Integer.toString(p.getProjectID())))&& (pdts.getProjectID().equals(pi.getProjectID()))) {
-//
-//        				
-//        					
-//        					
-//        					sectionField.setText(pdts.getSection());
-//        					projectCategoryField.setText(pdts.getProjectCategory());
-//        					projectIDField.setText(pdts.getProjectID());
-//        					customerNameField.setText(pdts.getCustomerName());
-//        					handsField.setText(pdts.getModelNumberOFhands());
-//        					itemID.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pdts.getItemID()));
-//        					itemName.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pdts.getItemName()));
-//        					itemHeight.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pdts.getItemHeight()));
-//        					itemWidth.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pdts.getItemWidth()));
-//        					woodType.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pdts.getWoodType()));
-//        					quantity.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pdts.getQuantity()));
-//        					color.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(pdts.getColor()));
-//        					
-//        					arraylistToShow.add(pdts);
-//                		}
-//        			}
-//        			
-//        }
-//        ObservableList_CP.addAll(arraylistToShow);
-//        
-//        tableView.setItems(ObservableList_CP);
+
 	}
 
 

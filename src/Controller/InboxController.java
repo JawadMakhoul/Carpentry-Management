@@ -461,6 +461,138 @@ public class InboxController implements Initializable{
 		ObservableList<String> customersEmails = FXCollections.observableArrayList(CustEmails);
 		emails.getItems().addAll(customersEmails);
 		
+		
+		Properties props = new Properties();
+		props.setProperty("mail.store.protocol", "imaps");
+		props.setProperty("mail.imaps.host", "outlook.office365.com");
+		props.setProperty("mail.imaps.port", "993");
+		props.setProperty("mail.imaps.ssl.enable", "true");
+
+		// create a new session with authentication
+		Session session = Session.getDefaultInstance(props, new Authenticator() {
+		    protected PasswordAuthentication getPasswordAuthentication() {
+		        return new PasswordAuthentication("awniwoodwork@hotmail.com", "Awnihasanjawad");
+		    }
+		});
+
+		// connect to the email server and open the inbox folder
+		Store store = null;
+		try {
+			store = session.getStore("imaps");
+		} catch (NoSuchProviderException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			store.connect();
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Folder inbox = null;
+		try {
+			inbox = store.getFolder("INBOX");
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			inbox.open(Folder.READ_ONLY);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// Create the table view
+		ObservableList<Email> emails = FXCollections.observableArrayList();
+		tableview.setItems(emails);
+
+		// Set the columns
+		from.setCellValueFactory(new PropertyValueFactory<>("From"));
+		subject.setCellValueFactory(new PropertyValueFactory<>("Subject"));
+		content.setCellValueFactory(new PropertyValueFactory<>("Content"));
+		
+		// Get the messages and add them to the table
+		Message[] messages = null;
+		try {
+			messages = inbox.getMessages();
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (int i = messages.length-1;i>=0;i--) {
+			Message message = messages[i];
+		    String from = null;
+			try {
+				from = Arrays.toString(message.getFrom());
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    String subject = null;
+			try {
+				subject = message.getSubject();
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    String content = "";
+
+		    Object messageContent = null;
+			try {
+				messageContent = message.getContent();
+			} catch (IOException | MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    if (messageContent instanceof MimeMultipart) {
+		        // This message has multiple parts, so we need to extract the content of each part
+		        MimeMultipart multipart = (MimeMultipart) messageContent;
+		        try {
+					for (int i1 = 0; i1 < multipart.getCount(); i1++) {
+					    BodyPart bodyPart = multipart.getBodyPart(i1);
+					    String contentType = bodyPart.getContentType();
+					    
+					    if (contentType.startsWith("text/plain")) {
+					        // This is a text/plain part, so we can just append its content to the email content
+					        content += bodyPart.getContent();
+					    } else if (contentType.startsWith("image/png")) {
+					        // This is an image/png part, so we can decode the content and append it to the email content
+					        byte[] imageBytes = IOUtils.toByteArray(bodyPart.getInputStream());
+					        String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+					        content += "<img src='data:image/png;base64," + base64Image + "' />";
+					       
+					    } else {
+					        // This is not a recognized part type, so we ignore it
+					    }
+					}
+				} catch (MessagingException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		    } else {
+		        // This message has only one part, which is already the content
+		        content = messageContent.toString();
+		    }
+
+		    Email email = new Email(from, subject, content);
+		    emails.add(email);
+		}
+	
+
+		// close the connection and folder
+		try {
+			inbox.close(false);
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			store.close();
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 

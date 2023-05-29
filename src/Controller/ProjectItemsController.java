@@ -207,7 +207,7 @@ public class ProjectItemsController implements Initializable{
     @FXML
     void AddAnotherItem(MouseEvent event) {
 
-    	ProjectItems pi2 = new ProjectItems();
+    	ProjectItems pi = new ProjectItems();
 
     	try {
     	    if (projectSection.getSelectionModel().getSelectedItem() == null ||
@@ -221,27 +221,27 @@ public class ProjectItemsController implements Initializable{
 
     	        throw new IllegalArgumentException("Please enter all required fields.");
     	    }
-    	    pi2.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
-    	    pi2.setItemName(ItemName.getText());
-    	    pi2.setHeight(Integer.parseInt(height.getText()));
-    	    pi2.setWidth(Integer.parseInt(width.getText()));
-    	    pi2.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
-    	    pi2.setQuantity(Integer.parseInt(quantity.getText()));
-    	    pi2.setColor(color.getValue().toString());
+    	    pi.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
+    	    pi.setItemName(ItemName.getText());
+    	    pi.setHeight(Integer.parseInt(height.getText()));
+    	    pi.setWidth(Integer.parseInt(width.getText()));
+    	    pi.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
+    	    pi.setQuantity(Integer.parseInt(quantity.getText()));
+    	    pi.setColor(color.getValue().toString());
     		Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
             GlobalProjectID gpid = (GlobalProjectID) stage.getUserData();
             Integer i = gpid.getId();
         	String s = i.toString();
-        	pi2.setProjectID(s);
+        	pi.setProjectID(s);
         	
-        	CarpentryLogic.getInstance().addProjectItems(pi2);
+        	CarpentryLogic.getInstance().addProjectItems(pi);
         	
         	ItemName.setText(null);
         	height.setText(null);
         	width.setText(null);
-        	quantity.setText(null);
-
+        	//quantity.setText(null);
+        	//woodType.setValue(null);
     	    // Rest of the code when all fields are valid
     	} catch (IllegalArgumentException e) {
     	    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -254,7 +254,7 @@ public class ProjectItemsController implements Initializable{
 
     @FXML
     void AddSection(MouseEvent event) throws NumberFormatException, SQLException {
-    	
+    	Section s = new Section();
     	try {
     	    if (projectSection.getSelectionModel().getSelectedItem() == null) {
     	      	 throw new IllegalArgumentException("Please enter all required fields.");
@@ -269,50 +269,50 @@ public class ProjectItemsController implements Initializable{
     	    alert.showAndWait();
         }
 
-    	s.setSectionName(projectSection.getSelectionModel().getSelectedItem().toString());
+    	//s.setSectionName(projectSection.getSelectionModel().getSelectedItem().toString());
     	Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         GlobalProjectID gpid = (GlobalProjectID) stage.getUserData();
         Integer i = gpid.getId();
     	String s3 = i.toString();
     	s.setProjectID(s3);
-    	try {
-    	    if (projectSection.getSelectionModel().getSelectedItem() == null ||
-    	            ItemName.getText().isEmpty() ||
-    	            height.getText().isEmpty() ||
-    	            width.getText().isEmpty() ||
-    	            woodType.getSelectionModel().getSelectedItem() == null ||
-    	            quantity.getText().isEmpty() ||
-    	            color.getValue() == null || handsQuantity.getText().equals("")|| !handsQuantity.getText().matches(".*\\d+.*")
-    	            || axleQuantity.getText().equals("")|| !axleQuantity.getText().matches(".*\\d+.*")|| brzolDegree.getSelectionModel().getSelectedItem().equals(null)
-    	            )
-    	            {
-    	    	 		throw new IllegalArgumentException("Please enter all required fields.");
-    	            }
+//    	try {
+//    	    if (projectSection.getSelectionModel().getSelectedItem() == null ||
+//    	            ItemName.getText().isEmpty() ||
+//    	            height.getText().isEmpty() ||
+//    	            width.getText().isEmpty() ||
+//    	            woodType.getSelectionModel().getSelectedItem() == null ||
+//    	            quantity.getText().isEmpty() ||
+//    	            color.getValue() == null || handsQuantity.getText().equals("")|| !handsQuantity.getText().matches(".*\\d+.*")
+//    	            || axleQuantity.getText().equals("")|| !axleQuantity.getText().matches(".*\\d+.*")|| brzolDegree.getSelectionModel().getSelectedItem().equals(null)
+//    	            )
+//    	            {
+//    	    	 		throw new IllegalArgumentException("Please enter all required fields.");
+//    	            }
 	    	s.setQuantityOFhands(Integer.parseInt(handsQuantity.getText()));
 	    	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
 	    	s.setAxleDegree(brzolDegree.getSelectionModel().getSelectedItem().toString());
 	    	CarpentryLogic.getInstance().addSection(s);
 	    	
     	
-    	try {
-    	    if (projectSection.getSelectionModel().getSelectedItem() == null ||
-    	            ItemName.getText().isEmpty() ||
-    	            height.getText().isEmpty() ||
-    	            width.getText().isEmpty() ||
-    	            woodType.getSelectionModel().getSelectedItem() == null ||
-    	            quantity.getText().isEmpty() ||
-    	            color.getValue() == null || handsModelNumber.getSelectionModel().getSelectedItem()==null) 
-    	            {
-
-    	        throw new IllegalArgumentException("Please enter all required fields.");
-    	    }
-    	    pi.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
-    	    pi.setItemName(ItemName.getText());
-    	    pi.setHeight(Integer.parseInt(height.getText()));
-    	    pi.setWidth(Integer.parseInt(width.getText()));
-    	    pi.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
-    	    pi.setQuantity(Integer.parseInt(quantity.getText()));
+//    	try {
+//    	    if (projectSection.getSelectionModel().getSelectedItem() == null ||
+//    	            ItemName.getText().isEmpty() ||
+//    	            height.getText().isEmpty() ||
+//    	            width.getText().isEmpty() ||
+//    	            woodType.getSelectionModel().getSelectedItem() == null ||
+//    	            quantity.getText().isEmpty() ||
+//    	            color.getValue() == null || handsModelNumber.getSelectionModel().getSelectedItem()==null) 
+//    	            {
+//
+//    	        throw new IllegalArgumentException("Please enter all required fields.");
+//    	    }
+//    	    pi.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
+//    	    pi.setItemName(ItemName.getText());
+//    	    pi.setHeight(Integer.parseInt(height.getText()));
+//    	    pi.setWidth(Integer.parseInt(width.getText()));
+//    	    pi.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
+//    	    pi.setQuantity(Integer.parseInt(quantity.getText()));
     	    
     	    switch(color.getSelectionModel().getSelectedItem().toString()) {
     	  
@@ -353,13 +353,13 @@ public class ProjectItemsController implements Initializable{
     	    	}
     	    }
     	    
-    		Node node1 = (Node) event.getSource();
-            Stage stage1 = (Stage) node1.getScene().getWindow();
-            GlobalProjectID p1 = (GlobalProjectID) stage1.getUserData();
-            Integer i1 = p1.getId();
-        	String s1 = i1.toString();
-        	pi.setProjectID(s1);
-        	pi.setModelNumberOfHands(handsModelNumber.getSelectionModel().getSelectedItem().toString());
+//    		Node node1 = (Node) event.getSource();
+//            Stage stage1 = (Stage) node1.getScene().getWindow();
+//            GlobalProjectID p1 = (GlobalProjectID) stage1.getUserData();
+//            Integer i1 = p1.getId();
+//        	String s1 = i1.toString();
+//        	pi.setProjectID(s1);
+//        	pi.setModelNumberOfHands(handsModelNumber.getSelectionModel().getSelectedItem().toString());
 
         	CarpentryLogic.getInstance().addProjectItems(pi);
         	ArrayList<Stock> stock = new ArrayList<Stock>();
@@ -372,7 +372,10 @@ public class ProjectItemsController implements Initializable{
 
         	}
         	
-        	color.setSelectionModel(null);
+        	color.setValue(null);
+        	projectSection.setValue(null);
+        	brzolDegree.setValue(null);
+        	handsModelNumber.setValue(null);
         	handsQuantity.setText(null);
         	axleQuantity.setText(null);
         	ItemName.setText(null);
@@ -381,20 +384,20 @@ public class ProjectItemsController implements Initializable{
         	quantity.setText(null);
 
     	    // Rest of the code when all fields are valid
-    	} catch (IllegalArgumentException e) {
-    	    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    	    alert.setTitle("Error!");
-    	    alert.setContentText("Press OK to try again.");
-    	    alert.setHeaderText(e.getMessage());
-    	    alert.showAndWait();
-    	}
-    }catch (IllegalArgumentException e) {
-	    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
-	    alert.setTitle("Error!");
-	    alert.setContentText("Press OK to try again.");
-	    alert.setHeaderText(e.getMessage());
-	    alert.showAndWait();
-    }
+//    	} catch (IllegalArgumentException e) {
+//    	    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//    	    alert.setTitle("Error!");
+//    	    alert.setContentText("Press OK to try again.");
+//    	    alert.setHeaderText(e.getMessage());
+//    	    alert.showAndWait();
+//    	}
+//    }catch (IllegalArgumentException e) {
+//	    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//	    alert.setTitle("Error!");
+//	    alert.setContentText("Press OK to try again.");
+//	    alert.setHeaderText(e.getMessage());
+//	    alert.showAndWait();
+//    }
     	
     	pdts.setItemID(Integer.toString(pi.getItemID()));
     	pdts.setItemName(pi.getItemName());
@@ -442,13 +445,9 @@ public class ProjectItemsController implements Initializable{
     	o.setStatus(Enumeration.OrderStatus.WaitingProcess.toString()); 
     	orderStatus.setText(Enumeration.OrderStatus.WaitingProcess.toString());
     	Integer cost = o.CalculateCost();
-    	System.out.println(cost);
     	o.setCost(cost);
-    	System.out.println(o.getCost());
     	String scost = cost.toString(); 
-    	System.out.println(scost);
     	orderCost.setText(scost);
-    	System.out.println(orderCost.getText());
     	CarpentryLogic.getInstance().addOrder(o);
     	
     }

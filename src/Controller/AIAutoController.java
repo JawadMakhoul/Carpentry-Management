@@ -299,7 +299,7 @@ public class AIAutoController implements Initializable{
  		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
  		stage.setScene(scene);
  		stage.setResizable(false);
- 		stage.setTitle("Awni Wood Work - Generate By Images Ai");
+ 		stage.setTitle("Awni Wood Work - Generate Images By Ai");
  		stage.show();
 	 }
 	 }
