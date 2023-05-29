@@ -108,19 +108,19 @@ public class Order {
 							 switch (i.getWoodType()) {
 							 
 							 case  "Sandwich" :
-								 price = price + i.getQuantity()*10;
+								 price = price + i.getQuantity()*125;
 								 break;
 							 case  "Mdf" :
-								 price = price + i.getQuantity()*11;
+								 price = price + i.getQuantity()*170;
 								 break;
 							 case  "Solid_Wood" :
-								 price = price + i.getQuantity()*12;
+								 price = price + i.getQuantity()*110;
 								 break;
 							 case  "Melamine" :
-								 price = price + i.getQuantity()*14;
+								 price = price + i.getQuantity()*115;
 								 break;
 							 case  "Particleboard" :
-								 price = price + i.getQuantity()*15;
+								 price = price + i.getQuantity()*80;
 								 break;
 						 }
 							 switch (i.getModelNumberOfHands()) {
