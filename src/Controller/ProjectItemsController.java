@@ -279,6 +279,7 @@ public class ProjectItemsController implements Initializable{
     	      	 throw new IllegalArgumentException("Please enter all required fields.");
     	    }
     	 	s.setSectionName(projectSection.getSelectionModel().getSelectedItem().toString());
+    	 	
 
     	}catch (IllegalArgumentException e) {
     	    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -313,11 +314,6 @@ public class ProjectItemsController implements Initializable{
 	    	s.setAxleDegree(brzolDegree.getSelectionModel().getSelectedItem().toString());
 	    	CarpentryLogic.getInstance().addSection(s);
 	    	
-	    	if(!s.getSectionName().equals("Other")){
-	    		sec.setSectionName(s.getSectionName());
-	    	}
-	    	
-    	
 //    	try {
 //    	    if (projectSection.getSelectionModel().getSelectedItem() == null ||
 //    	            ItemName.getText().isEmpty() ||
@@ -468,7 +464,7 @@ public class ProjectItemsController implements Initializable{
     
     @FXML
     void Finish(MouseEvent event) throws IOException, InterruptedException {
-        if(!sec.getSectionName().equals("Other")) {
+        
             // Set initial loading image
             Image loadingImage = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\737.gif");
             loading.setImage(loadingImage);
@@ -529,17 +525,8 @@ public class ProjectItemsController implements Initializable{
 
             new Thread(task).start(); // Start the task in a new thread
         }
-        else {
-            ////////////////////////////////////////////////////////////////////////////////////////
-            Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
-            Scene scene = new Scene(pane);
-            Stage stage12 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage12.setScene(scene);
-            stage12.setResizable(false);
-            stage12.setTitle("Awni Wood Work");
-            stage12.show();
-        }
-    }
+
+    
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -556,7 +543,7 @@ public class ProjectItemsController implements Initializable{
 		Buttons.add(GenerateByAI);
 		Buttons.add(ProjectDetails);
 		
-		ObservableList<ProjectSection> projectSectionList = FXCollections.observableArrayList(ProjectSection.Kitchen,ProjectSection.Room,ProjectSection.LivingRoom,ProjectSection.Bathroom,ProjectSection.Closet,ProjectSection.Table,ProjectSection.Bed,ProjectSection.Other);
+		ObservableList<ProjectSection> projectSectionList = FXCollections.observableArrayList(ProjectSection.Kitchen,ProjectSection.Room,ProjectSection.LivingRoom,ProjectSection.Bathroom);
 		projectSection.getItems().addAll(projectSectionList);
 		
 		ObservableList<WoodType> woodTypeList = FXCollections.observableArrayList(WoodType.Mdf,WoodType.Melamine,WoodType.Particleboard,WoodType.Sandwich,WoodType.Solid_Wood);

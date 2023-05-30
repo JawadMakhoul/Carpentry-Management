@@ -88,13 +88,13 @@
             </AnchorPane>
           <AnchorPane layoutX="258.0" prefHeight="948.0" prefWidth="1109.0" styleClass="backgroundColor" stylesheets="@../Controller/style.css">
          <children>
-            <TextField fx:id="searchField" layoutX="416.0" layoutY="206.0" prefHeight="51.0" prefWidth="213.0" promptText="Search field" styleClass="textField" />
+            <TextField fx:id="searchField1" layoutX="416.0" layoutY="170.0" prefHeight="51.0" prefWidth="213.0" promptText="Search field" styleClass="textField" />
             <Label layoutX="459.0" layoutY="57.0" prefHeight="87.0" prefWidth="371.0" text="Current Projects" textAlignment="CENTER" textFill="#d96e3a">
                <font>
                   <Font size="48.0" />
                </font>
             </Label>
-                  <Button fx:id="searchBuuton" layoutX="693.0" layoutY="206.0" mnemonicParsing="false" onAction="#Search" prefHeight="51.0" prefWidth="183.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Search" />
+                  <Button fx:id="searchBuuton" layoutX="693.0" layoutY="170.0" mnemonicParsing="false" onAction="#Search" prefHeight="51.0" prefWidth="183.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Search" />
                   <TableView fx:id="tableView" layoutX="37.0" layoutY="322.0" prefHeight="377.0" prefWidth="1167.0">
                     <columns>
                       <TableColumn fx:id="customerName" prefWidth="146.0" text="Customer Name" />
@@ -111,8 +111,8 @@
                         <TableColumn fx:id="modelNumberOfHands" prefWidth="279.0" text="Model Number Of Hands" />
                     </columns>
                   </TableView>
-                  <ComboBox fx:id="filter" layoutX="133.0" layoutY="206.0" prefHeight="51.0" prefWidth="234.0" promptText="Choose search field" style="-fx-background-color: white;" styleClass="comboBox" />
-                  <Button fx:id="removeFilter" layoutX="960.0" layoutY="206.0" mnemonicParsing="false" onAction="#RemoveFilter" prefHeight="51.0" prefWidth="183.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Remove Filter" />
+                  <ComboBox fx:id="filter1" layoutX="133.0" layoutY="170.0" prefHeight="51.0" prefWidth="234.0" promptText="Choose search field" style="-fx-background-color: white;" styleClass="comboBox" />
+                  <Button fx:id="removeFilter" layoutX="960.0" layoutY="170.0" mnemonicParsing="false" onAction="#RemoveFilter" prefHeight="51.0" prefWidth="183.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Remove Filter" />
                   <Button fx:id="deleteProject" layoutX="368.0" layoutY="794.0" mnemonicParsing="false" onAction="#Delete_Project" prefHeight="51.0" prefWidth="183.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Delete Project" />
                   <Text layoutX="291.0" layoutY="779.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose project from the table then click Delete Project button" textAlignment="CENTER" wrappingWidth="707.0107421875">
                      <font>
@@ -120,6 +120,8 @@
                      </font>
                   </Text>
                   <Button fx:id="showProjectDetails" layoutX="693.0" layoutY="794.0" mnemonicParsing="false" onAction="#ShowProjectDetails" prefHeight="51.0" prefWidth="243.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Show Project Details" />
+                  <TextField fx:id="searchField2" layoutX="416.0" layoutY="239.0" prefHeight="51.0" prefWidth="213.0" promptText="Search field" styleClass="textField" />
+                  <ComboBox fx:id="filter2" layoutX="133.0" layoutY="239.0" prefHeight="51.0" prefWidth="234.0" promptText="Choose search field" style="-fx-background-color: white;" styleClass="comboBox" />
          </children>
       </AnchorPane>
         </items>

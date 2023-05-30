@@ -57,7 +57,7 @@ public class CurrentProjectsController implements Initializable{
     private Button deleteOrder;
 
     @FXML
-    private ComboBox<String> filter;
+    private ComboBox<String> filter1, filter2;
 
     @FXML
     private TableColumn<CurrentProjectsToShow, Integer> itemHeight;
@@ -93,7 +93,7 @@ public class CurrentProjectsController implements Initializable{
     private Button searchBuuton;
 
     @FXML
-    private TextField searchField;
+    private TextField searchField1, searchField2;
 
     @FXML
     private TableColumn<CurrentProjectsToShow, String> section;

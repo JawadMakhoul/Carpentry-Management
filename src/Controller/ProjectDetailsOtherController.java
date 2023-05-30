@@ -17,7 +17,7 @@ import Model.GlobalProjectID;
 import Model.Order;
 import Model.Project;
 import Model.ProjectDetailsToShow;
-import Model.ProjectDetailsToShowNonStatic;
+import Model.ProjectDetailsOtherNonStatic;
 import Model.ProjectItems;
 import Model.Section;
 import javafx.beans.property.ReadOnlyIntegerWrapper;
@@ -48,7 +48,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
-public class ProjectDetailsToShowController implements Initializable{
+public class ProjectDetailsOtherController implements Initializable{
 
     @FXML
     private Button ProjectDetails,GenerateByAI,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
@@ -57,35 +57,35 @@ public class ProjectDetailsToShowController implements Initializable{
     private AnchorPane screen;
     
     @FXML
-    private TableColumn<ProjectDetailsToShowNonStatic, String> color;
+    private TableColumn<ProjectDetailsOtherNonStatic, String> color;
 
     @FXML
-    private TableColumn<ProjectDetailsToShowNonStatic, String> itemHeight;
+    private TableColumn<ProjectDetailsOtherNonStatic, String> itemHeight;
 
     @FXML
-    private TableColumn<ProjectDetailsToShowNonStatic, String> itemID;
+    private TableColumn<ProjectDetailsOtherNonStatic, String> itemID;
 
     @FXML
-    private TableColumn<ProjectDetailsToShowNonStatic, String> itemName;
+    private TableColumn<ProjectDetailsOtherNonStatic, String> itemName;
 
     @FXML
-    private TableColumn<ProjectDetailsToShowNonStatic, String> itemWidth;
+    private TableColumn<ProjectDetailsOtherNonStatic, String> itemWidth;
 
     @FXML
     private Pane pnlOverview;
 
     @FXML
-    private TableColumn<ProjectDetailsToShowNonStatic, String> quantity;
+    private TableColumn<ProjectDetailsOtherNonStatic, String> quantity;
 
 
     @FXML
-    private TableView<ProjectDetailsToShowNonStatic> tableView;
+    private TableView<ProjectDetailsOtherNonStatic> tableView;
 
     @FXML
-    private TableColumn<ProjectDetailsToShowNonStatic, String> woodType;
+    private TableColumn<ProjectDetailsOtherNonStatic, String> woodType;
     
     @FXML
-    private TableColumn<ProjectDetailsToShowNonStatic, String> sectionField;
+    private TableColumn<ProjectDetailsOtherNonStatic, String> sectionField;
     
     @FXML
     private ScrollPane pnl;
@@ -93,8 +93,6 @@ public class ProjectDetailsToShowController implements Initializable{
     @FXML
     private TextField projectCategoryField,projectIDField,customerNameField,handsField;
     
-    @FXML
-    private ImageView projectImage;
 
     private ProjectDetailsToShow pdts1;
     @FXML
@@ -237,8 +235,8 @@ public class ProjectDetailsToShowController implements Initializable{
 	
         ProjectDetailsToShow pdts = ProjectItemsController.getPdts();
        
-        ObservableList<ProjectDetailsToShowNonStatic> ObservableList_CP = FXCollections.observableArrayList();
-        ArrayList<ProjectDetailsToShowNonStatic> arraylistToShow = new ArrayList<>();
+        ObservableList<ProjectDetailsOtherNonStatic> ObservableList_CP = FXCollections.observableArrayList();
+        ArrayList<ProjectDetailsOtherNonStatic> arraylistToShow = new ArrayList<>();
         
         for(Project p : CarpentryLogic.getInstance().getProjects()) {
         	
@@ -266,9 +264,8 @@ public class ProjectDetailsToShowController implements Initializable{
         					quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         					color.setCellValueFactory(new PropertyValueFactory<>("color"));
         					
-        					Image i = new Image(pdts.getImage());
-        			        projectImage.setImage(i);
-        					ProjectDetailsToShowNonStatic pdtsToArray = new ProjectDetailsToShowNonStatic(p.getCustomerID(),pi.getProjectID(),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands(),pdts.getImage());
+        					
+        					ProjectDetailsOtherNonStatic pdtsToArray = new ProjectDetailsOtherNonStatic(p.getCustomerID(),pi.getProjectID(),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands());
         					
         					arraylistToShow.add(pdtsToArray);
         					
