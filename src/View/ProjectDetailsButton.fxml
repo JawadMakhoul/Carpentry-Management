@@ -145,6 +145,7 @@
                         </AnchorPane>
                      </content>
                   </ScrollPane>
+                  <ImageView fx:id="loading" fitHeight="180.0" fitWidth="180.0" layoutX="505.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
         </items>

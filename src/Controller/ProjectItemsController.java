@@ -13,6 +13,9 @@ import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
+
 import java.util.ArrayList;
 
 
@@ -26,6 +29,7 @@ import Enumeration.handType;
 //import Model.Customer;
 import Model.Project;
 import Model.ProjectDetailsToShow;
+import Model.ProjectDetailsToShowNonStatic;
 import Model.Section;
 import Model.ProjectItems;
 import Model.Customer;
@@ -81,6 +85,10 @@ public class ProjectItemsController implements Initializable{
     
     private Section sec = new Section();
     private ProjectItems pi = new ProjectItems();
+    
+    private boolean sectionPressed = false;
+    private boolean createOrderPressed = false;
+    private boolean FinishPressed = false;
     
     private  static ProjectDetailsToShow pdts;
 
@@ -223,7 +231,7 @@ public class ProjectItemsController implements Initializable{
     	            width.getText().isEmpty() ||
     	            woodType.getSelectionModel().getSelectedItem() == null ||
     	            quantity.getText().isEmpty() ||
-    	            color.getValue() == null )
+    	            color.getValue() == null || handsModelNumber.getSelectionModel().getSelectedItem() == null)
     	            {
 
     	        throw new IllegalArgumentException("Please enter all required fields.");
@@ -244,7 +252,7 @@ public class ProjectItemsController implements Initializable{
         	pi2.setProjectID(s);
         	
         	CarpentryLogic.getInstance().addProjectItems(pi2);
-        	
+        	sectionPressed=true;
         	ItemName.setText(null);
         	height.setText(null);
         	width.setText(null);
@@ -273,13 +281,15 @@ public class ProjectItemsController implements Initializable{
 
     @FXML
     void AddSection(MouseEvent event) throws NumberFormatException, SQLException {
+    	
+    	if(sectionPressed) {
     	Section s = new Section();
     	try {
     	    if (projectSection.getSelectionModel().getSelectedItem() == null) {
     	      	 throw new IllegalArgumentException("Please enter all required fields.");
     	    }
     	 	s.setSectionName(projectSection.getSelectionModel().getSelectedItem().toString());
-    	 	
+    	 	sec.setSectionName(projectSection.getSelectionModel().getSelectedItem().toString());
 
     	}catch (IllegalArgumentException e) {
     	    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -296,19 +306,17 @@ public class ProjectItemsController implements Initializable{
         Integer i = gpid.getId();
     	String s3 = i.toString();
     	s.setProjectID(s3);
-//    	try {
-//    	    if (projectSection.getSelectionModel().getSelectedItem() == null ||
-//    	            ItemName.getText().isEmpty() ||
-//    	            height.getText().isEmpty() ||
-//    	            width.getText().isEmpty() ||
-//    	            woodType.getSelectionModel().getSelectedItem() == null ||
-//    	            quantity.getText().isEmpty() ||
-//    	            color.getValue() == null || handsQuantity.getText().equals("")|| !handsQuantity.getText().matches(".*\\d+.*")
-//    	            || axleQuantity.getText().equals("")|| !axleQuantity.getText().matches(".*\\d+.*")|| brzolDegree.getSelectionModel().getSelectedItem().equals(null)
-//    	            )
-//    	            {
-//    	    	 		throw new IllegalArgumentException("Please enter all required fields.");
-//    	            }
+    	try {
+    	    if (projectSection.getSelectionModel().getSelectedItem() == null || 
+    	            handsQuantity.getText().equals("")|| 
+    	            !handsQuantity.getText().matches(".*\\d+.*")
+    	            || axleQuantity.getText().equals("")|| 
+    	            !axleQuantity.getText().matches(".*\\d+.*")|| 
+    	            brzolDegree.getSelectionModel().getSelectedItem()==null
+    	            )
+    	            {
+    	    	 		throw new IllegalArgumentException("Please enter all required fields.");
+    	            }
 	    	s.setQuantityOFhands(Integer.parseInt(handsQuantity.getText()));
 	    	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
 	    	s.setAxleDegree(brzolDegree.getSelectionModel().getSelectedItem().toString());
@@ -333,7 +341,7 @@ public class ProjectItemsController implements Initializable{
 //    	    pi.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
 //    	    pi.setQuantity(Integer.parseInt(quantity.getText()));
     	    
-    	    switch(color.getSelectionModel().getSelectedItem().toString()) {
+    	    switch(color.getSelectionModel().getSelectedItem().toString()) { // To send to the AI
     	  
     	    	case "Weathered_Barnboard","Pearl_Gray","Desert_Sand","Drift_Gray","Beige_Gray","Mushroom","Blueridge_Gray","Light_Oak","Smoke_Blue","Aspen_Tan":{
     	    		
@@ -417,13 +425,29 @@ public class ProjectItemsController implements Initializable{
 //	    alert.setHeaderText(e.getMessage());
 //	    alert.showAndWait();
 //    }
+        	createOrderPressed=true;
+    	}
+    	catch (IllegalArgumentException e) {
+    	    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    	    alert.setTitle("Error!");
+    	    alert.setContentText("Press OK to try again.");
+    	    alert.setHeaderText(e.getMessage());
+    	    alert.showAndWait();
+   	}
     	
+    	}
+    	
+    	else {
+    		JOptionPane.showMessageDialog(null, "Please add the items first .", "Items Reminder", JOptionPane.WARNING_MESSAGE);
+    	}
     	
     	}
     
     
     @FXML
     void ShowProjectDetails(MouseEvent event) {
+    	
+    	if(createOrderPressed) {
     	Node node = (Node) event.getSource();
         Stage stage = (Stage) node.getScene().getWindow();
         GlobalProjectID gpid = (GlobalProjectID) stage.getUserData();
@@ -460,11 +484,18 @@ public class ProjectItemsController implements Initializable{
     	orderCost.setText(scost);
     	CarpentryLogic.getInstance().addOrder(o);
     	
+    	FinishPressed=true;
+    	}
+    	
+    	else {
+    		JOptionPane.showMessageDialog(null, "Please add a section first .", "Section Reminder", JOptionPane.WARNING_MESSAGE);
+    	}
     }
     
     @FXML
     void Finish(MouseEvent event) throws IOException, InterruptedException {
         
+    	if(FinishPressed) {
             // Set initial loading image
             Image loadingImage = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\737.gif");
             loading.setImage(loadingImage);
@@ -474,8 +505,29 @@ public class ProjectItemsController implements Initializable{
                 protected Void call() throws Exception {
                     Process p = null;
                     try {
-                        ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py", sec.getSectionName() +" with " + pi.getColor() + "color.");
-                        p = pb.start();
+                    	
+                    	if(sec.getSectionName().equals("Room")) {
+                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py",  "Bedroom that includes bed and desk, closet with a mirror in" + pi.getColor());
+                            p = pb.start();
+                    	}
+                    	
+                    	if(sec.getSectionName().equals("Kitchen")) {
+                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py",  "Kitchen that includes island in" + pi.getColor());
+                            p = pb.start();
+                    	}
+                    	
+                    	if(sec.getSectionName().equals("LivingRoom")) {
+                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py",  "LivingRoom that includes TV furniture and a salon table in" + pi.getColor());
+                            p = pb.start();
+                    	}
+                    	
+                    	if(sec.getSectionName().equals("Bathroom")) {
+                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py",  "Bathroom that includes sink cabinets with a mirror in" + pi.getColor());
+                            p = pb.start();
+                    	}
+                    		
+//                        ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py", sec.getSectionName() +" with " + pi.getColor() + "color.");
+//                        p = pb.start();
 
                         // Read output
                         BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -524,7 +576,13 @@ public class ProjectItemsController implements Initializable{
             };
 
             new Thread(task).start(); // Start the task in a new thread
-        }
+    
+    	}
+    	
+    	else {
+    		JOptionPane.showMessageDialog(null, "Please create an order first .", "Order Reminder", JOptionPane.WARNING_MESSAGE);
+    	}
+    }
 
     
 

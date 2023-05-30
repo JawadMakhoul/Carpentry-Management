@@ -166,5 +166,6 @@
             <Font name="Calibri" size="24.0" />
          </font>
       </Text>
+      <ImageView fx:id="loading" fitHeight="180.0" fitWidth="180.0" layoutX="670.0" layoutY="438.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

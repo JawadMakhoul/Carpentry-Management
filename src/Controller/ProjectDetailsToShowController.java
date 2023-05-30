@@ -235,7 +235,7 @@ public class ProjectDetailsToShowController implements Initializable{
 		Buttons.add(GenerateByAI);
 		Buttons.add(ProjectDetails);
 	
-        ProjectDetailsToShow pdts = ProjectItemsController.getPdts();
+		ProjectDetailsToShow pdts = ProjectItemsController.getPdts();
        
         ObservableList<ProjectDetailsToShowNonStatic> ObservableList_CP = FXCollections.observableArrayList();
         ArrayList<ProjectDetailsToShowNonStatic> arraylistToShow = new ArrayList<>();
@@ -266,11 +266,21 @@ public class ProjectDetailsToShowController implements Initializable{
         					quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         					color.setCellValueFactory(new PropertyValueFactory<>("color"));
         					
-        					Image i = new Image(pdts.getImage());
-        			        projectImage.setImage(i);
-        					ProjectDetailsToShowNonStatic pdtsToArray = new ProjectDetailsToShowNonStatic(p.getCustomerID(),pi.getProjectID(),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands(),pdts.getImage());
+        					String imageSTR = CarpentryLogic.getInstance().GetImage(p);
+    						if(imageSTR==null) {
+    							//Image i = new Image("");
+    							projectImage.setImage(null);
+    							ProjectDetailsToShowNonStatic pdtsToArray = new ProjectDetailsToShowNonStatic(p.getCustomerID(),pi.getProjectID(),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands(),imageSTR);
+    							arraylistToShow.add(pdtsToArray);
+    						}
+    						
+    						else {
+    							Image i = new Image(imageSTR);
+    							projectImage.setImage(i);
+    							ProjectDetailsToShowNonStatic pdtsToArray = new ProjectDetailsToShowNonStatic(p.getCustomerID(),pi.getProjectID(),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands(),imageSTR);
+    							arraylistToShow.add(pdtsToArray);
+    						}
         					
-        					arraylistToShow.add(pdtsToArray);
         					
         					
                 		}

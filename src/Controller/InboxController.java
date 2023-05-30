@@ -22,6 +22,7 @@ import java.util.HashSet;
 import java.util.ResourceBundle;
 import javafx.scene.control.ListView;
 import javax.mail.search.SearchTerm;
+import javax.swing.JOptionPane;
 
 //import com.google.api.client.util.IOUtils;
 
@@ -309,7 +310,7 @@ public class InboxController implements Initializable{
 		    	            Message emailMessage = new MimeMessage(session);
 		    	            emailMessage.setFrom(new InternetAddress(username));
 		    	            
-		    	            if(!emails.getSelectionModel().getSelectedItem().equals(null))
+		    	            if(!(emails.getSelectionModel().getSelectedItem()==(null)))
 		    	            	emailMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emails.getSelectionModel().getSelectedItem()));
 		    	            
 		    	            else {
@@ -342,14 +343,16 @@ public class InboxController implements Initializable{
 	    		}
 	    		
 	    		case "replay":{
-	    			
+	    			if(tableview.getSelectionModel().getSelectedItem() != null) {
 	    			replayTo=tableview.getSelectionModel().getSelectedItem().getFrom();
 	    			toEmailField.setText(replayTo);
 	    			subjectTo=tableview.getSelectionModel().getSelectedItem().getSubject();
 	    			subjectField.setText(subjectTo);
 	    			
 	    			flag=true;      
-	    	    
+	    			}
+	    			else JOptionPane.showMessageDialog(null, "Please select an email before sending.", "Email Selection Reminder", JOptionPane.WARNING_MESSAGE);
+
 	        		break;
 	    		}
 	    		

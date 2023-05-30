@@ -254,13 +254,22 @@ public class ProjectDetailsButtonController implements Initializable{
 //					
 				//	else{
 						String imageSTR = CarpentryLogic.getInstance().GetImage(p);
-						Image i = new Image(imageSTR);
-						projectImage.setImage(i);
+						if(imageSTR==null) {
+							//Image i = new Image("");
+							projectImage.setImage(null);
+							ProjectDetailsToShowNonStatic pdtsToArray = new ProjectDetailsToShowNonStatic(p.getCustomerID(),pi.getProjectID(),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands(),imageSTR);
+							arraylistToShow.add(pdtsToArray);
+						}
+						
+						else {
+							Image i = new Image(imageSTR);
+							projectImage.setImage(i);
+							ProjectDetailsToShowNonStatic pdtsToArray = new ProjectDetailsToShowNonStatic(p.getCustomerID(),pi.getProjectID(),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands(),imageSTR);
+							arraylistToShow.add(pdtsToArray);
+						}
+						
 				//	}
 			        
-					ProjectDetailsToShowNonStatic pdtsToArray = new ProjectDetailsToShowNonStatic(p.getCustomerID(),pi.getProjectID(),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands(),pdts.getImage());
-					
-					arraylistToShow.add(pdtsToArray);
                		}
        			}
     	   }

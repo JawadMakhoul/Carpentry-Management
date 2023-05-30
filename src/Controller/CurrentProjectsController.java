@@ -9,6 +9,8 @@ import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
+import com.healthmarketscience.jackcess.expr.NumericConfig.Type;
+
 import Enumeration.OrderStatus;
 import Model.CurrentProjectsToShow;
 import Model.Customer;
@@ -250,13 +252,13 @@ public class CurrentProjectsController implements Initializable{
     @FXML
     void Search(ActionEvent event) {
     	
-    	if(filter.getSelectionModel().getSelectedItem().equals("Customer Name")) {
+    	if(filter1.getSelectionModel().getSelectedItem().equals("Customer Name")) {
     		for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
-    			if(searchField.getText().equals(c.getName())) {
+    			if(searchField1.getText().equals(c.getName())) {
     				ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
     				ObservableList<CurrentProjectsToShow> custOrders = FXCollections.observableArrayList();
     				for(Project p : CarpentryLogic.getInstance().getProjects()) {
-    					if(p.getCustomerID().equals(searchField.getText())) {
+    					if(p.getCustomerID().equals(searchField1.getText())) {
     						//custOrders.add(p);
 	    				
     						for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
@@ -266,10 +268,11 @@ public class CurrentProjectsController implements Initializable{
     								toShow.add(cpts);
     							}
     						}
+    						
     					}
     	    		}
     	    	
-    				custOrders.addAll(toShow);
+    				custOrders.addAll(Search2(toShow));
     				tableView.setItems(custOrders);
     			}	
     		}
@@ -277,29 +280,29 @@ public class CurrentProjectsController implements Initializable{
     	
     	
     	 
-    	if(filter.getSelectionModel().getSelectedItem().equals("Project ID")) {
+    	if(filter1.getSelectionModel().getSelectedItem().equals("Project ID")) {
     		for(Project p : CarpentryLogic.getInstance().getProjects()) {
-    			if(searchField.getText().equals(Integer.toString(p.getProjectID()))) {
+    			if(searchField1.getText().equals(Integer.toString(p.getProjectID()))) {
     				ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
     				ObservableList<CurrentProjectsToShow> toShowOb = FXCollections.observableArrayList();
     				for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
-    					if(pi.getProjectID().equals(searchField.getText())) {
+    					if(pi.getProjectID().equals(searchField1.getText())) {
     						//projOrders.add(o);
     						CurrentProjectsToShow cpts = new  CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands());
 							toShow.add(cpts);
     				}
     				
     			}
-    				toShowOb.addAll(toShow);
+    				toShowOb.addAll(Search2(toShow));
     				tableView.setItems(toShowOb);
     		}
     	}
     	}
     	
-    	if(filter.getSelectionModel().getSelectedItem().equals("Project Category")) {
+    	if(filter1.getSelectionModel().getSelectedItem().equals("Project Category")) {
     		ObservableList<CurrentProjectsToShow> toShowOb = FXCollections.observableArrayList();
     		for(Project p : CarpentryLogic.getInstance().getProjects()) {
-    			if(searchField.getText().equals(p.getProjectCategory())) {
+    			if(searchField1.getText().equals(p.getProjectCategory())) {
     				ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
     				
     				for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
@@ -316,10 +319,10 @@ public class CurrentProjectsController implements Initializable{
     	}tableView.setItems(toShowOb);
     	}
     	
-    	if(filter.getSelectionModel().getSelectedItem().equals("Item Name")) {
+    	if(filter1.getSelectionModel().getSelectedItem().equals("Item Name")) {
     		ObservableList<CurrentProjectsToShow> toShowOb = FXCollections.observableArrayList();
     		for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
-    			if(searchField.getText().equals(pi.getItemName())) {
+    			if(searchField1.getText().equals(pi.getItemName())) {
     				ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
     				
     				for(Project p : CarpentryLogic.getInstance().getProjects()) {
@@ -331,12 +334,80 @@ public class CurrentProjectsController implements Initializable{
     					
     			}
     				
-    				toShowOb.addAll(toShow);
+    				toShowOb.addAll(Search2(toShow));
     		}
     	}tableView.setItems(toShowOb);
     	}
     	
     }
+    //********************************************************************************************************
+    
+    
+    
+    ArrayList<CurrentProjectsToShow> Search2(ArrayList<CurrentProjectsToShow> arr) {
+		ArrayList<CurrentProjectsToShow> toshow = new ArrayList<>();
+		if(filter2.getSelectionModel().getSelectedItem()==null ||searchField2.getText().equals("")){
+				return arr ;
+    }
+
+    	if(filter2.getSelectionModel().getSelectedItem().equals("Customer Name")) {
+    		for(CurrentProjectsToShow c : arr) {
+    			if(searchField2.getText().equals(c.getCustomerName())) {
+    				toshow.add(c);
+
+    				
+    			}	
+    		}
+    	}
+    	
+    	
+    	 
+    	if(filter2.getSelectionModel().getSelectedItem().equals("Project ID")) {
+    		for(CurrentProjectsToShow p : arr) {
+    			if(searchField2.getText().equals(p.getProjectID())) {
+    				toshow.add(p);
+
+    				}
+    				
+    			}}
+    	
+    	
+    	
+    	if(filter2.getSelectionModel().getSelectedItem().equals("Project Category")) {
+    		for(CurrentProjectsToShow p : arr) {
+    			if(searchField2.getText().equals(p.getProjectCategory())) {
+    				toshow.add(p);
+ 
+    		}
+    	}
+    	}
+    	
+    	if(filter2.getSelectionModel().getSelectedItem().equals("Item Name")) {
+    		for(CurrentProjectsToShow pi : arr) {
+    			if(searchField2.getText().equals(pi.getItemName())) {
+    				toshow.add(pi);
+		
+    			}
+    				
+    			
+    		}
+    	}
+    	searchField2.setText(null);
+		return toshow;
+   }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     @FXML
     void RemoveFilter(ActionEvent event) {
@@ -358,13 +429,16 @@ public class CurrentProjectsController implements Initializable{
         ObservableList_CP.addAll(arraylistToShow);
         
         tableView.setItems(ObservableList_CP);
-        searchField.setText(null);
+        searchField1.setText(null);
     	
     }
     
     @FXML
     void Delete_Project(ActionEvent event) {
-    
+    	
+    		if(tableView.getSelectionModel().getSelectedItem()== null) {
+    			 JOptionPane.showMessageDialog(null, "Please select a project before deleting.", "Deleting a project reminder", JOptionPane.WARNING_MESSAGE);
+    		}
     	
 	    	for(Project p : CarpentryLogic.getInstance().getProjects()) {
 	    		if(tableView.getSelectionModel().getSelectedItem().getProjectID().equals(Integer.toString(p.getProjectID()))) {
@@ -424,6 +498,9 @@ public class CurrentProjectsController implements Initializable{
     @FXML
     void ShowProjectDetails(ActionEvent event) throws IOException {
     	//tableView
+    	if(tableView.getSelectionModel().getSelectedItem()== null) {
+		 JOptionPane.showMessageDialog(null, "Please select a project before deleting.", "Deleting a project reminder", JOptionPane.WARNING_MESSAGE);
+    	}
     	
     	pdts.setCustomerName(tableView.getSelectionModel().getSelectedItem().getCustomerName());
     	pdts.setProjectID(tableView.getSelectionModel().getSelectedItem().getProjectID());
@@ -461,7 +538,8 @@ public class CurrentProjectsController implements Initializable{
 		Buttons.add(ProjectDetails);
 		
 		ObservableList<String> Filter = FXCollections.observableArrayList("Customer Name","Project ID","Project Category","Item Name");
-		filter.getItems().addAll(Filter);
+		filter1.getItems().addAll(Filter);
+		filter2.getItems().addAll(Filter);
 		
 		customerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         projectID.setCellValueFactory(new PropertyValueFactory<>("projectID"));

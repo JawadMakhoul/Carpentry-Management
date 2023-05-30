@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.ResourceBundle;
 import Model.GlobalProjectID;
 import Model.ProjectDetailsToShow;
+import Model.ProjectDetailsToShowNonStatic;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,12 +31,6 @@ public class AIAutoController implements Initializable{
 
     @FXML
     private ImageView image1,image2,image3,image4,image5,image6,image7,image8,image9,image10;
-
-//    @FXML
-//    private TextArea textInput;
-    
-//    @FXML
-//    private ComboBox<Integer> projectID;
     
     private  static ProjectDetailsToShow pdts;
 

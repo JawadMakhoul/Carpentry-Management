@@ -15,6 +15,9 @@ import java.util.*;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
+
 import Model.Project;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -251,54 +254,61 @@ public class AIController implements Initializable{
 		 switch(b.getId()) {
 		 	case "image1btn":{
 		 		CarpentryLogic.getInstance().addProjectImage(projectID.getSelectionModel().getSelectedItem(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_1.jpg");
+		 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
 		 		break;
 		 	}
 		 	
 		 	case "image2btn":{
 		 		CarpentryLogic.getInstance().addProjectImage(projectID.getSelectionModel().getSelectedItem(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_2.jpg");
+		 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
 		 		break;
 		 	}
 
 		 	case "image3btn":{
 		 		CarpentryLogic.getInstance().addProjectImage(projectID.getSelectionModel().getSelectedItem(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_3.jpg");
+		 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
 		 		break;
 		 	}
 
 		 	case "image4btn":{
 		 		CarpentryLogic.getInstance().addProjectImage(projectID.getSelectionModel().getSelectedItem(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_4.jpg");
+		 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
 		 		break;
 		 	}
 
 		 	case "image5btn":{
 		 		CarpentryLogic.getInstance().addProjectImage(projectID.getSelectionModel().getSelectedItem(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_5.jpg");
+		 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
 		 		break;
 		 	}
 
 		 	case "image6btn":{
 		 		CarpentryLogic.getInstance().addProjectImage(projectID.getSelectionModel().getSelectedItem(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_6.jpg");
+		 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
 		 		break;
 		 	}
 
 		 	case "image7btn":{
 		 		CarpentryLogic.getInstance().addProjectImage(projectID.getSelectionModel().getSelectedItem(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_7.jpg");
+		 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
 		 		break;
 		 	}
 
 		 	case "image8btn":{
-		System.out.println("8");
 		 		CarpentryLogic.getInstance().addProjectImage(projectID.getSelectionModel().getSelectedItem(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_8.jpg");
+		 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
 		 		break;
 		 	}
 
 		 	case "image9btn":{
-		 		System.out.println("9");
 		 		CarpentryLogic.getInstance().addProjectImage(projectID.getSelectionModel().getSelectedItem(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_9.jpg");
+		 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
 		 		break;
 		 	}
 
 		 	case "image10btn":{
-		 		System.out.println("10");
 		 		CarpentryLogic.getInstance().addProjectImage(projectID.getSelectionModel().getSelectedItem(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_10.jpg");
+		 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
 		 		break;
 		 	}
 		 }

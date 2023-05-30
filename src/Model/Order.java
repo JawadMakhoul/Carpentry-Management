@@ -93,71 +93,72 @@ public class Order {
 			 			
 			 			 case  "Degree_45" :{
 			 				 price = price + s.getQuantityOFaxle()*10;
-			 				 //System.out.println("45/ "+price);
+			 				 System.out.println("45/ "+price);
 			 				 break;}
 			 			 case  "Degree_155" :{
 			 				 price = price + s.getQuantityOFaxle()*11;
-			 				//System.out.println("155/ "+price);
+			 				System.out.println("155/ "+price);
 			 				 break;}
 			 			 case  "Degree_180" :{
 			 				 price = price + s.getQuantityOFaxle()*13;
-			 				//System.out.println("180/ "+price);
+			 				System.out.println("180/ "+price);
 			 				 break;}
 			 			 }
 			 		
 			 		
+			 		
 			 		for(ProjectItems  i : CarpentryLogic.getInstance().getProjectItems()) {
-						 if (i.getProjectID().equals(p_ID)) {
+						 if (i.getSection()==s.getSectionName()) {
 							 switch (i.getWoodType()) {
 							 
 							 case  "Sandwich" :{
 								 price = price + i.getQuantity()*125;
-								 //System.out.println("Sandwich "+price);
+								 System.out.println("Sandwich "+price);
 								 break;}
 							 case  "Mdf" :{
 								 price = price + i.getQuantity()*170;
-								 //System.out.println("Mdf "+price);
+								 System.out.println("Mdf "+price);
 								 break;}
 							 case  "Solid_Wood" :{
 								 price = price + i.getQuantity()*110;
-								 //System.out.println("Solid "+price);
+								 System.out.println("Solid "+price);
 								 break;}
 							 case  "Melamine" :{
 								 price = price + i.getQuantity()*115;
-								 //System.out.println("melamine "+price);
+								 System.out.println("melamine "+price);
 								 break;}
 							 case  "Particleboard" :{
 								 price = price + i.getQuantity()*80;
-								 //System.out.println("Particleboard "+price);
+								 System.out.println("Particleboard "+price);
 								 break;}
 						 }
-							 if(flag) {
+							 if(flag) {System.out.println(i.getModelNumberOfHands());
 							 switch (i.getModelNumberOfHands()) {
 
 							 case  "s125" :{
 								 price = price + s.getQuantityOFhands()*10;
-								 //System.out.println("s125 "+price);
-								 flag=false;
+								 System.out.println("s125 "+price);
+								 //flag=false;
 								 break;}
 							 case  "f120" :{
 								 price = price + s.getQuantityOFhands()*11;
-								 //System.out.println("f120 "+price);
-								 flag=false;
+								 System.out.println("f120 "+price);
+								 //flag=false;
 								 break;}
 							 case  "r452" :{
 								 price = price + s.getQuantityOFhands()*12;
-								 //System.out.println("r452 "+price);
-								 flag=false;
+								 System.out.println("r452 "+price);
+								// flag=false;
 								 break;}
 							 case  "gh32" :{
 								 price = price + s.getQuantityOFhands()*14;
-								 //System.out.println("gh32 "+price);
-								 flag=false;
+								 System.out.println("gh32 "+price);
+								// flag=false;
 								 break;}
 							 case  "a17" :{
 								 price = price + s.getQuantityOFhands()*15;
-								 //System.out.println("a17 "+price);
-								 flag=false;
+								 System.out.println("a17 "+price);
+								 //flag=false;
 								 break;}
 							 
 							 
@@ -166,8 +167,9 @@ public class Order {
 						 }
 					 }
 			 			
-		 }}
-		 this.cost=price;
+		 }
+			 		}
+		 //this.cost=price;
 		return price;
 	}
 	

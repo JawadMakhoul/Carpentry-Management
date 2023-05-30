@@ -46,17 +46,13 @@ def generate_image(prompt, num_image=1, size='512x512', output_format='url'):
 
 
 #API_KEY = config['openai']['APIKEY']
-print("jawad")
 openai.api_key = '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'
-print("makhoul")
 SIZES = ('1024x1024', '512x512', '256x256')
 
 # Get image description from user
 image_description = sys.argv[1]
-print("21342134234")
 # Specify the folder where you want to save the images
 output_folder = os.path.join("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images")
-print("2")
 # Generate images (byte output)
 response = generate_image(image_description, num_image=10, size=SIZES[1], output_format='b64_json')
 if response is not None:
@@ -69,4 +65,3 @@ if response is not None:
     logging.info(f"Images successfully saved in {output_folder}")
 else:
     logging.error("Failed to generate byte images.")
-print("3")
