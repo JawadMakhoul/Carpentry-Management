@@ -166,5 +166,39 @@
             <Font name="Calibri" size="24.0" />
          </font>
       </Text>
+      <Pane layoutX="951.0" layoutY="550.0" prefHeight="214.0" prefWidth="200.0" stylesheets="@../Controller/style.css">
+         <styleClass>
+            <String fx:value="backgroundColor" />
+            <String fx:value="container" />
+         </styleClass>
+      </Pane>
+      <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="985.0" layoutY="560.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Lib/resume.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="EditCustomer" layoutX="955.0" layoutY="557.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="191.0" />
+      <Text fill="#b96c00f7" layoutX="948.0" layoutY="750.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Customer" textAlignment="CENTER" wrappingWidth="207.0">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </Text>
+      <Pane layoutX="1231.0" layoutY="546.0" prefHeight="214.0" prefWidth="200.0" stylesheets="@../Controller/style.css">
+         <styleClass>
+            <String fx:value="backgroundColor" />
+            <String fx:value="container" />
+         </styleClass>
+      </Pane>
+      <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="1256.0" layoutY="556.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Lib/edit.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="UpdateProjectDetails" layoutX="1235.0" layoutY="553.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="191.0" />
+      <Text fill="#b96c00f7" layoutX="1228.0" layoutY="724.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Update Project Details" textAlignment="CENTER" wrappingWidth="207.0">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
