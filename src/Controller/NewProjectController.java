@@ -16,6 +16,7 @@ import Model.GlobalProjectID;
 import Model.Project;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -282,6 +283,10 @@ private String projectID;
    
     }
 
+    @FXML
+    void ShowCsutomer(ActionEvent event) {
+
+    }
 @Override
 public void initialize(URL arg0, ResourceBundle arg1) {
 // TODO Auto-generated method stub
