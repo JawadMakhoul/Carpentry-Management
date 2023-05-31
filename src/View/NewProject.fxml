@@ -122,6 +122,7 @@
                      </font>
                   </Text>
                   <ImageView fx:id="loading" fitHeight="133.0" fitWidth="172.0" layoutX="543.0" layoutY="802.0" pickOnBounds="true" preserveRatio="true" />
+                  <ComboBox fx:id="customersemails" layoutX="379.0" layoutY="503.0" prefWidth="150.0" promptText="Emails" />
                </children></AnchorPane>
         </items>
       </SplitPane>

@@ -321,25 +321,6 @@ public class ProjectItemsController implements Initializable{
 	    	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
 	    	s.setAxleDegree(brzolDegree.getSelectionModel().getSelectedItem().toString());
 	    	CarpentryLogic.getInstance().addSection(s);
-	    	
-//    	try {
-//    	    if (projectSection.getSelectionModel().getSelectedItem() == null ||
-//    	            ItemName.getText().isEmpty() ||
-//    	            height.getText().isEmpty() ||
-//    	            width.getText().isEmpty() ||
-//    	            woodType.getSelectionModel().getSelectedItem() == null ||
-//    	            quantity.getText().isEmpty() ||
-//    	            color.getValue() == null || handsModelNumber.getSelectionModel().getSelectedItem()==null) 
-//    	            {
-//
-//    	        throw new IllegalArgumentException("Please enter all required fields.");
-//    	    }
-//    	    pi.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
-//    	    pi.setItemName(ItemName.getText());
-//    	    pi.setHeight(Integer.parseInt(height.getText()));
-//    	    pi.setWidth(Integer.parseInt(width.getText()));
-//    	    pi.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
-//    	    pi.setQuantity(Integer.parseInt(quantity.getText()));
     	    
     	    switch(color.getSelectionModel().getSelectedItem().toString()) { // To send to the AI
     	  
@@ -379,16 +360,6 @@ public class ProjectItemsController implements Initializable{
     	    		break;
     	    	}
     	    }
-    	    
-//    		Node node1 = (Node) event.getSource();
-//            Stage stage1 = (Stage) node1.getScene().getWindow();
-//            GlobalProjectID p1 = (GlobalProjectID) stage1.getUserData();
-//            Integer i1 = p1.getId();
-//        	String s1 = i1.toString();
-//        	pi.setProjectID(s1);
-//        	pi.setModelNumberOfHands(handsModelNumber.getSelectionModel().getSelectedItem().toString());
-
-        //	CarpentryLogic.getInstance().addProjectItems(pi);
         	ArrayList<Stock> stock = new ArrayList<Stock>();
         	stock= CarpentryLogic.getInstance().getStocks();
         	for(Stock s11 : stock) {
@@ -409,22 +380,7 @@ public class ProjectItemsController implements Initializable{
         	height.setText(null);
         	width.setText(null);
         	quantity.setText(null);
-
-    	    // Rest of the code when all fields are valid
-//    	} catch (IllegalArgumentException e) {
-//    	    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//    	    alert.setTitle("Error!");
-//    	    alert.setContentText("Press OK to try again.");
-//    	    alert.setHeaderText(e.getMessage());
-//    	    alert.showAndWait();
-//    	}
-//    }catch (IllegalArgumentException e) {
-//	    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//	    alert.setTitle("Error!");
-//	    alert.setContentText("Press OK to try again.");
-//	    alert.setHeaderText(e.getMessage());
-//	    alert.showAndWait();
-//    }
+        	
         	createOrderPressed=true;
     	}
     	catch (IllegalArgumentException e) {

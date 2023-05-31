@@ -3,6 +3,7 @@ package Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.ResourceBundle;
@@ -44,7 +45,8 @@ private String projectID;
     @FXML
     private AnchorPane screen;
 
-   
+    @FXML
+    private ComboBox<String> customersemails;
     public String getProjectID() {
     	return projectID;
     }
@@ -199,7 +201,7 @@ private String projectID;
     Project p = new Project();
     GlobalProjectID.setId(p.getProjectID());
     //String ip = c.getName();
-    p.setCustomerID(c.getName());
+    p.setCustomerID(c.getEmail());
     p.setProjectCategory(projectCategory.getSelectionModel().getSelectedItem().toString());
     CarpentryLogic.getInstance().addProject(p);
     
@@ -266,20 +268,27 @@ private String projectID;
 @Override
 public void initialize(URL arg0, ResourceBundle arg1) {
 // TODO Auto-generated method stub
-Buttons.add(OrdersCatalog);
-Buttons.add(OrderedMaterials);
-Buttons.add(CurrentProjects);
-Buttons.add(Stock);
-Buttons.add(NewProject);
-Buttons.add(Inbox);
-Buttons.add(BackButton);
-Buttons.add(projectItems);
-Buttons.add(GenerateByAI);
-Buttons.add(ProjectDetails);
-ObservableList<ProjectCategory> projectType = FXCollections.observableArrayList(ProjectCategory.Home,ProjectCategory.Office,ProjectCategory.Institution);
-projectCategory.getItems().addAll(projectType);
-
-
+	Buttons.add(OrdersCatalog);
+	Buttons.add(OrderedMaterials);
+	Buttons.add(CurrentProjects);
+	Buttons.add(Stock);
+	Buttons.add(NewProject);
+	Buttons.add(Inbox);
+	Buttons.add(BackButton);
+	Buttons.add(projectItems);
+	Buttons.add(GenerateByAI);
+	Buttons.add(ProjectDetails);
+	ObservableList<ProjectCategory> projectType = FXCollections.observableArrayList(ProjectCategory.Home,ProjectCategory.Office,ProjectCategory.Institution);
+	projectCategory.getItems().addAll(projectType);
+	
+	ArrayList<String> emails = new ArrayList<>();
+	for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
+		emails.add(c.getEmail());
+	}
+	ObservableList<String> custEmails = FXCollections.observableArrayList(emails);
+	customersemails.getItems().addAll(custEmails);
+	
+	
 }
 
 

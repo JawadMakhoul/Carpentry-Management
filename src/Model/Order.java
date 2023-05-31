@@ -88,7 +88,7 @@ public class Order {
 		 int price = 0;
 		 
 		 for(Section s : CarpentryLogic.getInstance().getSections()) {
-			 		if(s.getProjectID().equals(p_ID)) {
+			 		if(s.getProjectID().equals(p_ID)) {flag=true;
 			 			switch (s.getAxleDegree()) {		 
 			 			
 			 			 case  "Degree_45" :{
@@ -107,68 +107,97 @@ public class Order {
 			 		
 			 		
 			 		
-			 		for(ProjectItems  i : CarpentryLogic.getInstance().getProjectItems()) {
-						 if (i.getSection()==s.getSectionName()) {
-							 switch (i.getWoodType()) {
-							 
-							 case  "Sandwich" :{
-								 price = price + i.getQuantity()*125;
-								 System.out.println("Sandwich "+price);
-								 break;}
-							 case  "Mdf" :{
-								 price = price + i.getQuantity()*170;
-								 System.out.println("Mdf "+price);
-								 break;}
-							 case  "Solid_Wood" :{
-								 price = price + i.getQuantity()*110;
-								 System.out.println("Solid "+price);
-								 break;}
-							 case  "Melamine" :{
-								 price = price + i.getQuantity()*115;
-								 System.out.println("melamine "+price);
-								 break;}
-							 case  "Particleboard" :{
-								 price = price + i.getQuantity()*80;
-								 System.out.println("Particleboard "+price);
-								 break;}
-						 }
-							 if(flag) {System.out.println(i.getModelNumberOfHands());
-							 switch (i.getModelNumberOfHands()) {
-
-							 case  "s125" :{
-								 price = price + s.getQuantityOFhands()*10;
-								 System.out.println("s125 "+price);
-								 //flag=false;
-								 break;}
-							 case  "f120" :{
-								 price = price + s.getQuantityOFhands()*11;
-								 System.out.println("f120 "+price);
-								 //flag=false;
-								 break;}
-							 case  "r452" :{
-								 price = price + s.getQuantityOFhands()*12;
-								 System.out.println("r452 "+price);
-								// flag=false;
-								 break;}
-							 case  "gh32" :{
-								 price = price + s.getQuantityOFhands()*14;
-								 System.out.println("gh32 "+price);
-								// flag=false;
-								 break;}
-							 case  "a17" :{
-								 price = price + s.getQuantityOFhands()*15;
-								 System.out.println("a17 "+price);
-								 //flag=false;
-								 break;}
-							 
-							 
-						 }
-							 }
-						 }
-					 }
+				 		for(ProjectItems  i : CarpentryLogic.getInstance().getProjectItems()) {
+							 if (i.getSection()==s.getSectionName()) {
+									 switch (i.getWoodType()) {
+									 
+									 	case  "Sandwich" :
+									 	{
+									 		price = price + i.getQuantity()*125;
+									 		System.out.println("Sandwich "+price);
+									 		break;
+									 	}
+									 	
+									 	case  "Mdf" :
+									 	{
+									 		price = price + i.getQuantity()*170;
+									 		System.out.println("Mdf "+price);
+									 		break;
+									 	}
+									 	
+									 	case  "Solid_Wood" :
+									 	{
+									 		price = price + i.getQuantity()*110;
+									 		System.out.println("Solid "+price);
+									 		break;
+									 	}
+									 	
+									 	case  "Melamine" :
+									 	{
+									 		price = price + i.getQuantity()*115;
+									 		System.out.println("melamine "+price);
+									 		break;
+										}
+									 
+									 	case  "Particleboard" :
+									 	{
+									 		price = price + i.getQuantity()*80;
+									 		System.out.println("Particleboard "+price);
+									 		break;
+									 	}
+								 } // end of switch
+									 if(flag) {
+										 System.out.println(i.getModelNumberOfHands());
+										 switch (i.getModelNumberOfHands()) {
+		
+										 	case  "s125" :
+										 	{
+										 		price = price + s.getQuantityOFhands()*10;
+										 		System.out.println("s125 "+price);
+										 		flag=false;
+										 		break;
+										 	}
+										 	
+										 	case  "f120" :
+										 	{
+										 		price = price + s.getQuantityOFhands()*11;
+										 		System.out.println("f120 "+price);
+										 		flag=false;
+										 		break;
+										 	}
+										 	
+										 	case  "r452" :
+										 	{
+										 		price = price + s.getQuantityOFhands()*12;
+										 		System.out.println("r452 "+price);
+										 		flag=false;
+										 		break;
+										 	}
+									 
+										 	case  "gh32" :
+										 	{
+										 		price = price + s.getQuantityOFhands()*14;
+										 		System.out.println("gh32 "+price);
+										 		flag=false;
+										 		break;
+										 	}
+									 
+										 	case  "a17" :
+										 	{
+										 		price = price + s.getQuantityOFhands()*15;
+										 		System.out.println("a17 "+price);
+										 		flag=false;
+										 		break;
+										 	}
+									 
+									 
+										 }// end of switch
+									 } // end of if flag
+							 } // end of is id ==
+						 } // end of projectitems for loop
 			 			
-		 }
 			 		}
+			 	}
 		 //this.cost=price;
 		return price;
 	}

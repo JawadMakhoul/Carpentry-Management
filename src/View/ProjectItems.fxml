@@ -131,7 +131,7 @@
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <Button fx:id="addItem" layoutX="145.0" layoutY="379.0" mnemonicParsing="false" onMousePressed="#AddAnotherItem" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Add another item" />
+                        <Button fx:id="addItem" layoutX="145.0" layoutY="380.0" mnemonicParsing="false" onMousePressed="#AddAnotherItem" prefHeight="51.0" prefWidth="202.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Add item" />
                      </children>
                   </Pane>
                   <Button fx:id="finish" layoutX="963.0" layoutY="877.0" mnemonicParsing="false" onMousePressed="#Finish" prefHeight="51.0" prefWidth="230.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Create Project Item" />
@@ -181,7 +181,7 @@
                   <TextField fx:id="CUSTOMERID" alignment="CENTER" layoutX="305.0" layoutY="665.0" styleClass="textField" />
                   <TextField fx:id="orderCost" alignment="CENTER" layoutX="305.0" layoutY="779.0" styleClass="textField" />
                   <TextField fx:id="orderStatus" alignment="CENTER" layoutX="857.0" layoutY="722.0" styleClass="textField" />
-                  <Button fx:id="ShowProjectDetails" layoutX="876.0" layoutY="777.0" mnemonicParsing="false" onMousePressed="#ShowProjectDetails" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Create Order" />
+                  <Button fx:id="ShowProjectDetails" layoutX="876.0" layoutY="777.0" mnemonicParsing="false" onMousePressed="#ShowProjectDetails" prefHeight="51.0" prefWidth="202.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Create Order" />
                   <Text fill="#d96e3a" layoutX="67.0" layoutY="644.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Details" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="40.0" />
