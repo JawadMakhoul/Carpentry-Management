@@ -529,6 +529,87 @@ public class CarpentryLogic {
 
 	}
 		
+		public boolean updateAxleQuantity(Section s,int q) throws SQLException {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_UPD_AXLE_QUANTITY)) {
+
+		        // set the parameter values for the prepared statement
+				
+				stmt.setInt(2, s.getSectionID());
+		        stmt.setInt(1, q);
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
+		public boolean updateSectionName(Section s,String name) throws SQLException {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_UPD_SECTION_NAME)) {
+
+		        // set the parameter values for the prepared statement
+				
+				stmt.setInt(2, s.getSectionID());
+		        stmt.setString(1, name);
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
+		public boolean updateHandsQuantity(Section s,int q) throws SQLException {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_UPD_HANDS_QUANTITY)) {
+
+		        // set the parameter values for the prepared statement
+				
+				stmt.setInt(2, s.getSectionID());
+		        stmt.setInt(1, q);
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
 		public boolean updateItemHeight(ProjectItems pi,int height) throws SQLException {
 			try {
 				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -647,6 +728,87 @@ public class CarpentryLogic {
 				
 				stmt.setInt(2, pi.getItemID());
 		        stmt.setInt(1, width);
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
+		public boolean updateWoodType(ProjectItems pi,String woodType) throws SQLException {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_UPD_WOOD_TYPE)) {
+
+		        // set the parameter values for the prepared statement
+				
+				stmt.setInt(2, pi.getItemID());
+		        stmt.setString(1, woodType);
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
+		public boolean updateAxleDegree(Section s,String degree) throws SQLException {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_UPD_AXLE_DEGREE)) {
+
+		        // set the parameter values for the prepared statement
+				
+				stmt.setInt(2, s.getSectionID());
+		        stmt.setString(1, degree);
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
+		public boolean updateModelOfHands(ProjectItems pi,String handsmodel) throws SQLException {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_UPD_MODEL_OF_HANDS)) {
+
+		        // set the parameter values for the prepared statement
+				
+				stmt.setInt(2, pi.getItemID());
+		        stmt.setString(1, handsmodel);
 		        
 		        // execute the prepared statement
 		        stmt.executeUpdate();

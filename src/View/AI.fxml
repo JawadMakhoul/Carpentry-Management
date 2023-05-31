@@ -134,7 +134,7 @@
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <ImageView fx:id="loading" fitHeight="256.0" fitWidth="256.0" layoutX="464.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="loading" fitHeight="250.0" fitWidth="250.0" layoutX="511.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
         </items>

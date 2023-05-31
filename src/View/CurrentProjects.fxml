@@ -115,7 +115,6 @@
                   <Button fx:id="deleteProject" layoutX="368.0" layoutY="794.0" mnemonicParsing="false" onAction="#Delete_Project" prefHeight="51.0" prefWidth="183.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Delete Project" />
                   <Button fx:id="showProjectDetails" layoutX="693.0" layoutY="794.0" mnemonicParsing="false" onAction="#ShowProjectDetails" prefHeight="51.0" prefWidth="243.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Show Project Details" />
                   <TextField fx:id="searchField2" layoutX="416.0" layoutY="239.0" prefHeight="51.0" prefWidth="213.0" promptText="Search field" styleClass="textField" />
-                  <ImageView fx:id="loading" fitHeight="256.0" fitWidth="256.0" layoutX="491.0" layoutY="359.0" pickOnBounds="true" preserveRatio="true" />
                   <ComboBox fx:id="filter2" layoutX="133.0" layoutY="239.0" prefHeight="51.0" prefWidth="234.0" promptText="Choose search field" style="-fx-background-color: white;" styleClass="comboBox" />
          </children>
       </AnchorPane>

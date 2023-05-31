@@ -43,6 +43,12 @@ public final class Consts {
 		public static final String SQL_UPD_ITEM_QUANTITY = "{ call qryUpdateItemQuantity(?,?)}";
 		public static final String SQL_UPD_ITEM_SECTION = "{ call qryUpdateItemSection(?,?)}";
 		public static final String SQL_UPD_ITEM_WIDTH = "{ call qryUpdateItemWidth(?,?)}";
+		public static final String SQL_UPD_WOOD_TYPE = "{ call qryUpdateWoodType(?,?)}";
+		public static final String SQL_UPD_MODEL_OF_HANDS = "{ call qryUpdateModelOfHands(?,?)}";
+		public static final String SQL_UPD_AXLE_DEGREE = "{ call qryUpdateAxleDegree(?,?)}";
+		public static final String SQL_UPD_HANDS_QUANTITY = "{ call qryUpdateHandsQuantity(?,?)}";
+		public static final String SQL_UPD_AXLE_QUANTITY = "{ call qryUpdateAxleQuantity(?,?)}";
+		public static final String SQL_UPD_SECTION_NAME = "{ call qryUpdateSectionName(?,?)}";
 		
 		public static final String SQL_ADD_PROJECTIMAGE = "{call qryAddProjectImage(?,?)}";
 

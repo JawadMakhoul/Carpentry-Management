@@ -16,37 +16,37 @@
             <Image url="@../Lib/awni-wood-work-high-resolution-logo-color-on-transparent-background%20(1).png" />
          </image>
       </ImageView>
-      <Pane layoutX="484.0" layoutY="276.0" prefHeight="214.0" prefWidth="200.0" stylesheets="@../Controller/style.css">
+      <Pane layoutX="410.0" layoutY="276.0" prefHeight="214.0" prefWidth="200.0" stylesheets="@../Controller/style.css">
          <styleClass>
             <String fx:value="backgroundColor" />
             <String fx:value="container" />
          </styleClass>
       </Pane>
-      <Pane layoutX="833.0" layoutY="276.0" prefHeight="214.0" prefWidth="200.0" stylesheets="@../Controller/style.css">
+      <Pane layoutX="684.0" layoutY="276.0" prefHeight="214.0" prefWidth="200.0" stylesheets="@../Controller/style.css">
          <styleClass>
             <String fx:value="backgroundColor" />
             <String fx:value="container" />
          </styleClass>
       </Pane>
-      <Pane layoutX="1202.0" layoutY="561.0" prefHeight="214.0" prefWidth="200.0" stylesheets="@../Controller/style.css">
+      <Pane layoutX="684.0" layoutY="551.0" prefHeight="214.0" prefWidth="200.0" stylesheets="@../Controller/style.css">
          <styleClass>
             <String fx:value="backgroundColor" />
             <String fx:value="container" />
          </styleClass>
       </Pane>
-      <Pane layoutX="833.0" layoutY="561.0" prefHeight="214.0" prefWidth="200.0" stylesheets="@../Controller/style.css">
+      <Pane layoutX="411.0" layoutY="552.0" prefHeight="214.0" prefWidth="200.0" stylesheets="@../Controller/style.css">
          <styleClass>
             <String fx:value="backgroundColor" />
             <String fx:value="container" />
          </styleClass>
       </Pane>
-      <Pane layoutX="482.0" layoutY="561.0" prefHeight="214.0" prefWidth="200.0" stylesheets="@../Controller/style.css">
+      <Pane layoutX="136.0" layoutY="551.0" prefHeight="214.0" prefWidth="200.0" stylesheets="@../Controller/style.css">
          <styleClass>
             <String fx:value="backgroundColor" />
             <String fx:value="container" />
          </styleClass>
       </Pane>
-      <Pane layoutX="1202.0" layoutY="276.0" prefHeight="214.0" prefWidth="200.0" stylesheets="@../Controller/style.css">
+      <Pane layoutX="954.0" layoutY="276.0" prefHeight="214.0" prefWidth="200.0" stylesheets="@../Controller/style.css">
          <styleClass>
             <String fx:value="backgroundColor" />
             <String fx:value="container" />
@@ -76,96 +76,95 @@
             </ImageView>
          </children>
       </Pane>
-      <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="865.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="716.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Lib/project.png" />
          </image>
       </ImageView>
-      <Button fx:id="NewProject" layoutX="869.0" layoutY="284.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="150.0" />
-      <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="858.0" layoutY="574.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="NewProject" layoutX="720.0" layoutY="284.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="150.0" />
+      <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="436.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Lib/ready-stock.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="114.0" fitWidth="100.0" layoutX="858.0" layoutY="618.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="114.0" fitWidth="100.0" layoutX="436.0" layoutY="609.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Lib/out-of-stock.png" />
          </image>
       </ImageView>
-      <Button fx:id="Stock" layoutX="859.0" layoutY="571.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="150.0" />
-      <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="1227.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="Stock" layoutX="437.0" layoutY="562.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="150.0" />
+      <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="979.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Lib/process.png" />
          </image>
       </ImageView>
-      <Button fx:id="CurrentProjects" layoutX="1206.0" layoutY="281.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="182.0" />
-      <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="1227.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="CurrentProjects" layoutX="958.0" layoutY="281.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="182.0" />
+      <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="709.0" layoutY="561.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Lib/workflow.png" />
          </image>
       </ImageView>
-      <Button fx:id="OrderedMaterials" layoutX="1206.0" layoutY="568.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="191.0" />
-      <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="507.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="OrderedMaterials" layoutX="688.0" layoutY="558.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="191.0" />
+      <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="161.0" layoutY="561.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Lib/binder.png" />
          </image>
       </ImageView>
-      <Button fx:id="OrdersCatalog" layoutX="486.0" layoutY="568.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="191.0" />
+      <Button fx:id="OrdersCatalog" layoutX="140.0" layoutY="558.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="191.0" />
       <Button fx:id="BackButton" layoutX="50.0" layoutY="869.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="56.0" prefWidth="150.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Logout" />
-      <Text fill="#b96c00f7" layoutX="867.0" layoutY="476.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Project" textAlignment="CENTER" wrappingWidth="150.0">
+      <Text fill="#b96c00f7" layoutX="718.0" layoutY="476.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Project" textAlignment="CENTER" wrappingWidth="150.0">
          <font>
             <Font name="Calibri" size="24.0" />
          </font>
       </Text>
-      <Text fill="#b96c00f7" layoutX="858.0" layoutY="762.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stock" textAlignment="CENTER" wrappingWidth="150.0">
+      <Text fill="#b96c00f7" layoutX="436.0" layoutY="753.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stock" textAlignment="CENTER" wrappingWidth="150.0">
          <font>
             <Font name="Calibri" size="24.0" />
          </font>
       </Text>
       
-      <Text fill="#b96c00f7" layoutX="1199.0" layoutY="761.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ordered Materials" textAlignment="CENTER" wrappingWidth="207.0">
+      <Text fill="#b96c00f7" layoutX="681.0" layoutY="751.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ordered Materials" textAlignment="CENTER" wrappingWidth="207.0">
          <font>
             <Font name="Calibri" size="24.0" />
          </font>
       </Text>
-      <Text fill="#b96c00f7" layoutX="1227.0" layoutY="475.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Projects" wrappingWidth="190.9999999999999">
+      <Text fill="#b96c00f7" layoutX="979.0" layoutY="475.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Projects" wrappingWidth="190.9999999999999">
          <font>
             <Font name="Calibri" size="24.0" />
          </font>
       </Text>
-      <Text fill="#b96c00f7" layoutX="481.0" layoutY="762.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orders Catalog" textAlignment="CENTER" wrappingWidth="206.9999999999999">
+      <Text fill="#b96c00f7" layoutX="135.0" layoutY="752.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Orders Catalog" textAlignment="CENTER" wrappingWidth="206.9999999999999">
          <font>
             <Font name="Calibri" size="24.0" />
          </font>
       </Text>
-      <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="509.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="435.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Lib/email1.png" />
          </image>
       </ImageView>
-      <Button fx:id="Inbox" layoutX="513.0" layoutY="287.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="150.0" />
-      <Text fill="#b96c00f7" layoutX="511.0" layoutY="479.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inbox" textAlignment="CENTER" wrappingWidth="150.0">
+      <Button fx:id="Inbox" layoutX="439.0" layoutY="287.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="150.0" />
+      <Text fill="#b96c00f7" layoutX="437.0" layoutY="479.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inbox" textAlignment="CENTER" wrappingWidth="150.0">
          <font>
             <Font name="Calibri" size="24.0" />
          </font>
       </Text>
-      <Pane layoutX="137.0" layoutY="561.0" prefHeight="214.0" prefWidth="200.0" stylesheets="@../Controller/style.css">
+      <Pane layoutX="1228.0" layoutY="277.0" prefHeight="214.0" prefWidth="200.0" stylesheets="@../Controller/style.css">
          <styleClass>
             <String fx:value="backgroundColor" />
             <String fx:value="container" />
          </styleClass>
       </Pane>
-      <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="162.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="179.0" layoutX="1253.0" layoutY="287.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Lib/clipboard.png" />
          </image>
       </ImageView>
-      <Button fx:id="ProjectDetails" layoutX="141.0" layoutY="568.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="191.0" />
-      <Text fill="#b96c00f7" layoutX="136.0" layoutY="762.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Details" textAlignment="CENTER" wrappingWidth="206.9999999999999">
+      <Button fx:id="ProjectDetails" layoutX="1232.0" layoutY="284.0" mnemonicParsing="false" onMousePressed="#MoveTo" opacity="0.0" prefHeight="155.0" prefWidth="191.0" />
+      <Text fill="#b96c00f7" layoutX="1227.0" layoutY="478.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Details" textAlignment="CENTER" wrappingWidth="206.9999999999999">
          <font>
             <Font name="Calibri" size="24.0" />
          </font>
       </Text>
-      <ImageView fx:id="loading" fitHeight="180.0" fitWidth="180.0" layoutX="670.0" layoutY="438.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
