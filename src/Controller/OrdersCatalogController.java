@@ -42,7 +42,7 @@ import javafx.stage.Stage;
 public class OrdersCatalogController implements Initializable{
 
     @FXML
-    private Button ProjectDetails,GenerateByAI,deleteOrder,updateStatus,removeFilter,searchBuuton,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
+    private Button EditCustomer,UpdateProjectDetails,ProjectDetails,GenerateByAI,deleteOrder,updateStatus,removeFilter,searchBuuton,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
@@ -184,6 +184,27 @@ public class OrdersCatalogController implements Initializable{
 	        		break;
 	    		}
 	    		
+	    		case "EditCustomer":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/EditCustomer.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}
+	    		
+	    		case "UpdateProjectDetails":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/UpdateProjectDetails.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}
 	    		
     		}
     	}
@@ -370,6 +391,8 @@ public class OrdersCatalogController implements Initializable{
 		Buttons.add(BackButton);
 		Buttons.add(GenerateByAI);
 		Buttons.add(ProjectDetails);
+		Buttons.add(EditCustomer);
+		Buttons.add(UpdateProjectDetails);
 		
 		ObservableList<String> Filter = FXCollections.observableArrayList("Customer Name","Project ID","Project Status","Project Cost");
 		filter.getItems().addAll(Filter);

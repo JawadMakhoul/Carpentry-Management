@@ -36,7 +36,7 @@ public class NewProjectController implements Initializable{
 
 private String projectID;
     @FXML
-    private Button ProjectDetails,GenerateByAI,projectItems,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
+    private Button EditCustomer,UpdateProjectDetails,ProjectDetails,GenerateByAI,projectItems,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
    
     @FXML
@@ -166,6 +166,27 @@ private String projectID;
 		break;
 	}
    
+    case "EditCustomer":{
+		Parent pane = FXMLLoader.load(getClass().getResource("/View/EditCustomer.fxml"));
+		Scene scene = new Scene(pane);
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.setTitle("Awni Wood Work");
+		stage.show();
+		break;
+	}
+	
+	case "UpdateProjectDetails":{
+		Parent pane = FXMLLoader.load(getClass().getResource("/View/UpdateProjectDetails.fxml"));
+		Scene scene = new Scene(pane);
+		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.setTitle("Awni Wood Work");
+		stage.show();
+		break;
+	}
     case "projectItems":{
     	boolean flag=true;
     	if( projectCategory.getSelectionModel().getSelectedItem()== null) {
@@ -470,6 +491,9 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	Buttons.add(projectItems);
 	Buttons.add(GenerateByAI);
 	Buttons.add(ProjectDetails);
+	Buttons.add(EditCustomer);
+	Buttons.add(UpdateProjectDetails);
+	
 	ObservableList<ProjectCategory> projectType = FXCollections.observableArrayList(ProjectCategory.Home,ProjectCategory.Office,ProjectCategory.Institution);
 	projectCategory.getItems().addAll(projectType);
 	

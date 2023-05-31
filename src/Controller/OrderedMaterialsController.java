@@ -30,7 +30,7 @@ import javafx.stage.Stage;
 public class OrderedMaterialsController implements Initializable{
 
     @FXML
-    private Button ProjectDetails,GenerateByAI,orderWood,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
+    private Button EditCustomer,UpdateProjectDetails,ProjectDetails,GenerateByAI,orderWood,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
@@ -147,6 +147,27 @@ public class OrderedMaterialsController implements Initializable{
 	        		break;
 	    		}
 	    		
+	    		case "EditCustomer":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/EditCustomer.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}
+	    		
+	    		case "UpdateProjectDetails":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/UpdateProjectDetails.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}
 	    		case "BackButton":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
 	        		Scene scene = new Scene(pane);
@@ -290,6 +311,8 @@ public class OrderedMaterialsController implements Initializable{
 		Buttons.add(BackButton);
 		Buttons.add(GenerateByAI);
 		Buttons.add(ProjectDetails);
+		Buttons.add(EditCustomer);
+		Buttons.add(UpdateProjectDetails);
 		
 		ObservableList<WoodType> woodTypelist = FXCollections.observableArrayList(WoodType.Mdf,WoodType.Melamine,WoodType.Particleboard,WoodType.Sandwich,WoodType.Solid_Wood);
 		woodType.getItems().addAll(woodTypelist);

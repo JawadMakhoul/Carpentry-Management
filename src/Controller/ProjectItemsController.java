@@ -58,7 +58,7 @@ import javafx.stage.Stage;
 public class ProjectItemsController implements Initializable{
 	
 	@FXML
-    private Button ProjectDetails,GenerateByAI,ShowProjectDetails,BackButton,CurrentProjects,Inbox,NewProject,OrderedMaterials,OrdersCatalog,Stock,addItem,addSection,finish;
+    private Button EditCustomer,UpdateProjectDetails,ProjectDetails,GenerateByAI,ShowProjectDetails,BackButton,CurrentProjects,Inbox,NewProject,OrderedMaterials,OrdersCatalog,Stock,addItem,addSection,finish;
 	private HashSet<Button> Buttons = new HashSet<Button>();
     
 	
@@ -208,7 +208,27 @@ public class ProjectItemsController implements Initializable{
 	        		break;
 	    		}	
 	    		
+	    		case "EditCustomer":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/EditCustomer.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}
 	    		
+	    		case "UpdateProjectDetails":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/UpdateProjectDetails.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}
     		}
     	}
     		
@@ -556,6 +576,8 @@ public class ProjectItemsController implements Initializable{
 		Buttons.add(finish);
 		Buttons.add(GenerateByAI);
 		Buttons.add(ProjectDetails);
+		Buttons.add(EditCustomer);
+		Buttons.add(UpdateProjectDetails);
 		
 		ObservableList<ProjectSection> projectSectionList = FXCollections.observableArrayList(ProjectSection.Kitchen,ProjectSection.Room,ProjectSection.LivingRoom,ProjectSection.Bathroom);
 		projectSection.getItems().addAll(projectSectionList);

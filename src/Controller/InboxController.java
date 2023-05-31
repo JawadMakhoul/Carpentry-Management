@@ -72,7 +72,7 @@ import javax.mail.Store;
 public class InboxController implements Initializable{
 
     @FXML
-    private Button ProjectDetails,GenerateByAI,refresh,send,replay,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
+    private Button EditCustomer,UpdateProjectDetails,ProjectDetails,GenerateByAI,refresh,send,replay,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
@@ -191,6 +191,27 @@ public class InboxController implements Initializable{
 	        		stage.setScene(scene);
 	        		stage.setResizable(false);
 	        		stage.setTitle("Awni Wood Work - Generate By Images Ai");
+	        		stage.show();
+	        		break;
+	    		}
+	    		case "EditCustomer":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/EditCustomer.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}
+	    		
+	    		case "UpdateProjectDetails":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/UpdateProjectDetails.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
 	        		stage.show();
 	        		break;
 	    		}
@@ -454,7 +475,8 @@ public class InboxController implements Initializable{
 		Buttons.add(send);
 		Buttons.add(GenerateByAI);
 		Buttons.add(ProjectDetails);
-		
+		Buttons.add(EditCustomer);
+		Buttons.add(UpdateProjectDetails);
 		
 		ArrayList<String> CustEmails = new ArrayList<>();
 		for(Customer c : CarpentryLogic.getInstance().getCustomers()) {

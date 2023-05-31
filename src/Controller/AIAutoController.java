@@ -24,7 +24,7 @@ public class AIAutoController implements Initializable{
 	private HashSet<Button> Buttons = new HashSet<Button>();
 	private HashSet<Button> imagebtns = new HashSet<Button>();
     @FXML
-    private Button ProjectDetails,BackButton,CurrentProjects,Inbox,NewProject,OrderedMaterials,OrdersCatalog,Stock,generate;
+    private Button EditCustomer,UpdateProjectDetails,ProjectDetails,BackButton,CurrentProjects,Inbox,NewProject,OrderedMaterials,OrdersCatalog,Stock,generate;
     
     @FXML
     private Button image1btn,image2btn,image3btn,image4btn,image5btn,image6btn,image7btn,image8btn,image9btn,image10btn;
@@ -137,6 +137,28 @@ public class AIAutoController implements Initializable{
 	        		stage.show();
 	        		break;
 	    		}	
+	    		
+	    		case "EditCustomer":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/EditCustomer.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}
+	    		
+	    		case "UpdateProjectDetails":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/UpdateProjectDetails.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}
 	    		case "BackButton":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
 	        		Scene scene = new Scene(pane);
@@ -247,6 +269,8 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	Buttons.add(Inbox);
 	Buttons.add(BackButton);
 	Buttons.add(ProjectDetails);
+	Buttons.add(EditCustomer);
+	Buttons.add(UpdateProjectDetails);
 	
 	imagebtns.add(image1btn);
 	imagebtns.add(image2btn);

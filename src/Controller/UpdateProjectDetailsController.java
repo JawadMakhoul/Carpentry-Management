@@ -59,7 +59,7 @@ import javafx.util.Callback;
 public class UpdateProjectDetailsController implements Initializable{
 
     @FXML
-    private Button ProjectDetails,GenerateByAI,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton,submit;
+    private Button ProjectDetails,GenerateByAI,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton,submit,EditCustomer,UpdateProjectDetails;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
@@ -150,6 +150,28 @@ public class UpdateProjectDetailsController implements Initializable{
     		if(b.isPressed()) {
     		
     			switch(b.getId()) {
+    			
+    			case "EditCustomer":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/EditCustomer.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}
+	    		
+	    		case "UpdateProjectDetails":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/UpdateProjectDetails.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}
     		
     			case "Inbox":{
     				Parent pane = FXMLLoader.load(getClass().getResource("/View/Inbox.fxml"));
@@ -265,7 +287,6 @@ public class UpdateProjectDetailsController implements Initializable{
     	}
     	
     }
-    
     public void ShowProjectDetails() {
     	ObservableList<ProjectDetailsToShowNonStatic> ObservableList_CP = FXCollections.observableArrayList();
         ArrayList<ProjectDetailsToShowNonStatic> arraylistToShow = new ArrayList<>();
@@ -311,10 +332,11 @@ public class UpdateProjectDetailsController implements Initializable{
  
         
         }// end of projects loop
+        }
         ObservableList_CP.addAll(arraylistToShow);
        
         tableView.setItems(ObservableList_CP);
-        }
+        
     }
     @FXML
     void showProjects(ActionEvent event) {
@@ -384,7 +406,7 @@ public class UpdateProjectDetailsController implements Initializable{
     		        		if (s11.getWoodName().equals(woodTypeField.getSelectionModel().getSelectedItem().toString())) {
     		        			s11.setQuantity(s11.getQuantity()-Integer.parseInt(itemQuantity.getText()));
     		        			CarpentryLogic.getInstance().updateStockQuantity(s11, s11.getQuantity());
-    		        			ShowProjectDetails();
+    		        			//ShowProjectDetails();
     		        		}
 
     		        	}
@@ -425,7 +447,7 @@ public class UpdateProjectDetailsController implements Initializable{
         			pi2.setModelNumberOfHands(handsModelNumber.getSelectionModel().getSelectedItem().toString());
         			
         			CarpentryLogic.getInstance().addProjectItems(pi2);
-        			ShowProjectDetails();
+        			//ShowProjectDetails();
     			}
     			
     		break;
@@ -566,7 +588,7 @@ public class UpdateProjectDetailsController implements Initializable{
     				}
     			}
     			
-    			ShowProjectDetails();
+    			//ShowProjectDetails();
     		break;
     	}
 
@@ -576,19 +598,19 @@ public class UpdateProjectDetailsController implements Initializable{
     		
     		case "Project":{
     			DeleteProject();
-    			ShowProjectDetails();
+    			//ShowProjectDetails();
     			break;
     		}
     		
     		case "Item":{
     			DeleteItem();
-    			ShowProjectDetails();
+    			//ShowProjectDetails();
     			break;
     		}
     		
     		case "Section":{
     			DeleteSection();
-    			ShowProjectDetails();
+    			//ShowProjectDetails();
     			break;
     		}
     		
@@ -690,6 +712,8 @@ public class UpdateProjectDetailsController implements Initializable{
 		Buttons.add(BackButton);
 		Buttons.add(GenerateByAI);
 		Buttons.add(ProjectDetails);
+		Buttons.add(EditCustomer);
+		Buttons.add(UpdateProjectDetails);
 	
 		ArrayList<String> emails = new ArrayList<>();
 		for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
