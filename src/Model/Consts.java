@@ -37,6 +37,12 @@ public final class Consts {
 		
 		public static final String SQL_UPD_STOCK = "{ call qryUpdateStockQuantity(?,?,?)}";
 		public static final String SQL_UPD_STATUS = "{ call qryUpdateOrderStatus(?,?)}";
+		public static final String SQL_UPD_ITEM_COLOR = "{ call qryUpdateItemColor(?,?)}";
+		public static final String SQL_UPD_ITEM_HEIGHT = "{ call qryUpdateItemHeight(?,?)}";
+		public static final String SQL_UPD_ITEM_NAME = "{ call qryUpdateItemName(?,?)}";
+		public static final String SQL_UPD_ITEM_QUANTITY = "{ call qryUpdateItemQuantity(?,?)}";
+		public static final String SQL_UPD_ITEM_SECTION = "{ call qryUpdateItemSection(?,?)}";
+		public static final String SQL_UPD_ITEM_WIDTH = "{ call qryUpdateItemWidth(?,?)}";
 		
 		public static final String SQL_ADD_PROJECTIMAGE = "{call qryAddProjectImage(?,?)}";
 

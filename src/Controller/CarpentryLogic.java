@@ -502,6 +502,168 @@ public class CarpentryLogic {
 
 	}
 		
+		public boolean updateItemColor(ProjectItems pi,String color) throws SQLException {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_UPD_ITEM_COLOR)) {
+
+		        // set the parameter values for the prepared statement
+				
+				stmt.setInt(2, pi.getItemID());
+		        stmt.setString(1, color);
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
+		public boolean updateItemHeight(ProjectItems pi,int height) throws SQLException {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_UPD_ITEM_HEIGHT)) {
+
+		        // set the parameter values for the prepared statement
+				
+				stmt.setInt(2, pi.getItemID());
+		        stmt.setInt(1, height);
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
+		public boolean updateItemName(ProjectItems pi,String name) throws SQLException {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_UPD_ITEM_NAME)) {
+
+		        // set the parameter values for the prepared statement
+				
+				stmt.setInt(2, pi.getItemID());
+		        stmt.setString(1, name);
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
+		public boolean updateItemQuantity(ProjectItems pi,int q) throws SQLException {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_UPD_ITEM_QUANTITY)) {
+
+		        // set the parameter values for the prepared statement
+				
+				stmt.setInt(2, pi.getItemID());
+		        stmt.setInt(1, q);
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
+		public boolean updateItemSection(ProjectItems pi,String s) throws SQLException {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_UPD_ITEM_SECTION)) {
+
+		        // set the parameter values for the prepared statement
+				
+				stmt.setInt(2, pi.getItemID());
+		        stmt.setString(1, s);
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
+		public boolean updateItemWidth(ProjectItems pi,int width) throws SQLException {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_UPD_ITEM_WIDTH)) {
+
+		        // set the parameter values for the prepared statement
+				
+				stmt.setInt(2, pi.getItemID());
+		        stmt.setInt(1, width);
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
 		public  boolean DeleteOrder(Order o) {
 			try {
 				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");

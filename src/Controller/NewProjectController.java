@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import Enumeration.ProjectCategory;
 import Model.Customer;
 import Model.GlobalProjectID;
@@ -162,9 +164,22 @@ private String projectID;
 	}
    
     case "projectItems":{
-
-   
-    if(!CustomerName.getText().equals("") && !phoneNumber.getText().equals("") && !address.getText().equals("") && !email.getText().equals("")) { // Creating new customer and new project    
+//    	if( projectCategory.getSelectionModel().getSelectedItem()== null) {
+//			 JOptionPane.showMessageDialog(null, "Please select a catagory before submiting.", "A catagory reminder", JOptionPane.WARNING_MESSAGE);
+//		}
+   if(customersemails.getSelectionModel().getSelectedItem()!= null) {
+	   for(Customer c : CarpentryLogic.getInstance().getCustomers()) 
+	   {
+		   if(c.getEmail() == customersemails.getSelectionModel().getSelectedItem().toString()) {
+			   CustomerName.setText(c.getName());
+			   phoneNumber.setText(c.getPhoneNUMBER());
+			   address.setText(c.getAddress());
+			   email.setText(c.getEmail());
+			   
+		   }
+	   }
+   }
+    if(!CustomerName.getText().equals("") && !phoneNumber.getText().equals("") && !address.getText().equals("") && !email.getText().equals("") && projectCategory.getSelectionModel().getSelectedItem()!= null ) { // Creating new customer and new project    
     
    
     Customer c = new Customer();
@@ -202,7 +217,9 @@ private String projectID;
     GlobalProjectID.setId(p.getProjectID());
     //String ip = c.getName();
     p.setCustomerID(c.getEmail());
+    if(projectCategory.getSelectionModel().getSelectedItem() != null) {
     p.setProjectCategory(projectCategory.getSelectionModel().getSelectedItem().toString());
+    }
     CarpentryLogic.getInstance().addProject(p);
     
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectItems.fxml"));
@@ -247,7 +264,7 @@ private String projectID;
     final Alert alert = new Alert(Alert.AlertType.INFORMATION);
     alert.setTitle("Error!");
     alert.setContentText("Press OK to try again.");
-    alert.setHeaderText("please enter all the values.");
+    alert.setHeaderText("please enter the missing value.");
     alert.showAndWait();
     } catch (Error e) {
     e.printStackTrace();
