@@ -113,8 +113,6 @@ public class UpdateProjectDetailsController implements Initializable{
     private ComboBox<String> adddeleteitem;
     
     
-    @FXML
-    private ImageView loading;
 
     @FXML
     private ComboBox<SectionColor> colorField;
@@ -287,20 +285,20 @@ public class UpdateProjectDetailsController implements Initializable{
     	}
     	
     }
-    public void ShowProjectDetails() {
+    public void ShowProjectDetails() {System.out.println("4564574");
     	ObservableList<ProjectDetailsToShowNonStatic> ObservableList_CP = FXCollections.observableArrayList();
         ArrayList<ProjectDetailsToShowNonStatic> arraylistToShow = new ArrayList<>();
         
-        for(Project p : CarpentryLogic.getInstance().getProjects()) {
+        for(Project p : CarpentryLogic.getInstance().getProjects()) {System.out.println("aaa");
         		
-        	if(p.getCustomerID().equals(customerEmailComboBox.getSelectionModel().getSelectedItem())) {
-        		for(Section s : CarpentryLogic.getInstance().getSections()) {
+        	if(p.getCustomerID().equals(customerEmailComboBox.getSelectionModel().getSelectedItem())) {System.out.println("sss");
+        		for(Section s : CarpentryLogic.getInstance().getSections()) {System.out.println("ddd");
         	
        
         
-        		if(s.getProjectID().equals(Integer.toString(p.getProjectID()))) {
-        			for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
-        			if(pi.getProjectID().equals(Integer.toString(p.getProjectID())) && (s.getSectionName().equals(pi.getSection()))) {
+        		if(s.getProjectID().equals(Integer.toString(p.getProjectID()))) {System.out.println("ffff");
+        			for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {System.out.println("ggggg");
+        			if(pi.getProjectID().equals(Integer.toString(p.getProjectID())) && (s.getSectionName().equals(pi.getSection()))) {System.out.println("hhhhhhhh");
         				
         					projectIDField.setCellValueFactory(new PropertyValueFactory<>("projectID"));
         					sectionField.setCellValueFactory(new PropertyValueFactory<>("section"));
@@ -336,11 +334,12 @@ public class UpdateProjectDetailsController implements Initializable{
         ObservableList_CP.addAll(arraylistToShow);
        
         tableView.setItems(ObservableList_CP);
-        
+        System.out.println("345636");
     }
     @FXML
-    void showProjects(ActionEvent event) {
+    void showProjects(ActionEvent event) {System.out.println("test");
     	ShowProjectDetails();
+    	System.out.println("123123");
     }
     
     @FXML

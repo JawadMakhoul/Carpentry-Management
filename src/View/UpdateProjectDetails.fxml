@@ -131,10 +131,6 @@
                         </AnchorPane>
                      </content>
                   </ScrollPane>
-                  <ImageView fx:id="loading" fitHeight="180.0" fitWidth="180.0" layoutX="1046.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Lib/illustrator.png" />
-                     </image></ImageView>
                   <ComboBox fx:id="adddeleteitem" layoutX="94.0" layoutY="173.0" onAction="#CheckIfDelete" prefHeight="51.0" prefWidth="234.0" promptText="Add / Delete item" style="-fx-background-color: white;" styleClass="comboBox" />
                   <TextField fx:id="itemNameField" layoutX="94.0" layoutY="576.0" prefHeight="51.0" prefWidth="213.0" promptText="Item Name" styleClass="textField" />
                   <TextField fx:id="itemHeightField" layoutX="379.0" layoutY="576.0" prefHeight="51.0" prefWidth="213.0" promptText="Height" styleClass="textField" />
