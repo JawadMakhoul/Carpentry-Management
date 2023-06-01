@@ -128,8 +128,6 @@ public class UpdateProjectDetailsController implements Initializable{
     @FXML
     private ComboBox<ProjectSection> projectSection;
 
-//    @FXML
-//    private Button showProjects;
 
     @FXML
     private ComboBox<WoodType> woodTypeField;
