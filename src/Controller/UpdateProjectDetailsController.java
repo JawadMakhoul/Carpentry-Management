@@ -352,6 +352,9 @@ public class UpdateProjectDetailsController implements Initializable{
     	switch(adddeleteitem.getSelectionModel().getSelectedItem()) {
     	
     	case "Add":{
+    		if(itemNameField.getText() !="" && itemHeightField.getText() !="" && itemWidthField.getText() != "" && woodTypeField.getSelectionModel().getSelectedItem() != null
+    				 && itemQuantity.getText()!= "" && tableView.getSelectionModel().getSelectedItem()!= null && projectSection.getSelectionModel().getSelectedItem() != null
+    				 && colorField.getSelectionModel().getSelectedItem() != null && handsModelNumber.getSelectionModel().getSelectedItem()!= null) {
     			ProjectItems pi = new ProjectItems();
     			pi.setItemName(itemNameField.getText());
     			pi.setHeight(Integer.parseInt(itemHeightField.getText()));
@@ -448,10 +451,10 @@ public class UpdateProjectDetailsController implements Initializable{
         			CarpentryLogic.getInstance().addProjectItems(pi2);
         			//ShowProjectDetails();
     			}
-    			
+    		}
     		break;
-    	}
     	
+    	}
     	case "Edit":{//itemWidthField,axleQuantity,handsQuantity;
     		
     			if(itemNameField.getText()!="") {
@@ -677,14 +680,18 @@ public class UpdateProjectDetailsController implements Initializable{
     
     public void DeleteItem() throws SQLException {
     	for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
-			if(pi.getProjectID().equals(tableView.getSelectionModel().getSelectedItem().getProjectID()) && Integer.toString(pi.getItemID())==tableView.getSelectionModel().getSelectedItem().getItemID()) {
+    		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+			if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+			System.out.println("ssssssssssssssssssssssssssssssssss");
 				ArrayList<Stock> stock = new ArrayList<Stock>();
 	        	stock= CarpentryLogic.getInstance().getStocks();
+    			CarpentryLogic.getInstance().DeleteProjectItems(pi);
 	        	for(Stock s11 : stock) {
 	        		if (s11.getWoodName().equals(tableView.getSelectionModel().getSelectedItem().getWoodType())) {
 	        			s11.setQuantity(s11.getQuantity()+Integer.parseInt(quantity.getText()));
 	        			CarpentryLogic.getInstance().updateStockQuantity(s11, s11.getQuantity());
-	        			CarpentryLogic.getInstance().DeleteProjectItems(pi);
+
+
 	        		}
 
 	        	}

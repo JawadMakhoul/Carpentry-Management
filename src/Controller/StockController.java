@@ -73,7 +73,7 @@ public class StockController implements Initializable{
     private int countAll=0;
     @FXML
     void UpdateWoodQuantity(MouseEvent event) throws SQLException {
-    	
+    	if(woodType.getSelectionModel().getSelectedItem()!= null) {
     	switch(woodType.getSelectionModel().getSelectedItem().name()) {
     	
     	case "Sandwich":{
@@ -205,12 +205,13 @@ public class StockController implements Initializable{
     	}
   
     	}
-    	
+    	}
 
     }
 
     @FXML
     void order_Wood(MouseEvent event) {
+    	if(woodType.getSelectionModel().getSelectedItem()!= null) {
 
     	switch(woodType.getSelectionModel().getSelectedItem().name()) {
     	
@@ -305,7 +306,7 @@ public class StockController implements Initializable{
     		}
   
     	}
-    	
+    	}
     }
     @FXML
     void MoveTo(MouseEvent event) throws IOException {
@@ -528,7 +529,7 @@ public class StockController implements Initializable{
 		showStock();
         
 	}
-	
+    
 	
 
 

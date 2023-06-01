@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -193,26 +194,37 @@ private String projectID;
    
     
 
-//    @FXML
-//    void ShowCsutomer(ActionEvent event) {
-//    	 if(customersemails.getSelectionModel().getSelectedItem()!= null) {
-//    		   for(Customer c : CarpentryLogic.getInstance().getCustomers()) 
-//    		   {
-//    			   if(c.getEmail() == customersemails.getSelectionModel().getSelectedItem().toString()) {
-//    				   CustomerName.setText(c.getName());
-//    				   phoneNumber.setText(c.getPhoneNUMBER());
-//    				   address.setText(c.getAddress());
-//    				   email.setText(c.getEmail());
-//    				   
-//    			   }
-//    		   }
-//    	   }
-//
-//    }
+    @FXML
+    void ShowCsutomer(ActionEvent event) {
+    	 if(customersemails.getSelectionModel().getSelectedItem()!= null) {
+    		   for(Customer c : CarpentryLogic.getInstance().getCustomers()) 
+    		   {
+    			   if(c.getEmail() == customersemails.getSelectionModel().getSelectedItem().toString()) {
+    				   CustomerName.setText(c.getName());
+    				   phoneNumber.setText(c.getPhoneNUMBER());
+    				   address.setText(c.getAddress());
+    				  
+    				   
+    			   }
+    		   }
+    	   }
+    }
     
     @FXML
-    void UpdateCustomer(ActionEvent event) {
-
+    void UpdateCustomer(ActionEvent event) throws SQLException {
+    	
+    	if(!customersemails.getSelectionModel().getSelectedItem().equals(null)) {
+    	for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
+    		if(c.getEmail().equals(customersemails.getSelectionModel().getSelectedItem().toString())) {
+//    			c.setName(CustomerName.getText());
+//    			c.setPhoneNUMBER(phoneNumber.getText());
+//    			c.setAddress(address.getText());
+    			CarpentryLogic.getInstance().updateCustomer(c, CustomerName.getText(), address.getText(), phoneNumber.getText());
+    		}
+    	}}
+    	
+    	else 
+    		JOptionPane.showMessageDialog(null, "Please select email from the list.", "Email Reminder", JOptionPane.WARNING_MESSAGE);
     }
 @Override
 public void initialize(URL arg0, ResourceBundle arg1) {
@@ -230,7 +242,12 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	Buttons.add(EditCustomer);
 	Buttons.add(UpdateProjectDetails);
 	
-	
+	ArrayList<String> emails = new ArrayList<>();
+	for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
+		emails.add(c.getEmail());
+	}
+	ObservableList<String> custEmails = FXCollections.observableArrayList(emails);
+	customersemails.getItems().addAll(custEmails);
 }
 
 

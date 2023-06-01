@@ -49,6 +49,7 @@ public final class Consts {
 		public static final String SQL_UPD_HANDS_QUANTITY = "{ call qryUpdateHandsQuantity(?,?)}";
 		public static final String SQL_UPD_AXLE_QUANTITY = "{ call qryUpdateAxleQuantity(?,?)}";
 		public static final String SQL_UPD_SECTION_NAME = "{ call qryUpdateSectionName(?,?)}";
+		public static final String SQL_UPD_CUSTOMER = "{ call qryUpdateCustomer(?,?,?,?)}";
 		
 		public static final String SQL_ADD_PROJECTIMAGE = "{call qryAddProjectImage(?,?)}";
 

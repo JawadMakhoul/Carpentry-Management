@@ -826,6 +826,35 @@ public class CarpentryLogic {
 
 	}
 		
+		public boolean updateCustomer(Customer c,String name,String address,String phone) throws SQLException {
+			try {
+				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
+						CallableStatement stmt = conn.prepareCall(Consts.SQL_UPD_CUSTOMER)) {
+
+		        // set the parameter values for the prepared statement
+				
+				
+		        stmt.setString(1, name);
+		        stmt.setString(2, phone);
+		        stmt.setString(3, address);
+		        stmt.setInt(4, c.getID());
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
 		public  boolean DeleteOrder(Order o) {
 			try {
 				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");

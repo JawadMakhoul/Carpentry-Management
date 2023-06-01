@@ -91,13 +91,13 @@
                         <Image url="@../Lib/resume.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="EditCustomer" layoutX="94.0" layoutY="719.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Edit Customer" />
+                  <Button fx:id="EditCustomer" layoutX="94.0" layoutY="719.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Customers" />
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="22.0" layoutY="793.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/edit.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="UpdateProjectDetails" layoutX="93.0" layoutY="793.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Update Project" />
+                  <Button fx:id="UpdateProjectDetails" layoutX="93.0" layoutY="793.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Edit Project" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="948.0" prefWidth="1075.0" styleClass="backgroundColor" stylesheets="@../Controller/style.css">

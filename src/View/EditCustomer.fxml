@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
@@ -86,47 +87,53 @@
                         <Image url="@../Lib/resume.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="EditCustomer" layoutX="94.0" layoutY="719.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Edit Customer" />
+                  <Button fx:id="EditCustomer" layoutX="94.0" layoutY="719.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Customers" />
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="22.0" layoutY="793.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/edit.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="UpdateProjectDetails" layoutX="93.0" layoutY="793.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Update Project" />
+                  <Button fx:id="UpdateProjectDetails" layoutX="93.0" layoutY="793.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Edit Project" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="948.0" prefWidth="1075.0" styleClass="backgroundColor" stylesheets="@../Controller/style.css">
                <children>
-                  <TextField fx:id="CustomerName" alignment="CENTER" layoutX="659.0" layoutY="172.0" styleClass="textField" />
-                  <TextField fx:id="phoneNumber" alignment="CENTER" layoutX="661.0" layoutY="345.0" styleClass="textField" />
+                  <TextField fx:id="CustomerName" alignment="CENTER" layoutX="659.0" layoutY="372.0" styleClass="textField" />
+                  <TextField fx:id="phoneNumber" alignment="CENTER" layoutX="659.0" layoutY="449.0" styleClass="textField" />
                   <TextField fx:id="address" alignment="CENTER" layoutX="659.0" layoutY="524.0" styleClass="textField" />
-                  <Button fx:id="customerDetails" layoutX="534.0" layoutY="664.0" mnemonicParsing="false" onAction="#UpdateCustomer" prefHeight="64.0" prefWidth="224.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Update Customer" />
+                  <Button fx:id="customerDetails" layoutX="534.0" layoutY="664.0" mnemonicParsing="false" onAction="#UpdateCustomer" prefHeight="64.0" prefWidth="224.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Edit customer" />
                   <ImageView fitHeight="281.0" fitWidth="585.0" layoutX="805.0" layoutY="318.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                      <image>
                         <Image url="@../Lib/awni-wood-work-high-resolution-logo-color-on-transparent-background.png" />
                      </image>
                   </ImageView>
-                  <Text fill="#d96e3a" layoutX="383.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name" textAlignment="CENTER" wrappingWidth="224.0">
+                  <Text fill="#d96e3a" layoutX="355.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name" wrappingWidth="224.0">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Text>
-                  <Text fill="#d96e3a" layoutX="347.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Phone Number" textAlignment="CENTER" wrappingWidth="300.0">
+                  <Text fill="#d96e3a" layoutX="355.0" layoutY="481.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Phone Number" wrappingWidth="300.0">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Text>
-                  <Text fill="#d96e3a" layoutX="383.0" layoutY="551.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Address" textAlignment="CENTER" wrappingWidth="224.0">
+                  <Text fill="#d96e3a" layoutX="355.0" layoutY="556.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Address" wrappingWidth="224.0">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Text>
                   <ImageView fx:id="loading" fitHeight="133.0" fitWidth="172.0" layoutX="543.0" layoutY="802.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label layoutX="461.0" layoutY="40.0" prefHeight="87.0" prefWidth="371.0" text="Edit Customer" textAlignment="CENTER" textFill="#d96e3a">
+                  <Label layoutX="530.0" layoutY="34.0" prefHeight="87.0" prefWidth="371.0" text="Customer" textAlignment="CENTER" textFill="#d96e3a">
                      <font>
                         <Font size="48.0" />
                      </font>
                   </Label>
+                  <ComboBox fx:id="customersemails" layoutX="660.0" layoutY="302.0" onAction="#ShowCsutomer" prefHeight="39.0" prefWidth="230.0" promptText="Emails" styleClass="comboBox" />
+                  <Text fill="#d96e3a" layoutX="355.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose customer" wrappingWidth="271.0">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
                </children></AnchorPane>
         </items>
       </SplitPane>

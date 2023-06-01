@@ -189,6 +189,7 @@ public class OrderedMaterialsController implements Initializable{
 
     @FXML
     void order_Wood(MouseEvent event) {
+    	if(woodType.getSelectionModel().getSelectedItem()!= null) {
 
     	switch(woodType.getSelectionModel().getSelectedItem().name()) {
     	
@@ -282,6 +283,7 @@ public class OrderedMaterialsController implements Initializable{
     			break;
     		}
   
+    	}
     	}
     	
     }

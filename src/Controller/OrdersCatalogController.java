@@ -215,7 +215,7 @@ public class OrdersCatalogController implements Initializable{
     
     @FXML
     void Search(ActionEvent event) {
-    	
+    	if(filter.getSelectionModel().getSelectedItem()!= null) {
     	//tableView.setItems(null);
     	if(filter.getSelectionModel().getSelectedItem().equals("Customer Name")) {
     		for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
@@ -227,6 +227,7 @@ public class OrdersCatalogController implements Initializable{
     	    		}
     	    	tableView.setItems(custOrders);
     		}	
+    	}
     	}
     	}
     	
@@ -276,7 +277,7 @@ public class OrdersCatalogController implements Initializable{
     }
     @FXML
     void Update_Status(ActionEvent event) throws SQLException {
-    	
+    	if(tableView.getSelectionModel().getSelectedItem()!= null) {
     	for(Order o : CarpentryLogic.getInstance().getOrders()) {
     		if(o.getOrderID()==tableView.getSelectionModel().getSelectedItem().getOrderID()) {
     			CarpentryLogic.getInstance().updateProjectStatus(o, statusList.getSelectionModel().getSelectedItem().toString());
@@ -291,9 +292,11 @@ public class OrdersCatalogController implements Initializable{
 	        
 	        ShowPieChart();
     }
+    }
     
     @FXML
     void Delete_Order(ActionEvent event) {
+    	if(tableView.getSelectionModel().getSelectedItem()!= null) {
     	
     	for(Order o : CarpentryLogic.getInstance().getOrders()) {
     		if(o.getOrderID()==tableView.getSelectionModel().getSelectedItem().getOrderID()) {
@@ -305,6 +308,7 @@ public class OrdersCatalogController implements Initializable{
 	        orders.addAll(arraylistOrders);
 	        
 	        tableView.setItems(orders);
+    	}
     }
     
     public void ShowPieChart() {
