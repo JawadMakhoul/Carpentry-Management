@@ -460,8 +460,6 @@ public class CarpentryLogic {
 						CallableStatement stmt = conn.prepareCall(Consts.SQL_DEL_ORDEREDMATERIALS)) {
 					
 					stmt.setInt(1, om.getOrderMaterialsID());
-//					stmt.setString(2, om.getWoodName());
-//					stmt.setInt(3, om.getQuantity()); // can't be null
 					
 					stmt.executeUpdate();
 					return true;

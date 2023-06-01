@@ -676,17 +676,39 @@ public class UpdateProjectDetailsController implements Initializable{
 		}
     }
     
+//    public void DeleteItem() throws SQLException {
+//    	for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+//    		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+//			if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+//			System.out.println("ssssssssssssssssssssssssssssssssss");
+//				ArrayList<Stock> stock = new ArrayList<Stock>();
+//	        	stock= CarpentryLogic.getInstance().getStocks();
+//    			CarpentryLogic.getInstance().DeleteProjectItems(pi);
+//	        	for(Stock s11 : stock) {
+//	        		if (s11.getWoodName().equals(tableView.getSelectionModel().getSelectedItem().getWoodType())) {
+//	        			s11.setQuantity(s11.getQuantity()+Integer.parseInt(quantity.getText()));
+//	        			CarpentryLogic.getInstance().updateStockQuantity(s11, s11.getQuantity());
+//
+//
+//	        		}
+//
+//	        	}
+//			}
+//				
+//		}
+//    }
+    
     public void DeleteItem() throws SQLException {
     	for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
     		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-			if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
-			System.out.println("ssssssssssssssssssssssssssssssssss");
+			if(pi.getItemID()== Integer.parseInt(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+			System.out.println(pi.getItemID());
 				ArrayList<Stock> stock = new ArrayList<Stock>();
 	        	stock= CarpentryLogic.getInstance().getStocks();
     			CarpentryLogic.getInstance().DeleteProjectItems(pi);
 	        	for(Stock s11 : stock) {
 	        		if (s11.getWoodName().equals(tableView.getSelectionModel().getSelectedItem().getWoodType())) {
-	        			s11.setQuantity(s11.getQuantity()+Integer.parseInt(quantity.getText()));
+	        			s11.setQuantity(s11.getQuantity()+Integer.parseInt(tableView.getSelectionModel().getSelectedItem().getQuantity()));
 	        			CarpentryLogic.getInstance().updateStockQuantity(s11, s11.getQuantity());
 
 
