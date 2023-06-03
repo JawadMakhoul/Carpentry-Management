@@ -107,13 +107,13 @@
                   <Font size="48.0" />
                </font>
             </Label>
-                  <Button fx:id="submit" layoutX="974.0" layoutY="848.0" mnemonicParsing="false" onAction="#SubmitProjectDetails" prefHeight="51.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Submit" />
+                  <Button fx:id="submit" layoutX="974.0" layoutY="848.0" mnemonicParsing="false" onAction="#SubmitProjectDetails" prefHeight="51.0" prefWidth="160.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Submit" />
                   <ComboBox fx:id="customerEmailComboBox" layoutX="806.0" layoutY="179.0" onAction="#showProjects" prefHeight="51.0" prefWidth="234.0" promptText="Choose customer" style="-fx-background-color: white;" styleClass="comboBox" />
                   <ScrollPane layoutX="94.0" layoutY="253.0" prefHeight="275.0" prefWidth="964.0">
                      <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="271.0" prefWidth="978.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="271.0" prefWidth="1096.0">
                            <children>
-                              <TableView fx:id="tableView" prefHeight="271.0" prefWidth="983.0">
+                              <TableView fx:id="tableView" onKeyPressed="#UpdateValues" onMousePressed="#callFunction" prefHeight="271.0" prefWidth="1099.0">
                                  <columns>
                                     <TableColumn fx:id="projectIDField" minWidth="0.0" prefWidth="110.0" text="Project ID" />
                                     <TableColumn fx:id="sectionField" minWidth="0.0" prefWidth="110.0" text="Section" />
@@ -136,10 +136,10 @@
                   <TextField fx:id="itemHeightField" layoutX="379.0" layoutY="576.0" prefHeight="51.0" prefWidth="213.0" promptText="Height" styleClass="textField" />
                   <TextField fx:id="itemWidthField" layoutX="656.0" layoutY="576.0" prefHeight="51.0" prefWidth="213.0" promptText="Width" styleClass="textField" />
                   <TextField fx:id="itemQuantity" layoutX="940.0" layoutY="576.0" prefHeight="51.0" prefWidth="213.0" promptText="Quantity" styleClass="textField" />
-                  <ComboBox fx:id="colorField" layoutX="940.0" layoutY="763.0" prefHeight="39.0" prefWidth="213.0" promptText="Color" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                  <ComboBox fx:id="colorField" layoutX="655.0" layoutY="763.0" prefHeight="39.0" prefWidth="213.0" promptText="Color" styleClass="comboBox" stylesheets="@../Controller/style.css" />
                   <ComboBox fx:id="woodTypeField" layoutX="94.0" layoutY="647.0" prefHeight="39.0" prefWidth="213.0" promptText="Wood Type" styleClass="comboBox" stylesheets="@../Controller/style.css" />
                   <ComboBox fx:id="projectSection" layoutX="94.0" layoutY="763.0" prefHeight="39.0" prefWidth="213.0" promptText="Project Section" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                  <ComboBox fx:id="handsModelNumber" layoutX="654.0" layoutY="763.0" prefHeight="39.0" prefWidth="213.0" promptText="Hands Model" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                  <ComboBox fx:id="handsModelNumber" layoutX="378.0" layoutY="647.0" prefHeight="39.0" prefWidth="213.0" promptText="Hands Model" styleClass="comboBox" stylesheets="@../Controller/style.css" />
                   <CheckBox fx:id="newSection" layoutX="94.0" layoutY="810.0" mnemonicParsing="false" text="New Section" />
                   <ComboBox fx:id="brzolDegree" layoutX="374.0" layoutY="763.0" prefHeight="39.0" prefWidth="224.0" promptText="Axles Degree" styleClass="comboBox" stylesheets="@../Controller/style.css" />
                   <TextField fx:id="handsQuantity" alignment="CENTER_RIGHT" layoutX="654.0" layoutY="855.0" prefWidth="213.0" styleClass="textField" />

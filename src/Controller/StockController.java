@@ -464,31 +464,31 @@ public class StockController implements Initializable{
 
 			if(s.getWoodName().equals("Sandwich"))  {
 				sandwichCount=s.getQuantity();
-				sandwichPercent.setText(((s.getQuantity()*countAll)/100.0)+"%");
+				sandwichPercent.setText(((s.getQuantity()*countAll)/1000.0)+"%");
 			}
 				
 			
 			if(s.getWoodName().equals("Mdf")) {
 				mdfCount=s.getQuantity();
-				mdfPercent.setText((s.getQuantity()*countAll/100.0)+"%");
+				mdfPercent.setText((s.getQuantity()*countAll/1000.0)+"%");
 			}
 				
 				
 			if(s.getWoodName().equals("Solid_Wood")) {
 				solidwoodCount=s.getQuantity();
-				solidPercent.setText((s.getQuantity()*countAll/100.0)+"%");
+				solidPercent.setText((s.getQuantity()*countAll/1000.0)+"%");
 			}
 				
 			
 			if(s.getWoodName().equals("Melamine")) {
 				melamineCount=s.getQuantity();
-				melaminePercent.setText((s.getQuantity()*countAll/100.0)+"%");
+				melaminePercent.setText((s.getQuantity()*countAll/1000.0)+"%");
 			}
 				
 			
 			if(s.getWoodName().equals("Particleboard")) {
 				particleCount=s.getQuantity();
-				particlePercent.setText((s.getQuantity()*countAll/100.0)+"%");
+				particlePercent.setText((s.getQuantity()*countAll/1000.0)+"%");
 			}
 				
 				

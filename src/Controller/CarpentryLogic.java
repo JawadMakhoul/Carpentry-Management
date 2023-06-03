@@ -899,7 +899,7 @@ public class CarpentryLogic {
 				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
 						CallableStatement stmt = conn.prepareCall(Consts.SQL_DEL_PROJECTITEMS)) {
 					
-					stmt.setString(1, pi.getProjectID());
+					stmt.setString(1, Integer.toString(pi.getItemID())); 
 					
 					stmt.executeUpdate();
 					return true;

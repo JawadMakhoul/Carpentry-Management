@@ -45,11 +45,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -66,7 +70,9 @@ public class UpdateProjectDetailsController implements Initializable{
     
     @FXML
     private ComboBox<String> ComboBoxObject;
-    
+
+    @FXML
+    private Pane pnlOverview;
     @FXML
     private TableColumn<ProjectDetailsToShowNonStatic, String> color;
 
@@ -85,8 +91,6 @@ public class UpdateProjectDetailsController implements Initializable{
     @FXML
     private TableColumn<ProjectDetailsToShowNonStatic, String> projectIDField;
 
-    @FXML
-    private Pane pnlOverview;
 
     @FXML
     private TableColumn<ProjectDetailsToShowNonStatic, String> quantity;
@@ -283,20 +287,27 @@ public class UpdateProjectDetailsController implements Initializable{
     	}
     	
     }
-    public void ShowProjectDetails() {System.out.println("4564574");
+
+    public void ShowProjectDetails() {
+
+//    itemID.setCellFactory(TextFieldTableCell.forTableColumn<TableView<ProjectDetailsToShowNonStatic>>());
+//    itemWidth.setCellFactory(TextFieldTableCell.<Project,Integer>());
+//    tableView.setColumnResizePolicy(TableView.UNCONSTRAINED_RESIZE_POLICY);
+//    tableView.setEditable(true);
+
     	ObservableList<ProjectDetailsToShowNonStatic> ObservableList_CP = FXCollections.observableArrayList();
         ArrayList<ProjectDetailsToShowNonStatic> arraylistToShow = new ArrayList<>();
         
-        for(Project p : CarpentryLogic.getInstance().getProjects()) {System.out.println("aaa");
+        for(Project p : CarpentryLogic.getInstance().getProjects()) {
         		
-        	if(p.getCustomerID().equals(customerEmailComboBox.getSelectionModel().getSelectedItem())) {System.out.println("sss");
-        		for(Section s : CarpentryLogic.getInstance().getSections()) {System.out.println("ddd");
+        	if(p.getCustomerID().equals(customerEmailComboBox.getSelectionModel().getSelectedItem())) {
+        		for(Section s : CarpentryLogic.getInstance().getSections()) {
         	
        
         
-        		if(s.getProjectID().equals(Integer.toString(p.getProjectID()))) {System.out.println("ffff");
-        			for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {System.out.println("ggggg");
-        			if(pi.getProjectID().equals(Integer.toString(p.getProjectID())) && (s.getSectionName().equals(pi.getSection()))) {System.out.println("hhhhhhhh");
+        		if(s.getProjectID().equals(Integer.toString(p.getProjectID()))) {
+        			for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
+        			if(pi.getProjectID().equals(Integer.toString(p.getProjectID())) && (s.getSectionName().equals(pi.getSection()))) {
         				
         					projectIDField.setCellValueFactory(new PropertyValueFactory<>("projectID"));
         					sectionField.setCellValueFactory(new PropertyValueFactory<>("section"));
@@ -332,12 +343,13 @@ public class UpdateProjectDetailsController implements Initializable{
         ObservableList_CP.addAll(arraylistToShow);
        
         tableView.setItems(ObservableList_CP);
-        System.out.println("345636");
+
+        
     }
     @FXML
-    void showProjects(ActionEvent event) {System.out.println("test");
+    void showProjects(ActionEvent event) {
     	ShowProjectDetails();
-    	System.out.println("123123");
+    	
     }
     
     @FXML
@@ -454,142 +466,248 @@ public class UpdateProjectDetailsController implements Initializable{
     	
     	}
     	case "Edit":{//itemWidthField,axleQuantity,handsQuantity;
-    		
-    			if(itemNameField.getText()!="") {
-    				//tableView.getSelectionModel().getSelectedItem().setItemName(itemNameField.getText());
-    				
-    				for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
-    					if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
-    						CarpentryLogic.getInstance().updateItemName(pi, itemNameField.getText());
-    						itemNameField.setText(null);
-    					}
-    				}
-    				
-    			}
-    			
-    			if(itemHeightField.getText()!="") {
-    				//tableView.getSelectionModel().getSelectedItem().setItemName(itemHeightField.getText());
-    				
-    				for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
-    					if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
-    						CarpentryLogic.getInstance().updateItemHeight(pi,Integer.parseInt(itemHeightField.getText()));
-    						itemHeightField.setText(null);
-    					}
-    				}
-    				
-    			}
-    			
-    			if(itemQuantity.getText()!="") {
-    				//tableView.getSelectionModel().getSelectedItem().setItemName(itemQuantity.getText());
-    				
-    				for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
-    					if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
-    						CarpentryLogic.getInstance().updateItemQuantity(pi,Integer.parseInt(itemQuantity.getText()));
-    						itemQuantity.setText(null);
-    					}
-    				}
-    				
-    			}
-    			
-    			if(itemWidthField.getText()!="") {
-    				//tableView.getSelectionModel().getSelectedItem().setItemName(itemWidthField.getText());
-    				
-    				for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
-    					if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
-    						CarpentryLogic.getInstance().updateItemWidth(pi,Integer.parseInt(itemWidthField.getText()));
-    						itemWidthField.setText(null);
-    					}
-    				}
-    				
-    			}
-    			
-    			if(woodTypeField.getSelectionModel().getSelectedItem()!=null) {
-    				//tableView.getSelectionModel().getSelectedItem().setItemName(axleQuantity.getText());
-    				
-    				for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
-    					if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
-    						CarpentryLogic.getInstance().updateWoodType(pi, woodTypeField.getSelectionModel().getSelectedItem().toString());
-    						//woodTypeField.setSelectionModel(null);
-    					}
-    				}
-    				
-    			}
-    			
-    			if(projectSection.getSelectionModel().getSelectedItem()!=null) {
-				//tableView.getSelectionModel().getSelectedItem().setItemName(axleQuantity.getText());
-				
-				for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
-					if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID()))
-						CarpentryLogic.getInstance().updateItemSection(pi, projectSection.getSelectionModel().getSelectedItem().toString());
-						
-				}
-				for(Section s : CarpentryLogic.getInstance().getSections()) {
-					if (s.getProjectID().equals(tableView.getSelectionModel().getSelectedItem().getProjectID())){
-						if(s.getSectionName() ==tableView.getSelectionModel().getSelectedItem().getSection()) {
-							CarpentryLogic.getInstance().updateSectionName(s, projectSection.getSelectionModel().toString());
-						}
-					}
-				}
-				
-			}
-    			
-    			if(brzolDegree.getSelectionModel().getSelectedItem()!=null) {
-    				for(Section s: CarpentryLogic.getInstance().getSections()) {
-    					if(s.getSectionName().equals(tableView.getSelectionModel().getSelectedItem().getSection()) && s.getProjectID().equals(tableView.getSelectionModel().getSelectedItem().getProjectID())) {
-    						System.out.println(brzolDegree.getSelectionModel().getSelectedItem().toString());
-    						CarpentryLogic.getInstance().updateAxleDegree(s, brzolDegree.getSelectionModel().getSelectedItem().toString());
-    						//brzolDegree.setSelectionModel(null);
-    					}
-    				}
-    			}
-    			
-    			if(handsModelNumber.getSelectionModel().getSelectedItem()!=null) {
-    				//tableView.getSelectionModel().getSelectedItem().setItemName(axleQuantity.getText());
-    				
-    				for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
-    					if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
-    						CarpentryLogic.getInstance().updateModelOfHands(pi, handsModelNumber.getSelectionModel().getSelectedItem().toString());
-    						//handsModelNumber.setSelectionModel(null);
-    					}
-    				}
-    				
-    			}
-    			
-    			
-    			if(colorField.getSelectionModel().getSelectedItem()!=null) {
-    				//tableView.getSelectionModel().getSelectedItem().setItemName(axleQuantity.getText());
-    				
-    				for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
-    					if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
-    						CarpentryLogic.getInstance().updateItemColor(pi, colorField.getSelectionModel().getSelectedItem().toString());
-    						//colorField.setSelectionModel(null);
-    					}
-    				}
-    				
-    			}
-    			
-    			
-
-    			if(axleQuantity.getText()!="") {
-    				for(Section s: CarpentryLogic.getInstance().getSections()) {
-    					if(s.getSectionName().equals(tableView.getSelectionModel().getSelectedItem().getSection()) && s.getProjectID().equals(tableView.getSelectionModel().getSelectedItem().getProjectID())) {
-    						CarpentryLogic.getInstance().updateAxleQuantity(s, Integer.parseInt(axleQuantity.getText()));
-    						axleQuantity.setText(null);
-    					}
-    				}
-    			}
-    			
-    			if(handsQuantity.getText()!="") {
-    				for(Section s: CarpentryLogic.getInstance().getSections()) {
-    					if(s.getSectionName().equals(tableView.getSelectionModel().getSelectedItem().getSection()) && s.getProjectID().equals(tableView.getSelectionModel().getSelectedItem().getProjectID())) {
-    						CarpentryLogic.getInstance().updateHandsQuantity(s, Integer.parseInt(handsQuantity.getText()));
-    						handsQuantity.setText(null);
-    					}
-    				}
-    			}
-    			
-    			//ShowProjectDetails();
-    		break;
+    	  
+//    	     for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+//				if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+//					if(pi.getColor()!= tableView.getSelectionModel().getSelectedItem().getColor()) {
+//						CarpentryLogic.getInstance().updateItemColor(pi, tableView.getSelectionModel().getSelectedItem().getColor());
+//					}
+//				}
+//
+//    	     }
+//    	     for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+// 				if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+// 					System.out.println("im section num: " + pi.getItemID());
+// 					System.out.println("my quantity is:" + pi.getQuantity());
+//// 					quantity.setOnEditCommit(editEvent  -> {
+////						    ProjectDetailsToShowNonStatic q = editEvent.getRowValue();
+////						    String newQuantity = editEvent.getNewValue();
+////						    q.setQuantity(newQuantity);
+////						    System.out.println("Updated Quantity: " + q.getQuantity());
+////						});
+// 					
+//// 					quantity.setOnEditCommit(editEvent -> {
+//// 						TablePosition<ProjectDetailsToShowNonStatic, String> pos = editEvent.getTablePosition();
+//// 					    int row = pos.getRow();
+//// 					    ProjectDetailsToShowNonStatic item = editEvent.getTableView().getItems().get(row);
+//// 					    String newQuantity = editEvent.getNewValue();
+//// 					    item.setQuantity(newQuantity);
+//// 					    System.out.println("Updated Quantity: " + newQuantity);
+//// 					});
+//
+// 					quantity.setOnEditCommit(e -> {
+// 					    String newValue = e.getNewValue();
+// 					    System.out.println(newValue);
+// 					    e.getRowValue().setQuantity(newValue);
+// 					});
+//
+//
+// 					System.out.println("the table quantity is: " + tableView.getSelectionModel().getSelectedItem().getQuantity());
+// 					if( !Integer.toString(pi.getQuantity()).equals( tableView.getSelectionModel().getSelectedItem().getQuantity())) {
+// 				
+// 						CarpentryLogic.getInstance().updateItemQuantity(pi,Integer.parseInt(quantity.getCellData(0)));
+// 						System.out.println("the updated value is"+ tableView.getSelectionModel().getSelectedItem().getQuantity() );
+// 						System.out.println("and in the db "+ pi.getQuantity());
+// 						
+// 				
+//
+// 					
+// 					}
+// 				}
+//
+//     	     }
+//     	     for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+//  				if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+//  					for(Section s: CarpentryLogic.getInstance().getSections()) {
+//  						if(s.getProjectID() == pi.getProjectID() && s.getSectionName() == pi.getSection() )
+//  					if(!pi.getSection().equals( tableView.getSelectionModel().getSelectedItem().getSection())) {
+//  						CarpentryLogic.getInstance().updateSectionName(s, tableView.getSelectionModel().getSelectedItem().getSection());
+//  					}
+//  				}
+//  				}
+//      	     }
+//     	     for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+//   				if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+//   					if( !pi.getModelNumberOfHands().equals( tableView.getSelectionModel().getSelectedItem().getModelNumberOFhands())) {
+//   						CarpentryLogic.getInstance().updateModelOfHands(pi, tableView.getSelectionModel().getSelectedItem().getModelNumberOFhands());
+//   					}
+//   				}
+//
+//       	     }
+//    	     for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+//    				if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+//    					if(! Integer.toString( pi.getHeight()).equals(( tableView.getSelectionModel().getSelectedItem().getItemHeight()))) {
+//    						CarpentryLogic.getInstance().updateItemHeight(pi,Integer.parseInt(tableView.getSelectionModel().getSelectedItem().getItemHeight()));
+//    					}
+//    				}
+//
+//    	     }
+//    	     for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+// 				if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+// 					if(! Integer.toString( pi.getWidth()).equals(( tableView.getSelectionModel().getSelectedItem().getItemWidth()))) {
+// 						CarpentryLogic.getInstance().updateItemWidth(pi,Integer.parseInt(tableView.getSelectionModel().getSelectedItem().getItemWidth()));
+// 					}
+// 				}
+//
+// 	     }
+//    	     for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+//  				if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+//  					if(! pi.getWoodType().equals(( tableView.getSelectionModel().getSelectedItem().getWoodType()))) {
+//  						CarpentryLogic.getInstance().updateWoodType(pi, tableView.getSelectionModel().getSelectedItem().getWoodType());
+//  					}
+//  				}
+//
+//  	     }
+//     	     for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+//   				if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+//   					if(! pi.getItemName().equals(( tableView.getSelectionModel().getSelectedItem().getItemName()))) {
+//   						CarpentryLogic.getInstance().updateItemName(pi, tableView.getSelectionModel().getSelectedItem().getItemName());
+//   					}
+//   				}
+//
+//   	     }  
+    	     
+    	     
+    	     
+    	//}
+    	     
+    	break;
+//    	     
+//    			if(itemNameField.getText()!="") {
+//    				//tableView.getSelectionModel().getSelectedItem().setItemName(itemNameField.getText());
+//    				
+//    				for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+//    					if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+//    						CarpentryLogic.getInstance().updateItemName(pi, itemNameField.getText());
+//    						itemNameField.setText(null);
+//    					}
+//    				}
+//    				
+//    			}
+//    			
+//    			if(itemHeightField.getText()!="") {
+//    				//tableView.getSelectionModel().getSelectedItem().setItemName(itemHeightField.getText());
+//    				
+//    				for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+//    					if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+//    						CarpentryLogic.getInstance().updateItemHeight(pi,Integer.parseInt(itemHeightField.getText()));
+//    						itemHeightField.setText(null);
+//    					}
+//    				}
+//    				
+//    			}
+//    			
+//    			if(itemQuantity.getText()!="") {
+//    				//tableView.getSelectionModel().getSelectedItem().setItemName(itemQuantity.getText());
+//    				
+//    				for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+//    					if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+//    						CarpentryLogic.getInstance().updateItemQuantity(pi,Integer.parseInt(itemQuantity.getText()));
+//    						itemQuantity.setText(null);
+//    					}
+//    				}
+//    				
+//    			}
+//    			
+//    			if(itemWidthField.getText()!="") {
+//    				//tableView.getSelectionModel().getSelectedItem().setItemName(itemWidthField.getText());
+//    				
+//    				for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+//    					if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+//    						CarpentryLogic.getInstance().updateItemWidth(pi,Integer.parseInt(itemWidthField.getText()));
+//    						itemWidthField.setText(null);
+//    					}
+//    				}
+//    				
+//    			}
+//    			
+//    			if(woodTypeField.getSelectionModel().getSelectedItem()!=null) {
+//    				//tableView.getSelectionModel().getSelectedItem().setItemName(axleQuantity.getText());
+//    				
+//    				for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+//    					if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+//    						CarpentryLogic.getInstance().updateWoodType(pi, woodTypeField.getSelectionModel().getSelectedItem().toString());
+//    						//woodTypeField.setSelectionModel(null);
+//    					}
+//    				}
+//    				
+//    			}
+//    			
+//    			if(projectSection.getSelectionModel().getSelectedItem()!=null) {
+//				//tableView.getSelectionModel().getSelectedItem().setItemName(axleQuantity.getText());
+//				
+//				for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+//					if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID()))
+//						CarpentryLogic.getInstance().updateItemSection(pi, projectSection.getSelectionModel().getSelectedItem().toString());
+//						
+//				}
+//				for(Section s : CarpentryLogic.getInstance().getSections()) {
+//					if (s.getProjectID().equals(tableView.getSelectionModel().getSelectedItem().getProjectID())){
+//						if(s.getSectionName() ==tableView.getSelectionModel().getSelectedItem().getSection()) {
+//							CarpentryLogic.getInstance().updateSectionName(s, projectSection.getSelectionModel().toString());
+//						}
+//					}
+//				}
+//				
+//			}
+//    			
+//    			if(brzolDegree.getSelectionModel().getSelectedItem()!=null) {
+//    				for(Section s: CarpentryLogic.getInstance().getSections()) {
+//    					if(s.getSectionName().equals(tableView.getSelectionModel().getSelectedItem().getSection()) && s.getProjectID().equals(tableView.getSelectionModel().getSelectedItem().getProjectID())) {
+//    						System.out.println(brzolDegree.getSelectionModel().getSelectedItem().toString());
+//    						CarpentryLogic.getInstance().updateAxleDegree(s, brzolDegree.getSelectionModel().getSelectedItem().toString());
+//    						//brzolDegree.setSelectionModel(null);
+//    					}
+//    				}
+//    			}
+//    			
+//    			if(handsModelNumber.getSelectionModel().getSelectedItem()!=null) {
+//    				//tableView.getSelectionModel().getSelectedItem().setItemName(axleQuantity.getText());
+//    				
+//    				for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+//    					if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+//    						CarpentryLogic.getInstance().updateModelOfHands(pi, handsModelNumber.getSelectionModel().getSelectedItem().toString());
+//    						//handsModelNumber.setSelectionModel(null);
+//    					}
+//    				}
+//    				
+//    			}
+//    			
+//    			
+//    			if(colorField.getSelectionModel().getSelectedItem()!=null) {
+//    				//tableView.getSelectionModel().getSelectedItem().setItemName(axleQuantity.getText());
+//    				
+//    				for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+//    					if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+//    						CarpentryLogic.getInstance().updateItemColor(pi, colorField.getSelectionModel().getSelectedItem().toString());
+//    						//colorField.setSelectionModel(null);
+//    					}
+//    				}
+//    				
+//    			}
+//    			
+//    			
+//
+//    			if(axleQuantity.getText()!="") {
+//    				for(Section s: CarpentryLogic.getInstance().getSections()) {
+//    					if(s.getSectionName().equals(tableView.getSelectionModel().getSelectedItem().getSection()) && s.getProjectID().equals(tableView.getSelectionModel().getSelectedItem().getProjectID())) {
+//    						CarpentryLogic.getInstance().updateAxleQuantity(s, Integer.parseInt(axleQuantity.getText()));
+//    						axleQuantity.setText(null);
+//    					}
+//    				}
+//    			}
+//    			
+//    			if(handsQuantity.getText()!="") {
+//    				for(Section s: CarpentryLogic.getInstance().getSections()) {
+//    					if(s.getSectionName().equals(tableView.getSelectionModel().getSelectedItem().getSection()) && s.getProjectID().equals(tableView.getSelectionModel().getSelectedItem().getProjectID())) {
+//    						CarpentryLogic.getInstance().updateHandsQuantity(s, Integer.parseInt(handsQuantity.getText()));
+//    						handsQuantity.setText(null);
+//    					}
+//    				}
+//    			}
+//    			
+//    			//ShowProjectDetails();
+//    		break;
     	}
 
     	case "Delete":{
@@ -598,19 +716,19 @@ public class UpdateProjectDetailsController implements Initializable{
     		
     		case "Project":{
     			DeleteProject();
-    			//ShowProjectDetails();
+    		ShowProjectDetails();
     			break;
     		}
     		
     		case "Item":{
     			DeleteItem();
-    			//ShowProjectDetails();
+    			ShowProjectDetails();
     			break;
     		}
     		
     		case "Section":{
     			DeleteSection();
-    			//ShowProjectDetails();
+    			ShowProjectDetails();
     			break;
     		}
     		
@@ -624,13 +742,18 @@ public class UpdateProjectDetailsController implements Initializable{
     public void DeleteProject() throws SQLException {
     	for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
 			if(pi.getProjectID().equals(tableView.getSelectionModel().getSelectedItem().getProjectID())) {
+				System.out.println(pi.getItemID());
 				ArrayList<Stock> stock = new ArrayList<Stock>();
 	        	stock= CarpentryLogic.getInstance().getStocks();
-	        	for(Stock s11 : stock) {
+	        	System.out.println("I sent this: " + pi.getProjectID());
+    			CarpentryLogic.getInstance().DeleteProjectItems(pi);
+    			
+    			for(Stock s11 : stock) {
 	        		if (s11.getWoodName().equals(tableView.getSelectionModel().getSelectedItem().getWoodType())) {
-	        			s11.setQuantity(s11.getQuantity()+Integer.parseInt(quantity.getText()));
+	        			s11.setQuantity(s11.getQuantity()+Integer.parseInt(tableView.getSelectionModel().getSelectedItem().getQuantity()));
 	        			CarpentryLogic.getInstance().updateStockQuantity(s11, s11.getQuantity());
-	        			CarpentryLogic.getInstance().DeleteProjectItems(pi);
+
+
 	        		}
 
 	        	}
@@ -655,13 +778,17 @@ public class UpdateProjectDetailsController implements Initializable{
     	
     	for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
 			if(pi.getProjectID().equals(tableView.getSelectionModel().getSelectedItem().getProjectID()) && pi.getSection().equals(tableView.getSelectionModel().getSelectedItem().getSection())) {
+				System.out.println(pi.getItemID());
 				ArrayList<Stock> stock = new ArrayList<Stock>();
 	        	stock= CarpentryLogic.getInstance().getStocks();
-	        	for(Stock s11 : stock) {
+    			CarpentryLogic.getInstance().DeleteProjectItems(pi);
+    			
+    			for(Stock s11 : stock) {
 	        		if (s11.getWoodName().equals(tableView.getSelectionModel().getSelectedItem().getWoodType())) {
-	        			s11.setQuantity(s11.getQuantity()+Integer.parseInt(quantity.getText()));
+	        			s11.setQuantity(s11.getQuantity()+Integer.parseInt(tableView.getSelectionModel().getSelectedItem().getQuantity()));
 	        			CarpentryLogic.getInstance().updateStockQuantity(s11, s11.getQuantity());
-	        			CarpentryLogic.getInstance().DeleteProjectItems(pi);
+
+
 	        		}
 
 	        	}
@@ -705,8 +832,10 @@ public class UpdateProjectDetailsController implements Initializable{
 			System.out.println(pi.getItemID());
 				ArrayList<Stock> stock = new ArrayList<Stock>();
 	        	stock= CarpentryLogic.getInstance().getStocks();
+	        	System.out.println("I sent this: " + pi.getProjectID());
     			CarpentryLogic.getInstance().DeleteProjectItems(pi);
-	        	for(Stock s11 : stock) {
+    			
+    			for(Stock s11 : stock) {
 	        		if (s11.getWoodName().equals(tableView.getSelectionModel().getSelectedItem().getWoodType())) {
 	        			s11.setQuantity(s11.getQuantity()+Integer.parseInt(tableView.getSelectionModel().getSelectedItem().getQuantity()));
 	        			CarpentryLogic.getInstance().updateStockQuantity(s11, s11.getQuantity());
@@ -721,9 +850,237 @@ public class UpdateProjectDetailsController implements Initializable{
     }
     
     @FXML
-    void CheckIfDelete(ActionEvent event) {
-    	if(adddeleteitem.getSelectionModel().getSelectedItem().equals("Delete"))
+    void CheckIfDelete(ActionEvent event) throws NumberFormatException, SQLException {
+    	
+    	if(adddeleteitem.getSelectionModel().getSelectedItem().equals("Delete")) {
+    	    tableView.setEditable(false);
+    		itemHeightField.setDisable(true);
+    		itemNameField.setDisable(true);
+    		itemQuantity.setDisable(true);
+    		itemWidthField.setDisable(true);
+    		axleQuantity.setDisable(true);
+    		handsQuantity.setDisable(true);
+    		colorField.setDisable(true);
+    		handsModelNumber.setDisable(true);
+    		projectSection.setDisable(true);
+    		woodTypeField.setDisable(true);
+    		brzolDegree.setDisable(true);
+    		newSection.setDisable(true);
     		ComboBoxObject.setDisable(false);
+    	}
+    	if(adddeleteitem.getSelectionModel().getSelectedItem().equals("Edit")) {
+    		itemHeightField.setDisable(true);
+    		itemNameField.setDisable(true);
+    		itemQuantity.setDisable(true);
+    		itemWidthField.setDisable(true);
+    		axleQuantity.setDisable(true);
+    		handsQuantity.setDisable(true);
+    		colorField.setDisable(true);
+    		handsModelNumber.setDisable(true);
+    		projectSection.setDisable(true);
+    		woodTypeField.setDisable(true);
+    		brzolDegree.setDisable(true);
+    		newSection.setDisable(true);
+	    tableView.setEditable(true);
+	     quantity.setCellFactory(TextFieldTableCell.forTableColumn());
+	     sectionField.setCellFactory(TextFieldTableCell.forTableColumn());
+	     color.setCellFactory(TextFieldTableCell.forTableColumn());
+	     itemHeight.setCellFactory(TextFieldTableCell.forTableColumn());
+	     itemName.setCellFactory(TextFieldTableCell.forTableColumn());
+	     itemWidth.setCellFactory(TextFieldTableCell.forTableColumn());
+	     woodType.setCellFactory(TextFieldTableCell.forTableColumn());
+	     handsField.setCellFactory(TextFieldTableCell.forTableColumn());
+	     
+	     
+    	}
+	     if(adddeleteitem.getSelectionModel().getSelectedItem().equals("Add")) {
+	    	    tableView.setEditable(false);
+	    	 itemHeightField.setDisable(false);
+	 		itemNameField.setDisable(false);
+	 		itemQuantity.setDisable(false);
+	 		itemWidthField.setDisable(false);
+	 		axleQuantity.setDisable(false);
+	 		handsQuantity.setDisable(false);
+	 		colorField.setDisable(false);
+	 		handsModelNumber.setDisable(false);
+	 		projectSection.setDisable(false);
+	 		woodTypeField.setDisable(false);
+	 		brzolDegree.setDisable(false);
+	 		newSection.setDisable(false);
+	     }
+	         	
+    }
+    
+    @FXML
+    void UpdateValues(KeyEvent event) throws SQLException {
+    	
+    	System.out.println("FUNC");
+
+    	if(event.getCode() == KeyCode.ENTER ) {System.out.println("ENTER");
+    		if(customerEmailComboBox.getSelectionModel().getSelectedItem()!=null&&adddeleteitem.getSelectionModel().getSelectedItem().equals("Edit")) {System.out.println("IF");
+//    		for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+//				if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+//					if(pi.getColor()!= tableView.getSelectionModel().getSelectedItem().getColor()) {
+//						CarpentryLogic.getInstance().updateItemColor(pi, tableView.getSelectionModel().getSelectedItem().getColor());
+//					}
+//				}
+//
+// 	     }
+// 	     for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+//				if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+//					
+//					
+//					
+//						quantity.setOnEditCommit(e -> {
+//					    String newValue = e.getNewValue();
+//					    System.out.println(newValue);
+//					    //if( !Integer.toString(pi.getQuantity()).equals(e.getNewValue())) {
+//					    try {
+//							CarpentryLogic.getInstance().updateItemQuantity(pi,Integer.parseInt(e.getNewValue()));
+//						} catch (NumberFormatException e1) {
+//							// TODO Auto-generated catch block
+//							e1.printStackTrace();
+//						} catch (SQLException e1) {
+//							// TODO Auto-generated catch block
+//							e1.printStackTrace();
+//						}
+//					    e.getRowValue().setQuantity(newValue);
+//					});
+//					
+//					}
+//					
+//				
+//
+//  	     }
+//  	     for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+//				if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+//					for(Section s: CarpentryLogic.getInstance().getSections()) {
+//						if(s.getProjectID() == pi.getProjectID() && s.getSectionName() == pi.getSection() )
+//					if(!pi.getSection().equals( tableView.getSelectionModel().getSelectedItem().getSection())) {
+//						CarpentryLogic.getInstance().updateSectionName(s, tableView.getSelectionModel().getSelectedItem().getSection());
+//					}
+//				}
+//				}
+//   	     }
+//  	     for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+//				if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+//					if( !pi.getModelNumberOfHands().equals( tableView.getSelectionModel().getSelectedItem().getModelNumberOFhands())) {
+//						CarpentryLogic.getInstance().updateModelOfHands(pi, tableView.getSelectionModel().getSelectedItem().getModelNumberOFhands());
+//					}
+//				}
+//
+//    	     }
+// 	     for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+// 				if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+// 					if(! Integer.toString( pi.getHeight()).equals(( tableView.getSelectionModel().getSelectedItem().getItemHeight()))) {
+// 						CarpentryLogic.getInstance().updateItemHeight(pi,Integer.parseInt(tableView.getSelectionModel().getSelectedItem().getItemHeight()));
+// 					}
+// 				}
+//
+// 	     }
+// 	     for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+//				if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+//					if(! Integer.toString( pi.getWidth()).equals(( tableView.getSelectionModel().getSelectedItem().getItemWidth()))) {
+//						CarpentryLogic.getInstance().updateItemWidth(pi,Integer.parseInt(tableView.getSelectionModel().getSelectedItem().getItemWidth()));
+//					}
+//				}
+//
+//	     }
+// 	     for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+//				if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+//					if(! pi.getWoodType().equals(( tableView.getSelectionModel().getSelectedItem().getWoodType()))) {
+//						CarpentryLogic.getInstance().updateWoodType(pi, tableView.getSelectionModel().getSelectedItem().getWoodType());
+//					}
+//				}
+//
+//	     }
+//  	     for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+//				if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+//					if(! pi.getItemName().equals(( tableView.getSelectionModel().getSelectedItem().getItemName()))) {
+//						CarpentryLogic.getInstance().updateItemName(pi, tableView.getSelectionModel().getSelectedItem().getItemName());
+//					}
+//				}
+//
+//	     }
+    	}
+    	}
+    }
+    
+    @FXML
+    void callFunction(MouseEvent event) {
+    	for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+			if(Integer.toString(pi.getItemID()).equals(tableView.getSelectionModel().getSelectedItem().getItemID())) {
+				
+					quantity.setOnEditCommit(e -> {
+				    String newValue = e.getNewValue();
+				    System.out.println(newValue);
+				    //if( !Integer.toString(pi.getQuantity()).equals(e.getNewValue())) {
+				    try {
+						CarpentryLogic.getInstance().updateItemQuantity(pi,Integer.parseInt(e.getNewValue()));
+					} catch (NumberFormatException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				    e.getRowValue().setQuantity(newValue);
+				});
+					
+					
+					itemHeight.setOnEditCommit(e -> {
+					    String newValue = e.getNewValue();
+					    System.out.println(newValue);
+					    //if( !Integer.toString(pi.getQuantity()).equals(e.getNewValue())) {
+					    try {
+							CarpentryLogic.getInstance().updateItemHeight(pi,Integer.parseInt(e.getNewValue()));
+						} catch (NumberFormatException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					    e.getRowValue().setItemHeight(newValue);
+					});
+					
+					itemName.setOnEditCommit(e -> {
+					    String newValue = e.getNewValue();
+					    System.out.println(newValue);
+					    //if( !Integer.toString(pi.getQuantity()).equals(e.getNewValue())) {
+					    try {
+							CarpentryLogic.getInstance().updateItemName(pi,e.getNewValue());
+						} catch (NumberFormatException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					    e.getRowValue().setItemName(newValue);
+					});
+					
+					itemWidth.setOnEditCommit(e -> {
+					    String newValue = e.getNewValue();
+					    System.out.println(newValue);
+					    //if( !Integer.toString(pi.getQuantity()).equals(e.getNewValue())) {
+					    try {
+							CarpentryLogic.getInstance().updateItemWidth(pi,Integer.parseInt(e.getNewValue()));
+						} catch (NumberFormatException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					    e.getRowValue().setItemWidth(newValue);
+					});
+					
+				}
+				
+			
+
+	     }
     }
     
 	@Override
@@ -771,5 +1128,18 @@ public class UpdateProjectDetailsController implements Initializable{
 		ObservableList<String> Object = FXCollections.observableArrayList("Project","Section","Item");
 		ComboBoxObject.getItems().addAll(Object);
 		ComboBoxObject.setDisable(true);
+		itemHeightField.setDisable(true);
+		itemNameField.setDisable(true);
+		itemQuantity.setDisable(true);
+		itemWidthField.setDisable(true);
+		axleQuantity.setDisable(true);
+		handsQuantity.setDisable(true);
+		colorField.setDisable(true);
+		handsModelNumber.setDisable(true);
+		projectSection.setDisable(true);
+		woodTypeField.setDisable(true);
+		brzolDegree.setDisable(true);
+		newSection.setDisable(true);
+	
 	}
 }
