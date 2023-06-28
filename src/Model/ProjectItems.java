@@ -22,10 +22,10 @@ public class ProjectItems {
 	private String projectID;
 	private String section;
 	private String color;
-	private String modelNumberOfHands;
+	
 
 	public ProjectItems(int itemID,String ItemName, int height, int width, String woodType, int quantity, String projectID,
-			String section, String color, String modelNumberOfHands) {
+			String section, String color) {
 		super();
 		this.itemID=itemID;
 		this.ItemName = ItemName;
@@ -36,7 +36,6 @@ public class ProjectItems {
 		this.projectID = projectID;
 		this.section = section;
 		this.color = color;
-		this.modelNumberOfHands = modelNumberOfHands;
 	}
 
 	public ProjectItems() {
@@ -109,14 +108,6 @@ public class ProjectItems {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
-	}
-
-	public String getModelNumberOfHands() {
-		return modelNumberOfHands;
-	}
-
-	public void setModelNumberOfHands(String modelNumberOfHands) {
-		this.modelNumberOfHands = modelNumberOfHands;
 	}
 	
 	public String getProjectID() {

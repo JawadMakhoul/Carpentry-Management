@@ -59,7 +59,7 @@ private String projectID;
     }
 
     @FXML
-    void MoveTo(MouseEvent event) throws IOException {
+    void MoveTo(MouseEvent event) throws IOException, ClassNotFoundException {
     	
     	
    
