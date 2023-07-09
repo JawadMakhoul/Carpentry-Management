@@ -30,6 +30,12 @@ public class CurrentProjectsToShow {
 		this.quantity = quantity;
 		this.section = section;
 		this.color = color;
+		this.modelNumberOFhands=modelNumberOFhands;
+	}
+	public String getModelNumberOFhands() {
+		return modelNumberOFhands;
+	}
+	public void setModelNumberOFhands(String modelNumberOFhands) {
 		this.modelNumberOFhands = modelNumberOFhands;
 	}
 	public String getCustomerName() {
@@ -96,14 +102,7 @@ public class CurrentProjectsToShow {
 		return color;
 	}
 	public void setColor(String color) {
-		this.color = color;
-	}
-	public String getModelNumberOFhands() {
-		return modelNumberOFhands;
-	}
-	public void setModelNumberOFhands(String modelNumberOFhands) {
-		this.modelNumberOFhands = modelNumberOFhands;
-	}
+		this.color = color;}
 	
 	
 	

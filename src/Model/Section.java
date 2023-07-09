@@ -15,12 +15,8 @@ public class Section {
 	private int quantityOFhands;
 	private int quantityOFaxle;
 	private String axleDegree;
-	private String modelNumberOfHands;
 
-	
-	
-
-	public Section(int sectionID,String sectionName,String projectID, int quantityOFhands, int quantityOFaxle, String axleDegree,String modelNumberOfHands ) {
+	public Section(int sectionID,String sectionName,String projectID, int quantityOFhands, int quantityOFaxle, String axleDegree) {
 		super();
 		this.sectionID=sectionID;
 		this.sectionName= sectionName;
@@ -28,18 +24,9 @@ public class Section {
 		this.quantityOFhands = quantityOFhands;
 		this.quantityOFaxle = quantityOFaxle;
 		this.axleDegree=axleDegree;
-		this.modelNumberOfHands=modelNumberOfHands;
+		
 		//ProjectSection = projectSection;
 	}
-	
-	public String getModelNumberOfHands() {
-		return modelNumberOfHands;
-	}
-
-	public void setModelNumberOfHands(String modelNumberOfHands) {
-		this.modelNumberOfHands = modelNumberOfHands;
-	}
-
 	public Section() {
 		this.sectionID=idCounter++;
 	}

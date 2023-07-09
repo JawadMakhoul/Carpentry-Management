@@ -22,10 +22,11 @@ public class ProjectItems {
 	private String projectID;
 	private String section;
 	private String color;
+	private String handsmodel;
 	
 
 	public ProjectItems(int itemID,String ItemName, int height, int width, String woodType, int quantity, String projectID,
-			String section, String color) {
+			String section, String color,String handsmodel) {
 		super();
 		this.itemID=itemID;
 		this.ItemName = ItemName;
@@ -36,6 +37,15 @@ public class ProjectItems {
 		this.projectID = projectID;
 		this.section = section;
 		this.color = color;
+		this.handsmodel=handsmodel;
+	}
+
+	public String getHandsmodel() {
+		return handsmodel;
+	}
+
+	public void setHandsmodel(String handsmodel) {
+		this.handsmodel = handsmodel;
 	}
 
 	public ProjectItems() {

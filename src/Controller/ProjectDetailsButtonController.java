@@ -261,7 +261,7 @@ public class ProjectDetailsButtonController implements Initializable{
        				projectCategoryField.setText(p.getProjectCategory());
 					projectIDField.setText(pi.getProjectID());
 					customerNameField.setText(p.getCustomerID());
-					handsField.setText(pi.getModelNumberOfHands());
+					handsField.setText(pi.getHandsmodel());
 					sectionField.setCellValueFactory(new PropertyValueFactory<>("section"));
 					itemID.setCellValueFactory(new PropertyValueFactory<>("itemID"));
 					itemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
@@ -279,20 +279,21 @@ public class ProjectDetailsButtonController implements Initializable{
 						if(imageSTR==null) {
 							//Image i = new Image("");
 							projectImage.setImage(null);
-							ProjectDetailsToShowNonStatic pdtsToArray = new ProjectDetailsToShowNonStatic(p.getCustomerID(),pi.getProjectID(),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands(),imageSTR);
+							ProjectDetailsToShowNonStatic pdtsToArray = new ProjectDetailsToShowNonStatic(p.getCustomerID(),pi.getProjectID(),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel(),imageSTR);
 							arraylistToShow.add(pdtsToArray);
 						}
 						
 						else {
 							Image i = new Image(imageSTR);
 							projectImage.setImage(i);
-							ProjectDetailsToShowNonStatic pdtsToArray = new ProjectDetailsToShowNonStatic(p.getCustomerID(),pi.getProjectID(),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands(),imageSTR);
+							ProjectDetailsToShowNonStatic pdtsToArray = new ProjectDetailsToShowNonStatic(p.getCustomerID(),pi.getProjectID(),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel(),imageSTR);
 							arraylistToShow.add(pdtsToArray);
 						}
 						
 				//	}
 			        
                		}
+       			
        			}
     	   }
        }

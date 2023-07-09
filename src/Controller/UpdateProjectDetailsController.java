@@ -322,7 +322,7 @@ public class UpdateProjectDetailsController implements Initializable{
         					
         					String imageSTR = CarpentryLogic.getInstance().GetImage(p);
     						
-    							ProjectDetailsToShowNonStatic pdtsToArray = new ProjectDetailsToShowNonStatic(p.getCustomerID(),pi.getProjectID(),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands(),imageSTR);
+    							ProjectDetailsToShowNonStatic pdtsToArray = new ProjectDetailsToShowNonStatic(p.getCustomerID(),pi.getProjectID(),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel(),imageSTR);
     							arraylistToShow.add(pdtsToArray);
     				
     						
@@ -374,7 +374,7 @@ public class UpdateProjectDetailsController implements Initializable{
     			pi.setProjectID(tableView.getSelectionModel().getSelectedItem().getProjectID());
     			pi.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
     			pi.setColor(colorField.getSelectionModel().getSelectedItem().toString());
-    			pi.setModelNumberOfHands(handsModelNumber.getSelectionModel().getSelectedItem().toString());
+    			pi.setHandsmodel(handsModelNumber.getSelectionModel().getSelectedItem().toString());
     			
     			CarpentryLogic.getInstance().addProjectItems(pi);
     			
@@ -456,7 +456,7 @@ public class UpdateProjectDetailsController implements Initializable{
         			pi2.setProjectID(tableView.getSelectionModel().getSelectedItem().getProjectID());
         			pi2.setSection(tableView.getSelectionModel().getSelectedItem().getSection());
         			pi2.setColor(colorField.getSelectionModel().getSelectedItem().toString());
-        			pi2.setModelNumberOfHands(handsModelNumber.getSelectionModel().getSelectedItem().toString());
+        			pi2.setHandsmodel(handsModelNumber.getSelectionModel().getSelectedItem().toString());
         			
         			CarpentryLogic.getInstance().addProjectItems(pi2);
         			//ShowProjectDetails();

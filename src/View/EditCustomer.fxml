@@ -134,6 +134,12 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Text>
+                  <TextField fx:id="email" alignment="CENTER" layoutX="659.0" layoutY="590.0" styleClass="textField" />
+                  <Text fill="#d96e3a" layoutX="355.0" layoutY="622.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Email" wrappingWidth="224.0">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Text>
                </children></AnchorPane>
         </items>
       </SplitPane>

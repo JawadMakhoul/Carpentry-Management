@@ -36,6 +36,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -270,9 +271,44 @@ public class CurrentProjectsController implements Initializable{
     	}
     	
     }
+	@FXML
+    void SearchEmailByLetter(KeyEvent event) {
+
+		searchField1.setOnKeyReleased(keyEvent -> {
+    	    if(filter1.getSelectionModel().getSelectedItem().equals("Customer Name")) {
+    	        String searchText = searchField1.getText().toLowerCase();
+    	        ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
+    	        ObservableList<CurrentProjectsToShow> custOrders = FXCollections.observableArrayList();
+    	        
+    	        for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
+    	            if( c.getEmail().toLowerCase().contains(searchText)) {System.out.println("cust");
+    	                for(Project p : CarpentryLogic.getInstance().getProjects()) {
+    	                    if(p.getCustomerID().equals(c.getEmail())) {System.out.println("email");
+    	                    	for(Order o: CarpentryLogic.getInstance().getOrders()) {
+    	                    		if(o.getProjectID().equals(Integer.toString(p.getProjectID())) && o.getStatus().equals("InProgress")) {System.out.println("order");
+    	                    		
+	    	                        for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
+	    	                            if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {System.out.println("inpor");
+	    	                                CurrentProjectsToShow cpts = new CurrentProjectsToShow(c.getEmail(), Integer.toString(p.getProjectID()), p.getProjectCategory(), Integer.toString(pi.getItemID()), pi.getItemName(), Integer.toString(pi.getHeight()), Integer.toString(pi.getWidth()), pi.getWoodType(), Integer.toString(pi.getQuantity()), pi.getSection(), pi.getColor(), pi.getHandsmodel());
+	    	                                toShow.add(cpts);
+	    	                            }
+	    	                        }
+    	                    		}
+    	                    	}
+    	                    }
+    	                }
+    	            }
+    	        }
+
+    	        custOrders.addAll(Search2(toShow));
+    	        tableView.setItems(custOrders);
+    	    }
+    	});
+    }
     
     @FXML
     void Search(ActionEvent event) {
+    	
     	
     	if(filter1.getSelectionModel().getSelectedItem().equals("Customer Name")) {
     		for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
@@ -286,7 +322,7 @@ public class CurrentProjectsController implements Initializable{
     						for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
     							if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {
     								//custOrders.add(pi);
-    								CurrentProjectsToShow cpts = new  CurrentProjectsToShow(c.getName(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands());
+    								CurrentProjectsToShow cpts = new  CurrentProjectsToShow(c.getName(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel());
     								toShow.add(cpts);
     							}
     						}
@@ -310,7 +346,7 @@ public class CurrentProjectsController implements Initializable{
     				for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
     					if(pi.getProjectID().equals(searchField1.getText())) {
     						//projOrders.add(o);
-    						CurrentProjectsToShow cpts = new  CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands());
+    						CurrentProjectsToShow cpts = new  CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel());
 							toShow.add(cpts);
     				}
     				
@@ -330,7 +366,7 @@ public class CurrentProjectsController implements Initializable{
     				for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
     					if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {
     						//projOrders.add(o);
-    						CurrentProjectsToShow cpts = new  CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands());
+    						CurrentProjectsToShow cpts = new  CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel());
 							toShow.add(cpts);
     				}
     					
@@ -350,7 +386,7 @@ public class CurrentProjectsController implements Initializable{
     				for(Project p : CarpentryLogic.getInstance().getProjects()) {
     					if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {
     						//projOrders.add(o);
-    						CurrentProjectsToShow cpts = new  CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands());
+    						CurrentProjectsToShow cpts = new  CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel());
 							toShow.add(cpts);
     				}
     					
@@ -369,6 +405,7 @@ public class CurrentProjectsController implements Initializable{
     ArrayList<CurrentProjectsToShow> Search2(ArrayList<CurrentProjectsToShow> arr) {
 		ArrayList<CurrentProjectsToShow> toshow = new ArrayList<>();
 		if(filter2.getSelectionModel().getSelectedItem()==null ||searchField2.getText().equals("")){
+			
 				return arr ;
     }
 
@@ -417,19 +454,6 @@ public class CurrentProjectsController implements Initializable{
     	searchField2.setText(null);
 		return toshow;
    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
     @FXML
     void RemoveFilter(ActionEvent event) {
@@ -440,7 +464,7 @@ public class CurrentProjectsController implements Initializable{
         		if(o.getProjectID().equals(Integer.toString(p.getProjectID())) && o.getStatus().equals("InProgress")) {
         			for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
         				if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {
-                			CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands());
+                			CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel());
                 			arraylistToShow.add(cp);
                 		}
         			}
@@ -488,7 +512,7 @@ public class CurrentProjectsController implements Initializable{
 	        		if(o.getProjectID().equals(Integer.toString(p.getProjectID())) && o.getStatus().equals("InProgress")) {
 	        			for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
 	        				if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {
-	                			CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands());
+	                			CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel());
 	                			arraylistToShow.add(cp);
 	                		}
 	        			}
@@ -535,7 +559,7 @@ public class CurrentProjectsController implements Initializable{
     	pdts.setQuantity(tableView.getSelectionModel().getSelectedItem().getQuantity());
     	pdts.setSection(tableView.getSelectionModel().getSelectedItem().getSection());
     	pdts.setColor(tableView.getSelectionModel().getSelectedItem().getColor());
-    	pdts.setModelNumberOFhands(tableView.getSelectionModel().getSelectedItem().getModelNumberOFhands());
+    	//pdts.setModelNumberOFhands(tableView.getSelectionModel().getSelectedItem().getModelNumberOFhands());
     	
     	Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetails.fxml"));
 		Scene scene = new Scene(pane);
@@ -585,7 +609,7 @@ public class CurrentProjectsController implements Initializable{
         		if(o.getProjectID().equals(Integer.toString(p.getProjectID())) && o.getStatus().equals("InProgress")) {
         			for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
         				if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {
-                			CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getModelNumberOfHands());
+                			CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel());
                 			arraylistToShow.add(cp);
                 		}
         			}

@@ -147,8 +147,8 @@ public class Order {
 									 	}
 								 } // end of switch
 									 if(flag) {
-										 System.out.println(i.getModelNumberOfHands());
-										 switch (i.getModelNumberOfHands()) {
+										 
+										 switch (i.getHandsmodel()) {
 		
 										 	case  "s125" :
 										 	{

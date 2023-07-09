@@ -251,7 +251,7 @@ public class ProjectItemsController implements Initializable{
     	            width.getText().isEmpty() ||
     	            woodType.getSelectionModel().getSelectedItem() == null ||
     	            quantity.getText().isEmpty() ||
-    	            color.getValue() == null )
+    	            color.getValue() == null || handsModelNumber.getSelectionModel().getSelectedItem() == null) 
     	            {
 
     	        throw new IllegalArgumentException("Please enter all required fields.");
@@ -263,6 +263,7 @@ public class ProjectItemsController implements Initializable{
     	    pi2.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
     	    pi2.setQuantity(Integer.parseInt(quantity.getText()));
     	    pi2.setColor(color.getValue().toString());
+    	    pi2.setHandsmodel(handsModelNumber.getSelectionModel().getSelectedItem().toString());
     	    
     		Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
@@ -287,7 +288,7 @@ public class ProjectItemsController implements Initializable{
         	pdts.setQuantity(Integer.toString(pi2.getQuantity()));
         	pdts.setSection(pi2.getSection());
         	pdts.setColor(pi2.getColor());
-        	//pdts.setModelNumberOFhands(pi2.getModelNumberOfHands());
+        	pdts.setModelNumberOFhands(pi2.getHandsmodel());
         	
     	    // Rest of the code when all fields are valid
     	} catch (IllegalArgumentException e) {
@@ -340,7 +341,7 @@ public class ProjectItemsController implements Initializable{
 	    	s.setQuantityOFhands(Integer.parseInt(handsQuantity.getText()));
 	    	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
 	    	s.setAxleDegree(brzolDegree.getSelectionModel().getSelectedItem().toString());
-	    	s.setModelNumberOfHands(handsModelNumber.getSelectionModel().getSelectedItem().toString());
+	    	
 	    	CarpentryLogic.getInstance().addSection(s);
     	    
     	    switch(color.getSelectionModel().getSelectedItem().toString()) { // To send to the AI

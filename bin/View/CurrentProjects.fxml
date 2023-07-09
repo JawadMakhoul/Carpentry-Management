@@ -99,7 +99,7 @@
             </AnchorPane>
           <AnchorPane layoutX="258.0" prefHeight="948.0" prefWidth="1109.0" styleClass="backgroundColor" stylesheets="@../Controller/style.css">
          <children>
-            <TextField fx:id="searchField1" layoutX="416.0" layoutY="170.0" prefHeight="51.0" prefWidth="213.0" promptText="Search field" styleClass="textField" />
+            <TextField fx:id="searchField1" layoutX="416.0" layoutY="170.0" onKeyReleased="#SearchEmailByLetter" prefHeight="51.0" prefWidth="213.0" promptText="Search field" styleClass="textField" />
             <Label layoutX="459.0" layoutY="57.0" prefHeight="87.0" prefWidth="444.0" text="Projects in progress" textAlignment="CENTER" textFill="#d96e3a">
                <font>
                   <Font size="48.0" />

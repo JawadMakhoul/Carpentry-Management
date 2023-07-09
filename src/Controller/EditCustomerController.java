@@ -48,7 +48,7 @@ private String projectID;
 
     @FXML
     private AnchorPane screen;
-
+    ArrayList<String> emailsarray = new ArrayList<>();
     @FXML
     private ComboBox<String> customersemails;
     public String getProjectID() {
@@ -199,11 +199,11 @@ private String projectID;
     	 if(customersemails.getSelectionModel().getSelectedItem()!= null) {
     		   for(Customer c : CarpentryLogic.getInstance().getCustomers()) 
     		   {
-    			   if(c.getEmail() == customersemails.getSelectionModel().getSelectedItem().toString()) {
+    			   if(c.getEmail().equals(customersemails.getSelectionModel().getSelectedItem().toString())) {
     				   CustomerName.setText(c.getName());
     				   phoneNumber.setText(c.getPhoneNUMBER());
     				   address.setText(c.getAddress());
-    				  
+    				   email.setText(c.getEmail());
     				   
     			   }
     		   }
@@ -219,13 +219,44 @@ private String projectID;
 //    			c.setName(CustomerName.getText());
 //    			c.setPhoneNUMBER(phoneNumber.getText());
 //    			c.setAddress(address.getText());
-    			CarpentryLogic.getInstance().updateCustomer(c, CustomerName.getText(), address.getText(), phoneNumber.getText());
+    			String custname,custaddress, custphone,custemail;
+    			if(!CustomerName.getText().equals(null))
+    				 custname=CustomerName.getText();
+    			else custname=c.getName();
+    			
+    			if(!address.getText().equals(null))
+    				custaddress=address.getText();
+    			else custaddress=c.getAddress();
+    			
+    			if(!phoneNumber.getText().equals(null))
+    				custphone=phoneNumber.getText();
+    			else custphone=c.getPhoneNUMBER();
+    			
+    			if(!email.getText().equals(null))
+    				custemail=email.getText();
+    			else custemail=c.getEmail();
+    			CarpentryLogic.getInstance().updateCustomer(c, custname, custaddress, custphone,custemail);
+    			
+    			CustomersEmails();
     		}
     	}}
     	
     	else 
     		JOptionPane.showMessageDialog(null, "Please select email from the list.", "Email Reminder", JOptionPane.WARNING_MESSAGE);
     }
+    
+    public void CustomersEmails() {
+    	emailsarray.clear();
+    	customersemails.getItems().clear();
+    	for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
+    		
+    				emailsarray.add(c.getEmail());
+    	}
+    	
+    	ObservableList<String> custEmails = FXCollections.observableArrayList(emailsarray);
+    	customersemails.getItems().addAll(custEmails);
+    }
+    
 @Override
 public void initialize(URL arg0, ResourceBundle arg1) {
 // TODO Auto-generated method stub
@@ -242,11 +273,14 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	Buttons.add(EditCustomer);
 	Buttons.add(UpdateProjectDetails);
 	
-	ArrayList<String> emails = new ArrayList<>();
 	for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
-		emails.add(c.getEmail());
+		//for(String e : emails) {
+			if(!emailsarray.contains(c.getEmail()))
+				emailsarray.add(c.getEmail());
+		//}
+		
 	}
-	ObservableList<String> custEmails = FXCollections.observableArrayList(emails);
+	ObservableList<String> custEmails = FXCollections.observableArrayList(emailsarray);
 	customersemails.getItems().addAll(custEmails);
 }
 

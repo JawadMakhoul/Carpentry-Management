@@ -60,11 +60,12 @@ public class CarpentryLogic {
 		public  ArrayList<Order> getOrders() {
 
 			ArrayList<Order> results = new ArrayList<Order>();
-			try {
-				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
-						PreparedStatement stmt = conn.prepareStatement(Consts.SQL_SEL_ORDERS);
-						ResultSet rs = stmt.executeQuery()) {
+			try {Class.forName("com.mysql.jdbc.Driver");
+			try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+		             Statement stmt = con.createStatement()) {
+
+		            String sql = "SELECT * FROM ordertbl";
+		            ResultSet rs = stmt.executeQuery(sql);
 					while (rs.next()) {
 						int i = 1;
 						results.add(new Order(rs.getInt(i++),rs.getString(i++),rs.getString(i++), rs.getString(i++), rs.getInt(i++)));
@@ -81,11 +82,12 @@ public class CarpentryLogic {
 		public  ArrayList<Project> getProjects() {
 
 			ArrayList<Project> results = new ArrayList<Project>();
-			try {
-				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
-						PreparedStatement stmt = conn.prepareStatement(Consts.SQL_SEL_PROJECTS);
-						ResultSet rs = stmt.executeQuery()) {
+			try {Class.forName("com.mysql.jdbc.Driver");
+			try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+		             Statement stmt = con.createStatement()) {
+
+		            String sql = "SELECT * FROM project";
+		            ResultSet rs = stmt.executeQuery(sql);
 					while (rs.next()) {
 						int i = 1;
 						results.add(new Project(rs.getInt(i++),rs.getString(i++), rs.getString(i++)));
@@ -102,15 +104,16 @@ public class CarpentryLogic {
 		public  ArrayList<ProjectItems> getProjectItems() {
 
 			ArrayList<ProjectItems> results = new ArrayList<ProjectItems>();
-			try {
-				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
-						PreparedStatement stmt = conn.prepareStatement(Consts.SQL_SEL_PROJECTITEMS);
-						ResultSet rs = stmt.executeQuery()) {
+			try {Class.forName("com.mysql.jdbc.Driver");
+			try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+		             Statement stmt = con.createStatement()) {
+
+		            String sql = "SELECT * FROM projectitems";
+		            ResultSet rs = stmt.executeQuery(sql);
 					while (rs.next()) {
 						int i = 1;
 						results.add(new ProjectItems(rs.getInt(i++),rs.getString(i++),rs.getInt(i++),rs.getInt(i++), rs.getString(i++),rs.getInt(i++),rs.getString(i++),
-								rs.getString(i++), rs.getString(i++)));
+								rs.getString(i++), rs.getString(i++), rs.getString(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -124,14 +127,15 @@ public class CarpentryLogic {
 		public  ArrayList<Section> getSections() {
 
 			ArrayList<Section> results = new ArrayList<Section>();
-			try {
-				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
-						PreparedStatement stmt = conn.prepareStatement(Consts.SQL_SEL_SECTION);
-						ResultSet rs = stmt.executeQuery()) {
+			try {Class.forName("com.mysql.jdbc.Driver");
+			try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+		             Statement stmt = con.createStatement()) {
+
+		            String sql = "SELECT * FROM section";
+		            ResultSet rs = stmt.executeQuery(sql);
 					while (rs.next()) {
 						int i = 1;
-						results.add(new Section(rs.getInt(i++), rs.getString(i++),rs.getString(i++),rs.getInt(i++),rs.getInt(i++),rs.getString(i++),rs.getString(i++)));
+						results.add(new Section(rs.getInt(i++), rs.getString(i++),rs.getString(i++),rs.getInt(i++),rs.getInt(i++),rs.getString(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -145,11 +149,12 @@ public class CarpentryLogic {
 		public  ArrayList<Stock> getStocks() {
 
 			ArrayList<Stock> results = new ArrayList<Stock>();
-			try {
-				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
-						PreparedStatement stmt = conn.prepareStatement(Consts.SQL_SEL_STOCK);
-						ResultSet rs = stmt.executeQuery()) {
+			try {Class.forName("com.mysql.jdbc.Driver");
+			try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+		             Statement stmt = con.createStatement()) {
+
+		            String sql = "SELECT * FROM stock";
+		            ResultSet rs = stmt.executeQuery(sql);
 					while (rs.next()) {
 						int i = 1;
 						results.add(new Stock(rs.getString(i++),rs.getString(i++), rs.getInt(i++)));
@@ -166,11 +171,12 @@ public class CarpentryLogic {
 		public  ArrayList<Model.OrderedMaterials> getOrderedMaterials() {
 
 			ArrayList<Model.OrderedMaterials> results = new ArrayList<Model.OrderedMaterials>();
-			try {
-				Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-				try (Connection conn = DriverManager.getConnection(Consts.CONN_STR);
-						PreparedStatement stmt = conn.prepareStatement(Consts.SQL_SEL_ORDEREDMATERIALS);
-						ResultSet rs = stmt.executeQuery()) {
+			try {Class.forName("com.mysql.jdbc.Driver");
+			try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+		             Statement stmt = con.createStatement()) {
+
+		            String sql = "SELECT * FROM orderedmaterials";
+		            ResultSet rs = stmt.executeQuery(sql);
 					while (rs.next()) {
 						int i = 1;
 						results.add(new Model.OrderedMaterials(rs.getInt(i++),rs.getString(i++),rs.getString(i++), rs.getInt(i++),rs.getString(i++)));
@@ -323,7 +329,7 @@ public class CarpentryLogic {
 				Class.forName("com.mysql.jdbc.Driver");
 				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
 			           //  Statement stmt = con.createStatement()
-					CallableStatement stmt = con.prepareCall("Insert into projectitems values(?, ?, ?, ?, ?, ?, ?, ?, ?)")){
+					CallableStatement stmt = con.prepareCall("Insert into projectitems values(?,?, ?, ?, ?, ?, ?, ?, ?, ?)")){
 
 					// int i = 1;
 					stmt.setInt(1, pi.getItemID()); // can't be null
@@ -335,7 +341,7 @@ public class CarpentryLogic {
 					stmt.setString(7, pi.getProjectID());
 					stmt.setString(8, pi.getSection());
 					stmt.setString(9, pi.getColor());
-					
+					stmt.setString(10, pi.getHandsmodel());
 					
 					
 					stmt.executeUpdate();
@@ -355,7 +361,7 @@ public class CarpentryLogic {
 				Class.forName("com.mysql.jdbc.Driver");
 				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
 			           //  Statement stmt = con.createStatement()
-					CallableStatement stmt = con.prepareCall("Insert into section values(?, ?, ?, ?, ?, ?,?)")){
+					CallableStatement stmt = con.prepareCall("Insert into section values(?, ?, ?, ?, ?, ?)")){
 
 					// int i = 1;
 					stmt.setInt(1, s.getSectionID()); // can't be null
@@ -364,8 +370,6 @@ public class CarpentryLogic {
 					stmt.setInt(4, s.getQuantityOFhands());
 					stmt.setInt(5, s.getQuantityOFaxle());
 					stmt.setString(6, s.getAxleDegree());
-					stmt.setString(7, s.getModelNumberOfHands());
-					
 					
 					
 					stmt.executeUpdate();
@@ -853,23 +857,24 @@ public class CarpentryLogic {
 
 	}
 		
-		public boolean updateCustomer(Customer c,String name,String address,String phone) throws SQLException {
+		public boolean updateCustomer(Customer c,String name,String address,String phone, String email) throws SQLException {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
 			           //  Statement stmt = con.createStatement()
-					CallableStatement stmt = con.prepareCall("UPDATE customer SET name = ?, phoneNum = ?, adress = ? WHERE ID=?")){
+					CallableStatement stmt = con.prepareCall("UPDATE customer SET name = ?, phoneNum = ?, adress = ? , Email=? WHERE ID=?")){
 
 
 		        // set the parameter values for the prepared statement
-				
+				System.out.println("test1");
 				
 		        stmt.setString(1, name);
 		        stmt.setString(2, phone);
 		        stmt.setString(3, address);
-		        stmt.setInt(4, c.getID());
+		        stmt.setString(4, email);
+		        stmt.setInt(5, c.getID());
 		        // execute the prepared statement
-		        stmt.executeUpdate();
+		        stmt.executeUpdate();System.out.println("test2");
 		        return true;
 		        // check if any rows were updated
 		        
