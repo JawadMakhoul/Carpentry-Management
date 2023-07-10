@@ -187,7 +187,7 @@ private String projectID;
 		stage.show();
 		break;
 	}
-    case "projectItems":{
+    case "projectItems":{System.out.println("ProjectyItems");
     	boolean flag=true;
     	if( projectCategory.getSelectionModel().getSelectedItem()== null) {
 			 JOptionPane.showMessageDialog(null, "Please select a catagory before submiting.", "A catagory reminder", JOptionPane.WARNING_MESSAGE);
