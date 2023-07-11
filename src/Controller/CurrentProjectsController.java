@@ -275,12 +275,12 @@ public class CurrentProjectsController implements Initializable{
     void SearchEmailByLetter(KeyEvent event) {
 
 		searchField1.setOnKeyReleased(keyEvent -> {
-    	    if(filter1.getSelectionModel().getSelectedItem().equals("Customer Name")) {
+    	    if(filter1.getSelectionModel().getSelectedItem().equals("Customer Email")) {
     	        String searchText = searchField1.getText().toLowerCase();
     	        ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
     	        ObservableList<CurrentProjectsToShow> custOrders = FXCollections.observableArrayList();
     	        
-    	        for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
+    	        for(Customer c : CarpentryLogic.getInstance().getCustomers()) {System.out.println(c.getEmail());
     	            if( c.getEmail().toLowerCase().contains(searchText)) {System.out.println("cust");
     	                for(Project p : CarpentryLogic.getInstance().getProjects()) {
     	                    if(p.getCustomerID().equals(c.getEmail())) {System.out.println("email");
@@ -290,6 +290,7 @@ public class CurrentProjectsController implements Initializable{
 	    	                        for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
 	    	                            if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {System.out.println("inpor");
 	    	                                CurrentProjectsToShow cpts = new CurrentProjectsToShow(c.getEmail(), Integer.toString(p.getProjectID()), p.getProjectCategory(), Integer.toString(pi.getItemID()), pi.getItemName(), Integer.toString(pi.getHeight()), Integer.toString(pi.getWidth()), pi.getWoodType(), Integer.toString(pi.getQuantity()), pi.getSection(), pi.getColor(), pi.getHandsmodel());
+	    	                                System.out.println(cpts.toString());
 	    	                                toShow.add(cpts);
 	    	                            }
 	    	                        }
@@ -310,7 +311,7 @@ public class CurrentProjectsController implements Initializable{
     void Search(ActionEvent event) {
     	
     	
-    	if(filter1.getSelectionModel().getSelectedItem().equals("Customer Name")) {
+    	if(filter1.getSelectionModel().getSelectedItem().equals("Customer Email")) {
     		for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
     			if(searchField1.getText().equals(c.getName())) {
     				ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
@@ -409,7 +410,7 @@ public class CurrentProjectsController implements Initializable{
 				return arr ;
     }
 
-    	if(filter2.getSelectionModel().getSelectedItem().equals("Customer Name")) {
+    	if(filter2.getSelectionModel().getSelectedItem().equals("Customer Email")) {
     		for(CurrentProjectsToShow c : arr) {
     			if(searchField2.getText().equals(c.getCustomerName())) {
     				toshow.add(c);
@@ -585,7 +586,7 @@ public class CurrentProjectsController implements Initializable{
 		Buttons.add(EditCustomer);
 		Buttons.add(UpdateProjectDetails);
 		
-		ObservableList<String> Filter = FXCollections.observableArrayList("Customer Name","Project ID","Project Category","Item Name");
+		ObservableList<String> Filter = FXCollections.observableArrayList("Customer Email","Project ID","Project Category","Item Name");
 		filter1.getItems().addAll(Filter);
 		filter2.getItems().addAll(Filter);
 		

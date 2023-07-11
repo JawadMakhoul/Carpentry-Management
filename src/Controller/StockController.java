@@ -131,11 +131,11 @@ public class StockController implements Initializable{
     		boolean flag=true;
     		for(Stock s: CarpentryLogic.getInstance().getStocks()) {
     			
-    			if(s.getWoodName().equals("Solid_Wood")) {
+    			if(s.getWoodName().equals("Solid")) {
     				int q = Integer.parseInt(quantityOFWood.getText());
     				
     				for(OrderedMaterials om: CarpentryLogic.getInstance().getOrderedMaterials()) {
-    					if(om.getWoodName().equals("Solid_Wood")&& om.getQuantity()==q) {
+    					if(om.getWoodName().equals("Solid")&& om.getQuantity()==q) {
     						if(flag) {
     							CarpentryLogic.getInstance().DeleteOrderedMaterials(om);
     							CarpentryLogic.getInstance().updateStockQuantity(s, s.getQuantity()+q);
@@ -255,12 +255,12 @@ public class StockController implements Initializable{
     		
     			for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
     			
-    				if(s.getWoodName().equals("Solid_Wood")) {
+    				if(s.getWoodName().equals("Solid")) {
     				
     					int q = Integer.parseInt(quantityOFWood.getText());
     					OrderedMaterials om = new OrderedMaterials();
     					om.setStockID(s.getStockID());
-    					om.setWoodName("Solid_Wood");
+    					om.setWoodName("Solid");
     					om.setQuantity(q);
     					CarpentryLogic.getInstance().addOrderedMaterials(om);
     				}
@@ -464,31 +464,51 @@ public class StockController implements Initializable{
 
 			if(s.getWoodName().equals("Sandwich"))  {
 				sandwichCount=s.getQuantity();
-				sandwichPercent.setText(((s.getQuantity()*countAll)/1000.0)+"%");
+				
+				if(s.getQuantity()>0)
+					sandwichPercent.setText(((s.getQuantity()*countAll)/50.0)+"%");
+				
+				else sandwichPercent.setText("0%");
 			}
 				
 			
 			if(s.getWoodName().equals("Mdf")) {
 				mdfCount=s.getQuantity();
-				mdfPercent.setText((s.getQuantity()*countAll/1000.0)+"%");
+				
+				if(s.getQuantity()>0)
+					mdfPercent.setText((s.getQuantity()*countAll/50.0)+"%");
+				
+				else mdfPercent.setText("0%");
 			}
 				
 				
-			if(s.getWoodName().equals("Solid_Wood")) {
+			if(s.getWoodName().equals("Solid")) {
 				solidwoodCount=s.getQuantity();
-				solidPercent.setText((s.getQuantity()*countAll/1000.0)+"%");
+				
+				if(s.getQuantity()>0)
+					solidPercent.setText((s.getQuantity()*countAll/50.0)+"%");
+				
+				else solidPercent.setText("0%");
 			}
 				
 			
 			if(s.getWoodName().equals("Melamine")) {
 				melamineCount=s.getQuantity();
-				melaminePercent.setText((s.getQuantity()*countAll/1000.0)+"%");
+				
+				if(s.getQuantity()>0)
+					melaminePercent.setText((s.getQuantity()*countAll/50.0)+"%");
+				
+				else melaminePercent.setText("0%");
 			}
 				
 			
 			if(s.getWoodName().equals("Particleboard")) {
 				particleCount=s.getQuantity();
-				particlePercent.setText((s.getQuantity()*countAll/1000.0)+"%");
+				
+				if(s.getQuantity()>0)
+					particlePercent.setText((s.getQuantity()*countAll/50.0)+"%");
+				
+				else particlePercent.setText("0%");
 			}
 				
 				
@@ -499,7 +519,7 @@ public class StockController implements Initializable{
     			new PieChart.Data("Melamine", melamineCount),
     			new PieChart.Data("Particleboard", particleCount),
     			new PieChart.Data("Sandwich", sandwichCount),
-    			new PieChart.Data("Solid_Wood", solidwoodCount));
+    			new PieChart.Data("Solid", solidwoodCount));
     
     	piechart.setData(pieChartData);
     }

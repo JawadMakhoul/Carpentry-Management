@@ -313,11 +313,11 @@ public class OrdersCatalogController implements Initializable{
     
     public void ShowPieChart() {
     	
-    	int countProjects=0;
-		for(Project p: CarpentryLogic.getInstance().getProjects()) 
-			countProjects++;
-		System.out.println(countProjects);
-		totalProjects.setText(Integer.toString(countProjects));
+//    	int countProjects=0;
+//		for(Project p: CarpentryLogic.getInstance().getProjects()) 
+//			countProjects++;
+//		System.out.println(countProjects);
+	//	totalProjects.setText(Integer.toString(countProjects));
 		
 		int countDelivered=0;
 		for(Order o: CarpentryLogic.getInstance().getOrders()) {
@@ -373,7 +373,8 @@ public class OrdersCatalogController implements Initializable{
 				
 		}
 		totalCanceled.setText(Integer.toString(countCanceled));
-		
+		int total_Projects=countDelivered+countInProgress+countWaiting+countFinished;
+		totalProjects.setText(Integer.toString(total_Projects));
     	ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
     			new PieChart.Data("Delivered", countDelivered),
     			new PieChart.Data("InProgress", countInProgress),

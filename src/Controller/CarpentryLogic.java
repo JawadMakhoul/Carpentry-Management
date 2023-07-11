@@ -473,7 +473,7 @@ public class CarpentryLogic {
 				Class.forName("com.mysql.jdbc.Driver");
 				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
 			           //  Statement stmt = con.createStatement()
-					CallableStatement stmt = con.prepareCall("DELETE * FROM OrderedMaterials WHERE OrderedMaterialsID=?];")){
+					CallableStatement stmt = con.prepareCall("DELETE FROM OrderedMaterials WHERE OrderedMaterialsID=?;")){
 					
 					stmt.setInt(1, om.getOrderMaterialsID());
 					
@@ -857,6 +857,34 @@ public class CarpentryLogic {
 
 	}
 		
+		public boolean updateCustomerEmailInProject(Project p,String email) throws SQLException {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			           //  Statement stmt = con.createStatement()
+					CallableStatement stmt = con.prepareCall("UPDATE project SET CustomerID = ? WHERE ProjectID=? ")){
+
+		        // set the parameter values for the prepared statement
+				
+				stmt.setInt(2, p.getProjectID());
+		        stmt.setString(1, email);
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
 		public boolean updateCustomer(Customer c,String name,String address,String phone, String email) throws SQLException {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
@@ -894,7 +922,7 @@ public class CarpentryLogic {
 				Class.forName("com.mysql.jdbc.Driver");
 				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
 			           //  Statement stmt = con.createStatement()
-					CallableStatement stmt = con.prepareCall("DELETE * FROM ordertbl WHERE OrderID = ?")){
+					CallableStatement stmt = con.prepareCall("DELETE  FROM ordertbl WHERE OrderID = ?")){
 					
 					stmt.setInt(1, o.getOrderID());
 					
@@ -915,7 +943,7 @@ public class CarpentryLogic {
 				Class.forName("com.mysql.jdbc.Driver");
 				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
 			           //  Statement stmt = con.createStatement()
-					CallableStatement stmt = con.prepareCall("DELETE * FROM project WHERE ProjectID = ?")){
+					CallableStatement stmt = con.prepareCall("DELETE  FROM project WHERE ProjectID = ?")){
 					
 					stmt.setInt(1, p.getProjectID());
 					
@@ -936,7 +964,7 @@ public class CarpentryLogic {
 				Class.forName("com.mysql.jdbc.Driver");
 				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
 			           //  Statement stmt = con.createStatement()
-					CallableStatement stmt = con.prepareCall("DELETE * FROM projectitems WHERE itemID = ?")){
+					CallableStatement stmt = con.prepareCall("DELETE  FROM projectitems WHERE itemID = ?")){
 					
 					
 					stmt.setString(1, Integer.toString(pi.getItemID())); 
@@ -958,7 +986,7 @@ public class CarpentryLogic {
 				Class.forName("com.mysql.jdbc.Driver");
 				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
 			           //  Statement stmt = con.createStatement()
-					CallableStatement stmt = con.prepareCall("DELETE * FROM section WHERE sectionID = ?")){
+					CallableStatement stmt = con.prepareCall("DELETE  FROM section WHERE sectionID = ?")){
 					
 					stmt.setString(1, s.getProjectID());
 					

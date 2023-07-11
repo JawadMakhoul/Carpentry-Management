@@ -34,6 +34,7 @@ import Model.Section;
 import Model.ProjectItems;
 import Model.Customer;
 import Model.Order;
+import Model.OrderedMaterials;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -262,6 +263,16 @@ public class ProjectItemsController implements Initializable{
     	    pi2.setWidth(Integer.parseInt(width.getText()));
     	    pi2.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
     	    pi2.setQuantity(Integer.parseInt(quantity.getText()));
+    	    
+    	    for(Stock s1: CarpentryLogic.getInstance().getStocks()) {
+    	    	if(s1.getWoodName().equals(pi2.getWoodType()) && pi2.getQuantity()> s1.getQuantity()) {
+    	    		final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    	    	    alert.setTitle("Attention!");
+    	    	    alert.setContentText("Not enough wood in stock.");
+    	    	    //alert.setHeaderText(e.getMessage());
+    	    	    alert.showAndWait();
+    	    	}
+    	    }
     	    pi2.setColor(color.getValue().toString());
     	    pi2.setHandsmodel(handsModelNumber.getSelectionModel().getSelectedItem().toString());
     	    

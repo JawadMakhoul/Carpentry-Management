@@ -146,7 +146,7 @@
                               <Font name="System Bold" size="48.0" />
                            </font>
                         </Text>
-                        <Text fill="#d96e3a" layoutX="230.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Solid_wood" textAlignment="CENTER" wrappingWidth="230.0">
+                        <Text fill="#d96e3a" layoutX="230.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Solid" textAlignment="CENTER" wrappingWidth="230.0">
                            <font>
                               <Font name="System Bold" size="27.0" />
                            </font>
