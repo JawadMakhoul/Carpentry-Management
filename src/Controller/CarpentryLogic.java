@@ -90,7 +90,7 @@ public class CarpentryLogic {
 		            ResultSet rs = stmt.executeQuery(sql);
 					while (rs.next()) {
 						int i = 1;
-						results.add(new Project(rs.getInt(i++),rs.getString(i++), rs.getString(i++)));
+						results.add(new Project(rs.getInt(i++),rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -246,14 +246,14 @@ public class CarpentryLogic {
 			try {Class.forName("com.mysql.jdbc.Driver");
 			try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
 			           //  Statement stmt = con.createStatement()
-					CallableStatement stmt = con.prepareCall("Insert into project values(?, ?, ?, ?)")){ 
+					CallableStatement stmt = con.prepareCall("Insert into project values(?, ?, ?, ?,?)")){ 
 
 					// int i = 1;
 					stmt.setInt(1, p.getProjectID());
 					stmt.setString(2, p.getCustomerID());
 					stmt.setString(3, p.getProjectCategory()); // can't be null
 					stmt.setString(4, null);
-					
+					stmt.setString(5, p.getEmail());
 
 					stmt.executeUpdate();
 					return true;
@@ -862,7 +862,7 @@ public class CarpentryLogic {
 				Class.forName("com.mysql.jdbc.Driver");
 				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
 			           //  Statement stmt = con.createStatement()
-					CallableStatement stmt = con.prepareCall("UPDATE project SET CustomerID = ? WHERE ProjectID=? ")){
+					CallableStatement stmt = con.prepareCall("UPDATE project SET Email = ? WHERE ProjectID=? ")){
 
 		        // set the parameter values for the prepared statement
 				

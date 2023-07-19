@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,6 +41,8 @@ public class NewProjectController implements Initializable {
 			CurrentProjects, OrderedMaterials, OrdersCatalog, Inbox, BackButton;
 	private HashSet<Button> Buttons = new HashSet<Button>();
 
+	ArrayList<String> emailsarray = new ArrayList<>();
+	
 	@FXML
 	private TextField CustomerName, address, email, phoneNumber;
 
@@ -219,13 +222,15 @@ public class NewProjectController implements Initializable {
 									address.setText(c.getAddress());
 									email.setText(c.getEmail());
 									Project p = new Project();
+									GlobalProjectID.setCustomerName(CustomerName.getText());
 									GlobalProjectID.setId(p.getProjectID());
 									// String ip = c.getName();
-									p.setCustomerID(c.getEmail());
+									p.setCustomerID(c.getName());
 									if (projectCategory.getSelectionModel().getSelectedItem() != null) {
 										p.setProjectCategory(
 												projectCategory.getSelectionModel().getSelectedItem().toString());
 									}
+									p.setEmail(c.getEmail());
 									CarpentryLogic.getInstance().addProject(p);
 									FXMLLoader loader = new FXMLLoader(
 											getClass().getResource("/View/ProjectItems.fxml"));
@@ -282,11 +287,12 @@ public class NewProjectController implements Initializable {
 												Project p = new Project();
 												GlobalProjectID.setId(p.getProjectID());
 												// String ip = c.getName();
-												p.setCustomerID(c.getEmail());
+												p.setCustomerID(c.getName());
 												if (projectCategory.getSelectionModel().getSelectedItem() != null) {
 													p.setProjectCategory(projectCategory.getSelectionModel()
 															.getSelectedItem().toString());
 												}
+												p.setEmail(c.getEmail());
 												CarpentryLogic.getInstance().addProject(p);
 
 												FXMLLoader loader = new FXMLLoader(
@@ -390,6 +396,72 @@ public class NewProjectController implements Initializable {
 
 	}
 
+	@FXML
+    void update_customerDetails(ActionEvent event) throws SQLException {
+
+		if (!customersemails.getSelectionModel().getSelectedItem().equals(null)) {
+			for (Customer c : CarpentryLogic.getInstance().getCustomers()) {
+				if (c.getEmail().equals(customersemails.getSelectionModel().getSelectedItem())) {
+//    			c.setName(CustomerName.getText());
+//    			c.setPhoneNUMBER(phoneNumber.getText());
+//    			c.setAddress(address.getText());
+					String custname, custaddress, custphone, custemail;
+					if (!CustomerName.getText().equals(null))
+						custname = CustomerName.getText();
+					else
+						custname = c.getName();
+
+					if (!address.getText().equals(null))
+						custaddress = address.getText();
+					else
+						custaddress = c.getAddress();
+
+					if (!phoneNumber.getText().equals(null))
+						custphone = phoneNumber.getText();
+					else
+						custphone = c.getPhoneNUMBER();
+
+					if (!email.getText().equals(null)) {
+						custemail = email.getText();
+						
+						for(Project p : CarpentryLogic.getInstance().getProjects()) {
+							if(p.getCustomerID().equals(c.getEmail()))
+								CarpentryLogic.getInstance().updateCustomerEmailInProject(p, custemail);
+						}
+					}
+					else
+						custemail = c.getEmail();
+					
+					final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+					alert.setTitle("Update!");
+					alert.setContentText("Customer details updated succesfully!");
+					alert.setHeaderText("Updated!");
+					alert.showAndWait();
+					CarpentryLogic.getInstance().updateCustomer(c, custname, custaddress, custphone, custemail);
+					
+
+					CustomersEmails();
+				}
+			}
+		}
+
+		else
+			JOptionPane.showMessageDialog(null, "Please select email from the list.", "Email Reminder",
+					JOptionPane.WARNING_MESSAGE);
+    }
+	
+	public void CustomersEmails() {
+		emailsarray.clear();
+		customersemails.getItems().clear();
+		for (Customer c : CarpentryLogic.getInstance().getCustomers()) {
+
+			emailsarray.add(c.getEmail());
+		}
+
+		ObservableList<String> custEmails = FXCollections.observableArrayList(emailsarray);
+		customersemails.getItems().addAll(custEmails);
+	}
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 // TODO Auto-generated method stub

@@ -264,8 +264,8 @@ public class ProjectItemsController implements Initializable{
     	    pi2.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
     	    pi2.setQuantity(Integer.parseInt(quantity.getText()));
     	    
-    	    for(Stock s1: CarpentryLogic.getInstance().getStocks()) {
-    	    	if(s1.getWoodName().equals(pi2.getWoodType()) && pi2.getQuantity()> s1.getQuantity()) {
+    	    for(Stock s1: CarpentryLogic.getInstance().getStocks()) {System.out.println("stock");
+    	    	if(s1.getWoodName().equals(pi2.getWoodType()) && pi2.getQuantity()> s1.getQuantity()) {System.out.println("1231231212313123");
     	    		final Alert alert = new Alert(Alert.AlertType.INFORMATION);
     	    	    alert.setTitle("Attention!");
     	    	    alert.setContentText("Not enough wood in stock.");
@@ -290,16 +290,7 @@ public class ProjectItemsController implements Initializable{
         	width.setText(null);
         	//quantity.setText(null);
         	//woodType.setValue(null);
-        	
-        	pdts.setItemID(Integer.toString(pi2.getItemID()));
-        	pdts.setItemName(pi2.getItemName());
-        	pdts.setItemHeight(Integer.toString(pi2.getHeight()));
-        	pdts.setItemWidth(Integer.toString(pi2.getWidth()));
-        	pdts.setWoodType(pi2.getWoodType());
-        	pdts.setQuantity(Integer.toString(pi2.getQuantity()));
         	pdts.setSection(pi2.getSection());
-        	pdts.setColor(pi2.getColor());
-        	pdts.setModelNumberOFhands(pi2.getHandsmodel());
         	
     	    // Rest of the code when all fields are valid
     	} catch (IllegalArgumentException e) {

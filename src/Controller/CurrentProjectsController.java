@@ -42,82 +42,60 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class CurrentProjectsController implements Initializable{
+public class CurrentProjectsController implements Initializable {
 
-    @FXML
-    private Button EditCustomer,UpdateProjectDetails,ProjectDetails,GenerateByAI,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
-    private HashSet<Button> Buttons = new HashSet<Button>();
-    @FXML
-    private AnchorPane screen;
-    
-    @FXML
-    private TableColumn<CurrentProjectsToShow, String> color;
+	@FXML
+	private Button EditCustomer, UpdateProjectDetails, ProjectDetails, GenerateByAI, NewProject, Stock, CurrentProjects,
+			OrderedMaterials, OrdersCatalog, Inbox, BackButton;
+	private HashSet<Button> Buttons = new HashSet<Button>();
+	@FXML
+	private AnchorPane screen;
 
-    @FXML
-    private TableColumn<CurrentProjectsToShow, String> customerName;
+	@FXML
+	private TableColumn<CurrentProjectsToShow, String> customerName;
 
-    @FXML
-    private Button deleteOrder;
+	@FXML
+	private Button deleteOrder;
 
-    @FXML
-    private ComboBox<String> filter1, filter2;
+	@FXML
+	private ComboBox<String> filter1, filter2;
 
-    @FXML
-    private TableColumn<CurrentProjectsToShow, Integer> itemHeight;
 
-    @FXML
-    private TableColumn<CurrentProjectsToShow, Integer> itemID;
+	@FXML
+	private Pane pnlOverview;
 
-    @FXML
-    private TableColumn<CurrentProjectsToShow, String> itemName;
+	@FXML
+	private TableColumn<CurrentProjectsToShow, String> projectCategory;
 
-    @FXML
-    private TableColumn<CurrentProjectsToShow, Integer> itemWidth;
+	@FXML
+	private TableColumn<CurrentProjectsToShow, String> projectID;
 
-    @FXML
-    private TableColumn<CurrentProjectsToShow, String> modelNumberOfHands;
+	@FXML
+	private Button removeFilter;
 
-    @FXML
-    private Pane pnlOverview;
+	@FXML
+	private Button searchBuuton;
 
-    @FXML
-    private TableColumn<CurrentProjectsToShow, String> projectCategory;
+	@FXML
+	private TextField searchField1, searchField2;
 
-    @FXML
-    private TableColumn<CurrentProjectsToShow, String> projectID;
+	@FXML
+	private TableColumn<CurrentProjectsToShow, String> customerEmail;
 
-    @FXML
-    private TableColumn<CurrentProjectsToShow, Integer> quantity;
+	@FXML
+	private ComboBox<OrderStatus> statusList;
 
-    @FXML
-    private Button removeFilter;
+	@FXML
+	private TableView<CurrentProjectsToShow> tableView;
 
-    @FXML
-    private Button searchBuuton;
+	@FXML
+	private Button updateStatus;
 
-    @FXML
-    private TextField searchField1, searchField2;
 
-    @FXML
-    private TableColumn<CurrentProjectsToShow, String> section;
+	@FXML
+	private ScrollPane pnl;
 
-    @FXML
-    private ComboBox<OrderStatus> statusList;
-
-    @FXML
-    private TableView<CurrentProjectsToShow> tableView;
-
-    @FXML
-    private Button updateStatus;
-
-    @FXML
-    private TableColumn<CurrentProjectsToShow, String> woodType;
-    
-    @FXML
-    private ScrollPane pnl;
-
-    private  static ProjectDetailsToShow pdts;
-
+	private static ProjectDetailsToShow pdts;
 
 	public static ProjectDetailsToShow getPdts() {
 		return pdts;
@@ -128,449 +106,468 @@ public class CurrentProjectsController implements Initializable{
 	}
 
 	@FXML
-    void MoveTo(MouseEvent event) throws IOException {
-    	
-    	for(Button b: Buttons) {
-    		if(b.isPressed()) {
-    		
-    			switch(b.getId()) {
-    		
-    			case "Inbox":{
-    				Parent pane = FXMLLoader.load(getClass().getResource("/View/Inbox.fxml"));
-    				Scene scene = new Scene(pane);
-    				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    				stage.setScene(scene);
-    				stage.setResizable(false);
-    				stage.setTitle("Awni Wood Work - Inbox");
-    				stage.show();
-    				break;
-    			}
-    		
-	    		case "NewProject":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/NewProject.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work - Add project");
-	        		stage.show();
-	        		break;
-	    		}	
-	    		case "Stock":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Stock.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work - Stock");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
-	    		case "CurrentProjects":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/CurrentProjects.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work - Projects In Progress");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
-	    		case "OrderedMaterials":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/OrderedMaterials.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work - Ordered Materials");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
-	    		case "OrdersCatalog":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/OrdersCatalog.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work - Projects Catalog");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
-	    		case "GenerateByAI":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/AI.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work - Generate By Images Ai");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
-	    		case "BackButton":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
-	    		case "sendEmail":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Send.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
-	    		case "ProjectDetails":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetailsButton.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
-	    		case "EditCustomer":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/EditCustomer.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
-	    		case "UpdateProjectDetails":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/UpdateProjectDetails.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work");
-	        		stage.show();
-	        		break;
-	    		}
-    		}
-    	}
-    		
-    	}
-    	
-    }
+	void MoveTo(MouseEvent event) throws IOException {
+
+		for (Button b : Buttons) {
+			if (b.isPressed()) {
+
+				switch (b.getId()) {
+
+				case "Inbox": {
+					Parent pane = FXMLLoader.load(getClass().getResource("/View/Inbox.fxml"));
+					Scene scene = new Scene(pane);
+					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					stage.setScene(scene);
+					stage.setResizable(false);
+					stage.setTitle("Awni Wood Work - Inbox");
+					stage.show();
+					break;
+				}
+
+				case "NewProject": {
+					Parent pane = FXMLLoader.load(getClass().getResource("/View/NewProject.fxml"));
+					Scene scene = new Scene(pane);
+					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					stage.setScene(scene);
+					stage.setResizable(false);
+					stage.setTitle("Awni Wood Work - Add project");
+					stage.show();
+					break;
+				}
+				case "Stock": {
+					Parent pane = FXMLLoader.load(getClass().getResource("/View/Stock.fxml"));
+					Scene scene = new Scene(pane);
+					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					stage.setScene(scene);
+					stage.setResizable(false);
+					stage.setTitle("Awni Wood Work - Stock");
+					stage.show();
+					break;
+				}
+
+				case "CurrentProjects": {
+					Parent pane = FXMLLoader.load(getClass().getResource("/View/CurrentProjects.fxml"));
+					Scene scene = new Scene(pane);
+					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					stage.setScene(scene);
+					stage.setResizable(false);
+					stage.setTitle("Awni Wood Work - Projects In Progress");
+					stage.show();
+					break;
+				}
+
+				case "OrderedMaterials": {
+					Parent pane = FXMLLoader.load(getClass().getResource("/View/OrderedMaterials.fxml"));
+					Scene scene = new Scene(pane);
+					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					stage.setScene(scene);
+					stage.setResizable(false);
+					stage.setTitle("Awni Wood Work - Ordered Materials");
+					stage.show();
+					break;
+				}
+
+				case "OrdersCatalog": {
+					Parent pane = FXMLLoader.load(getClass().getResource("/View/OrdersCatalog.fxml"));
+					Scene scene = new Scene(pane);
+					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					stage.setScene(scene);
+					stage.setResizable(false);
+					stage.setTitle("Awni Wood Work - Projects Catalog");
+					stage.show();
+					break;
+				}
+
+				case "GenerateByAI": {
+					Parent pane = FXMLLoader.load(getClass().getResource("/View/AI.fxml"));
+					Scene scene = new Scene(pane);
+					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					stage.setScene(scene);
+					stage.setResizable(false);
+					stage.setTitle("Awni Wood Work - Generate By Images Ai");
+					stage.show();
+					break;
+				}
+
+				case "BackButton": {
+					Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
+					Scene scene = new Scene(pane);
+					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					stage.setScene(scene);
+					stage.setResizable(false);
+					stage.setTitle("Awni Wood Work");
+					stage.show();
+					break;
+				}
+
+				case "sendEmail": {
+					Parent pane = FXMLLoader.load(getClass().getResource("/View/Send.fxml"));
+					Scene scene = new Scene(pane);
+					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					stage.setScene(scene);
+					stage.setResizable(false);
+					stage.setTitle("Awni Wood Work");
+					stage.show();
+					break;
+				}
+
+				case "ProjectDetails": {
+					Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetailsButton.fxml"));
+					Scene scene = new Scene(pane);
+					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					stage.setScene(scene);
+					stage.setResizable(false);
+					stage.setTitle("Awni Wood Work");
+					stage.show();
+					break;
+				}
+
+				case "EditCustomer": {
+					Parent pane = FXMLLoader.load(getClass().getResource("/View/EditCustomer.fxml"));
+					Scene scene = new Scene(pane);
+					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					stage.setScene(scene);
+					stage.setResizable(false);
+					stage.setTitle("Awni Wood Work");
+					stage.show();
+					break;
+				}
+
+				case "UpdateProjectDetails": {
+					Parent pane = FXMLLoader.load(getClass().getResource("/View/UpdateProjectDetails.fxml"));
+					Scene scene = new Scene(pane);
+					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+					stage.setScene(scene);
+					stage.setResizable(false);
+					stage.setTitle("Awni Wood Work");
+					stage.show();
+					break;
+				}
+				}
+			}
+
+		}
+
+	}
+
 	@FXML
-    void SearchEmailByLetter(KeyEvent event) {
+	void SearchEmailByLetter(KeyEvent event) {
 
 		searchField1.setOnKeyReleased(keyEvent -> {
-    	    if(filter1.getSelectionModel().getSelectedItem().equals("Customer Email")) {
-    	        String searchText = searchField1.getText().toLowerCase();
-    	        ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
-    	        ObservableList<CurrentProjectsToShow> custOrders = FXCollections.observableArrayList();
-    	        
-    	        for(Customer c : CarpentryLogic.getInstance().getCustomers()) {System.out.println(c.getEmail());
-    	            if( c.getEmail().toLowerCase().contains(searchText)) {System.out.println("cust");
-    	                for(Project p : CarpentryLogic.getInstance().getProjects()) {
-    	                    if(p.getCustomerID().equals(c.getEmail())) {System.out.println("email");
-    	                    	for(Order o: CarpentryLogic.getInstance().getOrders()) {
-    	                    		if(o.getProjectID().equals(Integer.toString(p.getProjectID())) && o.getStatus().equals("InProgress")) {System.out.println("order");
-    	                    		
-	    	                        for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
-	    	                            if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {System.out.println("inpor");
-	    	                                CurrentProjectsToShow cpts = new CurrentProjectsToShow(c.getEmail(), Integer.toString(p.getProjectID()), p.getProjectCategory(), Integer.toString(pi.getItemID()), pi.getItemName(), Integer.toString(pi.getHeight()), Integer.toString(pi.getWidth()), pi.getWoodType(), Integer.toString(pi.getQuantity()), pi.getSection(), pi.getColor(), pi.getHandsmodel());
-	    	                                System.out.println(cpts.toString());
-	    	                                toShow.add(cpts);
-	    	                            }
-	    	                        }
-    	                    		}
-    	                    	}
-    	                    }
-    	                }
-    	            }
-    	        }
+			if (filter1.getSelectionModel().getSelectedItem().equals("Customer Email")) {
+				String searchText = searchField1.getText().toLowerCase();
+				ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
+				ObservableList<CurrentProjectsToShow> custOrders = FXCollections.observableArrayList();
 
-    	        custOrders.addAll(Search2(toShow));
-    	        tableView.setItems(custOrders);
-    	    }
-    	});
-    }
-    
-    @FXML
-    void Search(ActionEvent event) {
-    	
-    	
-    	if(filter1.getSelectionModel().getSelectedItem().equals("Customer Email")) {
-    		for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
-    			if(searchField1.getText().equals(c.getName())) {
-    				ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
-    				ObservableList<CurrentProjectsToShow> custOrders = FXCollections.observableArrayList();
-    				for(Project p : CarpentryLogic.getInstance().getProjects()) {
-    					if(p.getCustomerID().equals(searchField1.getText())) {
-    						//custOrders.add(p);
-	    				
-    						for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
-    							if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {
-    								//custOrders.add(pi);
-    								CurrentProjectsToShow cpts = new  CurrentProjectsToShow(c.getName(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel());
-    								toShow.add(cpts);
-    							}
-    						}
-    						
-    					}
-    	    		}
-    	    	
-    				custOrders.addAll(Search2(toShow));
-    				tableView.setItems(custOrders);
-    			}	
-    		}
-    	}
-    	
-    	
-    	 
-    	if(filter1.getSelectionModel().getSelectedItem().equals("Project ID")) {
-    		for(Project p : CarpentryLogic.getInstance().getProjects()) {
-    			if(searchField1.getText().equals(Integer.toString(p.getProjectID()))) {
-    				ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
-    				ObservableList<CurrentProjectsToShow> toShowOb = FXCollections.observableArrayList();
-    				for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
-    					if(pi.getProjectID().equals(searchField1.getText())) {
-    						//projOrders.add(o);
-    						CurrentProjectsToShow cpts = new  CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel());
-							toShow.add(cpts);
-    				}
-    				
-    			}
-    				toShowOb.addAll(Search2(toShow));
-    				tableView.setItems(toShowOb);
-    		}
-    	}
-    	}
-    	
-    	if(filter1.getSelectionModel().getSelectedItem().equals("Project Category")) {
-    		ObservableList<CurrentProjectsToShow> toShowOb = FXCollections.observableArrayList();
-    		for(Project p : CarpentryLogic.getInstance().getProjects()) {
-    			if(searchField1.getText().equals(p.getProjectCategory())) {
-    				ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
-    				
-    				for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
-    					if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {
-    						//projOrders.add(o);
-    						CurrentProjectsToShow cpts = new  CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel());
-							toShow.add(cpts);
-    				}
-    					
-    			}
-    				
-    				toShowOb.addAll(toShow);
-    		}
-    	}tableView.setItems(toShowOb);
-    	}
-    	
-    	if(filter1.getSelectionModel().getSelectedItem().equals("Item Name")) {
-    		ObservableList<CurrentProjectsToShow> toShowOb = FXCollections.observableArrayList();
-    		for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
-    			if(searchField1.getText().equals(pi.getItemName())) {
-    				ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
-    				
-    				for(Project p : CarpentryLogic.getInstance().getProjects()) {
-    					if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {
-    						//projOrders.add(o);
-    						CurrentProjectsToShow cpts = new  CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel());
-							toShow.add(cpts);
-    				}
-    					
-    			}
-    				
-    				toShowOb.addAll(Search2(toShow));
-    		}
-    	}tableView.setItems(toShowOb);
-    	}
-    	
-    }
-    //********************************************************************************************************
-    
-    
-    
-    ArrayList<CurrentProjectsToShow> Search2(ArrayList<CurrentProjectsToShow> arr) {
-		ArrayList<CurrentProjectsToShow> toshow = new ArrayList<>();
-		if(filter2.getSelectionModel().getSelectedItem()==null ||searchField2.getText().equals("")){
+				for (Customer c : CarpentryLogic.getInstance().getCustomers()) {
+					if (c.getEmail().toLowerCase().contains(searchText)) {
+						for (Project p : CarpentryLogic.getInstance().getProjects()) {
+							if (c.getName().equals(p.getCustomerID()) && c.getEmail().equals(p.getEmail())) {
+								CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
+										Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail());
+								
+								toShow.add(cp);
+							}
+						}
+					}
+				}
+
+				custOrders.addAll(Search2(toShow));
+				tableView.setItems(custOrders);
+			}
 			
-				return arr ;
-    }
+			else if (filter1.getSelectionModel().getSelectedItem().equals("Customer Name")) {
+				String searchText = searchField1.getText().toLowerCase();
+				ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
+				ObservableList<CurrentProjectsToShow> custOrders = FXCollections.observableArrayList();
 
-    	if(filter2.getSelectionModel().getSelectedItem().equals("Customer Email")) {
-    		for(CurrentProjectsToShow c : arr) {
-    			if(searchField2.getText().equals(c.getCustomerName())) {
-    				toshow.add(c);
+				for (Customer c : CarpentryLogic.getInstance().getCustomers()) {
+					if (c.getName().toLowerCase().contains(searchText)) {
+						for (Project p : CarpentryLogic.getInstance().getProjects()) {
+							if (c.getName().equals(p.getCustomerID()) && c.getEmail().equals(p.getEmail())) {
+								CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
+										Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail());
+								
+								toShow.add(cp);
+							}
+						}
+					}
+				}
 
-    				
-    			}	
-    		}
-    	}
-    	
-    	
-    	 
-    	if(filter2.getSelectionModel().getSelectedItem().equals("Project ID")) {
-    		for(CurrentProjectsToShow p : arr) {
-    			if(searchField2.getText().equals(p.getProjectID())) {
-    				toshow.add(p);
-
-    				}
-    				
-    			}}
-    	
-    	
-    	
-    	if(filter2.getSelectionModel().getSelectedItem().equals("Project Category")) {
-    		for(CurrentProjectsToShow p : arr) {
-    			if(searchField2.getText().equals(p.getProjectCategory())) {
-    				toshow.add(p);
- 
-    		}
-    	}
-    	}
-    	
-    	if(filter2.getSelectionModel().getSelectedItem().equals("Item Name")) {
-    		for(CurrentProjectsToShow pi : arr) {
-    			if(searchField2.getText().equals(pi.getItemName())) {
-    				toshow.add(pi);
+				custOrders.addAll(Search2(toShow));
+				tableView.setItems(custOrders);
+			}
 		
-    			}
-    				
-    			
-    		}
-    	}
-    	searchField2.setText(null);
-		return toshow;
-   }
+		
+			else if (filter1.getSelectionModel().getSelectedItem().equals("Project ID")) {
+				String searchText = searchField1.getText();
+				ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
+				ObservableList<CurrentProjectsToShow> custOrders = FXCollections.observableArrayList();
 
-    @FXML
-    void RemoveFilter(ActionEvent event) {
-    	ObservableList<CurrentProjectsToShow> ObservableList_CP = FXCollections.observableArrayList();
-        ArrayList<CurrentProjectsToShow> arraylistToShow = new ArrayList<>();
-        for(Project p : CarpentryLogic.getInstance().getProjects()) {
-        	for(Order o: CarpentryLogic.getInstance().getOrders()) {
-        		if(o.getProjectID().equals(Integer.toString(p.getProjectID())) && o.getStatus().equals("InProgress")) {
-        			for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
-        				if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {
-                			CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel());
-                			arraylistToShow.add(cp);
-                		}
-        			}
-        			
-        		}
-        	}
-        }
-        ObservableList_CP.addAll(arraylistToShow);
-        
-        tableView.setItems(ObservableList_CP);
-        searchField1.setText(null);
-    	
-    }
-    
-    @FXML
-    void Delete_Project(ActionEvent event) {
-    	
-    		if(tableView.getSelectionModel().getSelectedItem()== null) {
-    			 JOptionPane.showMessageDialog(null, "Please select a project before deleting.", "Deleting a project reminder", JOptionPane.WARNING_MESSAGE);
-    		}
-    	
-	    	for(Project p : CarpentryLogic.getInstance().getProjects()) {
-	    		if(tableView.getSelectionModel().getSelectedItem().getProjectID().equals(Integer.toString(p.getProjectID()))) {
-	    			CarpentryLogic.getInstance().DeleteProject(p);
-	    			
-	    			for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
-	    				if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {
-	    					CarpentryLogic.getInstance().DeleteProjectItems(pi);
-	    				}
-	    			}
-	    			
-	    			for(Section s : CarpentryLogic.getInstance().getSections()) {
-	    				if(s.getProjectID().equals(Integer.toString(p.getProjectID()))) {
-	    					CarpentryLogic.getInstance().DeleteSection(s);
-	    				}
-	    			}
-	    			
-	    		}
-	    	}
-	    	
-	    	ObservableList<CurrentProjectsToShow> ObservableList_CP = FXCollections.observableArrayList();
-	        ArrayList<CurrentProjectsToShow> arraylistToShow = new ArrayList<>();
-	        for(Project p : CarpentryLogic.getInstance().getProjects()) {
-	        	for(Order o: CarpentryLogic.getInstance().getOrders()) {
-	        		if(o.getProjectID().equals(Integer.toString(p.getProjectID())) && o.getStatus().equals("InProgress")) {
-	        			for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
-	        				if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {
-	                			CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel());
-	                			arraylistToShow.add(cp);
-	                		}
-	        			}
-	        			
-	        		}
-	        	}
-	        }
-	        ObservableList_CP.addAll(arraylistToShow);
-	        
-	        tableView.setItems(ObservableList_CP);
-        }
-    
-    
-    @FXML
-    void Delete_Order(ActionEvent event) {
-    	
-    	for(Order o : CarpentryLogic.getInstance().getOrders()) {
-//    		if(o.getOrderID()==tableView.getSelectionModel().getSelectedItem().getOrderID()) {
-//    			CarpentryLogic.getInstance().DeleteOrder(o);
-//    		}
-    	}
-    	 ObservableList<Order> orders = FXCollections.observableArrayList();
-	        ArrayList<Order> arraylistOrders = CarpentryLogic.getInstance().getOrders();
-	        orders.addAll(arraylistOrders);
-	        
-	       // tableView.setItems(orders);
-    }
-    
-    @FXML
-    void ShowProjectDetails(ActionEvent event) throws IOException {
-    	//tableView
-    	if(tableView.getSelectionModel().getSelectedItem()== null) {
-		 JOptionPane.showMessageDialog(null, "Please select a project before deleting.", "Deleting a project reminder", JOptionPane.WARNING_MESSAGE);
-    	}
-    	
-    	pdts.setCustomerName(tableView.getSelectionModel().getSelectedItem().getCustomerName());
-    	pdts.setProjectID(tableView.getSelectionModel().getSelectedItem().getProjectID());
-    	pdts.setProjectCategory(tableView.getSelectionModel().getSelectedItem().getProjectCategory());
-    	pdts.setItemID(tableView.getSelectionModel().getSelectedItem().getItemID());
-    	pdts.setItemName(tableView.getSelectionModel().getSelectedItem().getItemName());
-    	pdts.setItemHeight(tableView.getSelectionModel().getSelectedItem().getItemHeight());
-    	pdts.setItemWidth(tableView.getSelectionModel().getSelectedItem().getItemWidth());
-    	pdts.setWoodType(tableView.getSelectionModel().getSelectedItem().getWoodType());
-    	pdts.setQuantity(tableView.getSelectionModel().getSelectedItem().getQuantity());
-    	pdts.setSection(tableView.getSelectionModel().getSelectedItem().getSection());
-    	pdts.setColor(tableView.getSelectionModel().getSelectedItem().getColor());
-    	//pdts.setModelNumberOFhands(tableView.getSelectionModel().getSelectedItem().getModelNumberOFhands());
-    	
-    	Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetails.fxml"));
+				for (Project p : CarpentryLogic.getInstance().getProjects()) {
+					if(Integer.toString(p.getProjectID()).contains(searchText)) {
+						for (Customer c : CarpentryLogic.getInstance().getCustomers()) {
+						//if (c.getEmail().toLowerCase().contains(searchText)) {
+						//for (Project p : CarpentryLogic.getInstance().getProjects()) {
+							if (c.getName().equals(p.getCustomerID()) && c.getEmail().equals(p.getEmail())) {
+								CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
+										Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail());
+								
+								toShow.add(cp);
+							}
+						}
+					}
+				}
+
+				custOrders.addAll(Search2(toShow));
+				tableView.setItems(custOrders);
+			}
+		
+		
+			else 	if (filter1.getSelectionModel().getSelectedItem().equals("Project Category")) {
+				String searchText = searchField1.getText();
+				ObservableList<CurrentProjectsToShow> toShowOb = FXCollections.observableArrayList();
+				ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
+				for (Project p : CarpentryLogic.getInstance().getProjects()) {
+					if (p.getProjectCategory().contains(searchText)) {
+						for(Customer c: CarpentryLogic.getInstance().getCustomers()) {
+								// projOrders.add(o);
+							if (c.getName().equals(p.getCustomerID()) && c.getEmail().equals(p.getEmail())) {
+								CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
+										Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail());
+								
+								toShow.add(cp);
+							}
+						toShowOb.addAll(toShow);
+						}
+					}
+				}
+				toShowOb.addAll(Search2(toShow));
+				tableView.setItems(toShowOb);
+			}
+		});
+		
+		
+	}
+
+	@FXML
+	void Search(ActionEvent event) {
+
+//		if (filter1.getSelectionModel().getSelectedItem().equals("Customer Email")) {
+//			for (Customer c : CarpentryLogic.getInstance().getCustomers()) {
+//				if (searchField1.getText().equals(c.getName())) {
+//					ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
+//					ObservableList<CurrentProjectsToShow> custOrders = FXCollections.observableArrayList();
+//					for (Project p : CarpentryLogic.getInstance().getProjects()) {
+//						if (p.getCustomerID().equals(searchField1.getText())) {
+//							// custOrders.add(p);
+//
+//							for (Section s : CarpentryLogic.getInstance().getSections()) {
+//									if(s.getProjectID().equals(Integer.toString(p.getProjectID()))) {
+//									// custOrders.add(pi);
+//									CurrentProjectsToShow cpts = new CurrentProjectsToShow(c.getName(),
+//											Integer.toString(p.getProjectID()), p.getProjectCategory(), s.getSectionName());
+//									toShow.add(cpts);
+//									}
+//							}
+//
+//						}
+//					}
+//
+//					custOrders.addAll(Search2(toShow));
+//					tableView.setItems(custOrders);
+//				}
+//			}
+//		}
+//
+//		if (filter1.getSelectionModel().getSelectedItem().equals("Project ID")) {
+//			for (Project p : CarpentryLogic.getInstance().getProjects()) {
+//				if (searchField1.getText().equals(Integer.toString(p.getProjectID()))) {
+//					ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
+//					ObservableList<CurrentProjectsToShow> toShowOb = FXCollections.observableArrayList();
+//					for (Section s : CarpentryLogic.getInstance().getSections()) {
+//						if (s.getProjectID().equals(searchField1.getText())) {
+//							// projOrders.add(o);
+//							CurrentProjectsToShow cpts = new CurrentProjectsToShow(p.getCustomerID(),
+//									Integer.toString(p.getProjectID()), p.getProjectCategory(), s.getSectionName());
+//							toShow.add(cpts);
+//						}
+//
+//					}
+//					toShowOb.addAll(Search2(toShow));
+//					tableView.setItems(toShowOb);
+//				}
+//			}
+//		}
+//
+//		if (filter1.getSelectionModel().getSelectedItem().equals("Project Category")) {
+//			ObservableList<CurrentProjectsToShow> toShowOb = FXCollections.observableArrayList();
+//			for (Project p : CarpentryLogic.getInstance().getProjects()) {
+//				if (searchField1.getText().equals(p.getProjectCategory())) {
+//					ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
+//
+//					for (Section s : CarpentryLogic.getInstance().getSections()) {
+//						if (s.getProjectID().equals(Integer.toString(p.getProjectID()))) {
+//							// projOrders.add(o);
+//							CurrentProjectsToShow cpts = new CurrentProjectsToShow(p.getCustomerID(),
+//									Integer.toString(p.getProjectID()), p.getProjectCategory(),s.getSectionName());
+//							toShow.add(cpts);
+//						}
+//
+//					}
+//
+//					toShowOb.addAll(toShow);
+//				}
+//			}
+//			tableView.setItems(toShowOb);
+//		}
+
+	}
+	// ********************************************************************************************************
+
+	ArrayList<CurrentProjectsToShow> Search2(ArrayList<CurrentProjectsToShow> arr) {System.out.println("arrasyyyyyyy");
+		ArrayList<CurrentProjectsToShow> toshow = new ArrayList<>();
+		System.out.println(searchField2.getText());
+		System.out.println(filter2.getSelectionModel().getSelectedItem());
+		if (filter2.getSelectionModel().getSelectedItem() == null || searchField2.getText().equals("")) {
+			System.out.println("nulllllllllllllllllllllllllll");
+			return arr;
+		}
+
+		if (filter2.getSelectionModel().getSelectedItem().equals("Customer Email")) {
+			for (CurrentProjectsToShow c : arr) {
+				if (searchField2.getText().equals(c.getCustomerName())) {
+					toshow.add(c);
+
+				}
+			}
+		}
+		System.out.println("ifdfffffffffffffffffffffffffffffffff");
+		if (filter2.getSelectionModel().getSelectedItem().equals("Project ID")) {System.out.println("combooooooo");
+			for (CurrentProjectsToShow p : arr) {
+				if (searchField2.getText().equals(p.getProjectID())) {System.out.println("projectid3212121231231231231231");
+				tableView.setItems(null);
+					toshow.add(p);
+
+				}
+
+			}
+		}
+
+		if (filter2.getSelectionModel().getSelectedItem().equals("Project Category")) {
+			for (CurrentProjectsToShow p : arr) {
+				if (searchField2.getText().equals(p.getProjectCategory())) {
+					toshow.add(p);
+
+				}
+			}
+		}
+
+		searchField2.setText(null);
+		return toshow;
+	}
+
+	@FXML
+	void RemoveFilter(ActionEvent event) {
+		ObservableList<CurrentProjectsToShow> ObservableList_CP = FXCollections.observableArrayList();
+		ArrayList<CurrentProjectsToShow> arraylistToShow = new ArrayList<>();
+		for (Project p : CarpentryLogic.getInstance().getProjects()) {
+			for (Customer c : CarpentryLogic.getInstance().getCustomers()) {
+				
+				if (c.getName().equals(p.getCustomerID()) && c.getEmail().equals(p.getEmail())) {
+					CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
+							Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail());
+					
+					arraylistToShow.add(cp);
+				}
+
+			}
+		}
+			
+		
+		ObservableList_CP.addAll(arraylistToShow);
+
+		tableView.setItems(ObservableList_CP);
+		searchField1.setText(null);
+
+	}
+
+	@FXML
+	void Delete_Project(ActionEvent event) {
+
+		if (tableView.getSelectionModel().getSelectedItem() == null) {
+			JOptionPane.showMessageDialog(null, "Please select a project before deleting.",
+					"Deleting a project reminder", JOptionPane.WARNING_MESSAGE);
+		}
+
+		for (Project p : CarpentryLogic.getInstance().getProjects()) {
+			if (tableView.getSelectionModel().getSelectedItem().getProjectID()
+					.equals(Integer.toString(p.getProjectID()))) {
+				CarpentryLogic.getInstance().DeleteProject(p);
+
+				for (ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
+					if (pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {
+						CarpentryLogic.getInstance().DeleteProjectItems(pi);
+					}
+				}
+
+				for (Section s : CarpentryLogic.getInstance().getSections()) {
+					if (s.getProjectID().equals(Integer.toString(p.getProjectID()))) {
+						CarpentryLogic.getInstance().DeleteSection(s);
+					}
+				}
+				
+				for(Order o: CarpentryLogic.getInstance().getOrders()) {
+					if(o.getProjectID().equals(Integer.toString(p.getProjectID()))) {
+						CarpentryLogic.getInstance().DeleteOrder(o);
+					}
+				}
+
+			}
+		}
+
+		ObservableList<CurrentProjectsToShow> ObservableList_CP = FXCollections.observableArrayList();
+		ArrayList<CurrentProjectsToShow> arraylistToShow = new ArrayList<>();
+		for (Project p : CarpentryLogic.getInstance().getProjects()) {
+			for (Section s : CarpentryLogic.getInstance().getSections()) {
+				if (s.getProjectID().equals(Integer.toString(p.getProjectID()))) {
+							CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
+									Integer.toString(p.getProjectID()), p.getProjectCategory(), s.getSectionName());
+							arraylistToShow.add(cp);
+						
+
+				}
+			}
+		}
+		ObservableList_CP.addAll(arraylistToShow);
+
+		tableView.setItems(ObservableList_CP);
+	}
+
+
+	@FXML
+	void ShowProjectDetails(ActionEvent event) throws IOException {
+		// tableView
+		if (tableView.getSelectionModel().getSelectedItem() == null) {
+			JOptionPane.showMessageDialog(null, "Please select a project before deleting.",
+					"Deleting a project reminder", JOptionPane.WARNING_MESSAGE);
+		}
+
+		pdts.setCustomerName(tableView.getSelectionModel().getSelectedItem().getCustomerName());
+		pdts.setProjectID(tableView.getSelectionModel().getSelectedItem().getProjectID());
+		pdts.setProjectCategory(tableView.getSelectionModel().getSelectedItem().getProjectCategory());
+		pdts.setSection(tableView.getSelectionModel().getSelectedItem().getCustomerEmail());
+		// pdts.setModelNumberOFhands(tableView.getSelectionModel().getSelectedItem().getModelNumberOFhands());
+
+		Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetails.fxml"));
 		Scene scene = new Scene(pane);
 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		stage.setScene(scene);
 		stage.setResizable(false);
 		stage.setTitle("Awni Wood Work - Projects Catalog");
 		stage.show();
-    }
-    
+	}
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -585,49 +582,40 @@ public class CurrentProjectsController implements Initializable{
 		Buttons.add(ProjectDetails);
 		Buttons.add(EditCustomer);
 		Buttons.add(UpdateProjectDetails);
-		
-		ObservableList<String> Filter = FXCollections.observableArrayList("Customer Email","Project ID","Project Category","Item Name");
+
+		ObservableList<String> Filter = FXCollections.observableArrayList("Customer Name","Customer Email", "Project ID",
+				"Project Category");
 		filter1.getItems().addAll(Filter);
 		filter2.getItems().addAll(Filter);
-		
+
 		customerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
-        projectID.setCellValueFactory(new PropertyValueFactory<>("projectID"));
-        projectCategory.setCellValueFactory(new PropertyValueFactory<>("projectCategory"));
-        itemID.setCellValueFactory(new PropertyValueFactory<>("itemID"));
-        itemName.setCellValueFactory(new PropertyValueFactory<>("ItemName"));
-        itemHeight.setCellValueFactory(new PropertyValueFactory<>("itemHeight"));
-        itemWidth.setCellValueFactory(new PropertyValueFactory<>("itemWidth"));
-        woodType.setCellValueFactory(new PropertyValueFactory<>("woodType"));
-        quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        section.setCellValueFactory(new PropertyValueFactory<>("section"));
-        color.setCellValueFactory(new PropertyValueFactory<>("color"));
-        modelNumberOfHands.setCellValueFactory(new PropertyValueFactory<>("modelNumberOFhands"));
-        
-        ObservableList<CurrentProjectsToShow> ObservableList_CP = FXCollections.observableArrayList();
-        ArrayList<CurrentProjectsToShow> arraylistToShow = new ArrayList<>();
-        for(Project p : CarpentryLogic.getInstance().getProjects()) {
-        	for(Order o: CarpentryLogic.getInstance().getOrders()) {
-        		if(o.getProjectID().equals(Integer.toString(p.getProjectID())) && o.getStatus().equals("InProgress")) {
-        			for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
-        				if(pi.getProjectID().equals(Integer.toString(p.getProjectID()))) {
-                			CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),Integer.toString(p.getProjectID()),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel());
-                			arraylistToShow.add(cp);
-                		}
-        			}
-        			
-        		}
-        	}
-        }
-       
-        
-        //arraylistOrder = CarpentryLogic.getInstance().getProjects();
-        //ArrayList<?>  arraylistOrder = CarpentryLogic.getInstance().getProjectItems();
-        ObservableList_CP.addAll(arraylistToShow);
+		customerEmail.setCellValueFactory(new PropertyValueFactory<>("customerEmail"));
+		projectID.setCellValueFactory(new PropertyValueFactory<>("projectID"));
+		projectCategory.setCellValueFactory(new PropertyValueFactory<>("projectCategory"));
+		
+
+		ObservableList<CurrentProjectsToShow> ObservableList_CP = FXCollections.observableArrayList();
+		ArrayList<CurrentProjectsToShow> arraylistToShow = new ArrayList<>();
+		for (Project p : CarpentryLogic.getInstance().getProjects()) {
+			for (Customer c : CarpentryLogic.getInstance().getCustomers()) {
+				
+				if (c.getName().equals(p.getCustomerID()) && c.getEmail().equals(p.getEmail())) {
+					CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
+							Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail());
+					
+					arraylistToShow.add(cp);
+				}
+
+			}
+		}
+
+		// arraylistOrder = CarpentryLogic.getInstance().getProjects();
+		// ArrayList<?> arraylistOrder = CarpentryLogic.getInstance().getProjectItems();
+		ObservableList_CP.addAll(arraylistToShow);
 //        orders.addAll(arraylistProject);
 //        orders.addAll(arraylistProjectItems);
-        
-        tableView.setItems(ObservableList_CP);
-	}
 
+		tableView.setItems(ObservableList_CP);
+	}
 
 }

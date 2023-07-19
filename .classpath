@@ -22,5 +22,13 @@
 	<classpathentry kind="lib" path="C:/Users/jawad/Downloads/jaf-1_1_1/jaf-1.1.1/activation.jar"/>
 	<classpathentry kind="lib" path="C:/Users/jawad/Downloads/commons-io-2.11.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/jawad/Downloads/org.eclipse.jface.jar/org.eclipse.jface.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jawad/Downloads/twilio-10.0.0-rc.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jawad/Downloads/jackson-annotations-2.15.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jawad/Downloads/jackson-core-2.15.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jawad/Downloads/jackson-databind-2.15.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jawad/Downloads/jackson-datatype-jsr310-2.15.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jawad/Downloads/slf4j-api-2.0.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jawad/Downloads/slf4j-log4j13-1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jawad/Downloads/slf4j-simple-2.0.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

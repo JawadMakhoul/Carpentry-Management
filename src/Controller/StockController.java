@@ -1,17 +1,17 @@
 package Controller;
 
 import java.io.IOException;
-import Model.OrderedMaterials;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.ResourceBundle;
-
-import Enumeration.ProjectCategory;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 import Enumeration.WoodType;
-import Model.Consts;
+import Model.OrderedMaterials;
 import Model.Stock;
-import Controller.CarpentryLogic;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,18 +23,14 @@ import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 public class StockController implements Initializable{
 
     @FXML
@@ -66,11 +62,26 @@ public class StockController implements Initializable{
    
     @FXML
     private TableColumn<Stock, String> woodTypeColumn;
+    
+    @FXML
+    private TableColumn<OrderedMaterials, String> orderStatus;
+
+    @FXML
+    private TableColumn<OrderedMaterials, String> productName;
+
+    @FXML
+    private TableColumn<OrderedMaterials, Integer> quantity;
+    @FXML
+    private TableView<OrderedMaterials> tableView;
 
     @FXML
     private Text sandwichPercent,solidPercent,mdfPercent,melaminePercent,particlePercent;
 
     private int countAll=0;
+    
+    public final String ACCOUNT_SID = "AC43db627bb9804649fe0427f34f843041";
+    public final String AUTH_TOKEN = "34b98819ff46d22d86d1161cb6af3131";
+    
     @FXML
     void UpdateWoodQuantity(MouseEvent event) throws SQLException {
     	if(woodType.getSelectionModel().getSelectedItem()!= null) {
@@ -89,7 +100,8 @@ public class StockController implements Initializable{
     							CarpentryLogic.getInstance().DeleteOrderedMaterials(om);
     							CarpentryLogic.getInstance().updateStockQuantity(s, s.getQuantity()+q);
     							showStock();
-    		    				OutOfStock();
+    							showOrderedMATERIALS();
+    							OutOfStock();
     							flag=false;
     						}
     					}
@@ -115,7 +127,8 @@ public class StockController implements Initializable{
     							CarpentryLogic.getInstance().DeleteOrderedMaterials(om);
     							CarpentryLogic.getInstance().updateStockQuantity(s, s.getQuantity()+q);
     							showStock();
-    		    				OutOfStock();
+    							showOrderedMATERIALS();
+    							OutOfStock();
     							flag=false;
     						}
     					}
@@ -131,16 +144,16 @@ public class StockController implements Initializable{
     		boolean flag=true;
     		for(Stock s: CarpentryLogic.getInstance().getStocks()) {
     			
-    			if(s.getWoodName().equals("Solid")) {
+    			if(s.getWoodName().equals("Solid_Wood")) {
     				int q = Integer.parseInt(quantityOFWood.getText());
     				
     				for(OrderedMaterials om: CarpentryLogic.getInstance().getOrderedMaterials()) {
-    					if(om.getWoodName().equals("Solid")&& om.getQuantity()==q) {
+    					if(om.getWoodName().equals("Solid_Wood")&& om.getQuantity()==q) {
     						if(flag) {
     							CarpentryLogic.getInstance().DeleteOrderedMaterials(om);
     							CarpentryLogic.getInstance().updateStockQuantity(s, s.getQuantity()+q);
     							showStock();
-    							
+    							showOrderedMATERIALS();
     		    				OutOfStock();
     							flag=false;
     						}
@@ -166,7 +179,8 @@ public class StockController implements Initializable{
     							CarpentryLogic.getInstance().DeleteOrderedMaterials(om);
     							CarpentryLogic.getInstance().updateStockQuantity(s, s.getQuantity()+q);
     							showStock();
-    		    				OutOfStock();
+    							showOrderedMATERIALS();
+    							OutOfStock();
     							flag=false;
     						}
     					}
@@ -191,7 +205,9 @@ public class StockController implements Initializable{
     							CarpentryLogic.getInstance().DeleteOrderedMaterials(om);
     							CarpentryLogic.getInstance().updateStockQuantity(s, s.getQuantity()+q);
     							showStock();
-    		    				OutOfStock();
+    							showOrderedMATERIALS();
+    							OutOfStock();
+    					    
     							flag=false;
     						}
     					}
@@ -204,10 +220,10 @@ public class StockController implements Initializable{
 
     	}
   
-    	}
+    	}}
     	}
 
-    }
+    
 
     @FXML
     void order_Wood(MouseEvent event) {
@@ -229,12 +245,12 @@ public class StockController implements Initializable{
     					CarpentryLogic.getInstance().addOrderedMaterials(om);
     				}
     			}
-    		
+    			showOrderedMATERIALS();
+    			
     			break;
     		}
     	
     		case "Mdf":{
-    		
     			for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
     			
     				if(s.getWoodName().equals("Mdf")) {
@@ -247,7 +263,8 @@ public class StockController implements Initializable{
     					CarpentryLogic.getInstance().addOrderedMaterials(om);
     				}
     			}
-    		
+    			showOrderedMATERIALS();
+    			
     			break;
     		}
     	
@@ -255,17 +272,18 @@ public class StockController implements Initializable{
     		
     			for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
     			
-    				if(s.getWoodName().equals("Solid")) {
+    				if(s.getWoodName().equals("Solid_Wood")) {
     				
     					int q = Integer.parseInt(quantityOFWood.getText());
     					OrderedMaterials om = new OrderedMaterials();
     					om.setStockID(s.getStockID());
-    					om.setWoodName("Solid");
+    					om.setWoodName("Solid_Wood");
     					om.setQuantity(q);
     					CarpentryLogic.getInstance().addOrderedMaterials(om);
     				}
     			}
-    		
+    			showOrderedMATERIALS();
+    			
     			break;
     		}
 
@@ -283,7 +301,8 @@ public class StockController implements Initializable{
     					CarpentryLogic.getInstance().addOrderedMaterials(om);
     				}
     			}
-	
+    			showOrderedMATERIALS();
+    			
     			break;
     		}
 
@@ -301,13 +320,29 @@ public class StockController implements Initializable{
     					CarpentryLogic.getInstance().addOrderedMaterials(om);
     				}
     			}
-	
+    			showOrderedMATERIALS();
+    			
     			break;
     		}
   
     	}
     	}
     }
+    
+    public void showOrderedMATERIALS() {
+    	productName.setCellValueFactory(new PropertyValueFactory<>("woodName"));
+		quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+		orderStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+     
+
+        // Get the data and add it to the table
+        ObservableList<OrderedMaterials> orderedmaterials = FXCollections.observableArrayList();
+        ArrayList<OrderedMaterials> arraylistOrders = CarpentryLogic.getInstance().getOrderedMaterials();
+        orderedmaterials.addAll(arraylistOrders);
+        
+        tableView.setItems(orderedmaterials);
+    }
+    
     @FXML
     void MoveTo(MouseEvent event) throws IOException {
     	
@@ -464,51 +499,51 @@ public class StockController implements Initializable{
 
 			if(s.getWoodName().equals("Sandwich"))  {
 				sandwichCount=s.getQuantity();
-				
-				if(s.getQuantity()>0)
-					sandwichPercent.setText(((s.getQuantity()*countAll)/50.0)+"%");
-				
-				else sandwichPercent.setText("0%");
+//				
+//				if(s.getQuantity()>0)
+//					sandwichPercent.setText(((s.getQuantity()*countAll)/50.0)+"%");
+//				
+//				else sandwichPercent.setText("0%");
 			}
 				
 			
 			if(s.getWoodName().equals("Mdf")) {
 				mdfCount=s.getQuantity();
-				
-				if(s.getQuantity()>0)
-					mdfPercent.setText((s.getQuantity()*countAll/50.0)+"%");
-				
-				else mdfPercent.setText("0%");
+//				
+//				if(s.getQuantity()>0)
+//					mdfPercent.setText((s.getQuantity()*countAll/50.0)+"%");
+//				
+//				else mdfPercent.setText("0%");
 			}
 				
 				
-			if(s.getWoodName().equals("Solid")) {
+			if(s.getWoodName().equals("Solid_Wood")) {
 				solidwoodCount=s.getQuantity();
-				
-				if(s.getQuantity()>0)
-					solidPercent.setText((s.getQuantity()*countAll/50.0)+"%");
-				
-				else solidPercent.setText("0%");
+//				
+//				if(s.getQuantity()>0)
+//					solidPercent.setText((s.getQuantity()*countAll/50.0)+"%");
+//				
+//				else solidPercent.setText("0%");
 			}
 				
 			
 			if(s.getWoodName().equals("Melamine")) {
 				melamineCount=s.getQuantity();
-				
-				if(s.getQuantity()>0)
-					melaminePercent.setText((s.getQuantity()*countAll/50.0)+"%");
-				
-				else melaminePercent.setText("0%");
+//				
+//				if(s.getQuantity()>0)
+//					melaminePercent.setText((s.getQuantity()*countAll/50.0)+"%");
+//				
+//				else melaminePercent.setText("0%");
 			}
 				
 			
 			if(s.getWoodName().equals("Particleboard")) {
 				particleCount=s.getQuantity();
-				
-				if(s.getQuantity()>0)
-					particlePercent.setText((s.getQuantity()*countAll/50.0)+"%");
-				
-				else particlePercent.setText("0%");
+//				
+//				if(s.getQuantity()>0)
+//					particlePercent.setText((s.getQuantity()*countAll/50.0)+"%");
+//				
+//				else particlePercent.setText("0%");
 			}
 				
 				
@@ -519,10 +554,11 @@ public class StockController implements Initializable{
     			new PieChart.Data("Melamine", melamineCount),
     			new PieChart.Data("Particleboard", particleCount),
     			new PieChart.Data("Sandwich", sandwichCount),
-    			new PieChart.Data("Solid", solidwoodCount));
+    			new PieChart.Data("Solid_Wood", solidwoodCount));
     
     	piechart.setData(pieChartData);
     }
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -545,9 +581,9 @@ public class StockController implements Initializable{
 		for(Stock s: CarpentryLogic.getInstance().getStocks()) {
 			countAll=countAll+s.getQuantity();
 		}
-		OutOfStock();
+		showOrderedMATERIALS();
 		showStock();
-        
+		OutOfStock();
 	}
     
 	

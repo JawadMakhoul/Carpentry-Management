@@ -16,7 +16,8 @@ public class Project {
 	private int projectID;
 	private String customerID;
 	private String projectCategory;
-	private String image=null;
+	private String email;
+	private String image;
 	
 	public String getImage() {
 		return image;
@@ -24,11 +25,19 @@ public class Project {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	public Project(int projectID,String customerID, String projectCategory) {
+	public Project(int projectID,String customerID, String projectCategory,String image,String email) {
 		super();
 		this.projectID = projectID;
 		this.customerID = customerID;
 		this.projectCategory = projectCategory;
+		this.email=email;
+		this.image="";
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public Project() {
 		this.projectID=idCounter++;

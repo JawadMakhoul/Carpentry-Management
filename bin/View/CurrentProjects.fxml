@@ -106,20 +106,12 @@
                </font>
             </Label>
                   <Button fx:id="searchBuuton" layoutX="693.0" layoutY="170.0" mnemonicParsing="false" onAction="#Search" prefHeight="51.0" prefWidth="183.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Search" />
-                  <TableView fx:id="tableView" layoutX="37.0" layoutY="322.0" prefHeight="377.0" prefWidth="1167.0">
+                  <TableView fx:id="tableView" layoutX="286.0" layoutY="331.0" prefHeight="377.0" prefWidth="722.0">
                     <columns>
-                      <TableColumn fx:id="customerName" prefWidth="146.0" text="Customer Name" />
-                      <TableColumn fx:id="projectID" minWidth="0.0" prefWidth="97.0" text="Project ID" />
-                        <TableColumn fx:id="projectCategory" prefWidth="153.0" text="Project Category" />
-                        <TableColumn fx:id="itemID" minWidth="0.0" prefWidth="74.0" text="Item ID" />
-                        <TableColumn fx:id="itemName" minWidth="0.0" prefWidth="108.0" text="Item Name" />
-                        <TableColumn fx:id="itemHeight" prefWidth="120.0" text="Item Height" />
-                        <TableColumn fx:id="itemWidth" prefWidth="108.0" text="Item Width" />
-                        <TableColumn fx:id="woodType" prefWidth="112.0" text="Wood Type" />
-                        <TableColumn fx:id="quantity" prefWidth="112.0" text="Quantity" />
-                        <TableColumn fx:id="section" prefWidth="112.0" text="Section" />
-                        <TableColumn fx:id="color" prefWidth="112.0" text="Color" />
-                        <TableColumn fx:id="modelNumberOfHands" prefWidth="279.0" text="Model Number Of Hands" />
+                      <TableColumn fx:id="customerName" prefWidth="239.3333740234375" text="Customer Name" />
+                        <TableColumn fx:id="customerEmail" prefWidth="173.0" text="Email" />
+                      <TableColumn fx:id="projectID" minWidth="0.0" prefWidth="118.6666259765625" text="Project ID" />
+                        <TableColumn fx:id="projectCategory" prefWidth="190.33331298828125" text="Project Category" />
                     </columns>
                   </TableView>
                   <ComboBox fx:id="filter1" layoutX="133.0" layoutY="170.0" prefHeight="51.0" prefWidth="234.0" promptText="Choose search field" style="-fx-background-color: white;" styleClass="comboBox" />
