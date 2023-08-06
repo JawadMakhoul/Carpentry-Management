@@ -51,12 +51,7 @@
                      </image>
                   </ImageView>
                   <Button fx:id="CurrentProjects" layoutX="93.0" layoutY="418.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Current Projects" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="644.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Lib/workflow.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="OrderedMaterials" layoutX="94.0" layoutY="644.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Ordered Materials" />
+                  <Button fx:id="OrderedMaterials" layoutX="94.0" layoutY="644.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Ordered Materials" />
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="22.0" layoutY="495.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/binder.png" />
@@ -86,12 +81,7 @@
                      </image>
                   </ImageView>
                   <Button fx:id="ProjectDetails" layoutX="93.0" layoutY="345.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Project Details" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="719.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Lib/resume.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="EditCustomer" layoutX="94.0" layoutY="719.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Customers" />
+                  <Button fx:id="EditCustomer" layoutX="94.0" layoutY="719.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Customers" />
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="22.0" layoutY="793.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/edit.png" />
