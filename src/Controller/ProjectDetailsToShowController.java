@@ -33,6 +33,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -50,6 +51,62 @@ import javafx.util.Callback;
 
 public class ProjectDetailsToShowController implements Initializable{
 
+	
+
+    @FXML
+    private ComboBox<?> ComboBoxObject;
+
+
+    @FXML
+    private ComboBox<?> adddeleteitem;
+
+    @FXML
+    private TextField axleQuantity;
+
+    @FXML
+    private ComboBox<?> brzolDegree;
+
+
+    @FXML
+    private ComboBox<?> colorField;
+
+
+    @FXML
+    private ComboBox<?> handsModelNumber;
+
+    @FXML
+    private TextField handsQuantity;
+
+
+    @FXML
+    private TextField itemHeightField;
+
+
+    @FXML
+    private TextField itemNameField;
+
+    @FXML
+    private TextField itemQuantity;
+
+    
+
+    @FXML
+    private TextField itemWidthField;
+
+    @FXML
+    private CheckBox newSection;
+
+   
+
+    @FXML
+    private ComboBox<?> projectSection;
+
+
+    @FXML
+    private Button submit;
+
+    @FXML
+    private ComboBox<?> woodTypeField;
     @FXML
     private Button EditCustomer,UpdateProjectDetails,ProjectDetails,GenerateByAI,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
@@ -243,7 +300,16 @@ public class ProjectDetailsToShowController implements Initializable{
     }
     
    
-    
+    @FXML
+    void CheckIfDelete(ActionEvent event) {
+
+    }
+
+
+    @FXML
+    void SubmitProjectDetails(ActionEvent event) {
+
+    }
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
