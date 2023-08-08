@@ -156,20 +156,20 @@
                   <TextField fx:id="itemHeightField" layoutX="604.0" layoutY="623.0" prefHeight="51.0" prefWidth="213.0" promptText="Height" styleClass="textField" />
                   <TextField fx:id="itemWidthField" layoutX="830.0" layoutY="623.0" prefHeight="51.0" prefWidth="213.0" promptText="Width" styleClass="textField" />
                   <TextField fx:id="itemQuantity" layoutX="370.0" layoutY="623.0" prefHeight="51.0" prefWidth="213.0" promptText="Quantity" styleClass="textField" />
-                  <ComboBox fx:id="colorField" layoutX="864.0" layoutY="776.0" prefHeight="39.0" prefWidth="213.0" promptText="Color" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                  <ComboBox fx:id="woodTypeField" layoutX="554.0" layoutY="768.0" prefHeight="39.0" prefWidth="213.0" promptText="Wood Type" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                  <ComboBox fx:id="projectSection" layoutX="264.0" layoutY="816.0" prefHeight="39.0" prefWidth="213.0" promptText="Project Section" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                  <ComboBox fx:id="colorField" layoutX="609.0" layoutY="709.0" prefHeight="39.0" prefWidth="213.0" promptText="Color" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                  <ComboBox fx:id="woodTypeField" layoutX="365.0" layoutY="709.0" prefHeight="39.0" prefWidth="213.0" promptText="Wood Type" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                  <ComboBox fx:id="projectSection" layoutX="109.0" layoutY="815.0" prefHeight="39.0" prefWidth="213.0" promptText="Project Section" styleClass="comboBox" stylesheets="@../Controller/style.css" />
                   <ComboBox fx:id="handsModelNumber" layoutX="109.0" layoutY="703.0" prefHeight="50.0" prefWidth="213.0" promptText="Hands Model" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                  <CheckBox fx:id="newSection" layoutX="69.0" layoutY="822.0" mnemonicParsing="false" text="New Section" />
-                  <ComboBox fx:id="brzolDegree" layoutX="599.0" layoutY="709.0" prefHeight="39.0" prefWidth="224.0" promptText="Axles Degree" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                  <TextField fx:id="handsQuantity" alignment="CENTER_RIGHT" layoutX="370.0" layoutY="705.0" prefWidth="213.0" styleClass="textField" />
-                  <TextField fx:id="axleQuantity" alignment="CENTER_RIGHT" layoutX="855.0" layoutY="706.0" styleClass="textField" />
-                  <Text fill="#d96e3a" layoutX="876.0" layoutY="697.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Axles Quantity" textAlignment="CENTER">
+                  <CheckBox fx:id="newSection" layoutX="106.0" layoutY="860.0" mnemonicParsing="false" onAction="#NewSectionEvent" text="New Section" />
+                  <ComboBox fx:id="brzolDegree" layoutX="365.0" layoutY="815.0" prefHeight="39.0" prefWidth="224.0" promptText="Axles Degree" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                  <TextField fx:id="handsQuantity" alignment="CENTER_RIGHT" layoutX="620.0" layoutY="892.0" prefWidth="213.0" styleClass="textField" />
+                  <TextField fx:id="axleQuantity" alignment="CENTER_RIGHT" layoutX="370.0" layoutY="880.0" styleClass="textField" />
+                  <Text fill="#d96e3a" layoutX="391.0" layoutY="871.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Axles Quantity" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text fill="#d96e3a" layoutX="392.0" layoutY="696.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hands Quantity" textAlignment="CENTER">
+                  <Text fill="#d96e3a" layoutX="642.0" layoutY="883.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hands Quantity" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>

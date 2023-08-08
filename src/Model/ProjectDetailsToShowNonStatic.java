@@ -14,7 +14,13 @@ public class ProjectDetailsToShowNonStatic {
 	private  String section;
 	private  String color;
 	private  String modelNumberOFhands;
-	private  String image;
+	private String sectionID;
+	public String getSectionID() {
+		return sectionID;
+	}
+	public void setSectionID(String sectionID) {
+		this.sectionID = sectionID;
+	}
 	public String getCustomerName() {
 		return customerName;
 	}
@@ -87,15 +93,9 @@ public class ProjectDetailsToShowNonStatic {
 	public void setModelNumberOFhands(String modelNumberOFhands) {
 		this.modelNumberOFhands = modelNumberOFhands;
 	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
 	public ProjectDetailsToShowNonStatic(String customerName, String projectID, String projectCategory, String itemID,
 			String itemName, String itemHeight, String itemWidth, String woodType, String quantity, String section,
-			String color, String modelNumberOFhands, String image) {
+			String color, String modelNumberOFhands,String sectionID) {
 		super();
 		this.customerName = customerName;
 		this.ProjectID = projectID;
@@ -109,7 +109,7 @@ public class ProjectDetailsToShowNonStatic {
 		this.section = section;
 		this.color = color;
 		this.modelNumberOFhands = modelNumberOFhands;
-		this.image = image;
+		this.sectionID=sectionID;
 	}
 	
 	

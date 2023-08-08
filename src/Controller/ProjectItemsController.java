@@ -91,6 +91,7 @@ public class ProjectItemsController implements Initializable{
     private boolean createOrderPressed = false;
     private boolean FinishPressed = false;
     
+    private ArrayList<ProjectItems> PI_Array = new ArrayList<ProjectItems>();
     private  static ProjectDetailsToShow pdts;
 
 
@@ -284,6 +285,7 @@ public class ProjectItemsController implements Initializable{
         	pi2.setProjectID(s);
         	
         	CarpentryLogic.getInstance().addProjectItems(pi2);
+        	PI_Array.add(pi2);
         	sectionPressed=true;
         	ItemName.setText(null);
         	height.setText(null);
@@ -346,6 +348,9 @@ public class ProjectItemsController implements Initializable{
 	    	
 	    	CarpentryLogic.getInstance().addSection(s);
     	    
+	    	for(ProjectItems piIndex : CarpentryLogic.getInstance().getProjectItems()) {
+	    		CarpentryLogic.getInstance().iNSERTItemSectionID(piIndex, s.getSectionID());
+	    	}
     	    switch(color.getSelectionModel().getSelectedItem().toString()) { // To send to the AI
     	  
     	    	case "Weathered_Barnboard","Pearl_Gray","Desert_Sand","Drift_Gray","Beige_Gray","Mushroom","Blueridge_Gray","Light_Oak","Smoke_Blue","Aspen_Tan":{

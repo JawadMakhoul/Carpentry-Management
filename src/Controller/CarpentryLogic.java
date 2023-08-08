@@ -113,7 +113,7 @@ public class CarpentryLogic {
 					while (rs.next()) {
 						int i = 1;
 						results.add(new ProjectItems(rs.getInt(i++),rs.getString(i++),rs.getInt(i++),rs.getInt(i++), rs.getString(i++),rs.getInt(i++),rs.getString(i++),
-								rs.getString(i++), rs.getString(i++), rs.getString(i++)));
+								rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -329,7 +329,7 @@ public class CarpentryLogic {
 				Class.forName("com.mysql.jdbc.Driver");
 				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
 			           //  Statement stmt = con.createStatement()
-					CallableStatement stmt = con.prepareCall("Insert into projectitems values(?,?, ?, ?, ?, ?, ?, ?, ?, ?)")){
+					CallableStatement stmt = con.prepareCall("Insert into projectitems values(?,?, ?, ?, ?, ?, ?, ?, ?, ?,?)")){
 
 					// int i = 1;
 					stmt.setInt(1, pi.getItemID()); // can't be null
@@ -342,7 +342,7 @@ public class CarpentryLogic {
 					stmt.setString(8, pi.getSection());
 					stmt.setString(9, pi.getColor());
 					stmt.setString(10, pi.getHandsmodel());
-					
+					stmt.setString(11, pi.getSectionID());
 					
 					stmt.executeUpdate();
 					return true;
@@ -744,6 +744,35 @@ public class CarpentryLogic {
 
 	}
 		
+		public boolean iNSERTItemSectionID(ProjectItems pi,int s) throws SQLException {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			           //  Statement stmt = con.createStatement()
+					CallableStatement stmt = con.prepareCall("UPDATE projectitems SET sectionID = ? WHERE itemID=?")){
+
+		        // set the parameter values for the prepared statement
+				
+				stmt.setInt(2, pi.getItemID());
+				
+		        stmt.setString(1, Integer.toString(s));
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
 		public boolean updateItemWidth(ProjectItems pi,int width) throws SQLException {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
@@ -988,7 +1017,7 @@ public class CarpentryLogic {
 			           //  Statement stmt = con.createStatement()
 					CallableStatement stmt = con.prepareCall("DELETE  FROM section WHERE sectionID = ?")){
 					
-					stmt.setString(1, s.getProjectID());
+					stmt.setString(1, Integer.toString(s.getSectionID()));
 					
 					stmt.executeUpdate();
 					return true;
