@@ -6,13 +6,30 @@ public class CurrentProjectsToShow {
 	private String ProjectID;
 	private String projectCategory;
 	private String customerEmail;
+	private String status;
+	private int cost;
 	
-	public CurrentProjectsToShow(String customerName, String projectID, String projectCategory, String customerEmail) {
+	public CurrentProjectsToShow(String customerName, String projectID, String projectCategory, String customerEmail
+			, String status, int cost) {
 		super();
 		this.customerName = customerName;
 		ProjectID = projectID;
 		this.projectCategory = projectCategory;
 		this.customerEmail = customerEmail;
+		this.status=status;
+		this.cost=cost;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public int getCost() {
+		return cost;
+	}
+	public void setCost(int cost) {
+		this.cost = cost;
 	}
 	public String getCustomerName() {
 		return customerName;

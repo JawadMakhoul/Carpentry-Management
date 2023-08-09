@@ -38,7 +38,7 @@ public class AIController implements Initializable{
 	private HashSet<Button> Buttons = new HashSet<Button>();
 	private HashSet<Button> imagebtns = new HashSet<Button>();
     @FXML
-    private Button EditCustomer,UpdateProjectDetails,ProjectDetails,GenerateByAI,BackButton,CurrentProjects,Inbox,NewProject,OrderedMaterials,OrdersCatalog,Stock,generate;
+    private Button GenerateByAI,BackButton,CurrentProjects,Inbox,NewProject,Stock,generate;
     
     @FXML
     private Button image1btn,image2btn,image3btn,image4btn,image5btn,image6btn,image7btn,image8btn,image9btn,image10btn;
@@ -103,28 +103,6 @@ public class AIController implements Initializable{
 	        		break;
 	    		}
 	    		
-	    		case "OrderedMaterials":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/OrderedMaterials.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work - Ordered Materials");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
-	    		case "OrdersCatalog":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/OrdersCatalog.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work - Projects Catalog");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
 	    		case "GenerateByAI":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/AI.fxml"));
 	        		Scene scene = new Scene(pane);
@@ -136,38 +114,6 @@ public class AIController implements Initializable{
 	        		break;
 	    		}
 	    		
-	    		case "ProjectDetails":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetailsButton.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
-	    		case "EditCustomer":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/EditCustomer.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
-	    		case "UpdateProjectDetails":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/UpdateProjectDetails.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work");
-	        		stage.show();
-	        		break;
-	    		}
 	    		case "BackButton":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
 	        		Scene scene = new Scene(pane);
@@ -339,17 +285,13 @@ public class AIController implements Initializable{
 @Override
 public void initialize(URL arg0, ResourceBundle arg1) {
 	// TODO Auto-generated method stub
-	Buttons.add(OrdersCatalog);
-	Buttons.add(OrderedMaterials);
+
 	Buttons.add(CurrentProjects);
 	Buttons.add(Stock);
 	Buttons.add(NewProject);
 	Buttons.add(Inbox);
 	Buttons.add(BackButton);
 	Buttons.add(GenerateByAI);
-	Buttons.add(ProjectDetails);
-	Buttons.add(EditCustomer);
-	Buttons.add(UpdateProjectDetails);
 	
 	imagebtns.add(image1btn);
 	imagebtns.add(image2btn);

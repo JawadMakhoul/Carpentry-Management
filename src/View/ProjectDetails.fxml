@@ -21,96 +21,66 @@
         <items>
           <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="948.0" prefWidth="350.0" styleClass="backgroundColor" stylesheets="@../Controller/style.css">
                <children>
-               <ImageView fitHeight="50.0" fitWidth="340.0" layoutX="23.0" layoutY="202.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="50.0" fitWidth="340.0" layoutX="13.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/email1.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="Inbox" layoutX="94.0" layoutY="201.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Email" />
+                  <Button fx:id="Inbox" layoutX="73.0" layoutY="376.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="51.0" prefWidth="266.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Email" />
                   
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="13.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/project.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="NewProject" layoutX="94.0" layoutY="272.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="New Projects" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="32.0" layoutY="556.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="NewProject" layoutX="73.0" layoutY="474.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="51.0" prefWidth="266.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="New Project / Customer" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="677.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/ready-stock.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="15.0" layoutY="568.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="6.0" layoutY="689.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/out-of-stock.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="Stock" layoutX="94.0" layoutY="568.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Stock" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="22.0" layoutY="418.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="Stock" layoutX="73.0" layoutY="680.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="266.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Stock" />
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="13.0" layoutY="571.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/process.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="CurrentProjects" layoutX="93.0" layoutY="418.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Current Projects" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="644.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Lib/workflow.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="OrderedMaterials" layoutX="94.0" layoutY="644.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Ordered Materials" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="22.0" layoutY="495.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Lib/binder.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="OrdersCatalog" layoutX="93.0" layoutY="495.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Orders Catalog" />
+                  <Button fx:id="CurrentProjects" layoutX="73.0" layoutY="571.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="266.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Projects Catalog" />
                   <Button fx:id="BackButton" layoutX="28.0" layoutY="873.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="51.0" prefWidth="112.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Back" />
-                  <ImageView fitHeight="106.0" fitWidth="328.0" layoutX="10.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="153.0" fitWidth="328.0" layoutX="10.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/awni-wood-work-high-resolution-logo-color-on-transparent-background.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="22.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="13.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/illustrator.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="GenerateByAI" layoutX="93.0" layoutY="131.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Generate images" />
-                  <ImageView fitHeight="50.0" fitWidth="29.0" layoutX="14.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="GenerateByAI" layoutX="73.0" layoutY="282.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="266.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Generate images" />
+                  <ImageView fitHeight="50.0" fitWidth="29.0" layoutX="5.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Lib/magic-wand.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="22.0" layoutY="345.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Lib/clipboard.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="ProjectDetails" layoutX="93.0" layoutY="345.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Project Details" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="23.0" layoutY="719.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Lib/resume.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="EditCustomer" layoutX="94.0" layoutY="719.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Customers" />
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="22.0" layoutY="793.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Lib/edit.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="UpdateProjectDetails" layoutX="93.0" layoutY="793.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Edit Project" />
                </children>
             </AnchorPane>
           <AnchorPane layoutX="258.0" prefHeight="948.0" prefWidth="1109.0" styleClass="backgroundColor" stylesheets="@../Controller/style.css">
          <children>
-            <Label layoutX="459.0" layoutY="57.0" prefHeight="87.0" prefWidth="371.0" text="Project Details" textAlignment="CENTER" textFill="#d96e3a">
+            <Label layoutX="465.0" layoutY="39.0" prefHeight="87.0" prefWidth="371.0" text="Project Details" textAlignment="CENTER" textFill="#d96e3a">
                <font>
                   <Font size="48.0" />
                </font>
             </Label>
-                  <TextField fx:id="customerNameField" layoutX="270.0" layoutY="138.0" styleClass="textField" />
-                  <TextField fx:id="projectIDField" layoutX="270.0" layoutY="187.0" styleClass="textField" />
-                  <TextField fx:id="handsField" layoutX="830.0" layoutY="187.0" styleClass="textField" />
-                  <TextField fx:id="projectCategoryField" layoutX="830.0" layoutY="138.0" styleClass="textField" />
+                  <TextField fx:id="customerNameField" editable="false" layoutX="270.0" layoutY="138.0" styleClass="textField" />
+                  <TextField fx:id="projectIDField" editable="false" layoutX="270.0" layoutY="187.0" styleClass="textField" />
+                  <TextField fx:id="phoneNumber" editable="false" layoutX="830.0" layoutY="187.0" styleClass="textField" />
+                  <TextField fx:id="projectCategoryField" editable="false" layoutX="830.0" layoutY="138.0" styleClass="textField" />
                   <Text fill="#d96e3a" layoutX="97.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
@@ -126,16 +96,16 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text fill="#d96e3a" layoutX="657.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Model of hands" textAlignment="CENTER" wrappingWidth="157.05078125">
+                  <Text fill="#d96e3a" layoutX="657.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" textAlignment="CENTER" wrappingWidth="157.05078125">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <ScrollPane layoutX="109.0" layoutY="303.0" prefHeight="275.0" prefWidth="964.0">
+                  <ScrollPane layoutX="62.0" layoutY="302.0" prefHeight="275.0" prefWidth="1116.0">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="271.0" prefWidth="978.0">
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="271.0" prefWidth="1116.0">
                            <children>
-                              <TableView fx:id="tableView" prefHeight="271.0" prefWidth="983.0">
+                              <TableView fx:id="tableView" onMousePressed="#callFunction" prefHeight="271.0" prefWidth="1116.0">
                                 <columns>
                                     <TableColumn fx:id="sectionField" minWidth="0.0" prefWidth="110.0" text="Section" />
                                     <TableColumn fx:id="itemID" minWidth="0.0" prefWidth="110.0" text="Item ID" />
@@ -144,32 +114,33 @@
                                     <TableColumn fx:id="itemWidth" prefWidth="121.0" text="Item Width" />
                                     <TableColumn fx:id="woodType" prefWidth="136.0" text="Wood Type" />
                                     <TableColumn fx:id="quantity" minWidth="8.0" prefWidth="112.0" text="Quantity" />
-                                    <TableColumn fx:id="color" minWidth="8.0" prefWidth="124.0" text="Color" />
+                                    <TableColumn fx:id="color" minWidth="8.0" prefWidth="98.0" text="Color" />
+                                    <TableColumn fx:id="handsField" minWidth="8.0" prefWidth="150.0" text="Hands Model" />
                                 </columns>
                               </TableView>
                            </children>
                         </AnchorPane>
                     </content>
                   </ScrollPane>
-                  <ComboBox fx:id="adddeleteitem" layoutX="268.0" layoutY="246.0" onAction="#CheckIfDelete" prefHeight="51.0" prefWidth="234.0" promptText="Add / Delete item" style="-fx-background-color: white;" styleClass="comboBox" />
-                  <TextField fx:id="itemNameField" layoutX="109.0" layoutY="623.0" prefHeight="51.0" prefWidth="213.0" promptText="Item Name" styleClass="textField" />
-                  <TextField fx:id="itemHeightField" layoutX="604.0" layoutY="623.0" prefHeight="51.0" prefWidth="213.0" promptText="Height" styleClass="textField" />
-                  <TextField fx:id="itemWidthField" layoutX="830.0" layoutY="623.0" prefHeight="51.0" prefWidth="213.0" promptText="Width" styleClass="textField" />
-                  <TextField fx:id="itemQuantity" layoutX="370.0" layoutY="623.0" prefHeight="51.0" prefWidth="213.0" promptText="Quantity" styleClass="textField" />
-                  <ComboBox fx:id="colorField" layoutX="609.0" layoutY="709.0" prefHeight="39.0" prefWidth="213.0" promptText="Color" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                  <ComboBox fx:id="woodTypeField" layoutX="365.0" layoutY="709.0" prefHeight="39.0" prefWidth="213.0" promptText="Wood Type" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                  <ComboBox fx:id="projectSection" layoutX="109.0" layoutY="815.0" prefHeight="39.0" prefWidth="213.0" promptText="Project Section" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                  <ComboBox fx:id="handsModelNumber" layoutX="109.0" layoutY="703.0" prefHeight="50.0" prefWidth="213.0" promptText="Hands Model" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                  <CheckBox fx:id="newSection" layoutX="106.0" layoutY="860.0" mnemonicParsing="false" onAction="#NewSectionEvent" text="New Section" />
-                  <ComboBox fx:id="brzolDegree" layoutX="365.0" layoutY="815.0" prefHeight="39.0" prefWidth="224.0" promptText="Axles Degree" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                  <TextField fx:id="handsQuantity" alignment="CENTER_RIGHT" layoutX="620.0" layoutY="892.0" prefWidth="213.0" styleClass="textField" />
-                  <TextField fx:id="axleQuantity" alignment="CENTER_RIGHT" layoutX="370.0" layoutY="880.0" styleClass="textField" />
-                  <Text fill="#d96e3a" layoutX="391.0" layoutY="871.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Axles Quantity" textAlignment="CENTER">
+                  <ComboBox fx:id="adddeleteitem" layoutX="268.0" layoutY="246.0" onAction="#CheckIfDelete" prefHeight="50.0" prefWidth="234.0" promptText="Add / Delete / Edit" style="-fx-background-color: white;" styleClass="comboBox" />
+                  <TextField fx:id="itemNameField" layoutX="109.0" layoutY="623.0" prefHeight="50.0" prefWidth="213.0" promptText="Item Name" styleClass="textField" />
+                  <TextField fx:id="itemHeightField" layoutX="600.0" layoutY="623.0" prefHeight="50.0" prefWidth="213.0" promptText="Height" styleClass="textField" />
+                  <TextField fx:id="itemWidthField" layoutX="840.0" layoutY="623.0" prefHeight="50.0" prefWidth="213.0" promptText="Width" styleClass="textField" />
+                  <TextField fx:id="itemQuantity" layoutX="354.0" layoutY="623.0" prefHeight="50.0" prefWidth="213.0" promptText="Quantity" styleClass="textField" />
+                  <ComboBox fx:id="colorField" layoutX="600.0" layoutY="684.0" prefHeight="50.0" prefWidth="213.0" promptText="Color" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                  <ComboBox fx:id="woodTypeField" layoutX="353.0" layoutY="684.0" prefHeight="50.0" prefWidth="213.0" promptText="Wood Type" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                  <ComboBox fx:id="projectSection" layoutX="106.0" layoutY="799.0" prefHeight="50.0" prefWidth="213.0" promptText="Project Section" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                  <ComboBox fx:id="handsModelNumber" layoutX="109.0" layoutY="684.0" prefHeight="50.0" prefWidth="213.0" promptText="Hands Model" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                  <CheckBox fx:id="newSection" layoutX="106.0" layoutY="765.0" mnemonicParsing="false" onAction="#NewSectionEvent" text="New Section" />
+                  <ComboBox fx:id="brzolDegree" layoutX="354.0" layoutY="799.0" prefHeight="50.0" prefWidth="224.0" promptText="Axles Degree" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                  <TextField fx:id="handsQuantity" alignment="CENTER_RIGHT" layoutX="840.0" layoutY="799.0" prefHeight="50.0" prefWidth="213.0" styleClass="textField" />
+                  <TextField fx:id="axleQuantity" alignment="CENTER_RIGHT" layoutX="601.0" layoutY="799.0" prefHeight="50.0" prefWidth="213.0" styleClass="textField" />
+                  <Text fill="#d96e3a" layoutX="638.0" layoutY="786.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Axles Quantity" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text fill="#d96e3a" layoutX="642.0" layoutY="883.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hands Quantity" textAlignment="CENTER">
+                  <Text fill="#d96e3a" layoutX="873.0" layoutY="786.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hands Quantity" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -179,23 +150,24 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text fill="#d96e3a" layoutX="654.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Height" textAlignment="CENTER">
+                  <Text fill="#d96e3a" layoutX="650.0" layoutY="611.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Height" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text fill="#d96e3a" layoutX="848.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" text="item Width" textAlignment="CENTER">
+                  <Text fill="#d96e3a" layoutX="892.0" layoutY="611.0" strokeType="OUTSIDE" strokeWidth="0.0" text="item Width" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text fill="#d96e3a" layoutX="411.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Quantity" textAlignment="CENTER">
+                  <Text fill="#d96e3a" layoutX="395.0" layoutY="611.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Quantity" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <ComboBox fx:id="ComboBoxObject" layoutX="573.0" layoutY="246.0" prefHeight="51.0" prefWidth="234.0" promptText="Choose Object" style="-fx-background-color: white;" styleClass="comboBox" />
-                  <Button fx:id="submit" layoutX="840.0" layoutY="848.0" mnemonicParsing="false" onAction="#SubmitProjectDetails" prefHeight="51.0" prefWidth="160.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Submit" />
+                  <ComboBox fx:id="ComboBoxObject" layoutX="549.0" layoutY="246.0" prefHeight="50.0" prefWidth="234.0" promptText="Choose Object" style="-fx-background-color: white;" styleClass="comboBox" />
+                  <Button fx:id="submit" layoutX="1060.0" layoutY="880.0" mnemonicParsing="false" onAction="#SubmitProjectDetails" prefHeight="50.0" prefWidth="160.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Submit" />
+                  <Button fx:id="image" layoutX="823.0" layoutY="880.0" mnemonicParsing="false" onAction="#showProjectImage" prefHeight="51.0" prefWidth="202.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Project Image" />
          </children>
       </AnchorPane>
         </items>

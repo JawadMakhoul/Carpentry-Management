@@ -24,7 +24,7 @@ public class AIAutoController implements Initializable{
 	private HashSet<Button> Buttons = new HashSet<Button>();
 	private HashSet<Button> imagebtns = new HashSet<Button>();
     @FXML
-    private Button EditCustomer,UpdateProjectDetails,ProjectDetails,BackButton,CurrentProjects,Inbox,NewProject,OrderedMaterials,OrdersCatalog,Stock,generate;
+    private Button BackButton,CurrentProjects,Inbox,NewProject,Stock,generate;
     
     @FXML
     private Button image1btn,image2btn,image3btn,image4btn,image5btn,image6btn,image7btn,image8btn,image9btn,image10btn;
@@ -94,28 +94,6 @@ public class AIAutoController implements Initializable{
 	        		break;
 	    		}
 	    		
-	    		case "OrderedMaterials":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/OrderedMaterials.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work - Ordered Materials");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
-	    		case "OrdersCatalog":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/OrdersCatalog.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work - Projects Catalog");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
 	    		case "GenerateByAI":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/AI.fxml"));
 	        		Scene scene = new Scene(pane);
@@ -125,40 +103,8 @@ public class AIAutoController implements Initializable{
 	        		stage.setTitle("Awni Wood Work - Generate By Images Ai");
 	        		stage.show();
 	        		break;
-	    		}
-	    		
-	    		case "ProjectDetails":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetailsButton.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work");
-	        		stage.show();
-	        		break;
 	    		}	
 	    		
-	    		case "EditCustomer":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/EditCustomer.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
-	    		case "UpdateProjectDetails":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/UpdateProjectDetails.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work");
-	        		stage.show();
-	        		break;
-	    		}
 	    		case "BackButton":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
 	        		Scene scene = new Scene(pane);
@@ -179,7 +125,7 @@ public class AIAutoController implements Initializable{
     }
  
  @FXML
- void UpdateProjectImage(MouseEvent event) throws SQLException, IOException {
+ void UpdateProjectImage(MouseEvent event) throws SQLException, IOException {System.out.println("image buuton");
 
 	 for(Button b : imagebtns) {
 		 if(b.isPressed()) {
@@ -248,29 +194,59 @@ public class AIAutoController implements Initializable{
 		 }
 		 
 		
-		Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetails.fxml"));
- 		Scene scene = new Scene(pane);
- 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
- 		stage.setScene(scene);
- 		stage.setResizable(false);
- 		stage.setTitle("Awni Wood Work - Generate Images By Ai");
- 		stage.show();
+//		Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetails.fxml"));
+// 		Scene scene = new Scene(pane);
+// 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+// 		stage.setScene(scene);
+// 		stage.setResizable(false);
+// 		stage.setTitle("Awni Wood Work - Generate Images By Ai");
+// 		stage.show();
+ 		
+// 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectDetails.fxml"));
+//	    Parent root = loader.load();
+//	    
+//	    // Get the controller of the second scene
+//	    String myData = Integer.toString(GlobalProjectID.getId());
+//	    ProjectDetailsToShowController controller = loader.getController();
+//	    
+//	    // Send data
+//	    
+//	    
+//	    controller.setData(myData);
+//
+//	    Scene scene = new Scene(root);
+//	    Stage stage = new Stage();
+//	    stage.setScene(scene);
+//	    stage.show();
+		 
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectDetails.fxml"));
+		 Parent root = loader.load();
+
+		 // Get the controller of the second scene
+		 String myData = Integer.toString(GlobalProjectID.getId());
+		 ProjectDetailsToShowController controller = loader.getController();
+
+		 // Send data
+		 controller.setData(myData);
+
+		 // Get the current stage
+		 Stage currentStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+		 // Set new root on the current stage's scene
+		 currentStage.getScene().setRoot(root);
+
 	 }
 	 }
  }
 @Override
 public void initialize(URL arg0, ResourceBundle arg1) {
 	// TODO Auto-generated method stub
-	Buttons.add(OrdersCatalog);
-	Buttons.add(OrderedMaterials);
+
 	Buttons.add(CurrentProjects);
 	Buttons.add(Stock);
 	Buttons.add(NewProject);
 	Buttons.add(Inbox);
 	Buttons.add(BackButton);
-	Buttons.add(ProjectDetails);
-	Buttons.add(EditCustomer);
-	Buttons.add(UpdateProjectDetails);
 	
 	imagebtns.add(image1btn);
 	imagebtns.add(image2btn);

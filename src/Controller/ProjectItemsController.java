@@ -49,6 +49,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -59,10 +60,11 @@ import javafx.stage.Stage;
 public class ProjectItemsController implements Initializable{
 	
 	@FXML
-    private Button EditCustomer,UpdateProjectDetails,ProjectDetails,GenerateByAI,ShowProjectDetails,BackButton,CurrentProjects,Inbox,NewProject,OrderedMaterials,OrdersCatalog,Stock,addItem,addSection,finish;
+    private Button GenerateByAI,ShowProjectDetails,BackButton,CurrentProjects,Inbox,NewProject,Stock,addItem,addSection,finish;
 	private HashSet<Button> Buttons = new HashSet<Button>();
     
-	
+	 @FXML
+	    private TextArea notes;
     @FXML
     private TextField orderStatus,ItemName,handsQuantity,axleQuantity,height,quantity,width,CUSTOMERID,ORDERID,PROJECTID,orderCost;
 
@@ -88,8 +90,7 @@ public class ProjectItemsController implements Initializable{
     private ProjectItems pi = new ProjectItems();
     
     private boolean sectionPressed = false;
-    private boolean createOrderPressed = false;
-    private boolean FinishPressed = false;
+    private int saveProjectID;
     
     private ArrayList<ProjectItems> PI_Array = new ArrayList<ProjectItems>();
     private  static ProjectDetailsToShow pdts;
@@ -266,7 +267,7 @@ public class ProjectItemsController implements Initializable{
     	    pi2.setQuantity(Integer.parseInt(quantity.getText()));
     	    
     	    for(Stock s1: CarpentryLogic.getInstance().getStocks()) {System.out.println("stock");
-    	    	if(s1.getWoodName().equals(pi2.getWoodType()) && pi2.getQuantity()> s1.getQuantity()) {System.out.println("1231231212313123");
+    	    	if(s1.getWoodName().equals(pi2.getWoodType()) && pi2.getQuantity()> s1.getQuantity()) {
     	    		final Alert alert = new Alert(Alert.AlertType.INFORMATION);
     	    	    alert.setTitle("Attention!");
     	    	    alert.setContentText("Not enough wood in stock.");
@@ -283,7 +284,7 @@ public class ProjectItemsController implements Initializable{
             Integer i = gpid.getId();
         	String s = i.toString();
         	pi2.setProjectID(s);
-        	
+        	saveProjectID=i;
         	CarpentryLogic.getInstance().addProjectItems(pi2);
         	PI_Array.add(pi2);
         	sectionPressed=true;
@@ -410,7 +411,7 @@ public class ProjectItemsController implements Initializable{
         	width.setText(null);
         	quantity.setText(null);
         	
-        	createOrderPressed=true;
+        	
     	}
     	catch (IllegalArgumentException e) {
     	    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -429,58 +430,16 @@ public class ProjectItemsController implements Initializable{
     	}
     
     
-    @FXML
-    void ShowProjectDetails(MouseEvent event) {
-    	
-    	if(createOrderPressed) {
-    	Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        GlobalProjectID gpid = (GlobalProjectID) stage.getUserData();
-    	String customerName=null;
-    	for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
-			if(c.getName().equals(gpid.getCustomerName())){
-				customerName = c.getName();
-			}
-		}
-    	
-    	for(Project p : CarpentryLogic.getInstance().getProjects()) {
-    		if(p.getProjectID()==GlobalProjectID.getId()) 
-    			pdts.setProjectCategory(p.getProjectCategory());
-    		
-    	}
-    	Order o = new Order();
-    	o.setCustomerName(customerName);
-    	String s1 = o.getCustomerName();
-    	CUSTOMERID.setText(s1);
-    	pdts.setCustomerName(o.getCustomerName());
-    	Integer p2id = gpid.getId();
-    	o.setProjectID(p2id.toString());
-    	String s2 = o.getProjectID();
-    	PROJECTID.setText(s2);
-    	pdts.setProjectID(o.getProjectID());
-    	Integer oid = o.getOrderID();
-    	String soid = oid.toString();
-    	ORDERID.setText(soid);
-    	o.setStatus(Enumeration.OrderStatus.WaitingProcess.toString()); 
-    	orderStatus.setText(Enumeration.OrderStatus.WaitingProcess.toString());
-    	Integer cost = o.CalculateCost();
-    	o.setCost(cost);
-    	String scost = cost.toString(); 
-    	orderCost.setText(scost);
-    	CarpentryLogic.getInstance().addOrder(o);
-    	
-    	FinishPressed=true;
-    	}
-    	
-    	else {
-    		JOptionPane.showMessageDialog(null, "Please add a section first .", "Section Reminder", JOptionPane.WARNING_MESSAGE);
-    	}
-    }
+   
     
     @FXML
-    void Finish(MouseEvent event) throws IOException, InterruptedException {
+    void Finish(MouseEvent event) throws IOException, InterruptedException, SQLException {
         
-    	if(FinishPressed) {
+    		for(Project p1 : CarpentryLogic.getInstance().getProjects()) {
+    			if(p1.getProjectID()==saveProjectID) {
+    				CarpentryLogic.getInstance().updateProjectNotes(p1, notes.getText());
+    			}
+    		}
             // Set initial loading image
             Image loadingImage = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\737.gif");
             loading.setImage(loadingImage);
@@ -562,11 +521,7 @@ public class ProjectItemsController implements Initializable{
 
             new Thread(task).start(); // Start the task in a new thread
     
-    	}
     	
-    	else {
-    		JOptionPane.showMessageDialog(null, "Please create an order first .", "Order Reminder", JOptionPane.WARNING_MESSAGE);
-    	}
     }
 
     
@@ -574,8 +529,7 @@ public class ProjectItemsController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		Buttons.add(OrdersCatalog);
-		Buttons.add(OrderedMaterials);
+		
 		Buttons.add(CurrentProjects);
 		Buttons.add(Stock);
 		Buttons.add(NewProject);
@@ -584,9 +538,6 @@ public class ProjectItemsController implements Initializable{
 		Buttons.add(ShowProjectDetails);
 		Buttons.add(finish);
 		Buttons.add(GenerateByAI);
-		Buttons.add(ProjectDetails);
-		Buttons.add(EditCustomer);
-		Buttons.add(UpdateProjectDetails);
 		
 		ObservableList<ProjectSection> projectSectionList = FXCollections.observableArrayList(ProjectSection.Kitchen,ProjectSection.Room,ProjectSection.LivingRoom,ProjectSection.Bathroom);
 		projectSection.getItems().addAll(projectSectionList);

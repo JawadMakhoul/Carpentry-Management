@@ -37,8 +37,8 @@ public class NewProjectController implements Initializable {
 
 	private String projectID;
 	@FXML
-	private Button EditCustomer, UpdateProjectDetails, ProjectDetails, GenerateByAI, projectItems, NewProject, Stock,
-			CurrentProjects, OrderedMaterials, OrdersCatalog, Inbox, BackButton;
+	private Button GenerateByAI, projectItems, NewProject, Stock,
+			CurrentProjects, Inbox, BackButton;
 	private HashSet<Button> Buttons = new HashSet<Button>();
 
 	ArrayList<String> emailsarray = new ArrayList<>();
@@ -114,28 +114,6 @@ public class NewProjectController implements Initializable {
 					break;
 				}
 
-				case "OrderedMaterials": {
-					Parent pane = FXMLLoader.load(getClass().getResource("/View/OrderedMaterials.fxml"));
-					Scene scene = new Scene(pane);
-					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-					stage.setScene(scene);
-					stage.setResizable(false);
-					stage.setTitle("Awni Wood Work - Ordered Materials");
-					stage.show();
-					break;
-				}
-
-				case "OrdersCatalog": {
-					Parent pane = FXMLLoader.load(getClass().getResource("/View/OrdersCatalog.fxml"));
-					Scene scene = new Scene(pane);
-					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-					stage.setScene(scene);
-					stage.setResizable(false);
-					stage.setTitle("Awni Wood Work - Projects Catalog");
-					stage.show();
-					break;
-				}
-
 				case "GenerateByAI": {
 					Parent pane = FXMLLoader.load(getClass().getResource("/View/AI.fxml"));
 					Scene scene = new Scene(pane);
@@ -158,43 +136,20 @@ public class NewProjectController implements Initializable {
 					break;
 				}
 
-				case "ProjectDetails": {
-					Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetailsButton.fxml"));
-					Scene scene = new Scene(pane);
-					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-					stage.setScene(scene);
-					stage.setResizable(false);
-					stage.setTitle("Awni Wood Work");
-					stage.show();
-					break;
-				}
-
-				case "EditCustomer": {
-					Parent pane = FXMLLoader.load(getClass().getResource("/View/EditCustomer.fxml"));
-					Scene scene = new Scene(pane);
-					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-					stage.setScene(scene);
-					stage.setResizable(false);
-					stage.setTitle("Awni Wood Work");
-					stage.show();
-					break;
-				}
-
-				case "UpdateProjectDetails": {
-					Parent pane = FXMLLoader.load(getClass().getResource("/View/UpdateProjectDetails.fxml"));
-					Scene scene = new Scene(pane);
-					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-					stage.setScene(scene);
-					stage.setResizable(false);
-					stage.setTitle("Awni Wood Work");
-					stage.show();
-					break;
-				}
 				case "projectItems": {
 					boolean flag = true;
 					if (projectCategory.getSelectionModel().getSelectedItem() == null) {
-						JOptionPane.showMessageDialog(null, "Please select a catagory before submiting.",
-								"A catagory reminder", JOptionPane.WARNING_MESSAGE);
+//						try {
+//							final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//							alert.setTitle("Error!");
+//							alert.setContentText("Press OK to try again.");
+//							alert.setHeaderText("please enter the missing value.");
+//							alert.showAndWait();
+//						} catch (Error e) {
+//							e.printStackTrace();
+//						} catch (Exception e) {
+//							e.printStackTrace();
+//						}
 					}
 
 					else if (!CustomerName.getText().equals("") && !phoneNumber.getText().equals("")
@@ -211,7 +166,7 @@ public class NewProjectController implements Initializable {
 						}
 					}
 					
-						if (customersemails.getSelectionModel().getSelectedItem() != null) {
+						if (customersemails.getSelectionModel().getSelectedItem() != null && projectCategory.getSelectionModel().getSelectedItem() != null) {
 							
 							for (Customer c : CarpentryLogic.getInstance().getCustomers()) {
 								
@@ -293,6 +248,8 @@ public class NewProjectController implements Initializable {
 															.getSelectedItem().toString());
 												}
 												p.setEmail(c.getEmail());
+												p.setStatus(Enumeration.OrderStatus.WaitingProcess.toString());
+												p.setCost(p.CalculateCost());
 												CarpentryLogic.getInstance().addProject(p);
 
 												FXMLLoader loader = new FXMLLoader(
@@ -465,8 +422,7 @@ public class NewProjectController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 // TODO Auto-generated method stub
-		Buttons.add(OrdersCatalog);
-		Buttons.add(OrderedMaterials);
+		
 		Buttons.add(CurrentProjects);
 		Buttons.add(Stock);
 		Buttons.add(NewProject);
@@ -474,9 +430,6 @@ public class NewProjectController implements Initializable {
 		Buttons.add(BackButton);
 		Buttons.add(projectItems);
 		Buttons.add(GenerateByAI);
-		Buttons.add(ProjectDetails);
-		Buttons.add(EditCustomer);
-		Buttons.add(UpdateProjectDetails);
 
 		ObservableList<ProjectCategory> projectType = FXCollections.observableArrayList(ProjectCategory.Home,
 				ProjectCategory.Office, ProjectCategory.Institution);

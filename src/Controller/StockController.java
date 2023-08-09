@@ -34,7 +34,7 @@ import javafx.stage.Stage;
 public class StockController implements Initializable{
 
     @FXML
-    private Button EditCustomer,UpdateProjectDetails,ProjectDetails,GenerateByAI,NewProject,Stock,CurrentProjects,OrderedMaterials,OrdersCatalog,Inbox,BackButton;
+    private Button GenerateByAI,NewProject,Stock,CurrentProjects,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
@@ -394,27 +394,6 @@ public class StockController implements Initializable{
 	        		break;
 	    		}
 	    		
-	    		case "OrderedMaterials":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/OrderedMaterials.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work - Ordered Materials");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
-	    		case "OrdersCatalog":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/OrdersCatalog.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work - Projects Catalog");
-	        		stage.show();
-	        		break;
-	    		}
 	    		
 	    		case "GenerateByAI":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/AI.fxml"));
@@ -427,16 +406,6 @@ public class StockController implements Initializable{
 	        		break;
 	    		}
 	    		
-	    		case "ProjectDetails":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetailsButton.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work");
-	        		stage.show();
-	        		break;
-	    		}
 	    		case "BackButton":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
 	        		Scene scene = new Scene(pane);
@@ -448,27 +417,6 @@ public class StockController implements Initializable{
 	        		break;
 	    		}	
 	    		
-	    		case "EditCustomer":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/EditCustomer.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
-	    		case "UpdateProjectDetails":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/UpdateProjectDetails.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work");
-	        		stage.show();
-	        		break;
-	    		}
 	    		
     		}
     	}
@@ -562,17 +510,13 @@ public class StockController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		Buttons.add(OrdersCatalog);
-		Buttons.add(OrderedMaterials);
+		
 		Buttons.add(CurrentProjects);
 		Buttons.add(Stock);
 		Buttons.add(NewProject);
 		Buttons.add(Inbox);
 		Buttons.add(BackButton);
 		Buttons.add(GenerateByAI);
-		Buttons.add(ProjectDetails);
-		Buttons.add(EditCustomer);
-		Buttons.add(UpdateProjectDetails);
 		
 		ObservableList<WoodType> woodTypelist = FXCollections.observableArrayList(WoodType.Mdf,WoodType.Melamine,WoodType.Particleboard,WoodType.Sandwich,WoodType.Solid_Wood);
 		woodType.getItems().addAll(woodTypelist);
