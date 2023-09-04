@@ -1152,11 +1152,41 @@ public class ProjectDetailsToShowController implements Initializable{
 			Buttons.add(BackButton);
 			Buttons.add(GenerateByAI);
 			
-			ProjectDetailsToShow pdts = ProjectItemsController.getPdts();
-	       
+			ProjectDetailsToShow pdts = CurrentProjectsController.getPdts();
+			System.out.println(pdts.getProjectID());
 	        
 			
-	       
+			color.setCellValueFactory(new PropertyValueFactory<>("color"));
+			itemHeight.setCellValueFactory(new PropertyValueFactory<>("itemHeight"));
+			itemID.setCellValueFactory(new PropertyValueFactory<>("itemID"));
+			itemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+			itemWidth.setCellValueFactory(new PropertyValueFactory<>("itemWidth"));
+			quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+			woodType.setCellValueFactory(new PropertyValueFactory<>("woodType"));
+			sectionField.setCellValueFactory(new PropertyValueFactory<>("section"));
+			handsField.setCellValueFactory(new PropertyValueFactory<>("modelNumberOFhands"));
+		    
+			
+			ObservableList<ProjectDetailsToShowNonStatic> ObservableList_CP = FXCollections.observableArrayList();
+			ArrayList<ProjectDetailsToShowNonStatic> arraylistToShow = new ArrayList<>();
+			for (Project p : CarpentryLogic.getInstance().getProjects()) {
+				for (ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
+					
+					if (Integer.toString(p.getProjectID()).equals(pi.getProjectID())) {
+						ProjectDetailsToShowNonStatic cp = new ProjectDetailsToShowNonStatic(p.getCustomerID(),
+								Integer.toString(p.getProjectID()), p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName() ,Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel(),pi.getSectionID());
+						
+						arraylistToShow.add(cp);
+					
+
+					}
+				}
+			}
+			ObservableList_CP.addAll(arraylistToShow);
+//	        orders.addAll(arraylistProject);
+//	        orders.addAll(arraylistProjectItems);
+
+			tableView.setItems(ObservableList_CP);
 	        
 			ObservableList<String> Object = FXCollections.observableArrayList("Project","Section","Item");
 			ComboBoxObject.getItems().addAll(Object);

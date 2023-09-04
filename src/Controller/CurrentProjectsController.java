@@ -555,9 +555,13 @@ public class CurrentProjectsController implements Initializable {
 		}
 
 		pdts.setCustomerName(tableView.getSelectionModel().getSelectedItem().getCustomerName());
+		System.out.println(pdts.getCustomerName());
 		pdts.setProjectID(tableView.getSelectionModel().getSelectedItem().getProjectID());
+		System.out.println(pdts.getProjectID());
 		pdts.setProjectCategory(tableView.getSelectionModel().getSelectedItem().getProjectCategory());
+		System.out.println(pdts.getProjectCategory());
 		pdts.setSection(tableView.getSelectionModel().getSelectedItem().getCustomerEmail());
+		//System.out.println(pdts.getCustomerName());
 		// pdts.setModelNumberOFhands(tableView.getSelectionModel().getSelectedItem().getModelNumberOFhands());
 
 		Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetails.fxml"));
