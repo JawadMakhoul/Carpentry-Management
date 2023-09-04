@@ -202,38 +202,38 @@ public class AIAutoController implements Initializable{
 // 		stage.setTitle("Awni Wood Work - Generate Images By Ai");
 // 		stage.show();
  		
-// 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectDetails.fxml"));
-//	    Parent root = loader.load();
-//	    
-//	    // Get the controller of the second scene
-//	    String myData = Integer.toString(GlobalProjectID.getId());
-//	    ProjectDetailsToShowController controller = loader.getController();
-//	    
-//	    // Send data
-//	    
-//	    
-//	    controller.setData(myData);
-//
-//	    Scene scene = new Scene(root);
-//	    Stage stage = new Stage();
-//	    stage.setScene(scene);
-//	    stage.show();
+ 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectDetails.fxml"));
+	    Parent root = loader.load();
+	    
+	    // Get the controller of the second scene
+	    String myData = Integer.toString(GlobalProjectID.getId());
+	    ProjectDetailsToShowController controller = loader.getController();
+	    
+	    // Send data
+	    
+	    
+	    controller.setData(myData);
+
+	    Scene scene = new Scene(root);
+	    Stage stage = new Stage();
+	    stage.setScene(scene);
+	    stage.show();
 		 
-		 FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectDetails.fxml"));
-		 Parent root = loader.load();
-
-		 // Get the controller of the second scene
-		 String myData = Integer.toString(GlobalProjectID.getId());
-		 ProjectDetailsToShowController controller = loader.getController();
-
-		 // Send data
-		 controller.setData(myData);
-
-		 // Get the current stage
-		 Stage currentStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-
-		 // Set new root on the current stage's scene
-		 currentStage.getScene().setRoot(root);
+//		 FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectDetails.fxml"));
+//		 Parent root = loader.load();
+//
+//		 // Get the controller of the second scene
+//		 String myData = Integer.toString(GlobalProjectID.getId());
+//		 ProjectDetailsToShowController controller = loader.getController();
+//
+//		 // Send data
+//		 controller.setData(myData);
+//
+//		 // Get the current stage
+//		 Stage currentStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+//
+//		 // Set new root on the current stage's scene
+//		 currentStage.getScene().setRoot(root);
 
 	 }
 	 }

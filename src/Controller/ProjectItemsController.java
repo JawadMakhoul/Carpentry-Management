@@ -14,6 +14,13 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.swing.JOptionPane;
 
 import java.util.ArrayList;
@@ -56,7 +63,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
+import java.util.Properties;
 public class ProjectItemsController implements Initializable{
 	
 	@FXML
@@ -95,7 +102,7 @@ public class ProjectItemsController implements Initializable{
     private ArrayList<ProjectItems> PI_Array = new ArrayList<ProjectItems>();
     private  static ProjectDetailsToShow pdts;
 
-
+    private ImageView trueORfalse,failedToSend2;
 	public static ProjectDetailsToShow getPdts() {
 		return pdts;
 	}
@@ -268,12 +275,106 @@ public class ProjectItemsController implements Initializable{
     	    
     	    for(Stock s1: CarpentryLogic.getInstance().getStocks()) {System.out.println("stock");
     	    	if(s1.getWoodName().equals(pi2.getWoodType()) && pi2.getQuantity()> s1.getQuantity()) {
+    	    		
+    	    		String host = "smtp.office365.com";
+
+	    	        String port = "587";
+
+	    	        String username = "awniwoodwork@hotmail.com";
+
+	    	        String password = "Awnihasanjawad";
+
+	    	        
+
+	    	        // SMTP server properties
+
+	    	        Properties props = new Properties();
+
+	    	        props.put("mail.smtp.auth", "true");
+
+	    	        props.put("mail.smtp.starttls.enable", "true");
+
+	    	        props.put("mail.smtp.host", host);
+
+	    	        props.put("mail.smtp.port", port);
+
+	    	        
+
+	    	        // Create a session with SMTP server
+
+	    	        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+
+	    	            protected PasswordAuthentication getPasswordAuthentication() {
+
+	    	                return new PasswordAuthentication(username, password);
+
+	    	            }
+
+	    	        });
+
+	    	        
+
+	    	        try {
+
+	    	            // Create email message
+
+		    	        String toEmail = "hasan.masalha98@gmail.com";
+
+
+
+	    	            Message emailMessage = new MimeMessage(session);
+
+	    	            emailMessage.setFrom(new InternetAddress(username));
+
+	    	            
+
+	    	            emailMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
+
+	    	            emailMessage.setSubject("New order");
+
+	    	            emailMessage.setText("I want to order " +s1.getWoodName() + pi2.getQuantity() );
+
+	    	            
+
+	    	            // Send email message
+
+	    	            Transport.send(emailMessage);
+
+	    	            Image image = new Image(getClass().getResourceAsStream("/Lib/delivered.png"));
+
+	    	            //trueORfalse.setImage(image);
+
+	    	     
+
+	    	         
+
+	    	            
+
+	    	        } catch (MessagingException e) {
+//
+//	    	        	Image image = new Image(getClass().getResourceAsStream("/Lib/email.png"));
+//
+//	    	            trueORfalse.setImage(image);
+//
+//	    	            Image image2 = new Image(getClass().getResourceAsStream("/Lib/remove.png"));
+//
+//	    	            failedToSend2.setImage(image2);
+
+	    	          
+
+	    	        }
+
+    			
+
+    	    	
+    	    
     	    		final Alert alert = new Alert(Alert.AlertType.INFORMATION);
     	    	    alert.setTitle("Attention!");
     	    	    alert.setContentText("Not enough wood in stock.");
     	    	    //alert.setHeaderText(e.getMessage());
     	    	    alert.showAndWait();
-    	    	}
+    	}
+    	    	
     	    }
     	    pi2.setColor(color.getValue().toString());
     	    pi2.setHandsmodel(handsModelNumber.getSelectionModel().getSelectedItem().toString());

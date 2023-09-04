@@ -1,6 +1,14 @@
 package Controller;
 
 import java.io.IOException;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import javafx.scene.image.Image;
 import java.net.URL;
 import java.sql.SQLException;
@@ -112,7 +120,7 @@ public class ProjectDetailsToShowController implements Initializable{
 
 
     @FXML
-    private Button image,submit;
+    private Button image,submit,reportButton;
 
     @FXML
     private ComboBox<WoodType> woodTypeField;
@@ -1106,6 +1114,33 @@ public class ProjectDetailsToShowController implements Initializable{
 			stage.setTitle("Awni Wood Work - Project Image");
 			stage.show();
 	    }
+	    
+	    @FXML
+	    void GetProjectReport(ActionEvent event) {
+
+	    	Document document = new Document();
+	        try {
+	            PdfWriter.getInstance(document, new FileOutputStream("Project_Report.pdf"));
+	            document.open();
+	            ObservableList<TableColumn<ProjectDetailsToShowNonStatic, ?>> columns = tableView.getColumns();
+	            ObservableList<ProjectDetailsToShowNonStatic> items = tableView.getItems();
+	            for (ProjectDetailsToShowNonStatic item : items) {
+	                StringBuilder row = new StringBuilder();
+	                for (TableColumn<ProjectDetailsToShowNonStatic, ?> column : columns) {
+	                    String cellValue = column.getCellData(item).toString();
+	                    row.append(cellValue).append(" ");
+	                }
+	                document.add(new Paragraph(row.toString()));
+	            }
+	        } catch (DocumentException | FileNotFoundException e) {
+	            e.printStackTrace();
+	        } finally {
+	            document.close();
+	        }
+	    }
+	    
+	    
+	    
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
 			// TODO Auto-generated method stub

@@ -72,7 +72,7 @@
             </AnchorPane>
           <AnchorPane layoutX="258.0" prefHeight="948.0" prefWidth="1109.0" styleClass="backgroundColor" stylesheets="@../Controller/style.css">
          <children>
-            <Label layoutX="465.0" layoutY="39.0" prefHeight="87.0" prefWidth="371.0" text="Project Details" textAlignment="CENTER" textFill="#d96e3a">
+            <Label layoutX="431.0" layoutY="39.0" prefHeight="87.0" prefWidth="405.0" text="Edit Project Details" textAlignment="CENTER" textFill="#d96e3a">
                <font>
                   <Font size="48.0" />
                </font>
@@ -167,7 +167,8 @@
                   </Text>
                   <ComboBox fx:id="ComboBoxObject" layoutX="549.0" layoutY="246.0" prefHeight="50.0" prefWidth="234.0" promptText="Choose Object" style="-fx-background-color: white;" styleClass="comboBox" />
                   <Button fx:id="submit" layoutX="1060.0" layoutY="880.0" mnemonicParsing="false" onAction="#SubmitProjectDetails" prefHeight="50.0" prefWidth="160.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Submit" />
-                  <Button fx:id="image" layoutX="823.0" layoutY="880.0" mnemonicParsing="false" onAction="#showProjectImage" prefHeight="51.0" prefWidth="202.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Project Image" />
+                  <Button fx:id="image" layoutX="836.0" layoutY="880.0" mnemonicParsing="false" onAction="#showProjectImage" prefHeight="51.0" prefWidth="202.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Project Image" />
+                  <Button fx:id="reportButton" layoutX="605.0" layoutY="880.0" mnemonicParsing="false" onAction="#GetProjectReport" prefHeight="51.0" prefWidth="202.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Project Report" />
          </children>
       </AnchorPane>
         </items>
