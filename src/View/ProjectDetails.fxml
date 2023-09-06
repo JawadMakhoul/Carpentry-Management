@@ -72,7 +72,7 @@
             </AnchorPane>
           <AnchorPane layoutX="258.0" prefHeight="948.0" prefWidth="1109.0" styleClass="backgroundColor" stylesheets="@../Controller/style.css">
          <children>
-            <Label layoutX="431.0" layoutY="39.0" prefHeight="87.0" prefWidth="405.0" text="Edit Project Details" textAlignment="CENTER" textFill="#d96e3a">
+            <Label alignment="CENTER" layoutX="431.0" layoutY="39.0" prefHeight="87.0" prefWidth="405.0" text="Project Details" textAlignment="CENTER" textFill="#d96e3a">
                <font>
                   <Font size="48.0" />
                </font>

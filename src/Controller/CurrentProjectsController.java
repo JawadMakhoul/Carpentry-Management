@@ -14,6 +14,7 @@ import com.healthmarketscience.jackcess.expr.NumericConfig.Type;
 import Enumeration.OrderStatus;
 import Model.CurrentProjectsToShow;
 import Model.Customer;
+import Model.GlobalProjectID;
 import Model.Order;
 import Model.Project;
 import Model.ProjectDetailsToShow;
@@ -564,13 +565,25 @@ public class CurrentProjectsController implements Initializable {
 		//System.out.println(pdts.getCustomerName());
 		// pdts.setModelNumberOFhands(tableView.getSelectionModel().getSelectedItem().getModelNumberOFhands());
 
-		Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetails.fxml"));
-		Scene scene = new Scene(pane);
-		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		stage.setScene(scene);
-		stage.setResizable(false);
-		stage.setTitle("Awni Wood Work - Projects Catalog");
-		stage.show();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectDetails.fxml"));
+	    Parent root = loader.load();
+		
+		
+		
+	    
+	    // Get the controller of the second scene
+	    String myData = pdts.getProjectID();
+	    ProjectDetailsToShowController controller = loader.getController();
+	    
+	    // Send data
+	    
+	    
+	    controller.setData(myData);
+
+	    Scene scene = new Scene(root);
+	    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	    stage.setScene(scene);
+	    stage.show();
 	}
 
 	@FXML

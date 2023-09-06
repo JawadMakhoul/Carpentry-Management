@@ -215,9 +215,17 @@ public class AIAutoController implements Initializable{
 	    controller.setData(myData);
 
 	    Scene scene = new Scene(root);
-	    Stage stage = new Stage();
+	    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 	    stage.setScene(scene);
 	    stage.show();
+	    
+//	    Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetails.fxml"));
+//		Scene scene = new Scene(pane);
+//		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//		stage.setScene(scene);
+//		stage.setResizable(false);
+//		stage.setTitle("Awni Wood Work - Inbox");
+//		stage.show();
 		 
 //		 FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectDetails.fxml"));
 //		 Parent root = loader.load();

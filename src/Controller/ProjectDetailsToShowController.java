@@ -17,7 +17,8 @@ import java.util.HashSet;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
-
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.*;
 import Enumeration.AxleDegree;
 import Enumeration.OrderStatus;
 import Enumeration.ProjectSection;
@@ -1118,20 +1119,61 @@ public class ProjectDetailsToShowController implements Initializable{
 	    @FXML
 	    void GetProjectReport(ActionEvent event) {
 
-	    	Document document = new Document();
+//	    	Document document = new Document();
+//	        try {
+//	            PdfWriter.getInstance(document, new FileOutputStream("Project_Report.pdf"));
+//	            document.open();
+//	            ObservableList<TableColumn<ProjectDetailsToShowNonStatic, ?>> columns = tableView.getColumns();
+//	            ObservableList<ProjectDetailsToShowNonStatic> items = tableView.getItems();
+//	            for (ProjectDetailsToShowNonStatic item : items) {
+//	                StringBuilder row = new StringBuilder();
+//	                for (TableColumn<ProjectDetailsToShowNonStatic, ?> column : columns) {
+//	                    String cellValue = column.getCellData(item).toString();
+//	                    row.append(cellValue).append(" ");
+//	                }
+//	                document.add(new Paragraph(row.toString()));
+//	            }
+//	        } catch (DocumentException | FileNotFoundException e) {
+//	            e.printStackTrace();
+//	        } finally {
+//	            document.close();
+//	        }
+	        
+	        Document document = new Document();
 	        try {
 	            PdfWriter.getInstance(document, new FileOutputStream("Project_Report.pdf"));
 	            document.open();
+	           
+	            String desktopPath = System.getProperty("user.home") + "/Downloads/Project_Report.pdf";
+	            PdfWriter.getInstance(document, new FileOutputStream(desktopPath));
+	            document.open();
+	            // Create a table with the same number of columns as your TableView
+	            PdfPTable table = new PdfPTable(tableView.getColumns().size());
+	           
+	            // Set table width to fill the page width
+	            table.setWidthPercentage(100);
 	            ObservableList<TableColumn<ProjectDetailsToShowNonStatic, ?>> columns = tableView.getColumns();
+	            Font boldFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
+	            // Add table header (column names)
+	            for (TableColumn<ProjectDetailsToShowNonStatic, ?> column : columns) {
+	                String headerValue = column.getText();
+	                PdfPCell headerCell = new PdfPCell(new Phrase(headerValue, boldFont));
+	                
+	                headerCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+	                table.addCell(headerCell);
+	            }
 	            ObservableList<ProjectDetailsToShowNonStatic> items = tableView.getItems();
+	            // Add table rows (data)
 	            for (ProjectDetailsToShowNonStatic item : items) {
-	                StringBuilder row = new StringBuilder();
 	                for (TableColumn<ProjectDetailsToShowNonStatic, ?> column : columns) {
 	                    String cellValue = column.getCellData(item).toString();
-	                    row.append(cellValue).append(" ");
+	                    PdfPCell cell = new PdfPCell(new Phrase(cellValue));
+	                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+	                    table.addCell(cell);
 	                }
-	                document.add(new Paragraph(row.toString()));
 	            }
+
+	            document.add(table);
 	        } catch (DocumentException | FileNotFoundException e) {
 	            e.printStackTrace();
 	        } finally {
