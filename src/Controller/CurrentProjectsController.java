@@ -85,7 +85,7 @@ public class CurrentProjectsController implements Initializable {
 	private TableColumn<CurrentProjectsToShow, String> customerEmail;
 
 	@FXML
-    private TableColumn<CurrentProjectsToShow, Integer> projectCost;
+    private TableColumn<CurrentProjectsToShow, Integer> projectPrice;
 
 	
     @FXML
@@ -223,7 +223,7 @@ public class CurrentProjectsController implements Initializable {
 						for (Project p : CarpentryLogic.getInstance().getProjects()) {
 							if (c.getName().equals(p.getCustomerID()) && c.getEmail().equals(p.getEmail())) {
 								CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
-										Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getCost());
+										Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getPrice());
 								
 								toShow.add(cp);
 								toSend.add(cp);
@@ -246,7 +246,7 @@ public class CurrentProjectsController implements Initializable {
 						for (Project p : CarpentryLogic.getInstance().getProjects()) {
 							if (c.getName().equals(p.getCustomerID()) && c.getEmail().equals(p.getEmail())) {
 								CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
-										Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getCost());
+										Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getPrice());
 								
 								toShow.add(cp);
 								toSend.add(cp);
@@ -277,7 +277,7 @@ public class CurrentProjectsController implements Initializable {
 						//for (Project p : CarpentryLogic.getInstance().getProjects()) {
 							if (c.getName().equals(p.getCustomerID()) && c.getEmail().equals(p.getEmail())) {
 								CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
-										Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getCost());
+										Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getPrice());
 								
 								toShow.add(cp);
 								toSend.add(cp);
@@ -303,7 +303,7 @@ public class CurrentProjectsController implements Initializable {
 								// projOrders.add(o);
 							//if (c.getName().equals(p.getCustomerID()) && c.getEmail().equals(p.getEmail())) {
 								CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
-										Integer.toString(p.getProjectID()), p.getProjectCategory(), p.getEmail(),p.getStatus(),p.getCost());
+										Integer.toString(p.getProjectID()), p.getProjectCategory(), p.getEmail(),p.getStatus(),p.getPrice());
 								boolean flag=true;
 								for(CurrentProjectsToShow cpts : toShow) {
 									if(cpts.getProjectID().equals(cp.getProjectID()))
@@ -478,7 +478,7 @@ public class CurrentProjectsController implements Initializable {
 				
 				if (c.getName().equals(p.getCustomerID()) && c.getEmail().equals(p.getEmail())) {
 					CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
-							Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getCost());
+							Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getPrice());
 					
 					arraylistToShow.add(cp);
 				}
@@ -534,7 +534,7 @@ public class CurrentProjectsController implements Initializable {
 			for (Section s : CarpentryLogic.getInstance().getSections()) {
 				if (s.getProjectID().equals(Integer.toString(p.getProjectID()))) {
 							CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
-									Integer.toString(p.getProjectID()), p.getProjectCategory(), p.getEmail(),p.getStatus(),p.getCost());
+									Integer.toString(p.getProjectID()), p.getProjectCategory(), p.getEmail(),p.getStatus(),p.getPrice());
 							arraylistToShow.add(cp);
 						
 
@@ -564,7 +564,8 @@ public class CurrentProjectsController implements Initializable {
 		pdts.setSection(tableView.getSelectionModel().getSelectedItem().getCustomerEmail());
 		//System.out.println(pdts.getCustomerName());
 		// pdts.setModelNumberOFhands(tableView.getSelectionModel().getSelectedItem().getModelNumberOFhands());
-
+		
+		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectDetails.fxml"));
 	    Parent root = loader.load();
 		
@@ -602,7 +603,7 @@ public class CurrentProjectsController implements Initializable {
 					
 					if (c.getName().equals(p.getCustomerID()) && c.getEmail().equals(p.getEmail())) {
 						CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
-								Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getCost());
+								Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getPrice());
 						
 						arraylistOrders.add(cp);
 					}
@@ -665,7 +666,7 @@ public class CurrentProjectsController implements Initializable {
 		projectID.setCellValueFactory(new PropertyValueFactory<>("projectID"));
 		projectCategory.setCellValueFactory(new PropertyValueFactory<>("projectCategory"));
 		projectStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-		projectCost.setCellValueFactory(new PropertyValueFactory<>("cost"));
+		projectPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
 		
 
 		ObservableList<CurrentProjectsToShow> ObservableList_CP = FXCollections.observableArrayList();
@@ -675,7 +676,7 @@ public class CurrentProjectsController implements Initializable {
 				
 				if (c.getName().equals(p.getCustomerID()) && c.getEmail().equals(p.getEmail())) {
 					CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
-							Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getCost());
+							Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getPrice());
 					
 					arraylistToShow.add(cp);
 				}

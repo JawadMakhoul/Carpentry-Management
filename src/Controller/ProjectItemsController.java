@@ -93,6 +93,9 @@ public class ProjectItemsController implements Initializable{
     @FXML
     private ComboBox<SectionColor> color;
     
+    @FXML
+    private TextField price,cost;
+    
     private Section sec = new Section();
     private ProjectItems pi = new ProjectItems();
     
@@ -512,7 +515,12 @@ public class ProjectItemsController implements Initializable{
         	width.setText(null);
         	quantity.setText(null);
         	
-        	
+        	for(Project p : CarpentryLogic.getInstance().getProjects()){
+                if(Integer.toString(p.getProjectID()).equals(s.getProjectID())) {
+                        cost.setText(Integer.toString(p.getPrice()));
+                }
+        	}
+                
     	}
     	catch (IllegalArgumentException e) {
     	    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -539,6 +547,8 @@ public class ProjectItemsController implements Initializable{
     		for(Project p1 : CarpentryLogic.getInstance().getProjects()) {
     			if(p1.getProjectID()==saveProjectID) {
     				CarpentryLogic.getInstance().updateProjectNotes(p1, notes.getText());
+    				p1.setPrice(Integer.parseInt(price.getText()));
+    				
     			}
     		}
             // Set initial loading image

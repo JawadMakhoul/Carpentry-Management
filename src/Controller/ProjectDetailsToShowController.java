@@ -1,43 +1,40 @@
 package Controller;
 
-import java.io.IOException;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
-import javafx.collections.ObservableList;
-import javafx.scene.control.ListView;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import javafx.scene.image.Image;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
-import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.*;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
 import Enumeration.AxleDegree;
-import Enumeration.OrderStatus;
 import Enumeration.ProjectSection;
 import Enumeration.SectionColor;
 import Enumeration.WoodType;
 import Enumeration.handType;
-import Model.CurrentProjectsToShow;
 import Model.Customer;
-import Model.GlobalProjectID;
-import Model.Order;
 import Model.Project;
 import Model.ProjectDetailsToShow;
 import Model.ProjectDetailsToShowNonStatic;
 import Model.ProjectItems;
 import Model.Section;
 import Model.Stock;
-import javafx.beans.property.ReadOnlyIntegerWrapper;
-import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -51,10 +48,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.ComboBoxTableCell;
@@ -65,8 +60,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-
+import com.itextpdf.text.Image;
 public class ProjectDetailsToShowController implements Initializable{
 
 	
@@ -84,7 +78,8 @@ public class ProjectDetailsToShowController implements Initializable{
     @FXML
     private ComboBox<AxleDegree> brzolDegree;
 
-
+    @FXML
+    private TextField ProjectPrice;
     @FXML
     private ComboBox<SectionColor> colorField;
 
@@ -174,8 +169,16 @@ public class ProjectDetailsToShowController implements Initializable{
     @FXML
     private ImageView projectImage;
 
-    private ProjectDetailsToShow pdts1;
-    @FXML
+//    private ProjectDetailsToShow pdts1;
+//    public static ProjectDetailsToShow getPdts() {
+//		return pdts1;
+//	}
+//
+//	public static void setPdts(ProjectDetailsToShow pdts1) {
+//		CurrentProjectsController.pdts1 = pdts1;
+//	}
+
+	@FXML
     void MoveTo(MouseEvent event) throws IOException {
     	
     	for(Button b: Buttons) {
@@ -286,7 +289,7 @@ public class ProjectDetailsToShowController implements Initializable{
         					projectCategoryField.setText(p.getProjectCategory());
         					projectIDField.setText(pi.getProjectID());
         					customerNameField.setText(p.getCustomerID());
-        					
+        					ProjectPrice.setText(Integer.toString(p.getPrice()));
         					for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
         						
         						if(c.getEmail().equals(p.getEmail()))
@@ -316,6 +319,7 @@ public class ProjectDetailsToShowController implements Initializable{
         				projectCategoryField.setText(p.getProjectCategory());
     					projectIDField.setText(Integer.toString(p.getProjectID()));
     					customerNameField.setText(p.getCustomerID());
+    					ProjectPrice.setText(Integer.toString(p.getPrice()));
         			}
         			}
         			
@@ -869,7 +873,7 @@ public class ProjectDetailsToShowController implements Initializable{
 	          			
 	          				
 	          			projectIDField.setText(pi.getProjectID());
-        					
+	          			ProjectPrice.setText(Integer.toString(p.getPrice()));
 	          			handsField.setCellValueFactory(new PropertyValueFactory<>("modelNumberOFhands"));
 	          					//projectIDField.setCellValueFactory(new PropertyValueFactory<>("projectID"));
 	          					sectionField.setCellValueFactory(new PropertyValueFactory<>("section"));
@@ -1107,78 +1111,204 @@ public class ProjectDetailsToShowController implements Initializable{
 	    
 	    @FXML
 	    void showProjectImage(ActionEvent event) throws IOException {
-		 Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectImage.fxml"));
-			Scene scene = new Scene(pane);
-			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			stage.setScene(scene);
-			stage.setResizable(false);
-			stage.setTitle("Awni Wood Work - Project Image");
-			stage.show();
+	    	
+	    	// Load the FXML and get the controller
+	    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectImage.fxml"));
+	    	
+	    	Parent pane = loader.load();
+	    	// Set the data on the controller
+	    	ProjectImageController controller = loader.getController();
+	    	
+	    	for(Project p : CarpentryLogic.getInstance().getProjects()) {
+	    		if(Integer.toString(p.getProjectID()).equals(projectIDField.getText())) {
+	    			controller.setData(CarpentryLogic.getInstance().GetImage(p));  // Replace 'Your String Data Here' with the actual data you want to send
+	    	    	
+	    		}
+	    	}
+	    	
+	    	// Create the scene and show it in a new stage
+	    	Scene scene = new Scene(pane);
+	    	Stage newStage = new Stage();  // Create a new stage for the new scene
+	    	newStage.setScene(scene);
+	    	newStage.setResizable(false);
+	    	newStage.setTitle("Awni Wood Work - Project Image");
+	    	newStage.show();
+
+	    	// If you want to close the previous stage
+	    	// ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+
 	    }
 	    
 	    @FXML
 	    void GetProjectReport(ActionEvent event) {
 
-//	    	Document document = new Document();
+
+	        
+//	        Document document = new Document();
 //	        try {
 //	            PdfWriter.getInstance(document, new FileOutputStream("Project_Report.pdf"));
 //	            document.open();
+//	           
+//	            String desktopPath = System.getProperty("user.home") + "/Downloads/Project_Report.pdf";
+//	            PdfWriter.getInstance(document, new FileOutputStream(desktopPath));
+//	            document.open();
+//	            // Create a table with the same number of columns as your TableView
+//	            PdfPTable table = new PdfPTable(tableView.getColumns().size());
+//	           
+//	            // Set table width to fill the page width
+//	            table.setWidthPercentage(100);
 //	            ObservableList<TableColumn<ProjectDetailsToShowNonStatic, ?>> columns = tableView.getColumns();
+//	            Font boldFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
+//	            // Add table header (column names)
+//	            for (TableColumn<ProjectDetailsToShowNonStatic, ?> column : columns) {
+//	                String headerValue = column.getText();
+//	                PdfPCell headerCell = new PdfPCell(new Phrase(headerValue, boldFont));
+//	                
+//	                headerCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+//	                table.addCell(headerCell);
+//	            }
 //	            ObservableList<ProjectDetailsToShowNonStatic> items = tableView.getItems();
+//	            // Add table rows (data)
 //	            for (ProjectDetailsToShowNonStatic item : items) {
-//	                StringBuilder row = new StringBuilder();
 //	                for (TableColumn<ProjectDetailsToShowNonStatic, ?> column : columns) {
 //	                    String cellValue = column.getCellData(item).toString();
-//	                    row.append(cellValue).append(" ");
+//	                    PdfPCell cell = new PdfPCell(new Phrase(cellValue));
+//	                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+//	                    table.addCell(cell);
 //	                }
-//	                document.add(new Paragraph(row.toString()));
 //	            }
+//
+//	            document.add(table);
 //	        } catch (DocumentException | FileNotFoundException e) {
 //	            e.printStackTrace();
 //	        } finally {
 //	            document.close();
 //	        }
-	        
-	        Document document = new Document();
-	        try {
-	            PdfWriter.getInstance(document, new FileOutputStream("Project_Report.pdf"));
-	            document.open();
-	           
-	            String desktopPath = System.getProperty("user.home") + "/Downloads/Project_Report.pdf";
-	            PdfWriter.getInstance(document, new FileOutputStream(desktopPath));
-	            document.open();
-	            // Create a table with the same number of columns as your TableView
-	            PdfPTable table = new PdfPTable(tableView.getColumns().size());
-	           
-	            // Set table width to fill the page width
-	            table.setWidthPercentage(100);
-	            ObservableList<TableColumn<ProjectDetailsToShowNonStatic, ?>> columns = tableView.getColumns();
-	            Font boldFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
-	            // Add table header (column names)
-	            for (TableColumn<ProjectDetailsToShowNonStatic, ?> column : columns) {
-	                String headerValue = column.getText();
-	                PdfPCell headerCell = new PdfPCell(new Phrase(headerValue, boldFont));
-	                
-	                headerCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-	                table.addCell(headerCell);
-	            }
-	            ObservableList<ProjectDetailsToShowNonStatic> items = tableView.getItems();
-	            // Add table rows (data)
-	            for (ProjectDetailsToShowNonStatic item : items) {
-	                for (TableColumn<ProjectDetailsToShowNonStatic, ?> column : columns) {
-	                    String cellValue = column.getCellData(item).toString();
-	                    PdfPCell cell = new PdfPCell(new Phrase(cellValue));
-	                    cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-	                    table.addCell(cell);
-	                }
-	            }
+	    	
+	    	Document document = new Document();
+	    	try {
+	    	    String desktopPath = System.getProperty("user.home") + "/Downloads/Project_Report.pdf";
+	    	    PdfWriter.getInstance(document, new FileOutputStream(desktopPath));
+	    	    document.open();
 
-	            document.add(table);
-	        } catch (DocumentException | FileNotFoundException e) {
-	            e.printStackTrace();
-	        } finally {
-	            document.close();
-	        }
+	    	    // 1. Bold center title "Project Report"
+	    	    Font titleFont = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
+	    	    Paragraph title = new Paragraph("Project Report", titleFont);
+	    	    title.setAlignment(Element.ALIGN_CENTER);
+	    	    title.setSpacingAfter(10);
+	    	    document.add(title);
+
+	    	    // 2. The date the report was created
+	    	    String currentDate = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+	    	    Paragraph dateParagraph = new Paragraph("Report Date: " + currentDate);
+	    	    dateParagraph.setSpacingAfter(10);
+	    	    document.add(dateParagraph);
+
+	    	    // 3. Customer name
+	    	    // (Replace 'customerName' with your actual value)
+	    	    String customerName = "John Doe";
+	    	    Paragraph customerNameParagraph = new Paragraph("Customer Name: " + customerName);
+	    	    document.add(customerNameParagraph);
+
+	    	    // 4. Customer phone number
+	    	    // (Replace 'customerPhoneNumber' with your actual value)
+	    	    String customerPhoneNumber = "123-456-7890";
+	    	    Paragraph customerPhoneParagraph = new Paragraph("Phone Number: " + customerPhoneNumber);
+	    	    document.add(customerPhoneParagraph);
+
+	    	    // 5. Project cost
+	    	    // (Replace 'projectCost' with your actual value)
+	    	    String projectCost = "$2000";
+	    	    Paragraph projectCostParagraph = new Paragraph("Project Cost: " + projectCost);
+	    	    document.add(projectCostParagraph);
+
+	    	    // 6. Project date
+	    	    // (Replace 'projectDate' with your actual value)
+	    	    String projectDate = "01-01-2023";
+	    	    Paragraph projectDateParagraph = new Paragraph("Project Date: " + projectDate);
+	    	    document.add(projectDateParagraph);
+
+	    	    // 7. Project status
+	    	    // (Replace 'projectStatus' with your actual value)
+	    	    String projectStatus = "Completed";
+	    	    Paragraph projectStatusParagraph = new Paragraph("Project Status: " + projectStatus);
+	    	    projectStatusParagraph.setSpacingAfter(20);  // Add some spacing after this before the table
+	    	    document.add(projectStatusParagraph);
+	    	    
+
+	    	    // Customer address
+	    	    // (Replace 'customerAddress' with your actual value)
+	    	    String customerAddress = "1234 Elm Street, SomeCity, ST 56789";
+	    	    Paragraph customerAddressParagraph = new Paragraph("Customer Address: " + customerAddress);
+	    	    document.add(customerAddressParagraph);
+
+	    	    // Customer email
+	    	    // (Replace 'customerEmail' with your actual value)
+	    	    String customerEmail = "john.doe@example.com";
+	    	    Paragraph customerEmailParagraph = new Paragraph("Customer Email: " + customerEmail);
+	    	    document.add(customerEmailParagraph);
+
+	    	    // Project category
+	    	    // (Replace 'projectCategory' with your actual value)
+	    	    String projectCategory = "Renovation";
+	    	    Paragraph projectCategoryParagraph = new Paragraph("Project Category: " + projectCategory);
+	    	    document.add(projectCategoryParagraph);
+
+	    	    // Project notes
+	    	    // (Replace 'projectNotes' with your actual value)
+	    	    String projectNotes = "Customer prefers work to be completed during weekdays.";
+	    	    Paragraph projectNotesParagraph = new Paragraph("Project Notes: " + projectNotes);
+	    	    projectNotesParagraph.setSpacingAfter(20);  // Add some spacing after this before the table
+	    	    document.add(projectNotesParagraph);
+
+	    	    String imagePath="";
+	    	    for(Project p : CarpentryLogic.getInstance().getProjects()) {
+		    		if(Integer.toString(p.getProjectID()).equals(projectIDField.getText())) {
+		    			 imagePath=CarpentryLogic.getInstance().GetImage(p);  // Replace 'Your String Data Here' with the actual data you want to send
+		    	    	
+		    		}
+		    	}
+	    	    
+	    	    try {
+	    	        // Create an Image instance
+	    	        Image image = Image.getInstance(imagePath);
+	    	        
+	    	        // Set the image's position and size if needed
+	    	        image.setAbsolutePosition(300, 650); // x and y position
+	    	        image.scaleToFit(100, 100); // width and height
+
+	    	        // Add the image to the document
+	    	        document.add(image);
+	    	    } catch (Exception e) {
+	    	        e.printStackTrace();
+	    	    }
+	    	    // The rest of your table generation code...
+	    	    PdfPTable table = new PdfPTable(tableView.getColumns().size());
+	    	    table.setWidthPercentage(100);
+	    	    ObservableList<TableColumn<ProjectDetailsToShowNonStatic, ?>> columns = tableView.getColumns();
+	    	    Font boldFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
+	    	    for (TableColumn<ProjectDetailsToShowNonStatic, ?> column : columns) {
+	    	        String headerValue = column.getText();
+	    	        PdfPCell headerCell = new PdfPCell(new Phrase(headerValue, boldFont));
+	    	        headerCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+	    	        table.addCell(headerCell);
+	    	    }
+	    	    ObservableList<ProjectDetailsToShowNonStatic> items = tableView.getItems();
+	    	    for (ProjectDetailsToShowNonStatic item : items) {
+	    	        for (TableColumn<ProjectDetailsToShowNonStatic, ?> column : columns) {
+	    	            String cellValue = column.getCellData(item).toString();
+	    	            PdfPCell cell = new PdfPCell(new Phrase(cellValue));
+	    	            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+	    	            table.addCell(cell);
+	    	        }
+	    	    }
+	    	    document.add(table);
+	    	} catch (DocumentException | FileNotFoundException e) {
+	    	    e.printStackTrace();
+	    	} finally {
+	    	    document.close();
+	    	}
+
 	    }
 	    
 	    
@@ -1213,7 +1343,7 @@ public class ProjectDetailsToShowController implements Initializable{
 			ArrayList<ProjectDetailsToShowNonStatic> arraylistToShow = new ArrayList<>();
 			for (Project p : CarpentryLogic.getInstance().getProjects()) {
 				for (ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
-					
+					pdts.setImage(p.getImage());
 					if (Integer.toString(p.getProjectID()).equals(pi.getProjectID())) {
 						ProjectDetailsToShowNonStatic cp = new ProjectDetailsToShowNonStatic(p.getCustomerID(),
 								Integer.toString(p.getProjectID()), p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName() ,Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel(),pi.getSectionID());

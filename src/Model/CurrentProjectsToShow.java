@@ -7,17 +7,17 @@ public class CurrentProjectsToShow {
 	private String projectCategory;
 	private String customerEmail;
 	private String status;
-	private int cost;
+	private int price;
 	
 	public CurrentProjectsToShow(String customerName, String projectID, String projectCategory, String customerEmail
-			, String status, int cost) {
+			, String status, int price) {
 		super();
 		this.customerName = customerName;
 		ProjectID = projectID;
 		this.projectCategory = projectCategory;
 		this.customerEmail = customerEmail;
 		this.status=status;
-		this.cost=cost;
+		this.price=price;
 	}
 	public String getStatus() {
 		return status;
@@ -25,11 +25,11 @@ public class CurrentProjectsToShow {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public int getCost() {
-		return cost;
+	public int getPrice() {
+		return price;
 	}
-	public void setCost(int cost) {
-		this.cost = cost;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	public String getCustomerName() {
 		return customerName;

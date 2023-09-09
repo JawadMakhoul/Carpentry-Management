@@ -90,7 +90,7 @@ public class CarpentryLogic {
 		            ResultSet rs = stmt.executeQuery(sql);
 					while (rs.next()) {
 						int i = 1;
-						results.add(new Project(rs.getInt(i++),rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getInt(i++), rs.getString(i++)));
+						results.add(new Project(rs.getInt(i++),rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getInt(i++), rs.getInt(i++), rs.getString(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -246,7 +246,7 @@ public class CarpentryLogic {
 			try {Class.forName("com.mysql.jdbc.Driver");
 			try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
 			           //  Statement stmt = con.createStatement()
-					CallableStatement stmt = con.prepareCall("Insert into project values(?, ?, ?, ?,?,?,?,?)")){ 
+					CallableStatement stmt = con.prepareCall("Insert into project values(?, ?, ?, ?,?,?,?,?,?,?)")){ 
 
 					// int i = 1;
 					stmt.setInt(1, p.getProjectID());
@@ -257,6 +257,8 @@ public class CarpentryLogic {
 					stmt.setString(6, p.getStatus());
 					stmt.setInt(7, p.getCost());
 					stmt.setString(8, p.getNotes());
+					stmt.setInt(9, p.getPrice());
+					stmt.setDate(10, Date.valueOf(p.getDate()));
 					stmt.executeUpdate();
 					return true;
 

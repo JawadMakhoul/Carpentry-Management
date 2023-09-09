@@ -21,15 +21,12 @@ public class Project {
 	private String image;
 	private String status;
 	private int cost;
+	private int price;
+	private LocalDate date;
 	private String notes;
 	
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
-	public Project(int projectID,String customerID, String projectCategory,String image,String email, String status, int cost, String notes) {
+
+	public Project(int projectID,String customerID, String projectCategory,String image,String email, String status, int cost, int price, String notes) {
 		super();
 		this.projectID = projectID;
 		this.customerID = customerID;
@@ -39,6 +36,26 @@ public class Project {
 		this.status=status;
 		this.cost=cost;
 		this.notes=notes;
+		this.price=price;
+		this.date = LocalDate.now();	
+		}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
+	public LocalDate getDate() {
+		return date;
+	}
+	public void setDate(LocalDate date) {
+		this.date = date;
 	}
 	public String getNotes() {
 		return notes;
