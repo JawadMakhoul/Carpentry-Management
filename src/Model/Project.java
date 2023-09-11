@@ -22,11 +22,11 @@ public class Project {
 	private String status;
 	private int cost;
 	private int price;
-	private LocalDate date;
+	private Date date;
 	private String notes;
 	
 
-	public Project(int projectID,String customerID, String projectCategory,String image,String email, String status, int cost, int price, String notes) {
+	public Project(int projectID,String customerID, String projectCategory,String image,String email, String status, int cost, int price, String notes,Date date) {
 		super();
 		this.projectID = projectID;
 		this.customerID = customerID;
@@ -37,7 +37,7 @@ public class Project {
 		this.cost=cost;
 		this.notes=notes;
 		this.price=price;
-		this.date = LocalDate.now();	
+		this.date = date;	
 		}
 	public String getImage() {
 		return image;
@@ -51,11 +51,11 @@ public class Project {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public LocalDate getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(LocalDate date) {
-		this.date = date;
+	public void setDate() {
+		this.date = Date.valueOf(LocalDate.now());
 	}
 	public String getNotes() {
 		return notes;

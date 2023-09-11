@@ -90,7 +90,7 @@ public class CarpentryLogic {
 		            ResultSet rs = stmt.executeQuery(sql);
 					while (rs.next()) {
 						int i = 1;
-						results.add(new Project(rs.getInt(i++),rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getInt(i++), rs.getInt(i++), rs.getString(i++)));
+						results.add(new Project(rs.getInt(i++),rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getInt(i++), rs.getInt(i++), rs.getString(i++), rs.getDate(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -258,7 +258,7 @@ public class CarpentryLogic {
 					stmt.setInt(7, p.getCost());
 					stmt.setString(8, p.getNotes());
 					stmt.setInt(9, p.getPrice());
-					stmt.setDate(10, Date.valueOf(p.getDate()));
+					stmt.setDate(10, p.getDate());
 					stmt.executeUpdate();
 					return true;
 

@@ -188,6 +188,7 @@ public class NewProjectController implements Initializable {
 									p.setEmail(c.getEmail());
 									p.setCost(p.CalculateCost());
 									p.setPrice(0);
+									p.setStatus(Enumeration.OrderStatus.WaitingProcess.toString());
 									CarpentryLogic.getInstance().addProject(p);
 									FXMLLoader loader = new FXMLLoader(
 											getClass().getResource("/View/ProjectItems.fxml"));

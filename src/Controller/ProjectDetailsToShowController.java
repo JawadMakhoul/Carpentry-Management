@@ -1,11 +1,14 @@
 package Controller;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -22,6 +25,10 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfPageEventHelper;
+import com.itextpdf.text.BaseColor;
 
 import Enumeration.AxleDegree;
 import Enumeration.ProjectSection;
@@ -35,6 +42,7 @@ import Model.ProjectDetailsToShowNonStatic;
 import Model.ProjectItems;
 import Model.Section;
 import Model.Stock;
+import Model.BackgroundColorEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -1186,13 +1194,24 @@ public class ProjectDetailsToShowController implements Initializable{
 //	        }
 	    	
 	    	Document document = new Document();
+	    	String desktopPath="";
+	    	PdfWriter writer = null;
 	    	try {
-	    	    String desktopPath = System.getProperty("user.home") + "/Downloads/Project_Report.pdf";
-	    	    PdfWriter.getInstance(document, new FileOutputStream(desktopPath));
+	    	    desktopPath = System.getProperty("user.home") + "/Downloads/Project_Report.pdf";
+	    	    writer= PdfWriter.getInstance(document, new FileOutputStream(desktopPath));
+	    	    writer.setPageEvent(new BackgroundColorEvent());
 	    	    document.open();
 
+	    	    ProjectDetailsToShow pdts = CurrentProjectsController.getPdts();
+	    	    String projectID="";
+	    	    
+	    	    for(Project p : CarpentryLogic.getInstance().getProjects()) {
+	    	    	if(Integer.toString(p.getProjectID()).equals(pdts.getProjectID())) {
+	    	    		projectID=pdts.getProjectID();
+	    	    	}
+	    	    }
 	    	    // 1. Bold center title "Project Report"
-	    	    Font titleFont = new Font(Font.FontFamily.HELVETICA, 16, Font.BOLD);
+	    	    Font titleFont = new Font(Font.FontFamily.HELVETICA, 32, Font.BOLD);
 	    	    Paragraph title = new Paragraph("Project Report", titleFont);
 	    	    title.setAlignment(Element.ALIGN_CENTER);
 	    	    title.setSpacingAfter(10);
@@ -1200,68 +1219,82 @@ public class ProjectDetailsToShowController implements Initializable{
 
 	    	    // 2. The date the report was created
 	    	    String currentDate = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-	    	    Paragraph dateParagraph = new Paragraph("Report Date: " + currentDate);
+	    	    Paragraph dateParagraph = new Paragraph("Report Date: " + currentDate + "                                                                   Project Image");
 	    	    dateParagraph.setSpacingAfter(10);
 	    	    document.add(dateParagraph);
 
 	    	    // 3. Customer name
-	    	    // (Replace 'customerName' with your actual value)
-	    	    String customerName = "John Doe";
+	    	    String customerName="";
+	    	    String customerPhoneNumber="";
+	    	    String projectCost="";
+	    	    Date projectDate = null;
+	    	    String projectStatus="";
+	    	    String customerAddress="";
+	    	    String customerEmail="";
+	    	    String projectCategory="";
+	    	    String projectNotes="";
+	    	    String imagePath="";
+	    	    
+	    	    for(Project p : CarpentryLogic.getInstance().getProjects()) {
+	    	    	for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
+	    	    		if(p.getCustomerID().equals(c.getName()) && Integer.toString(p.getProjectID()).equals(projectID)) {
+	    	    			customerName=c.getName();
+	    	    			customerPhoneNumber=c.getPhoneNUMBER();
+	    	    			projectCost=Integer.toString(p.getPrice());
+	    	    			projectDate=p.getDate();
+	    	    			projectStatus=p.getStatus();
+	    	    			customerAddress=c.getAddress();
+	    	    			customerEmail=c.getEmail();
+	    	    			projectCategory=p.getProjectCategory();
+	    	    			projectNotes=p.getNotes();
+	    	    		}
+	    	    	}
+	    	    }
+	    	    
 	    	    Paragraph customerNameParagraph = new Paragraph("Customer Name: " + customerName);
 	    	    document.add(customerNameParagraph);
 
 	    	    // 4. Customer phone number
-	    	    // (Replace 'customerPhoneNumber' with your actual value)
-	    	    String customerPhoneNumber = "123-456-7890";
-	    	    Paragraph customerPhoneParagraph = new Paragraph("Phone Number: " + customerPhoneNumber);
+	    	    
+	    	    Paragraph customerPhoneParagraph = new Paragraph("Customer Phone Number: " + customerPhoneNumber);
 	    	    document.add(customerPhoneParagraph);
 
-	    	    // 5. Project cost
-	    	    // (Replace 'projectCost' with your actual value)
-	    	    String projectCost = "$2000";
-	    	    Paragraph projectCostParagraph = new Paragraph("Project Cost: " + projectCost);
-	    	    document.add(projectCostParagraph);
-
-	    	    // 6. Project date
-	    	    // (Replace 'projectDate' with your actual value)
-	    	    String projectDate = "01-01-2023";
-	    	    Paragraph projectDateParagraph = new Paragraph("Project Date: " + projectDate);
-	    	    document.add(projectDateParagraph);
-
-	    	    // 7. Project status
-	    	    // (Replace 'projectStatus' with your actual value)
-	    	    String projectStatus = "Completed";
-	    	    Paragraph projectStatusParagraph = new Paragraph("Project Status: " + projectStatus);
-	    	    projectStatusParagraph.setSpacingAfter(20);  // Add some spacing after this before the table
-	    	    document.add(projectStatusParagraph);
-	    	    
-
-	    	    // Customer address
-	    	    // (Replace 'customerAddress' with your actual value)
-	    	    String customerAddress = "1234 Elm Street, SomeCity, ST 56789";
+	    	 // Customer address
 	    	    Paragraph customerAddressParagraph = new Paragraph("Customer Address: " + customerAddress);
 	    	    document.add(customerAddressParagraph);
 
 	    	    // Customer email
-	    	    // (Replace 'customerEmail' with your actual value)
-	    	    String customerEmail = "john.doe@example.com";
 	    	    Paragraph customerEmailParagraph = new Paragraph("Customer Email: " + customerEmail);
+	    	    customerEmailParagraph.setSpacingAfter(10);
 	    	    document.add(customerEmailParagraph);
+	    	    
+	    	    Paragraph projectIDParagraph = new Paragraph("Project ID: " + projectID);
+	    	    document.add(projectIDParagraph);
+	    	    
+	    	    Paragraph projectCostParagraph = new Paragraph("Project Cost: " + projectCost);
+	    	    document.add(projectCostParagraph);
+	    	    
+	    	    // 6. Project date
+	    	    Paragraph projectDateParagraph = new Paragraph("Project Date: " + projectDate);
+	    	    document.add(projectDateParagraph);
 
+	    	    // 7. Project status
+	    	    Paragraph projectStatusParagraph = new Paragraph("Project Status: " + projectStatus);
+	    	  //  projectStatusParagraph.setSpacingAfter(20);  // Add some spacing after this before the table
+	    	    document.add(projectStatusParagraph);
+	    	    
 	    	    // Project category
-	    	    // (Replace 'projectCategory' with your actual value)
-	    	    String projectCategory = "Renovation";
+	    	    
 	    	    Paragraph projectCategoryParagraph = new Paragraph("Project Category: " + projectCategory);
 	    	    document.add(projectCategoryParagraph);
 
 	    	    // Project notes
-	    	    // (Replace 'projectNotes' with your actual value)
-	    	    String projectNotes = "Customer prefers work to be completed during weekdays.";
+	    	  
 	    	    Paragraph projectNotesParagraph = new Paragraph("Project Notes: " + projectNotes);
 	    	    projectNotesParagraph.setSpacingAfter(20);  // Add some spacing after this before the table
 	    	    document.add(projectNotesParagraph);
 
-	    	    String imagePath="";
+	    	    
 	    	    for(Project p : CarpentryLogic.getInstance().getProjects()) {
 		    		if(Integer.toString(p.getProjectID()).equals(projectIDField.getText())) {
 		    			 imagePath=CarpentryLogic.getInstance().GetImage(p);  // Replace 'Your String Data Here' with the actual data you want to send
@@ -1274,8 +1307,8 @@ public class ProjectDetailsToShowController implements Initializable{
 	    	        Image image = Image.getInstance(imagePath);
 	    	        
 	    	        // Set the image's position and size if needed
-	    	        image.setAbsolutePosition(300, 650); // x and y position
-	    	        image.scaleToFit(100, 100); // width and height
+	    	        image.setAbsolutePosition(335, 535); // x and y position
+	    	        image.scaleToFit(200, 185); // width and height
 
 	    	        // Add the image to the document
 	    	        document.add(image);
@@ -1307,6 +1340,14 @@ public class ProjectDetailsToShowController implements Initializable{
 	    	    e.printStackTrace();
 	    	} finally {
 	    	    document.close();
+	    	    try {
+	    	        if (Desktop.isDesktopSupported()) {
+	    	            Desktop.getDesktop().open(new File(desktopPath));
+	    	        }
+	    	    } catch (IOException e) {
+	    	        e.printStackTrace();
+	    	    }
+
 	    	}
 
 	    }
