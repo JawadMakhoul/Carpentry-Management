@@ -72,7 +72,7 @@ import javax.mail.Store;
 public class InboxController implements Initializable{
 
     @FXML
-    private Button GenerateByAI,refresh,send,replay,NewProject,Stock,CurrentProjects,Inbox,BackButton;
+    private Button Settings,GenerateByAI,refresh,send,replay,NewProject,Stock,CurrentProjects,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
@@ -173,6 +173,17 @@ public class InboxController implements Initializable{
 	        		stage.show();
 	        		break;
 	    		}
+	    		
+	    		case "Settings":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Settings.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}	
 	    		
 	    		case "BackButton":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
@@ -420,6 +431,7 @@ public class InboxController implements Initializable{
 		Buttons.add(replay);
 		Buttons.add(send);
 		Buttons.add(GenerateByAI);
+		Buttons.add(Settings);
 		
 		ArrayList<String> CustEmails = new ArrayList<>();
 		for(Customer c : CarpentryLogic.getInstance().getCustomers()) {

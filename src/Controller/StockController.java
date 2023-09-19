@@ -9,9 +9,13 @@ import java.util.ResourceBundle;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
-import Enumeration.WoodType;
+import java.util.HashMap;
+import java.util.Map;
+
+import Model.Customer;
 import Model.OrderedMaterials;
 import Model.Stock;
+import Model.WoodType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -34,7 +38,7 @@ import javafx.stage.Stage;
 public class StockController implements Initializable{
 
     @FXML
-    private Button GenerateByAI,NewProject,Stock,CurrentProjects,Inbox,BackButton;
+    private Button Settings,GenerateByAI,NewProject,Stock,CurrentProjects,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
@@ -45,11 +49,8 @@ public class StockController implements Initializable{
     @FXML
     private Button updateWoodQuantity,orderWood;
 
-//    @FXML
-//    private ProgressIndicator mdfPercent,melaminePercent,particlePercent,sandwichPercent,solidPercent;
-
     @FXML
-    private ComboBox<WoodType> woodType;
+    private ComboBox<Model.WoodType> woodType;
 
     @FXML
     private TextField quantityOFWood;
@@ -85,17 +86,15 @@ public class StockController implements Initializable{
     @FXML
     void UpdateWoodQuantity(MouseEvent event) throws SQLException {
     	if(woodType.getSelectionModel().getSelectedItem()!= null) {
-    	switch(woodType.getSelectionModel().getSelectedItem().name()) {
     	
-    	case "Sandwich":{
     		boolean flag=true;
     		for(Stock s: CarpentryLogic.getInstance().getStocks()) {
     			
-    			if(s.getWoodName().equals("Sandwich")) {
+    			if(s.getWoodName().equals(woodType.getSelectionModel().getSelectedItem().toString())) {
     				int q = Integer.parseInt(quantityOFWood.getText());
     				
     				for(OrderedMaterials om: CarpentryLogic.getInstance().getOrderedMaterials()) {
-    					if(om.getWoodName().equals("Sandwich")&& om.getQuantity()==q) {
+    					if(om.getWoodName().equals(woodType.getSelectionModel().getSelectedItem().toString())&& om.getQuantity()==q) {
     						if(flag) {
     							CarpentryLogic.getInstance().DeleteOrderedMaterials(om);
     							CarpentryLogic.getInstance().updateStockQuantity(s, s.getQuantity()+q);
@@ -110,117 +109,9 @@ public class StockController implements Initializable{
     					
     			}
     		}
-    		
-    		break;
-    	}
     	
-    	case "Mdf":{
-    		boolean flag=true;
-    		for(Stock s: CarpentryLogic.getInstance().getStocks()) {
-    			
-    			if(s.getWoodName().equals("Mdf")) {
-    				int q = Integer.parseInt(quantityOFWood.getText());
-    				
-    				for(OrderedMaterials om: CarpentryLogic.getInstance().getOrderedMaterials()) {
-    					if(om.getWoodName().equals("Mdf")&& om.getQuantity()==q) {
-    						if(flag) {
-    							CarpentryLogic.getInstance().DeleteOrderedMaterials(om);
-    							CarpentryLogic.getInstance().updateStockQuantity(s, s.getQuantity()+q);
-    							showStock();
-    							showOrderedMATERIALS();
-    							OutOfStock();
-    							flag=false;
-    						}
-    					}
-    				}
-    				
-    			}
-    		}
-    		
-    		break;
-    	}
     	
-    	case "Solid_Wood":{
-    		boolean flag=true;
-    		for(Stock s: CarpentryLogic.getInstance().getStocks()) {
-    			
-    			if(s.getWoodName().equals("Solid_Wood")) {
-    				int q = Integer.parseInt(quantityOFWood.getText());
-    				
-    				for(OrderedMaterials om: CarpentryLogic.getInstance().getOrderedMaterials()) {
-    					if(om.getWoodName().equals("Solid_Wood")&& om.getQuantity()==q) {
-    						if(flag) {
-    							CarpentryLogic.getInstance().DeleteOrderedMaterials(om);
-    							CarpentryLogic.getInstance().updateStockQuantity(s, s.getQuantity()+q);
-    							showStock();
-    							showOrderedMATERIALS();
-    		    				OutOfStock();
-    							flag=false;
-    						}
-    					}
-    				}
-    				
-    			}
-    		}
-    		
-    		break;
     	}
-
-    	case "Melamine":{
-    		boolean flag=true;
-    		for(Stock s: CarpentryLogic.getInstance().getStocks()) {
-    			
-    			if(s.getWoodName().equals("Melamine")) {
-    				int q = Integer.parseInt(quantityOFWood.getText());
-    				
-    				for(OrderedMaterials om: CarpentryLogic.getInstance().getOrderedMaterials()) {
-    					if(om.getWoodName().equals("Melamine")&& om.getQuantity()==q) {
-    						if(flag) {
-    							CarpentryLogic.getInstance().DeleteOrderedMaterials(om);
-    							CarpentryLogic.getInstance().updateStockQuantity(s, s.getQuantity()+q);
-    							showStock();
-    							showOrderedMATERIALS();
-    							OutOfStock();
-    							flag=false;
-    						}
-    					}
-    				}
-    				
-    			}
-    		}
-    		
-    		break;
-    	}
-
-    	case "Particleboard":{
-    		boolean flag=true;
-    		for(Stock s: CarpentryLogic.getInstance().getStocks()) {
-    			
-    			if(s.getWoodName().equals("Particleboard")) {
-    				int q = Integer.parseInt(quantityOFWood.getText());
-    				
-    				for(OrderedMaterials om: CarpentryLogic.getInstance().getOrderedMaterials()) {
-    					if(om.getWoodName().equals("Particleboard")&& om.getQuantity()==q) {
-    						if(flag) {
-    							CarpentryLogic.getInstance().DeleteOrderedMaterials(om);
-    							CarpentryLogic.getInstance().updateStockQuantity(s, s.getQuantity()+q);
-    							showStock();
-    							showOrderedMATERIALS();
-    							OutOfStock();
-    					    
-    							flag=false;
-    						}
-    					}
-    				}
-    				
-    			}
-    		}
-    		
-    		break;
-
-    	}
-  
-    	}}
     	}
 
     
@@ -229,103 +120,21 @@ public class StockController implements Initializable{
     void order_Wood(MouseEvent event) {
     	if(woodType.getSelectionModel().getSelectedItem()!= null) {
 
-    	switch(woodType.getSelectionModel().getSelectedItem().name()) {
-    	
-    		case "Sandwich":{
     		
     			for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
     			
-    				if(s.getWoodName().equals("Sandwich")) {
+    				if(s.getWoodName().equals(woodType.getSelectionModel().getSelectedItem().toString())) {
     				
     					int q = Integer.parseInt(quantityOFWood.getText());
     					OrderedMaterials om = new OrderedMaterials();
     					om.setStockID(s.getStockID());
-    					om.setWoodName("Sandwich");
+    					om.setWoodName(s.getWoodName());
     					om.setQuantity(q);
     					CarpentryLogic.getInstance().addOrderedMaterials(om);
     				}
     			}
     			showOrderedMATERIALS();
     			
-    			break;
-    		}
-    	
-    		case "Mdf":{
-    			for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
-    			
-    				if(s.getWoodName().equals("Mdf")) {
-    				
-    					int q = Integer.parseInt(quantityOFWood.getText());
-    					OrderedMaterials om = new OrderedMaterials();
-    					om.setStockID(s.getStockID());
-    					om.setWoodName("Mdf");
-    					om.setQuantity(q);
-    					CarpentryLogic.getInstance().addOrderedMaterials(om);
-    				}
-    			}
-    			showOrderedMATERIALS();
-    			
-    			break;
-    		}
-    	
-    		case "Solid_Wood":{
-    		
-    			for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
-    			
-    				if(s.getWoodName().equals("Solid_Wood")) {
-    				
-    					int q = Integer.parseInt(quantityOFWood.getText());
-    					OrderedMaterials om = new OrderedMaterials();
-    					om.setStockID(s.getStockID());
-    					om.setWoodName("Solid_Wood");
-    					om.setQuantity(q);
-    					CarpentryLogic.getInstance().addOrderedMaterials(om);
-    				}
-    			}
-    			showOrderedMATERIALS();
-    			
-    			break;
-    		}
-
-    		case "Melamine":{
-	
-    			for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
-		
-    				if(s.getWoodName().equals("Melamine")) {
-			
-    					int q = Integer.parseInt(quantityOFWood.getText());
-    					OrderedMaterials om = new OrderedMaterials();
-    					om.setStockID(s.getStockID());
-    					om.setWoodName("Melamine");
-    					om.setQuantity(q);
-    					CarpentryLogic.getInstance().addOrderedMaterials(om);
-    				}
-    			}
-    			showOrderedMATERIALS();
-    			
-    			break;
-    		}
-
-    		case "Particleboard":{
-	
-    			for(Model.Stock s: CarpentryLogic.getInstance().getStocks()) {
-		
-    				if(s.getWoodName().equals("Particleboard")) {
-			
-    					int q = Integer.parseInt(quantityOFWood.getText());
-    					OrderedMaterials om = new OrderedMaterials();
-    					om.setStockID(s.getStockID());
-    					om.setWoodName("Particleboard");
-    					om.setQuantity(q);
-    					CarpentryLogic.getInstance().addOrderedMaterials(om);
-    				}
-    			}
-    			showOrderedMATERIALS();
-    			
-    			break;
-    		}
-  
-    	}
     	}
     }
     
@@ -394,7 +203,16 @@ public class StockController implements Initializable{
 	        		break;
 	    		}
 	    		
-	    		
+	    		case "Settings":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Settings.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work - Settings");
+	        		stage.show();
+	        		break;
+	    		}
 	    		case "GenerateByAI":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/AI.fxml"));
 	        		Scene scene = new Scene(pane);
@@ -442,67 +260,17 @@ public class StockController implements Initializable{
     
     public void OutOfStock() {
     	
-    	int sandwichCount=0, mdfCount=0,solidwoodCount=0,melamineCount=0,particleCount=0;
+    	HashMap<String,Integer> StockMap = new HashMap<>();
     	for(Stock s: CarpentryLogic.getInstance().getStocks()) {
-
-			if(s.getWoodName().equals("Sandwich"))  {
-				sandwichCount=s.getQuantity();
-//				
-//				if(s.getQuantity()>0)
-//					sandwichPercent.setText(((s.getQuantity()*countAll)/50.0)+"%");
-//				
-//				else sandwichPercent.setText("0%");
-			}
-				
-			
-			if(s.getWoodName().equals("Mdf")) {
-				mdfCount=s.getQuantity();
-//				
-//				if(s.getQuantity()>0)
-//					mdfPercent.setText((s.getQuantity()*countAll/50.0)+"%");
-//				
-//				else mdfPercent.setText("0%");
-			}
-				
-				
-			if(s.getWoodName().equals("Solid_Wood")) {
-				solidwoodCount=s.getQuantity();
-//				
-//				if(s.getQuantity()>0)
-//					solidPercent.setText((s.getQuantity()*countAll/50.0)+"%");
-//				
-//				else solidPercent.setText("0%");
-			}
-				
-			
-			if(s.getWoodName().equals("Melamine")) {
-				melamineCount=s.getQuantity();
-//				
-//				if(s.getQuantity()>0)
-//					melaminePercent.setText((s.getQuantity()*countAll/50.0)+"%");
-//				
-//				else melaminePercent.setText("0%");
-			}
-				
-			
-			if(s.getWoodName().equals("Particleboard")) {
-				particleCount=s.getQuantity();
-//				
-//				if(s.getQuantity()>0)
-//					particlePercent.setText((s.getQuantity()*countAll/50.0)+"%");
-//				
-//				else particlePercent.setText("0%");
-			}
-				
-				
+    		StockMap.put(s.getWoodName(), s.getQuantity());	
 		}
     	
-    	ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-    			new PieChart.Data("Mdf", mdfCount),
-    			new PieChart.Data("Melamine", melamineCount),
-    			new PieChart.Data("Particleboard", particleCount),
-    			new PieChart.Data("Sandwich", sandwichCount),
-    			new PieChart.Data("Solid_Wood", solidwoodCount));
+    	ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+    	
+    	for(HashMap.Entry<String, Integer> entry : StockMap.entrySet()) {
+    		pieChartData.add(new PieChart.Data(entry.getKey(),entry.getValue()));
+    	}
+    	
     
     	piechart.setData(pieChartData);
     }
@@ -517,9 +285,40 @@ public class StockController implements Initializable{
 		Buttons.add(Inbox);
 		Buttons.add(BackButton);
 		Buttons.add(GenerateByAI);
+		Buttons.add(Settings);
 		
-		ObservableList<WoodType> woodTypelist = FXCollections.observableArrayList(WoodType.Mdf,WoodType.Melamine,WoodType.Particleboard,WoodType.Sandwich,WoodType.Solid_Wood);
-		woodType.getItems().addAll(woodTypelist);
+		
+		ArrayList<WoodType> woodTypeNames = new ArrayList<>();
+		for (WoodType c : CarpentryLogic.getInstance().getWoodType()) {
+			woodTypeNames.add(c);
+		}
+		ObservableList<WoodType> woodtype = FXCollections.observableArrayList(woodTypeNames);
+		woodType.getItems().addAll(woodtype);
+		
+		String name="";
+		boolean flag=false,New_WoodType=false;
+		for(WoodType wt : CarpentryLogic.getInstance().getWoodType()) {
+			for(Stock s : CarpentryLogic.getInstance().getStocks()) {
+				if(wt.getWoodTypeName().equals(s.getWoodName())) {
+					flag=true;
+				}
+			}
+			
+			if(!flag) {
+				name = wt.getWoodTypeName();
+				New_WoodType=true;
+			}
+			
+			if(New_WoodType) {
+				Stock newS = new Stock();
+				newS.setWoodName(name);
+				newS.setQuantity(0);
+				CarpentryLogic.getInstance().addStock(newS);
+				
+			}
+			flag=false;
+		}
+		
 		
 		
 		for(Stock s: CarpentryLogic.getInstance().getStocks()) {

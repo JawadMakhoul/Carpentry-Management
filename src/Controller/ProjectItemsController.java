@@ -3,6 +3,7 @@ package Controller;
 
 
 import Model.Stock ;
+import Model.Supplier;
 import Model.GlobalProjectID;
 
 import java.io.BufferedReader;
@@ -31,16 +32,17 @@ import Enumeration.OrderStatus;
 import Enumeration.ProjectCategory;
 import Enumeration.ProjectSection;
 import Enumeration.SectionColor;
-import Enumeration.WoodType;
 import Enumeration.handType;
-//import Model.Customer;
+import Model.Hands;
+import Model.Axles;
+import Model.Supplier;
 import Model.Project;
 import Model.ProjectDetailsToShow;
 import Model.ProjectDetailsToShowNonStatic;
 import Model.Section;
 import Model.ProjectItems;
 import Model.Customer;
-import Model.Order;
+import Model.WoodType;
 import Model.OrderedMaterials;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -67,7 +69,7 @@ import java.util.Properties;
 public class ProjectItemsController implements Initializable{
 	
 	@FXML
-    private Button GenerateByAI,ShowProjectDetails,BackButton,CurrentProjects,Inbox,NewProject,Stock,addItem,addSection,finish;
+    private Button Settings,GenerateByAI,ShowProjectDetails,BackButton,CurrentProjects,Inbox,NewProject,Stock,addItem,addSection,finish;
 	private HashSet<Button> Buttons = new HashSet<Button>();
     
 	 @FXML
@@ -79,7 +81,7 @@ public class ProjectItemsController implements Initializable{
     private ComboBox<ProjectSection> projectSection;
     
     @FXML
-    private ComboBox<handType> handsModelNumber;
+    private ComboBox<Hands> handsModelNumber;
 
     @FXML
     private ComboBox<WoodType> woodType;
@@ -88,7 +90,7 @@ public class ProjectItemsController implements Initializable{
     private ImageView loading;
     
     @FXML
-    private ComboBox<AxleDegree> brzolDegree;
+    private ComboBox<Axles> brzolDegree;
     
     @FXML
     private ComboBox<SectionColor> color;
@@ -210,6 +212,17 @@ public class ProjectItemsController implements Initializable{
 	        		break;
 	    		}
 	    		
+	    		case "Settings":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Settings.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}	
+	    		
 	    		case "BackButton":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
 	        		Scene scene = new Scene(pane);
@@ -253,7 +266,7 @@ public class ProjectItemsController implements Initializable{
     
     
     @FXML
-    void AddAnotherItem(MouseEvent event) {
+    void AddAnotherItem(MouseEvent event) throws IOException {
 
     	ProjectItems pi2 = new ProjectItems();
 
@@ -276,108 +289,58 @@ public class ProjectItemsController implements Initializable{
     	    pi2.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
     	    pi2.setQuantity(Integer.parseInt(quantity.getText()));
     	    
-    	    for(Stock s1: CarpentryLogic.getInstance().getStocks()) {System.out.println("stock");
+    	    boolean flagSupp=false;
+    	    for(Supplier sp : CarpentryLogic.getInstance().getSupplier()) {
+    	    	if(sp.getAutoOrder()==1)
+    	    		flagSupp=true;
+    	    }
+    	    
+    	    if(flagSupp) {
+    	    	
+    	    
+    	    for(Stock s1: CarpentryLogic.getInstance().getStocks()) {
+    	    	
     	    	if(s1.getWoodName().equals(pi2.getWoodType()) && pi2.getQuantity()> s1.getQuantity()) {
     	    		
-    	    		String host = "smtp.office365.com";
-
-	    	        String port = "587";
-
-	    	        String username = "awniwoodwork@hotmail.com";
-
-	    	        String password = "Awnihasanjawad";
-
-	    	        
-
-	    	        // SMTP server properties
-
-	    	        Properties props = new Properties();
-
-	    	        props.put("mail.smtp.auth", "true");
-
-	    	        props.put("mail.smtp.starttls.enable", "true");
-
-	    	        props.put("mail.smtp.host", host);
-
-	    	        props.put("mail.smtp.port", port);
-
-	    	        
-
-	    	        // Create a session with SMTP server
-
-	    	        Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-
-	    	            protected PasswordAuthentication getPasswordAuthentication() {
-
-	    	                return new PasswordAuthentication(username, password);
-
-	    	            }
-
-	    	        });
-
-	    	        
-
-	    	        try {
-
-	    	            // Create email message
-
-		    	        String toEmail = "hasan.masalha98@gmail.com";
-
-
-
-	    	            Message emailMessage = new MimeMessage(session);
-
-	    	            emailMessage.setFrom(new InternetAddress(username));
-
-	    	            
-
-	    	            emailMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
-
-	    	            emailMessage.setSubject("New order");
-
-	    	            emailMessage.setText("I want to order " +s1.getWoodName() + pi2.getQuantity() );
-
-	    	            
-
-	    	            // Send email message
-
-	    	            Transport.send(emailMessage);
-
-	    	            Image image = new Image(getClass().getResourceAsStream("/Lib/delivered.png"));
-
-	    	            //trueORfalse.setImage(image);
-
-	    	     
-
-	    	         
-
-	    	            
-
-	    	        } catch (MessagingException e) {
-//
-//	    	        	Image image = new Image(getClass().getResourceAsStream("/Lib/email.png"));
-//
-//	    	            trueORfalse.setImage(image);
-//
-//	    	            Image image2 = new Image(getClass().getResourceAsStream("/Lib/remove.png"));
-//
-//	    	            failedToSend2.setImage(image2);
-
-	    	          
-
-	    	        }
+    	    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Supplier.fxml"));
+    		    	
+    		    	Parent pane = loader.load();
+    		    	// Set the data on the controller
+    		    	SuppliersController controller = loader.getController();
+    		    	
+    		    	
+    		    	controller.setData(quantity.getText(),woodType.getSelectionModel().getSelectedItem().toString());  // Replace 'Your String Data Here' with the actual data you want to send
+    		    	
+    		    	
+    		    	
+    		    	// Create the scene and show it in a new stage
+    		    	Scene scene = new Scene(pane);
+    		    	Stage newStage = new Stage();  // Create a new stage for the new scene
+    		    	newStage.setScene(scene);
+    		    	newStage.setResizable(false);
+    		    	newStage.setTitle("Awni Wood Work - Project Image");
+    		    	newStage.show();
+    		    	
+    		    	
+    		    	
+    		    	
+    	    		
 
     			
 
     	    	
     	    
-    	    		final Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    	    	    alert.setTitle("Attention!");
-    	    	    alert.setContentText("Not enough wood in stock.");
-    	    	    //alert.setHeaderText(e.getMessage());
-    	    	    alert.showAndWait();
     	}
     	    	
+    	    }}
+    	    
+    	    else {
+
+	    		final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+	    	    alert.setTitle("Attention!");
+	    	    alert.setContentText("Not enough wood in stock.");
+	    	    //alert.setHeaderText(e.getMessage());
+	    	    alert.showAndWait();
     	    }
     	    pi2.setColor(color.getValue().toString());
     	    pi2.setHandsmodel(handsModelNumber.getSelectionModel().getSelectedItem().toString());
@@ -649,18 +612,37 @@ public class ProjectItemsController implements Initializable{
 		Buttons.add(ShowProjectDetails);
 		Buttons.add(finish);
 		Buttons.add(GenerateByAI);
+		Buttons.add(Settings);
 		
 		ObservableList<ProjectSection> projectSectionList = FXCollections.observableArrayList(ProjectSection.Kitchen,ProjectSection.Room,ProjectSection.LivingRoom,ProjectSection.Bathroom);
 		projectSection.getItems().addAll(projectSectionList);
 		
-		ObservableList<WoodType> woodTypeList = FXCollections.observableArrayList(WoodType.Mdf,WoodType.Melamine,WoodType.Particleboard,WoodType.Sandwich,WoodType.Solid_Wood);
+		ArrayList<WoodType> woodTypeArrayList = new ArrayList<>();
+		for (WoodType c : CarpentryLogic.getInstance().getWoodType()) {
+			woodTypeArrayList.add(c);
+		}
+		
+		ObservableList<WoodType> woodTypeList = FXCollections.observableArrayList(woodTypeArrayList);
 		woodType.getItems().addAll(woodTypeList);
 		
-		ObservableList<AxleDegree> axlesDegree = FXCollections.observableArrayList(AxleDegree.Degree_45,AxleDegree.Degree_155,AxleDegree.Degree_180);
+		ArrayList<Hands> HandsArrayList = new ArrayList<>();
+		for (Hands h : CarpentryLogic.getInstance().getHands()) {
+			HandsArrayList.add(h);
+		}
+		
+		ObservableList<Hands> HANDTYPE = FXCollections.observableArrayList(HandsArrayList);
+		handsModelNumber.getItems().addAll(HANDTYPE);
+		
+		ArrayList<Axles> AxlesArrayList = new ArrayList<>();
+		for (Axles a : CarpentryLogic.getInstance().getAxles()) {
+			AxlesArrayList.add(a);
+		}
+		ObservableList<Axles> axlesDegree = FXCollections.observableArrayList(AxlesArrayList);
 		brzolDegree.getItems().addAll(axlesDegree);
 		
-		ObservableList<handType> HANDTYPE = FXCollections.observableArrayList(handType.a17,handType.f120,handType.gh32,handType.r452,handType.s125);
-		handsModelNumber.getItems().addAll(HANDTYPE);
+		
+		
+		
 		
 		ObservableList<SectionColor> section_Colors = FXCollections.observableArrayList(SectionColor.Aspen_Tan,SectionColor.Avocado,SectionColor.Beige_Gray,SectionColor.Black_Oak,SectionColor.Black_Walnut,SectionColor.Blueridge_Gray,SectionColor.Brick_Red,SectionColor.Caramel,SectionColor.Cedar_Naturaltone,SectionColor.Cinder,SectionColor.Cinnamon,SectionColor.Clove_Brown,SectionColor.Coffee,SectionColor.Dark_Mahogany,SectionColor.Dark_Oak,SectionColor.Dark_Tahoe,SectionColor.Desert_Sand,SectionColor.Drift_Gray,SectionColor.Ebony,SectionColor.Espresso,SectionColor.Ginger,SectionColor.Light_Mocha,SectionColor.Light_Oak,SectionColor.Mushroom,SectionColor.Naturaltone_Fir,SectionColor.Olive_Brown,SectionColor.Oxford_Brown,SectionColor.Pearl_Gray,SectionColor.Polar_Gray,SectionColor.Redwood,SectionColor.Redwood_Naturaltone,SectionColor.Rosewood,SectionColor.Russet,SectionColor.Sierra,SectionColor.Smoke_Blue,SectionColor.Storm_Gray,SectionColor.Teak,SectionColor.Tobacco,SectionColor.Walnut,SectionColor.Weathered_Barnboard);
 		color.getItems().addAll(section_Colors);

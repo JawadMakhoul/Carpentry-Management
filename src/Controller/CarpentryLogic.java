@@ -10,13 +10,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import Model.Axles;
 import Model.Consts;
 import Model.Customer;
+import Model.Hands;
 import Model.Order;
 import Model.Project;
 import Model.ProjectItems;
 import Model.Section;
 import Model.Stock;
+import Model.Supplier;
+import Model.WoodType;
 
 public class CarpentryLogic {
 
@@ -57,6 +61,102 @@ public class CarpentryLogic {
 			return results;
 		}
 
+		public  ArrayList<Axles> getAxles() {
+
+			ArrayList<Axles> results = new ArrayList<Axles>();
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			             Statement stmt = con.createStatement()) {
+
+			            String sql = "SELECT * FROM axles";
+			            ResultSet rs = stmt.executeQuery(sql);
+
+			            while (rs.next()) {
+						int i = 1;
+						results.add(new Axles(rs.getInt(i++),rs.getString(i++),rs.getInt(i++)));
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return results;
+		}
+		
+		public  ArrayList<Hands> getHands() {
+
+			ArrayList<Hands> results = new ArrayList<Hands>();
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			             Statement stmt = con.createStatement()) {
+
+			            String sql = "SELECT * FROM hands";
+			            ResultSet rs = stmt.executeQuery(sql);
+
+			            while (rs.next()) {
+						int i = 1;
+						results.add(new Hands(rs.getInt(i++),rs.getString(i++),rs.getInt(i++)));
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return results;
+		}
+		
+		public  ArrayList<Supplier> getSupplier() {
+
+			ArrayList<Supplier> results = new ArrayList<Supplier>();
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			             Statement stmt = con.createStatement()) {
+
+			            String sql = "SELECT * FROM supplier";
+			            ResultSet rs = stmt.executeQuery(sql);
+
+			            while (rs.next()) {
+						int i = 1;
+						results.add(new Supplier(rs.getInt(i++),rs.getString(i++),rs.getInt(i++)));
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return results;
+		}
+
+		public  ArrayList<WoodType> getWoodType() {
+
+			ArrayList<WoodType> results = new ArrayList<WoodType>();
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			             Statement stmt = con.createStatement()) {
+
+			            String sql = "SELECT * FROM woodtype";
+			            ResultSet rs = stmt.executeQuery(sql);
+
+			            while (rs.next()) {
+						int i = 1;
+						results.add(new WoodType(rs.getInt(i++),rs.getString(i++),rs.getInt(i++)));
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return results;
+		}
+		
 		public  ArrayList<Order> getOrders() {
 
 			ArrayList<Order> results = new ArrayList<Order>();
@@ -157,7 +257,7 @@ public class CarpentryLogic {
 		            ResultSet rs = stmt.executeQuery(sql);
 					while (rs.next()) {
 						int i = 1;
-						results.add(new Stock(rs.getString(i++),rs.getString(i++), rs.getInt(i++)));
+						results.add(new Stock(rs.getInt(i++),rs.getString(i++), rs.getInt(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -179,7 +279,7 @@ public class CarpentryLogic {
 		            ResultSet rs = stmt.executeQuery(sql);
 					while (rs.next()) {
 						int i = 1;
-						results.add(new Model.OrderedMaterials(rs.getInt(i++),rs.getString(i++),rs.getString(i++), rs.getInt(i++),rs.getString(i++)));
+						results.add(new Model.OrderedMaterials(rs.getInt(i++),rs.getInt(i++),rs.getString(i++), rs.getInt(i++),rs.getString(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -217,6 +317,96 @@ public class CarpentryLogic {
 			return false;
 		}
 
+		public  boolean addAxle(Axles c) throws ClassNotFoundException {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			           //  Statement stmt = con.createStatement()
+					CallableStatement stmt = con.prepareCall("Insert into axles values(?, ?, ?)")){ 
+
+					// int i = 1;
+					stmt.setInt(1, c.getAxlesID()); // can't be null
+					stmt.setString(2, c.getAxleName());
+					stmt.setInt(3, c.getAxleCost());
+					
+
+					stmt.executeUpdate();
+					return true;
+			}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			
+			return false;
+		}
+		
+		public  boolean addHands(Hands c) throws ClassNotFoundException {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			           //  Statement stmt = con.createStatement()
+					CallableStatement stmt = con.prepareCall("Insert into hands values(?, ?, ?)")){ 
+
+					// int i = 1;
+					stmt.setInt(1, c.getIdhands()); // can't be null
+					stmt.setString(2, c.getHandsName());
+					stmt.setInt(3, c.getHandsCost());
+					
+
+					stmt.executeUpdate();
+					return true;
+			}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			
+			return false;
+		}
+		
+		public  boolean addSupplier(Supplier c) throws ClassNotFoundException {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			           //  Statement stmt = con.createStatement()
+					CallableStatement stmt = con.prepareCall("Insert into supplier values(?,  ?,?)")){ 
+
+					// int i = 1;
+					stmt.setInt(1, c.getIdsupplier()); // can't be null
+					stmt.setString(2, c.getSupplierEmail());
+					stmt.setInt(3, c.getAutoOrder());
+
+					stmt.executeUpdate();
+					return true;
+			}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			
+			return false;
+		}
+		
+		public  boolean addWoodType(WoodType c) throws ClassNotFoundException {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			           //  Statement stmt = con.createStatement()
+					CallableStatement stmt = con.prepareCall("Insert into woodtype values(?, ?, ?)")){ 
+
+					// int i = 1;
+					stmt.setInt(1, c.getIdWoodType()); // can't be null
+					stmt.setString(2, c.getWoodTypeName());
+					stmt.setInt(3, c.getWoodTypeCost());
+					
+
+					stmt.executeUpdate();
+					return true;
+			}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			
+			return false;
+		}
 		public  boolean addOrder(Order o) {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
@@ -280,7 +470,7 @@ public class CarpentryLogic {
 
 					// int i = 1;
 					stmt.setInt(1, om.getOrderMaterialsID());
-					stmt.setString(2, om.getStockID());
+					stmt.setInt(2, om.getStockID());
 					stmt.setString(3, om.getWoodName());
 					stmt.setInt(4, om.getQuantity()); // can't be null
 					stmt.setString(5, "On_The_Way");
@@ -396,7 +586,7 @@ public class CarpentryLogic {
 					CallableStatement stmt = con.prepareCall("Insert into stock values(?, ?, ?)")){
 
 					// int i = 1;
-					stmt.setString(1, s.getStockID()); // can't be null
+					stmt.setInt(1, s.getStockID()); // can't be null
 					stmt.setString(2, s.getWoodName());
 					stmt.setInt(3, s.getQuantity());
 					
@@ -423,7 +613,7 @@ public class CarpentryLogic {
 					CallableStatement stmt = con.prepareCall("UPDATE stock SET quantity = ? WHERE woodName=? AND stockID=?;")){
 
 		        // set the parameter values for the prepared statement
-				stmt.setString(3,s.getStockID());
+				stmt.setInt(3,s.getStockID());
 				stmt.setString(2, s.getWoodName());
 		        stmt.setInt(1, newQuantity);
 		        

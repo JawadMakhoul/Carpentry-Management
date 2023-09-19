@@ -11,12 +11,12 @@ public class OrderedMaterials {
 
 	private static int idCounter;
 	private int OrderMaterialsID;
-	private String stockID;
+	private int stockID;
 	private String woodName;
 	private int quantity;
 	private String status;
 	
-	public OrderedMaterials(int OrderMaterialsID,String stockID, String woodName, int quantity,String status) {
+	public OrderedMaterials(int OrderMaterialsID,int stockID, String woodName, int quantity,String status) {
 		super();
 		this.OrderMaterialsID=OrderMaterialsID;
 		this.stockID = stockID;
@@ -36,10 +36,10 @@ public class OrderedMaterials {
 	public OrderedMaterials() {
 		this.OrderMaterialsID=idCounter++;
 	}
-	public String getStockID() {
+	public int getStockID() {
 		return stockID;
 	}
-	public void setStockID(String stockID) {
+	public void setStockID(int stockID) {
 		this.stockID = stockID;
 	}
 	public String getWoodName() {

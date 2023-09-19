@@ -33,15 +33,18 @@ import com.itextpdf.text.BaseColor;
 import Enumeration.AxleDegree;
 import Enumeration.ProjectSection;
 import Enumeration.SectionColor;
-import Enumeration.WoodType;
 import Enumeration.handType;
 import Model.Customer;
+import Model.Hands;
+import Model.Axles;
+import Model.WoodType;
 import Model.Project;
 import Model.ProjectDetailsToShow;
 import Model.ProjectDetailsToShowNonStatic;
 import Model.ProjectItems;
 import Model.Section;
 import Model.Stock;
+import Model.Axles;
 import Model.BackgroundColorEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -84,7 +87,7 @@ public class ProjectDetailsToShowController implements Initializable{
     private TextField axleQuantity;
 
     @FXML
-    private ComboBox<AxleDegree> brzolDegree;
+    private ComboBox<Axles> brzolDegree;
 
     @FXML
     private TextField ProjectPrice;
@@ -93,7 +96,7 @@ public class ProjectDetailsToShowController implements Initializable{
 
 
     @FXML
-    private ComboBox<handType> handsModelNumber;
+    private ComboBox<Hands> handsModelNumber;
 
     @FXML
     private TextField handsQuantity;
@@ -129,7 +132,7 @@ public class ProjectDetailsToShowController implements Initializable{
     @FXML
     private ComboBox<WoodType> woodTypeField;
     @FXML
-    private Button GenerateByAI,NewProject,Stock,CurrentProjects,Inbox,BackButton;
+    private Button Settings,GenerateByAI,NewProject,Stock,CurrentProjects,Inbox,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
@@ -249,6 +252,16 @@ public class ProjectDetailsToShowController implements Initializable{
 	        		break;
 	    		}
 	    		
+	    		case "Settings":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Settings.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}	
 	    		
 	    		case "BackButton":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
@@ -1364,6 +1377,7 @@ public class ProjectDetailsToShowController implements Initializable{
 			Buttons.add(Inbox);
 			Buttons.add(BackButton);
 			Buttons.add(GenerateByAI);
+			Buttons.add(Settings);
 			
 			ProjectDetailsToShow pdts = CurrentProjectsController.getPdts();
 			System.out.println(pdts.getProjectID());
@@ -1424,17 +1438,32 @@ public class ProjectDetailsToShowController implements Initializable{
 			ObservableList<ProjectSection> projectSectionList = FXCollections.observableArrayList(ProjectSection.Kitchen,ProjectSection.Room,ProjectSection.LivingRoom,ProjectSection.Bathroom);
 			projectSection.getItems().addAll(projectSectionList);
 			
-			ObservableList<WoodType> woodTypeList = FXCollections.observableArrayList(WoodType.Mdf,WoodType.Melamine,WoodType.Particleboard,WoodType.Sandwich,WoodType.Solid_Wood);
-			woodTypeField.getItems().addAll(woodTypeList);
+			ArrayList<WoodType> woodTypeArrayList = new ArrayList<>();
+			for (WoodType c : CarpentryLogic.getInstance().getWoodType()) {
+				woodTypeArrayList.add(c);
+			}
 			
-			ObservableList<handType> HANDTYPE = FXCollections.observableArrayList(handType.a17,handType.f120,handType.gh32,handType.r452,handType.s125);
+			ObservableList<WoodType> woodTypeList = FXCollections.observableArrayList(woodTypeArrayList);
+			woodType.getItems().addAll(woodTypeList);
+			
+			ArrayList<Hands> HandsArrayList = new ArrayList<>();
+			for (Hands h : CarpentryLogic.getInstance().getHands()) {
+				HandsArrayList.add(h);
+			}
+			
+			ObservableList<Hands> HANDTYPE = FXCollections.observableArrayList(HandsArrayList);
 			handsModelNumber.getItems().addAll(HANDTYPE);
+			
+			ArrayList<Axles> AxlesArrayList = new ArrayList<>();
+			for (Axles a : CarpentryLogic.getInstance().getAxles()) {
+				AxlesArrayList.add(a);
+			}
+			ObservableList<Axles> axlesDegree = FXCollections.observableArrayList(AxlesArrayList);
+			brzolDegree.getItems().addAll(axlesDegree);
 			
 			ObservableList<SectionColor> section_Colors = FXCollections.observableArrayList(SectionColor.Aspen_Tan,SectionColor.Avocado,SectionColor.Beige_Gray,SectionColor.Black_Oak,SectionColor.Black_Walnut,SectionColor.Blueridge_Gray,SectionColor.Brick_Red,SectionColor.Caramel,SectionColor.Cedar_Naturaltone,SectionColor.Cinder,SectionColor.Cinnamon,SectionColor.Clove_Brown,SectionColor.Coffee,SectionColor.Dark_Mahogany,SectionColor.Dark_Oak,SectionColor.Dark_Tahoe,SectionColor.Desert_Sand,SectionColor.Drift_Gray,SectionColor.Ebony,SectionColor.Espresso,SectionColor.Ginger,SectionColor.Light_Mocha,SectionColor.Light_Oak,SectionColor.Mushroom,SectionColor.Naturaltone_Fir,SectionColor.Olive_Brown,SectionColor.Oxford_Brown,SectionColor.Pearl_Gray,SectionColor.Polar_Gray,SectionColor.Redwood,SectionColor.Redwood_Naturaltone,SectionColor.Rosewood,SectionColor.Russet,SectionColor.Sierra,SectionColor.Smoke_Blue,SectionColor.Storm_Gray,SectionColor.Teak,SectionColor.Tobacco,SectionColor.Walnut,SectionColor.Weathered_Barnboard);
 			colorField.getItems().addAll(section_Colors);
 	       
-			ObservableList<AxleDegree> axlesDegree = FXCollections.observableArrayList(AxleDegree.Degree_45,AxleDegree.Degree_155,AxleDegree.Degree_180);
-			brzolDegree.getItems().addAll(axlesDegree);
 		}
 
 }

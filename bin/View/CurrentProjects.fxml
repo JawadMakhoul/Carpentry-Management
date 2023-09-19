@@ -65,6 +65,13 @@
                         <Image url="@../Lib/magic-wand.png" />
                      </image>
                   </ImageView>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="12.0" layoutY="776.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Lib/gear.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="Settings" layoutX="72.0" layoutY="776.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="266.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Settings" />
+               
                </children>
             </AnchorPane>
           <AnchorPane layoutX="258.0" prefHeight="948.0" prefWidth="1109.0" styleClass="backgroundColor" stylesheets="@../Controller/style.css">

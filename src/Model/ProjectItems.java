@@ -7,7 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import Enumeration.ProjectSection;
-import Enumeration.WoodType;
 
 public class ProjectItems {
 	

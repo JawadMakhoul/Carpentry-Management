@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.InboxController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SettingsController">
     <children>
       <SplitPane dividerPositions="0.29797979797979796" prefHeight="950.0" prefWidth="1600.0">
         <items>
@@ -77,49 +75,78 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="948.0" prefWidth="1075.0" styleClass="backgroundColor" stylesheets="@../Controller/style.css">
                <children>
-                  <TableView fx:id="tableview" layoutX="132.0" layoutY="97.0" prefHeight="352.0" prefWidth="959.0">
-                    <columns>
-                      <TableColumn fx:id="from" prefWidth="158.0" text="From" />
-                      <TableColumn fx:id="subject" minWidth="0.0" prefWidth="323.0" text="Subject" />
-                        <TableColumn fx:id="content" minWidth="0.0" prefWidth="477.0" text="Content" />
-                    </columns>
-                  </TableView>
-                  <Button fx:id="replay" layoutX="325.0" layoutY="474.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="57.0" prefWidth="208.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Replay To Email" />
-                  <Text fill="#d96e3a" layoutX="566.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email">
+                  <Label alignment="CENTER" layoutX="484.0" layoutY="46.0" prefHeight="150.0" prefWidth="274.0" text="Settings" textAlignment="CENTER" textFill="#d96e3a">
                      <font>
-                        <Font name="System Bold" size="36.0" />
+                        <Font size="64.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="WoodType" alignment="CENTER" layoutX="303.0" layoutY="281.0" prefHeight="45.0" prefWidth="211.0" styleClass="textField" />
+                  <TextField fx:id="WoodTypeCost" alignment="CENTER" layoutX="554.0" layoutY="281.0" prefHeight="45.0" prefWidth="300.0" styleClass="textField" />
+                  <TextField fx:id="supplierEmail" alignment="CENTER" layoutX="554.0" layoutY="666.0" prefHeight="45.0" prefWidth="300.0" styleClass="textField" />
+                  <Text fill="#d96e3a" layoutX="184.0" layoutY="439.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Axles " wrappingWidth="143.0">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Button fx:id="refresh" layoutX="688.0" layoutY="474.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="57.0" prefWidth="164.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Refresh Email" />
-                  <TextField fx:id="toEmailField" layoutX="303.0" layoutY="645.0" styleClass="textField" />
-                  <TextField fx:id="subjectField" layoutX="303.0" layoutY="717.0" styleClass="textField" />
-                  <TextArea fx:id="messageField" layoutX="582.0" layoutY="569.0" prefHeight="223.0" prefWidth="509.0" promptText="Email message" />
-                  <Text fill="#d96e3a" layoutX="99.0" layoutY="747.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email subject" textAlignment="CENTER">
+                  <Text fill="#d96e3a" layoutX="184.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wood Type" wrappingWidth="112.0">
                      <font>
-                        <Font name="System Bold" size="20.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Text fill="#d96e3a" layoutX="99.0" layoutY="675.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Send to" textAlignment="CENTER">
+                  <Text fill="#d96e3a" layoutX="303.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="223.99999999999994">
                      <font>
-                        <Font name="System Bold" size="20.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Button fx:id="send" layoutX="955.0" layoutY="839.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="57.0" prefWidth="127.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Send" />
-                  <ImageView fx:id="trueORfalse" fitHeight="94.0" fitWidth="139.0" layoutX="582.0" layoutY="805.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="failedToSend2" fitHeight="45.0" fitWidth="36.0" layoutX="582.0" layoutY="852.0" pickOnBounds="true" preserveRatio="true" />
-                  <Text fx:id="text" layoutX="478.0" layoutY="919.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="302.0">
+                  <Text fill="#d96e3a" layoutX="554.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cost" wrappingWidth="223.99999999999994">
                      <font>
-                        <Font name="Arial Bold" size="25.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <ComboBox fx:id="emails" layoutX="303.0" layoutY="590.0" prefHeight="39.0" prefWidth="230.0" promptText="Email" styleClass="comboBox" />
-                  <Text fill="#d96e3a" layoutX="99.0" layoutY="617.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customers email list" textAlignment="CENTER">
+                  <Button fx:id="addWoodType" layoutX="952.0" layoutY="272.0" mnemonicParsing="false" onMousePressed="#AddButton" prefHeight="64.0" prefWidth="97.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Add" />
+                  <TextField fx:id="AxleName" alignment="CENTER" layoutX="303.0" layoutY="407.0" prefHeight="45.0" prefWidth="211.0" styleClass="textField" />
+                  <TextField fx:id="AxleCost" alignment="CENTER" layoutX="554.0" layoutY="407.0" prefHeight="45.0" prefWidth="300.0" styleClass="textField" />
+                  <Text fill="#d96e3a" layoutX="303.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="223.99999999999994">
                      <font>
-                        <Font name="System Bold" size="20.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-               </children>
-            </AnchorPane>
+                  <Text fill="#d96e3a" layoutX="554.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cost" wrappingWidth="223.99999999999994">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="addAxle" layoutX="952.0" layoutY="400.0" mnemonicParsing="false" onMousePressed="#AddButton" prefHeight="64.0" prefWidth="97.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Add" />
+                  <Text fill="#d96e3a" layoutX="184.0" layoutY="571.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hands" wrappingWidth="143.0">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="HandsName" alignment="CENTER" layoutX="303.0" layoutY="549.0" prefHeight="45.0" prefWidth="211.0" styleClass="textField" />
+                  <TextField fx:id="HandsCost" alignment="CENTER" layoutX="554.0" layoutY="549.0" prefHeight="45.0" prefWidth="300.0" styleClass="textField" />
+                  <Text fill="#d96e3a" layoutX="303.0" layoutY="546.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="223.99999999999994">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#d96e3a" layoutX="554.0" layoutY="546.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cost" wrappingWidth="223.99999999999994">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="addHand" layoutX="952.0" layoutY="532.0" mnemonicParsing="false" onMousePressed="#AddButton" prefHeight="64.0" prefWidth="97.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Add" />
+                  <CheckBox fx:id="AutomaticOrderCheckbox" layoutX="184.0" layoutY="673.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="282.0" text="Automatic Materials Order">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </CheckBox>
+                  <Text fill="#d96e3a" layoutX="554.0" layoutY="662.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Supplier Email" wrappingWidth="143.0">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="addSupplierEmail" layoutX="952.0" layoutY="657.0" mnemonicParsing="false" onMousePressed="#AddButton" prefHeight="64.0" prefWidth="97.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Add" />
+               </children></AnchorPane>
         </items>
       </SplitPane>
    </children>

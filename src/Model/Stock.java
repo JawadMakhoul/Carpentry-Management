@@ -9,10 +9,10 @@ import java.io.IOException;
 public class Stock {
 
 	private static int idCounter;
-	private String stockID;
+	private int stockID;
 	private String woodName;
 	private int quantity;
-	public Stock(String stockID,String woodName, int quantity) {
+	public Stock(int stockID,String woodName, int quantity) {
 		super();
 		this.stockID=stockID;
 		this.woodName = woodName;
@@ -21,14 +21,14 @@ public class Stock {
 	
 	public Stock(String woodName, int quantity) {
 		super();
-		this.stockID=null;
+		
 		this.woodName = woodName;
 		this.quantity = quantity;
 	}
-//	public Stock()
-//	{
-//		this.stockID=idCounter++;
-//	}
+	public Stock()
+	{
+		this.stockID=idCounter++;
+	}
 	
 	public static int getIdCounter() {
 		return idCounter;
@@ -38,11 +38,11 @@ public class Stock {
 		Stock.idCounter = idCounter;
 	}
 
-	public String getStockID() {
+	public int getStockID() {
 		return stockID;
 	}
 
-	public void setStockID(String stockID) {
+	public void setStockID(int stockID) {
 		this.stockID = stockID;
 	}
 

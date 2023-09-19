@@ -47,7 +47,7 @@ public class CurrentProjectsController implements Initializable {
 
 	
 	@FXML
-	private Button  GenerateByAI, NewProject, Stock, CurrentProjects
+	private Button  Settings,GenerateByAI, NewProject, Stock, CurrentProjects
 			, Inbox, BackButton;
 	private HashSet<Button> Buttons = new HashSet<Button>();
 	@FXML
@@ -189,6 +189,17 @@ public class CurrentProjectsController implements Initializable {
 					break;
 				}
 
+				case "Settings":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Settings.fxml"));
+	        		Scene scene = new Scene(pane);
+	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+	        		stage.setScene(scene);
+	        		stage.setResizable(false);
+	        		stage.setTitle("Awni Wood Work");
+	        		stage.show();
+	        		break;
+	    		}	
+				
 				case "sendEmail": {
 					Parent pane = FXMLLoader.load(getClass().getResource("/View/Send.fxml"));
 					Scene scene = new Scene(pane);
@@ -655,7 +666,8 @@ public class CurrentProjectsController implements Initializable {
 		Buttons.add(Inbox);
 		Buttons.add(BackButton);
 		Buttons.add(GenerateByAI);
-
+		Buttons.add(Settings);
+		
 		ObservableList<String> Filter = FXCollections.observableArrayList("Customer Name","Customer Email", "Project ID",
 				"Project Category");
 		filter1.getItems().addAll(Filter);
