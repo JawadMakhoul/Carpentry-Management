@@ -197,6 +197,7 @@ public class NewProjectController implements Initializable {
 												projectCategory.getSelectionModel().getSelectedItem().toString());
 									}
 									p.setEmail(c.getEmail());
+									p.setPhoneNumber(c.getPhoneNUMBER());
 									p.setCost(p.CalculateCost());
 									p.setPrice(0);
 									p.setStatus(Enumeration.OrderStatus.WaitingProcess.toString());
@@ -262,6 +263,7 @@ public class NewProjectController implements Initializable {
 															.getSelectedItem().toString());
 												}
 												p.setEmail(c.getEmail());
+												p.setPhoneNumber(c.getPhoneNUMBER());
 												p.setStatus(Enumeration.OrderStatus.WaitingProcess.toString());
 												p.setCost(p.CalculateCost());
 												p.setPrice(0);

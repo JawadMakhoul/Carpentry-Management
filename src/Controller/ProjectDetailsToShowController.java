@@ -175,7 +175,7 @@ public class ProjectDetailsToShowController implements Initializable{
     private ScrollPane pnl;
     
     @FXML
-    private TextField projectCategoryField,projectIDField,customerNameField,phoneNumber;;
+    private TextField projectCategoryField,projectIDField,customerNameField,phoneNumber;
     
     @FXML
     private ImageView projectImage;
@@ -1383,6 +1383,15 @@ public class ProjectDetailsToShowController implements Initializable{
 			System.out.println(pdts.getProjectID());
 	        
 			
+			for(Project p : CarpentryLogic.getInstance().getProjects()) {
+				if(pdts.getProjectID().equals(Integer.toString(p.getProjectID()))) {
+					projectIDField.setText(Integer.toString(p.getProjectID()));
+					customerNameField.setText(p.getCustomerID());
+					projectCategoryField.setText(p.getProjectCategory());
+					phoneNumber.setText(p.getPhoneNumber());
+				}
+			}
+			
 			color.setCellValueFactory(new PropertyValueFactory<>("color"));
 			itemHeight.setCellValueFactory(new PropertyValueFactory<>("itemHeight"));
 			itemID.setCellValueFactory(new PropertyValueFactory<>("itemID"));
@@ -1444,7 +1453,7 @@ public class ProjectDetailsToShowController implements Initializable{
 			}
 			
 			ObservableList<WoodType> woodTypeList = FXCollections.observableArrayList(woodTypeArrayList);
-			woodType.getItems().addAll(woodTypeList);
+			woodTypeField.getItems().addAll(woodTypeList);
 			
 			ArrayList<Hands> HandsArrayList = new ArrayList<>();
 			for (Hands h : CarpentryLogic.getInstance().getHands()) {

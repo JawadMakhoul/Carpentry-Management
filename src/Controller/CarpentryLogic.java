@@ -190,7 +190,7 @@ public class CarpentryLogic {
 		            ResultSet rs = stmt.executeQuery(sql);
 					while (rs.next()) {
 						int i = 1;
-						results.add(new Project(rs.getInt(i++),rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getInt(i++), rs.getInt(i++), rs.getString(i++), rs.getDate(i++)));
+						results.add(new Project(rs.getInt(i++),rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getInt(i++), rs.getInt(i++), rs.getString(i++), rs.getDate(i++), rs.getString(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -436,7 +436,7 @@ public class CarpentryLogic {
 			try {Class.forName("com.mysql.jdbc.Driver");
 			try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
 			           //  Statement stmt = con.createStatement()
-					CallableStatement stmt = con.prepareCall("Insert into project values(?, ?, ?, ?,?,?,?,?,?,?)")){ 
+					CallableStatement stmt = con.prepareCall("Insert into project values(?, ?, ?, ?,?,?,?,?,?,?,?)")){ 
 
 					// int i = 1;
 					stmt.setInt(1, p.getProjectID());
@@ -449,6 +449,7 @@ public class CarpentryLogic {
 					stmt.setString(8, p.getNotes());
 					stmt.setInt(9, p.getPrice());
 					stmt.setDate(10, p.getDate());
+					stmt.setString(11, p.getPhoneNumber());
 					stmt.executeUpdate();
 					return true;
 
@@ -670,6 +671,89 @@ public class CarpentryLogic {
 					CallableStatement stmt = con.prepareCall("DELETE FROM OrderedMaterials WHERE OrderedMaterialsID=?;")){
 					
 					stmt.setInt(1, om.getOrderMaterialsID());
+					
+					stmt.executeUpdate();
+					return true;
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+		
+		public  boolean DeleteWoodType(WoodType wt) {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			           //  Statement stmt = con.createStatement()
+					CallableStatement stmt = con.prepareCall("DELETE FROM woodtype WHERE idWoodType=?;")){
+					
+					stmt.setInt(1, wt.getIdWoodType());
+					
+					stmt.executeUpdate();
+					return true;
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+		
+		public  boolean DeleteAxle(Axles a) {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			           //  Statement stmt = con.createStatement()
+					CallableStatement stmt = con.prepareCall("DELETE FROM axles WHERE axlesID=?;")){
+					
+					stmt.setInt(1, a.getAxlesID());
+					
+					stmt.executeUpdate();
+					return true;
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+		
+		public  boolean DeleteHands(Hands h) {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			           //  Statement stmt = con.createStatement()
+					CallableStatement stmt = con.prepareCall("DELETE FROM hands WHERE idhands=?;")){
+					
+					stmt.setInt(1, h.getIdhands());
+					
+					stmt.executeUpdate();
+					return true;
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+		public  boolean DeleteSupplier(Supplier s) {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			           //  Statement stmt = con.createStatement()
+					CallableStatement stmt = con.prepareCall("DELETE FROM supplier WHERE idsupplier=?;")){
+					
+					stmt.setInt(1, s.getIdsupplier());
 					
 					stmt.executeUpdate();
 					return true;

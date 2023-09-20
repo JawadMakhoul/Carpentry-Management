@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
@@ -16,6 +17,8 @@ import Model.Supplier;
 import Model.Hands;
 import Model.Axles;
 import Enumeration.AxleDegree;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +28,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -33,6 +37,15 @@ public class SettingsController implements Initializable{
 
 	private HashSet<Button> Buttons = new HashSet<Button>();
 	
+	@FXML
+    private ComboBox<Axles> brzolDegree;
+	@FXML
+    private ComboBox<Hands> handsModelNumber;
+	@FXML
+    private ComboBox<Supplier> suppliers;
+
+    @FXML
+    private ComboBox<WoodType> woodType;
     @FXML
     private CheckBox AutomaticOrderCheckbox;
 
@@ -47,6 +60,9 @@ public class SettingsController implements Initializable{
 
     @FXML
     private TextField HandsCost,HandsName,WoodType,WoodTypeCost,supplierEmail;
+    
+    @FXML
+    private Button deleteAxle,deleteHand,deleteSupplier,deleteWoodType;
 
     @FXML
     void AddButton(MouseEvent event) throws IOException, ClassNotFoundException {
@@ -63,6 +79,22 @@ public class SettingsController implements Initializable{
     					wt.setWoodTypeCost(Integer.parseInt(WoodTypeCost.getText()));
     					CarpentryLogic.getInstance().addWoodType(wt);
     	      
+    					JOptionPane.showMessageDialog(null, "WoodType added successfully.", "Alert",
+								JOptionPane.INFORMATION_MESSAGE);
+    					break;
+    				}
+    				
+    				case "deleteWoodType":{
+    		    		
+    					for(WoodType wt :  CarpentryLogic.getInstance().getWoodType()) {
+    						if(wt.getWoodTypeName().equals(woodType.getSelectionModel().getSelectedItem().toString())) {
+    							CarpentryLogic.getInstance().DeleteWoodType(wt);   
+    							JOptionPane.showMessageDialog(null, "WoodType deleted successfully.", "Alert",
+        								JOptionPane.INFORMATION_MESSAGE);
+    							}
+    					}
+    					
+    	      
     					break;
     				}
     	
@@ -73,6 +105,9 @@ public class SettingsController implements Initializable{
     						sp.setSupplierEmail(supplierEmail.getText());
     						sp.setAutoOrder(1);
     						CarpentryLogic.getInstance().addSupplier(sp);
+    						
+    						JOptionPane.showMessageDialog(null, "Supplier added successfully.", "Alert",
+    								JOptionPane.INFORMATION_MESSAGE);
     					}
     					
     					else {
@@ -80,10 +115,24 @@ public class SettingsController implements Initializable{
     						sp.setSupplierEmail(supplierEmail.getText());
     						sp.setAutoOrder(0);
     						CarpentryLogic.getInstance().addSupplier(sp);
-    						JOptionPane.showMessageDialog(null, "Automatic orders are disabled", "Box reminder",
-    								JOptionPane.WARNING_MESSAGE);
+    						JOptionPane.showMessageDialog(null, "Supplier added successfully, Automatic orders are disabled", "Alert",
+    								JOptionPane.INFORMATION_MESSAGE);
     					}
     		
+    					break;
+    				}
+    				
+    				case "deleteSupplier":{
+    		    		
+    					for(Supplier s :  CarpentryLogic.getInstance().getSupplier()) {
+    						if(s.getSupplierEmail().equals(suppliers.getSelectionModel().getSelectedItem().toString())) {
+    							CarpentryLogic.getInstance().DeleteSupplier(s);						
+    							JOptionPane.showMessageDialog(null, "Supplier deleted successfully.", "Alert",
+        								JOptionPane.INFORMATION_MESSAGE);
+    							}
+    					}
+    					
+    	      
     					break;
     				}
     	
@@ -93,7 +142,22 @@ public class SettingsController implements Initializable{
     					h.setHandsName(HandsName.getText());
     					h.setHandsCost(Integer.parseInt(HandsCost.getText()));
     					CarpentryLogic.getInstance().addHands(h);
-    		
+    					JOptionPane.showMessageDialog(null, "Hand added successfully.", "Alert",
+								JOptionPane.INFORMATION_MESSAGE);
+    					break;
+    				}
+
+    				case "deleteHand":{
+    		    		
+    					for(Hands h :  CarpentryLogic.getInstance().getHands()) {
+    						if(h.getHandsName().equals(handsModelNumber.getSelectionModel().getSelectedItem().toString())) {
+    							CarpentryLogic.getInstance().DeleteHands(h);						
+    							JOptionPane.showMessageDialog(null, "Hand deleted successfully.", "Alert",
+        								JOptionPane.INFORMATION_MESSAGE);
+    							}
+    					}
+    					
+    	      
     					break;
     				}
 
@@ -104,7 +168,21 @@ public class SettingsController implements Initializable{
     					a.setAxleCost(Integer.parseInt(AxleCost.getText()));
   	      
     					CarpentryLogic.getInstance().addAxle(a);
-	
+    					JOptionPane.showMessageDialog(null, "Axle added successfully.", "Alert",
+								JOptionPane.INFORMATION_MESSAGE);
+    					break;
+    				}
+    				
+    				case "deleteAxle":{
+    		    		
+    					for(Axles a :  CarpentryLogic.getInstance().getAxles()) {
+    						if(a.getAxleName().equals(brzolDegree.getSelectionModel().getSelectedItem().toString())) {
+    							CarpentryLogic.getInstance().DeleteAxle(a);						
+    							JOptionPane.showMessageDialog(null, "Axle deleted successfully.", "Alert",
+        								JOptionPane.INFORMATION_MESSAGE);}
+    					}
+    					
+    	      
     					break;
     				}
     			}
@@ -218,9 +296,40 @@ public class SettingsController implements Initializable{
 		Buttons.add(addHand);
 		Buttons.add(addSupplierEmail);
 		Buttons.add(addWoodType);
+		Buttons.add(deleteAxle);
+		Buttons.add(deleteHand);
+		Buttons.add(deleteSupplier);
+		Buttons.add(deleteWoodType);
 		
+		ArrayList<WoodType> woodTypeArrayList = new ArrayList<>();
+		for (WoodType c : CarpentryLogic.getInstance().getWoodType()) {
+			woodTypeArrayList.add(c);
+		}
 		
+		ObservableList<WoodType> woodTypeList = FXCollections.observableArrayList(woodTypeArrayList);
+		woodType.getItems().addAll(woodTypeList);
 		
+		ArrayList<Hands> HandsArrayList = new ArrayList<>();
+		for (Hands h : CarpentryLogic.getInstance().getHands()) {
+			HandsArrayList.add(h);
+		}
+		
+		ObservableList<Hands> HANDTYPE = FXCollections.observableArrayList(HandsArrayList);
+		handsModelNumber.getItems().addAll(HANDTYPE);
+		
+		ArrayList<Axles> AxlesArrayList = new ArrayList<>();
+		for (Axles a : CarpentryLogic.getInstance().getAxles()) {
+			AxlesArrayList.add(a);
+		}
+		ObservableList<Axles> axlesDegree = FXCollections.observableArrayList(AxlesArrayList);
+		brzolDegree.getItems().addAll(axlesDegree);
+		
+		ArrayList<Supplier> SuppliersArrayList = new ArrayList<>();
+		for (Supplier s : CarpentryLogic.getInstance().getSupplier()) {
+			SuppliersArrayList.add(s);
+		}
+		ObservableList<Supplier> supplierslist = FXCollections.observableArrayList(SuppliersArrayList);
+		suppliers.getItems().addAll(supplierslist);
 	}
     
     

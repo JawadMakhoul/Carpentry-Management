@@ -70,4 +70,8 @@ public class Supplier {
             e.printStackTrace();
         }
     }
+	@Override
+	public String toString() {
+		return "" + supplierEmail;
+	}
 }

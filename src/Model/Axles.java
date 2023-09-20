@@ -8,6 +8,11 @@ import java.io.IOException;
 
 public class Axles {
 
+	@Override
+	public String toString() {
+		return "" + axleName;
+	}
+
 	private static int idCounter;
 	private int axlesID;
 	private String axleName;

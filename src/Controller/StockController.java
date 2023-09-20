@@ -6,6 +6,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
+
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
@@ -104,7 +107,14 @@ public class StockController implements Initializable{
     							flag=false;
     						}
     					}
+    					
+    					
     				}
+    				
+    				if(flag) {
+						JOptionPane.showMessageDialog(null, "Please create an order of wood before updating the stock!", "Alert",
+								JOptionPane.WARNING_MESSAGE);
+					}
     				
     					
     			}

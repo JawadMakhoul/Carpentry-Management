@@ -84,7 +84,7 @@ public class ProjectItemsController implements Initializable{
     private ComboBox<Hands> handsModelNumber;
 
     @FXML
-    private ComboBox<WoodType> woodType;
+    private ComboBox<Stock> woodType;
     
     @FXML
     private ImageView loading;
@@ -617,12 +617,12 @@ public class ProjectItemsController implements Initializable{
 		ObservableList<ProjectSection> projectSectionList = FXCollections.observableArrayList(ProjectSection.Kitchen,ProjectSection.Room,ProjectSection.LivingRoom,ProjectSection.Bathroom);
 		projectSection.getItems().addAll(projectSectionList);
 		
-		ArrayList<WoodType> woodTypeArrayList = new ArrayList<>();
-		for (WoodType c : CarpentryLogic.getInstance().getWoodType()) {
-			woodTypeArrayList.add(c);
+		ArrayList<Stock> stockArrayList = new ArrayList<>();
+		for (Stock c : CarpentryLogic.getInstance().getStocks()) {
+			stockArrayList.add(c);
 		}
 		
-		ObservableList<WoodType> woodTypeList = FXCollections.observableArrayList(woodTypeArrayList);
+		ObservableList<Stock> woodTypeList = FXCollections.observableArrayList(stockArrayList);
 		woodType.getItems().addAll(woodTypeList);
 		
 		ArrayList<Hands> HandsArrayList = new ArrayList<>();

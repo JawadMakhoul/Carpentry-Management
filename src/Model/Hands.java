@@ -8,6 +8,11 @@ import java.io.IOException;
 
 public class Hands {
 
+	@Override
+	public String toString() {
+		return "" + handsName;
+	}
+
 	private static int idCounter;
 	private int idhands;
 	private String handsName;

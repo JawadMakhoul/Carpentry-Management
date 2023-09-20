@@ -24,9 +24,9 @@ public class Project {
 	private int price;
 	private Date date;
 	private String notes;
-	
+	private String phoneNumber;
 
-	public Project(int projectID,String customerID, String projectCategory,String image,String email, String status, int cost, int price, String notes,Date date) {
+	public Project(int projectID,String customerID, String projectCategory,String image,String email, String status, int cost, int price, String notes,Date date,String phoneNumber) {
 		super();
 		this.projectID = projectID;
 		this.customerID = customerID;
@@ -38,7 +38,17 @@ public class Project {
 		this.notes=notes;
 		this.price=price;
 		this.date = date;	
+		this.phoneNumber=phoneNumber;
 		}
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
 	public String getImage() {
 		return image;
 	}
