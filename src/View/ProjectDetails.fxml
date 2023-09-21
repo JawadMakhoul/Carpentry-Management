@@ -88,22 +88,22 @@
                   <TextField fx:id="projectIDField" editable="false" layoutX="270.0" layoutY="187.0" styleClass="textField" />
                   <TextField fx:id="phoneNumber" editable="false" layoutX="830.0" layoutY="187.0" styleClass="textField" />
                   <TextField fx:id="projectCategoryField" editable="false" layoutX="830.0" layoutY="138.0" styleClass="textField" />
-                  <Text fill="#d96e3a" layoutX="97.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name" textAlignment="CENTER">
+                  <Text fill="#d96e3a" layoutX="92.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text fill="#d96e3a" layoutX="657.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Category" textAlignment="CENTER">
+                  <Text fill="#d96e3a" layoutX="657.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Category" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text fill="#d96e3a" layoutX="156.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project ID" textAlignment="CENTER">
+                  <Text fill="#d96e3a" layoutX="92.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project ID" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text fill="#d96e3a" layoutX="657.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" textAlignment="CENTER" wrappingWidth="157.05078125">
+                  <Text fill="#d96e3a" layoutX="650.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" textAlignment="CENTER" wrappingWidth="157.05078125">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -177,7 +177,7 @@
                   <Button fx:id="image" layoutX="836.0" layoutY="880.0" mnemonicParsing="false" onAction="#showProjectImage" prefHeight="51.0" prefWidth="202.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Project Image" />
                   <Button fx:id="reportButton" layoutX="605.0" layoutY="880.0" mnemonicParsing="false" onAction="#GetProjectReport" prefHeight="51.0" prefWidth="202.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Project Report" />
                   <TextField fx:id="ProjectPrice" editable="false" layoutX="270.0" layoutY="238.0" styleClass="textField" />
-                  <Text fill="#d96e3a" layoutX="97.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Cost" textAlignment="CENTER" wrappingWidth="157.05078125">
+                  <Text fill="#d96e3a" layoutX="71.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Cost" textAlignment="CENTER" wrappingWidth="157.05078125">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>

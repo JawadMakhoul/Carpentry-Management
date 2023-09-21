@@ -294,12 +294,10 @@ public class ProjectDetailsToShowController implements Initializable{
         // Here, use the `data` to populate or modify the UI elements
     	ObservableList<ProjectDetailsToShowNonStatic> ObservableList_CP = FXCollections.observableArrayList();
         
-        
         ArrayList<ProjectDetailsToShowNonStatic> arraylistToShow = new ArrayList<>();
     	for(Project p : CarpentryLogic.getInstance().getProjects()) {
         	
         	if(data.equals(Integer.toString(p.getProjectID()))) {
-        		
         	
         		for(Section s : CarpentryLogic.getInstance().getSections()) {
         	
@@ -1379,50 +1377,49 @@ public class ProjectDetailsToShowController implements Initializable{
 			Buttons.add(GenerateByAI);
 			Buttons.add(Settings);
 			
-			ProjectDetailsToShow pdts = CurrentProjectsController.getPdts();
-			System.out.println(pdts.getProjectID());
+		//	ProjectDetailsToShow pdts = CurrentProjectsController.getPdts();
+			
 	        
 			
-			for(Project p : CarpentryLogic.getInstance().getProjects()) {
-				if(pdts.getProjectID().equals(Integer.toString(p.getProjectID()))) {
-					projectIDField.setText(Integer.toString(p.getProjectID()));
-					customerNameField.setText(p.getCustomerID());
-					projectCategoryField.setText(p.getProjectCategory());
-					phoneNumber.setText(p.getPhoneNumber());
-				}
-			}
+//			for(Project p : CarpentryLogic.getInstance().getProjects()) {
+//				if(pdts.getProjectID().equals(Integer.toString(p.getProjectID()))) {
+//					projectIDField.setText(Integer.toString(p.getProjectID()));
+//					customerNameField.setText(p.getCustomerID());
+//					projectCategoryField.setText(p.getProjectCategory());
+//					phoneNumber.setText(p.getPhoneNumber());
+//				}
+//			}
+//			
+//			color.setCellValueFactory(new PropertyValueFactory<>("color"));
+//			itemHeight.setCellValueFactory(new PropertyValueFactory<>("itemHeight"));
+//			itemID.setCellValueFactory(new PropertyValueFactory<>("itemID"));
+//			itemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+//			itemWidth.setCellValueFactory(new PropertyValueFactory<>("itemWidth"));
+//			quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+//			woodType.setCellValueFactory(new PropertyValueFactory<>("woodType"));
+//			sectionField.setCellValueFactory(new PropertyValueFactory<>("section"));
+//			handsField.setCellValueFactory(new PropertyValueFactory<>("modelNumberOFhands"));
+//		    
 			
-			color.setCellValueFactory(new PropertyValueFactory<>("color"));
-			itemHeight.setCellValueFactory(new PropertyValueFactory<>("itemHeight"));
-			itemID.setCellValueFactory(new PropertyValueFactory<>("itemID"));
-			itemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
-			itemWidth.setCellValueFactory(new PropertyValueFactory<>("itemWidth"));
-			quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-			woodType.setCellValueFactory(new PropertyValueFactory<>("woodType"));
-			sectionField.setCellValueFactory(new PropertyValueFactory<>("section"));
-			handsField.setCellValueFactory(new PropertyValueFactory<>("modelNumberOFhands"));
-		    
-			
-			ObservableList<ProjectDetailsToShowNonStatic> ObservableList_CP = FXCollections.observableArrayList();
-			ArrayList<ProjectDetailsToShowNonStatic> arraylistToShow = new ArrayList<>();
-			for (Project p : CarpentryLogic.getInstance().getProjects()) {
-				for (ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
-					pdts.setImage(p.getImage());
-					if (Integer.toString(p.getProjectID()).equals(pi.getProjectID())) {
-						ProjectDetailsToShowNonStatic cp = new ProjectDetailsToShowNonStatic(p.getCustomerID(),
-								Integer.toString(p.getProjectID()), p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName() ,Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel(),pi.getSectionID());
-						
-						arraylistToShow.add(cp);
-					
-
-					}
-				}
-			}
-			ObservableList_CP.addAll(arraylistToShow);
-//	        orders.addAll(arraylistProject);
-//	        orders.addAll(arraylistProjectItems);
-
-			tableView.setItems(ObservableList_CP);
+//			ObservableList<ProjectDetailsToShowNonStatic> ObservableList_CP = FXCollections.observableArrayList();
+//			ArrayList<ProjectDetailsToShowNonStatic> arraylistToShow = new ArrayList<>();
+//			for (Project p : CarpentryLogic.getInstance().getProjects()) {
+//				for (ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
+//					pdts.setImage(p.getImage());
+//					
+//					if (Integer.toString(p.getProjectID()).equals(pi.getProjectID()) && Integer.toString(p.getProjectID()).equals(data)) {
+//						ProjectDetailsToShowNonStatic cp = new ProjectDetailsToShowNonStatic(p.getCustomerID(),
+//								Integer.toString(p.getProjectID()), p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName() ,Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel(),pi.getSectionID());
+//						
+//						arraylistToShow.add(cp);
+//					
+//
+//					}
+//				}
+//			}
+//			ObservableList_CP.addAll(arraylistToShow);
+//
+//			tableView.setItems(ObservableList_CP);
 	        
 			ObservableList<String> Object = FXCollections.observableArrayList("Project","Section","Item");
 			ComboBoxObject.getItems().addAll(Object);
