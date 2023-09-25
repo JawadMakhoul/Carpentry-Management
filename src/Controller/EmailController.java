@@ -69,10 +69,10 @@ import javax.mail.MessagingException;
 import javax.mail.NoSuchProviderException;
 import javax.mail.Session;
 import javax.mail.Store;
-public class InboxController implements Initializable{
+public class EmailController implements Initializable{
 
     @FXML
-    private Button Settings,GenerateByAI,refresh,send,replay,NewProject,Stock,CurrentProjects,Inbox,BackButton;
+    private Button Settings,GenerateByAI,refresh,send,replay,NewProject,Stock,Projects,Email,BackButton;
     private HashSet<Button> Buttons = new HashSet<Button>();
     @FXML
     private AnchorPane screen;
@@ -119,13 +119,13 @@ public class InboxController implements Initializable{
     		
     			switch(b.getId()) {
     		
-    			case "Inbox":{
-    				Parent pane = FXMLLoader.load(getClass().getResource("/View/Inbox.fxml"));
+    			case "Email":{
+    				Parent pane = FXMLLoader.load(getClass().getResource("/View/Email.fxml"));
     				Scene scene = new Scene(pane);
     				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     				stage.setScene(scene);
     				stage.setResizable(false);
-    				stage.setTitle("Awni Wood Work - Inbox");
+    				stage.setTitle("Awni Wood Work - Email");
     				stage.show();
     				break;
     			}
@@ -151,8 +151,8 @@ public class InboxController implements Initializable{
 	        		break;
 	    		}
 	    		
-	    		case "CurrentProjects":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/CurrentProjects.fxml"));
+	    		case "Projects":{
+	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Projects.fxml"));
 	        		Scene scene = new Scene(pane);
 	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 	        		stage.setScene(scene);
@@ -422,10 +422,10 @@ public class InboxController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		
-		Buttons.add(CurrentProjects);
+		Buttons.add(Projects);
 		Buttons.add(Stock);
 		Buttons.add(NewProject);
-		Buttons.add(Inbox);
+		Buttons.add(Email);
 		Buttons.add(BackButton);
 		Buttons.add(refresh);
 		Buttons.add(replay);

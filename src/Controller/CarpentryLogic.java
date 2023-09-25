@@ -2,19 +2,15 @@ package Controller;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 import Model.Axles;
-import Model.Consts;
 import Model.Customer;
 import Model.Hands;
-import Model.Order;
 import Model.Project;
 import Model.ProjectItems;
 import Model.Section;
@@ -147,28 +143,6 @@ public class CarpentryLogic {
 			            while (rs.next()) {
 						int i = 1;
 						results.add(new WoodType(rs.getInt(i++),rs.getString(i++),rs.getInt(i++)));
-					}
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			return results;
-		}
-		
-		public  ArrayList<Order> getOrders() {
-
-			ArrayList<Order> results = new ArrayList<Order>();
-			try {Class.forName("com.mysql.jdbc.Driver");
-			try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
-		             Statement stmt = con.createStatement()) {
-
-		            String sql = "SELECT * FROM ordertbl";
-		            ResultSet rs = stmt.executeQuery(sql);
-					while (rs.next()) {
-						int i = 1;
-						results.add(new Order(rs.getInt(i++),rs.getString(i++),rs.getString(i++), rs.getString(i++), rs.getInt(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -405,30 +379,6 @@ public class CarpentryLogic {
 					e.printStackTrace();
 				}
 			
-			return false;
-		}
-		public  boolean addOrder(Order o) {
-			try {
-				Class.forName("com.mysql.jdbc.Driver");
-				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
-			           //  Statement stmt = con.createStatement()
-					CallableStatement stmt = con.prepareCall("Insert into ordertbl values(?, ?, ?, ?, ?)")){ 
-					// int i = 1;
-					stmt.setInt(1, o.getOrderID()); // can't be null
-					stmt.setString(2, o.getCustomerName());
-					stmt.setString(3, o.getProjectID());
-					stmt.setString(4, o.getStatus());
-					stmt.setInt(5, o.getCost());
-					stmt.executeUpdate();
-					
-					return true;
-
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
 			return false;
 		}
 
@@ -1251,26 +1201,7 @@ public class CarpentryLogic {
 
 	}
 		
-		public  boolean DeleteOrder(Order o) {
-			try {
-				Class.forName("com.mysql.jdbc.Driver");
-				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
-			           //  Statement stmt = con.createStatement()
-					CallableStatement stmt = con.prepareCall("DELETE  FROM ordertbl WHERE OrderID = ?")){
-					
-					stmt.setInt(1, o.getOrderID());
-					
-					stmt.executeUpdate();
-					return true;
-
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			return false;
-		}
+		
 		
 		public  boolean DeleteProject(Project p) {
 			try {

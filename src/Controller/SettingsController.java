@@ -56,7 +56,7 @@ public class SettingsController implements Initializable{
     private TextField AxleName;
 
     @FXML
-    private Button BackButton,CurrentProjects,GenerateByAI,Inbox,NewProject,Stock,Settings,addAxle,addHand,addSupplierEmail,addWoodType;
+    private Button BackButton,Projects,GenerateByAI,Email,NewProject,Stock,Settings,addAxle,addHand,addSupplierEmail,addWoodType;
 
     @FXML
     private TextField HandsCost,HandsName,WoodType,WoodTypeCost,supplierEmail;
@@ -199,13 +199,13 @@ public class SettingsController implements Initializable{
 
 				switch (b.getId()) {
 
-				case "Inbox": {
-					Parent pane = FXMLLoader.load(getClass().getResource("/View/Inbox.fxml"));
+				case "Email": {
+					Parent pane = FXMLLoader.load(getClass().getResource("/View/Email.fxml"));
 					Scene scene = new Scene(pane);
 					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					stage.setScene(scene);
 					stage.setResizable(false);
-					stage.setTitle("Awni Wood Work - Inbox");
+					stage.setTitle("Awni Wood Work - Email");
 					stage.show();
 					break;
 				}
@@ -231,8 +231,8 @@ public class SettingsController implements Initializable{
 					break;
 				}
 
-				case "CurrentProjects": {
-					Parent pane = FXMLLoader.load(getClass().getResource("/View/CurrentProjects.fxml"));
+				case "Projects": {
+					Parent pane = FXMLLoader.load(getClass().getResource("/View/Projects.fxml"));
 					Scene scene = new Scene(pane);
 					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					stage.setScene(scene);
@@ -285,10 +285,10 @@ public class SettingsController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		Buttons.add(CurrentProjects);
+		Buttons.add(Projects);
 		Buttons.add(Stock);
 		Buttons.add(NewProject);
-		Buttons.add(Inbox);
+		Buttons.add(Email);
 		Buttons.add(BackButton);
 		Buttons.add(GenerateByAI);
 		Buttons.add(Settings);

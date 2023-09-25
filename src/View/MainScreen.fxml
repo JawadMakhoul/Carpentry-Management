@@ -12,9 +12,9 @@
 <AnchorPane fx:id="screen" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainScreenController">
    <children>
       <MediaView fx:id="mediaView" fitHeight="1080.0" fitWidth="1920.0" />
-      <ImageView fitHeight="172.0" fitWidth="653.0" layoutX="424.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="172.0" fitWidth="653.0" layoutX="530.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Lib/awni-wood-work-high-resolution-logo-color-on-transparent-background.png" />
+            <Image url="@../Lib/carpentry-managment-high-resolution-logo-color-on-transparent-background.png" />
          </image>
       </ImageView>
       <PasswordField fx:id="passWord" layoutX="772.0" layoutY="350.0" onKeyPressed="#LogIn" prefHeight="58.0" prefWidth="418.0" style="-fx-border-color: #551E19 #C56E33 #C56E33 #551E19; -fx-border-width: 5px 5px 5px 5px;" />

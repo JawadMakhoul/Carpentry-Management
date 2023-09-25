@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CurrentProjectsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProjectsToShowController">
       <children>
       <SplitPane dividerPositions="0.22090112640801002" prefHeight="950.0" prefWidth="1600.0">
         <items>
@@ -23,7 +23,7 @@
                         <Image url="@../Lib/email1.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="Inbox" layoutX="73.0" layoutY="376.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="51.0" prefWidth="266.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Email" />
+                  <Button fx:id="Email" layoutX="73.0" layoutY="376.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="51.0" prefWidth="266.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Email" />
                   
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="13.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -47,11 +47,11 @@
                         <Image url="@../Lib/process.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="CurrentProjects" layoutX="73.0" layoutY="571.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="266.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Projects Catalog" />
+                  <Button fx:id="Projects" layoutX="73.0" layoutY="571.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="50.0" prefWidth="266.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Projects Catalog" />
                   <Button fx:id="BackButton" layoutX="28.0" layoutY="873.0" mnemonicParsing="false" onMousePressed="#MoveTo" prefHeight="51.0" prefWidth="112.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Back" />
                   <ImageView fitHeight="153.0" fitWidth="328.0" layoutX="10.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Lib/awni-wood-work-high-resolution-logo-color-on-transparent-background.png" />
+                        <Image url="@../Lib/carpentry-managment-high-resolution-logo-color-on-transparent-background.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="13.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true">

@@ -38,7 +38,7 @@ public class NewProjectController implements Initializable {
 	private String projectID;
 	@FXML
 	private Button Settings,GenerateByAI, projectItems, NewProject, Stock,
-			CurrentProjects, Inbox, BackButton;
+	Projects, Email, BackButton;
 	private HashSet<Button> Buttons = new HashSet<Button>();
 
 	ArrayList<String> emailsarray = new ArrayList<>();
@@ -71,13 +71,13 @@ public class NewProjectController implements Initializable {
 
 				switch (b.getId()) {
 
-				case "Inbox": {
-					Parent pane = FXMLLoader.load(getClass().getResource("/View/Inbox.fxml"));
+				case "Email": {
+					Parent pane = FXMLLoader.load(getClass().getResource("/View/Email.fxml"));
 					Scene scene = new Scene(pane);
 					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					stage.setScene(scene);
 					stage.setResizable(false);
-					stage.setTitle("Awni Wood Work - Inbox");
+					stage.setTitle("Awni Wood Work - Email");
 					stage.show();
 					break;
 				}
@@ -103,8 +103,8 @@ public class NewProjectController implements Initializable {
 					break;
 				}
 
-				case "CurrentProjects": {
-					Parent pane = FXMLLoader.load(getClass().getResource("/View/CurrentProjects.fxml"));
+				case "Projects": {
+					Parent pane = FXMLLoader.load(getClass().getResource("/View/Projects.fxml"));
 					Scene scene = new Scene(pane);
 					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					stage.setScene(scene);
@@ -440,10 +440,10 @@ public class NewProjectController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 // TODO Auto-generated method stub
 		
-		Buttons.add(CurrentProjects);
+		Buttons.add(Projects);
 		Buttons.add(Stock);
 		Buttons.add(NewProject);
-		Buttons.add(Inbox);
+		Buttons.add(Email);
 		Buttons.add(BackButton);
 		Buttons.add(projectItems);
 		Buttons.add(GenerateByAI);

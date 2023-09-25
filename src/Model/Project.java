@@ -40,6 +40,16 @@ public class Project {
 		this.date = date;	
 		this.phoneNumber=phoneNumber;
 		}
+	
+	public Project(String customerID,int projectID, String projectCategory ,String email, String status, int price) {
+		super();
+		this.projectID = projectID;
+		this.customerID = customerID;
+		this.projectCategory = projectCategory;
+		this.email=email;
+		this.status=status;
+		this.price=price;
+		}
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}

@@ -8,14 +8,12 @@ import java.util.HashSet;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
-
-import com.healthmarketscience.jackcess.expr.NumericConfig.Type;
+//
+//import com.healthmarketscience.jackcess.expr.NumericConfig.Type;
 
 import Enumeration.OrderStatus;
-import Model.CurrentProjectsToShow;
 import Model.Customer;
 import Model.GlobalProjectID;
-import Model.Order;
 import Model.Project;
 import Model.ProjectDetailsToShow;
 import Model.ProjectItems;
@@ -43,18 +41,18 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class CurrentProjectsController implements Initializable {
+public class ProjectsToShowController implements Initializable {
 
 	
 	@FXML
-	private Button  Settings,GenerateByAI, NewProject, Stock, CurrentProjects
-			, Inbox, BackButton;
+	private Button  Settings,GenerateByAI, NewProject, Stock, Projects
+			, Email, BackButton;
 	private HashSet<Button> Buttons = new HashSet<Button>();
 	@FXML
 	private AnchorPane screen;
 
 	@FXML
-	private TableColumn<CurrentProjectsToShow, String> customerName;
+	private TableColumn<Project, String> customerName;
 
 	@FXML
 	private Button deleteOrder;
@@ -67,10 +65,10 @@ public class CurrentProjectsController implements Initializable {
 	private Pane pnlOverview;
 
 	@FXML
-	private TableColumn<CurrentProjectsToShow, String> projectCategory;
+	private TableColumn<Project, String> projectCategory;
 
 	@FXML
-	private TableColumn<CurrentProjectsToShow, String> projectID;
+	private TableColumn<Project, String> projectID;
 
 	@FXML
 	private Button removeFilter;
@@ -82,20 +80,20 @@ public class CurrentProjectsController implements Initializable {
 	private TextField searchField1, searchField2;
 
 	@FXML
-	private TableColumn<CurrentProjectsToShow, String> customerEmail;
+	private TableColumn<Project, String> customerEmail;
 
 	@FXML
-    private TableColumn<CurrentProjectsToShow, Integer> projectPrice;
+    private TableColumn<Project, Integer> projectPrice;
 
 	
     @FXML
-    private TableColumn<CurrentProjectsToShow, String> projectStatus;
+    private TableColumn<Project, String> projectStatus;
     
 	@FXML
 	private ComboBox<OrderStatus> statusList;
 
 	@FXML
-	private TableView<CurrentProjectsToShow> tableView;
+	private TableView<Project> tableView;
 
 	@FXML
 	private Button updateStatus;
@@ -112,7 +110,7 @@ public class CurrentProjectsController implements Initializable {
 	}
 
 	public static void setPdts(ProjectDetailsToShow pdts) {
-		CurrentProjectsController.pdts = pdts;
+		ProjectsToShowController.pdts = pdts;
 	}
 
 	@FXML
@@ -123,13 +121,13 @@ public class CurrentProjectsController implements Initializable {
 
 				switch (b.getId()) {
 
-				case "Inbox": {
-					Parent pane = FXMLLoader.load(getClass().getResource("/View/Inbox.fxml"));
+				case "Email": {
+					Parent pane = FXMLLoader.load(getClass().getResource("/View/Email.fxml"));
 					Scene scene = new Scene(pane);
 					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					stage.setScene(scene);
 					stage.setResizable(false);
-					stage.setTitle("Awni Wood Work - Inbox");
+					stage.setTitle("Awni Wood Work - Email");
 					stage.show();
 					break;
 				}
@@ -155,8 +153,8 @@ public class CurrentProjectsController implements Initializable {
 					break;
 				}
 
-				case "CurrentProjects": {
-					Parent pane = FXMLLoader.load(getClass().getResource("/View/CurrentProjects.fxml"));
+				case "Projects": {
+					Parent pane = FXMLLoader.load(getClass().getResource("/View/Projects.fxml"));
 					Scene scene = new Scene(pane);
 					Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					stage.setScene(scene);
@@ -218,7 +216,7 @@ public class CurrentProjectsController implements Initializable {
 		}
 
 	}
-	ArrayList<CurrentProjectsToShow> toSend = new ArrayList<>();
+	ArrayList<Project> toSend = new ArrayList<>();
 	@FXML
 	void SearchEmailByLetter(KeyEvent event) {
 		toSend.clear();
@@ -226,15 +224,15 @@ public class CurrentProjectsController implements Initializable {
 			if (filter1.getSelectionModel().getSelectedItem().equals("Customer Email")) {
 				
 				String searchText = searchField1.getText().toLowerCase();
-				ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
-				ObservableList<CurrentProjectsToShow> custOrders = FXCollections.observableArrayList();
+				ArrayList<Project> toShow = new ArrayList<>();
+				ObservableList<Project> custOrders = FXCollections.observableArrayList();
 				custOrders.clear();
 				for (Customer c : CarpentryLogic.getInstance().getCustomers()) {
 					if (c.getEmail().toLowerCase().contains(searchText)) {
 						for (Project p : CarpentryLogic.getInstance().getProjects()) {
 							if (c.getName().equals(p.getCustomerID()) && c.getEmail().equals(p.getEmail())) {
-								CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
-										Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getPrice());
+								Project cp = new Project(p.getCustomerID(),
+										p.getProjectID(), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getPrice());
 								
 								toShow.add(cp);
 								toSend.add(cp);
@@ -249,15 +247,15 @@ public class CurrentProjectsController implements Initializable {
 			
 			else if (filter1.getSelectionModel().getSelectedItem().equals("Customer Name")) {
 				String searchText = searchField1.getText().toLowerCase();
-				ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
-				ObservableList<CurrentProjectsToShow> custOrders = FXCollections.observableArrayList();
+				ArrayList<Project> toShow = new ArrayList<>();
+				ObservableList<Project> custOrders = FXCollections.observableArrayList();
 				custOrders.clear();
 				for (Customer c : CarpentryLogic.getInstance().getCustomers()) {
 					if (c.getName().toLowerCase().contains(searchText)) {
 						for (Project p : CarpentryLogic.getInstance().getProjects()) {
 							if (c.getName().equals(p.getCustomerID()) && c.getEmail().equals(p.getEmail())) {
-								CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
-										Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getPrice());
+								Project cp = new Project(p.getCustomerID(),
+										p.getProjectID(), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getPrice());
 								
 								toShow.add(cp);
 								toSend.add(cp);
@@ -278,8 +276,8 @@ public class CurrentProjectsController implements Initializable {
 		
 			else if (filter1.getSelectionModel().getSelectedItem().equals("Project ID")) {
 				String searchText = searchField1.getText();
-				ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
-				ObservableList<CurrentProjectsToShow> custOrders = FXCollections.observableArrayList();
+				ArrayList<Project> toShow = new ArrayList<>();
+				ObservableList<Project> custOrders = FXCollections.observableArrayList();
 				custOrders.clear();
 				for (Project p : CarpentryLogic.getInstance().getProjects()) {
 					if(Integer.toString(p.getProjectID()).contains(searchText)) {
@@ -287,8 +285,8 @@ public class CurrentProjectsController implements Initializable {
 						//if (c.getEmail().toLowerCase().contains(searchText)) {
 						//for (Project p : CarpentryLogic.getInstance().getProjects()) {
 							if (c.getName().equals(p.getCustomerID()) && c.getEmail().equals(p.getEmail())) {
-								CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
-										Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getPrice());
+								Project cp = new Project(p.getCustomerID(),
+										p.getProjectID(), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getPrice());
 								
 								toShow.add(cp);
 								toSend.add(cp);
@@ -305,19 +303,19 @@ public class CurrentProjectsController implements Initializable {
 		
 			else 	if (filter1.getSelectionModel().getSelectedItem().equals("Project Category")) {
 				String searchText = searchField1.getText();
-				ObservableList<CurrentProjectsToShow> toShowOb = FXCollections.observableArrayList();
+				ObservableList<Project> toShowOb = FXCollections.observableArrayList();
 				
-				ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
+				ArrayList<Project> toShow = new ArrayList<>();
 				for (Project p : CarpentryLogic.getInstance().getProjects()) {
 					if (p.getProjectCategory().toLowerCase().contains(searchText)) {
 						//for(Customer c: CarpentryLogic.getInstance().getCustomers()) {
 								// projOrders.add(o);
 							//if (c.getName().equals(p.getCustomerID()) && c.getEmail().equals(p.getEmail())) {
-								CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
-										Integer.toString(p.getProjectID()), p.getProjectCategory(), p.getEmail(),p.getStatus(),p.getPrice());
+						Project cp = new Project(p.getCustomerID(),
+										p.getProjectID(), p.getProjectCategory(), p.getEmail(),p.getStatus(),p.getPrice());
 								boolean flag=true;
-								for(CurrentProjectsToShow cpts : toShow) {
-									if(cpts.getProjectID().equals(cp.getProjectID()))
+								for(Project cpts : toShow) {
+									if(Integer.toString(cpts.getProjectID()).equals(cp.getProjectID()))
 										flag=false;
 										
 								}
@@ -344,87 +342,17 @@ public class CurrentProjectsController implements Initializable {
 	@FXML
 	void Search(ActionEvent event) {
 
-//		if (filter1.getSelectionModel().getSelectedItem().equals("Customer Email")) {
-//			for (Customer c : CarpentryLogic.getInstance().getCustomers()) {
-//				if (searchField1.getText().equals(c.getName())) {
-//					ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
-//					ObservableList<CurrentProjectsToShow> custOrders = FXCollections.observableArrayList();
-//					for (Project p : CarpentryLogic.getInstance().getProjects()) {
-//						if (p.getCustomerID().equals(searchField1.getText())) {
-//							// custOrders.add(p);
-//
-//							for (Section s : CarpentryLogic.getInstance().getSections()) {
-//									if(s.getProjectID().equals(Integer.toString(p.getProjectID()))) {
-//									// custOrders.add(pi);
-//									CurrentProjectsToShow cpts = new CurrentProjectsToShow(c.getName(),
-//											Integer.toString(p.getProjectID()), p.getProjectCategory(), s.getSectionName());
-//									toShow.add(cpts);
-//									}
-//							}
-//
-//						}
-//					}
-//
-//					custOrders.addAll(Search2(toShow));
-//					tableView.setItems(custOrders);
-//				}
-//			}
-//		}
-//
-//		if (filter1.getSelectionModel().getSelectedItem().equals("Project ID")) {
-//			for (Project p : CarpentryLogic.getInstance().getProjects()) {
-//				if (searchField1.getText().equals(Integer.toString(p.getProjectID()))) {
-//					ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
-//					ObservableList<CurrentProjectsToShow> toShowOb = FXCollections.observableArrayList();
-//					for (Section s : CarpentryLogic.getInstance().getSections()) {
-//						if (s.getProjectID().equals(searchField1.getText())) {
-//							// projOrders.add(o);
-//							CurrentProjectsToShow cpts = new CurrentProjectsToShow(p.getCustomerID(),
-//									Integer.toString(p.getProjectID()), p.getProjectCategory(), s.getSectionName());
-//							toShow.add(cpts);
-//						}
-//
-//					}
-//					toShowOb.addAll(Search2(toShow));
-//					tableView.setItems(toShowOb);
-//				}
-//			}
-//		}
-//
-//		if (filter1.getSelectionModel().getSelectedItem().equals("Project Category")) {
-//			ObservableList<CurrentProjectsToShow> toShowOb = FXCollections.observableArrayList();
-//			for (Project p : CarpentryLogic.getInstance().getProjects()) {
-//				if (searchField1.getText().equals(p.getProjectCategory())) {
-//					ArrayList<CurrentProjectsToShow> toShow = new ArrayList<>();
-//
-//					for (Section s : CarpentryLogic.getInstance().getSections()) {
-//						if (s.getProjectID().equals(Integer.toString(p.getProjectID()))) {
-//							// projOrders.add(o);
-//							CurrentProjectsToShow cpts = new CurrentProjectsToShow(p.getCustomerID(),
-//									Integer.toString(p.getProjectID()), p.getProjectCategory(),s.getSectionName());
-//							toShow.add(cpts);
-//						}
-//
-//					}
-//
-//					toShowOb.addAll(toShow);
-//				}
-//			}
-//			tableView.setItems(toShowOb);
-//		}
-
 	}
-	// ********************************************************************************************************
-
-	ArrayList<CurrentProjectsToShow> Search2(ArrayList<CurrentProjectsToShow> arr) {
-		ArrayList<CurrentProjectsToShow> toshow = new ArrayList<>();
+	
+	ArrayList<Project> Search2(ArrayList<Project> arr) {
+		ArrayList<Project> toshow = new ArrayList<>();
 		if (filter2.getSelectionModel().getSelectedItem() == null ) {System.out.println(",null");
 			return arr;
 		}
 	
 		if (filter2.getSelectionModel().getSelectedItem().equals("Customer Name")) {
-			for (CurrentProjectsToShow c : arr) {
-				if (c.getCustomerName().toLowerCase().contains(searchField2.getText())) {
+			for (Project c : arr) {
+				if (c.getCustomerID().toLowerCase().contains(searchField2.getText())) {
 					toshow.add(c);
 
 				}
@@ -432,8 +360,8 @@ public class CurrentProjectsController implements Initializable {
 		}
 		
 		if (filter2.getSelectionModel().getSelectedItem().equals("Customer Email")) {
-			for (CurrentProjectsToShow c : arr) {
-				if (c.getCustomerEmail().toLowerCase().contains(searchField2.getText())) {
+			for (Project c : arr) {
+				if (c.getEmail().toLowerCase().contains(searchField2.getText())) {
 					toshow.add(c);
 
 				}
@@ -441,8 +369,8 @@ public class CurrentProjectsController implements Initializable {
 		}
 		
 		if (filter2.getSelectionModel().getSelectedItem().equals("Project ID")) {
-			for (CurrentProjectsToShow p : arr) {
-				if (p.getProjectID().toLowerCase().contains(searchField2.getText())) {
+			for (Project p : arr) {
+				if (Integer.toString(p.getProjectID()).toLowerCase().contains(searchField2.getText())) {
 				//tableView.setItems(null);
 					toshow.add(p);
 
@@ -452,7 +380,7 @@ public class CurrentProjectsController implements Initializable {
 		}
 
 		if (filter2.getSelectionModel().getSelectedItem().equals("Project Category")) {
-			for (CurrentProjectsToShow p : arr) {
+			for (Project p : arr) {
 				if (p.getProjectCategory().toLowerCase().contains(searchField2.getText())) {
 					toshow.add(p);
 
@@ -468,9 +396,9 @@ public class CurrentProjectsController implements Initializable {
     @FXML
     void SearchByLetter(KeyEvent event) {
     	if(filter2.getSelectionModel().getSelectedItem() != null)
-    	{	System.out.println("the seccound one is not null");
+    	{	
     	
-    	ObservableList<CurrentProjectsToShow> ObservableList_CP = FXCollections.observableArrayList();
+    	ObservableList<Project> ObservableList_CP = FXCollections.observableArrayList();
 		//ArrayList<CurrentProjectsToShow> arraylistToShow = new ArrayList<>();
     	ObservableList_CP.addAll(Search2(toSend));
 //      orders.addAll(arraylistProject);
@@ -482,14 +410,14 @@ public class CurrentProjectsController implements Initializable {
 
 	@FXML
 	void RemoveFilter(ActionEvent event) {
-		ObservableList<CurrentProjectsToShow> ObservableList_CP = FXCollections.observableArrayList();
-		ArrayList<CurrentProjectsToShow> arraylistToShow = new ArrayList<>();
+		ObservableList<Project> ObservableList_CP = FXCollections.observableArrayList();
+		ArrayList<Project> arraylistToShow = new ArrayList<>();
 		for (Project p : CarpentryLogic.getInstance().getProjects()) {
 			for (Customer c : CarpentryLogic.getInstance().getCustomers()) {
 				
 				if (c.getName().equals(p.getCustomerID()) && c.getEmail().equals(p.getEmail())) {
-					CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
-							Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getPrice());
+					Project cp = new Project(p.getCustomerID(),
+							p.getProjectID(), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getPrice());
 					
 					arraylistToShow.add(cp);
 				}
@@ -514,7 +442,7 @@ public class CurrentProjectsController implements Initializable {
 		}
 
 		for (Project p : CarpentryLogic.getInstance().getProjects()) {
-			if (tableView.getSelectionModel().getSelectedItem().getProjectID()
+			if (Integer.toString(tableView.getSelectionModel().getSelectedItem().getProjectID())
 					.equals(Integer.toString(p.getProjectID()))) {
 				CarpentryLogic.getInstance().DeleteProject(p);
 
@@ -539,13 +467,13 @@ public class CurrentProjectsController implements Initializable {
 			}
 		}
 
-		ObservableList<CurrentProjectsToShow> ObservableList_CP = FXCollections.observableArrayList();
-		ArrayList<CurrentProjectsToShow> arraylistToShow = new ArrayList<>();
+		ObservableList<Project> ObservableList_CP = FXCollections.observableArrayList();
+		ArrayList<Project> arraylistToShow = new ArrayList<>();
 		for (Project p : CarpentryLogic.getInstance().getProjects()) {
 			for (Section s : CarpentryLogic.getInstance().getSections()) {
 				if (s.getProjectID().equals(Integer.toString(p.getProjectID()))) {
-							CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
-									Integer.toString(p.getProjectID()), p.getProjectCategory(), p.getEmail(),p.getStatus(),p.getPrice());
+					Project cp = new Project(p.getCustomerID(),
+									p.getProjectID(), p.getProjectCategory(), p.getEmail(),p.getStatus(),p.getPrice());
 							arraylistToShow.add(cp);
 						
 
@@ -566,10 +494,10 @@ public class CurrentProjectsController implements Initializable {
 					"Deleting a project reminder", JOptionPane.WARNING_MESSAGE);
 		}
 
-		pdts.setCustomerName(tableView.getSelectionModel().getSelectedItem().getCustomerName());
-		pdts.setProjectID(tableView.getSelectionModel().getSelectedItem().getProjectID());
+		pdts.setCustomerName(tableView.getSelectionModel().getSelectedItem().getCustomerID());
+		pdts.setProjectID(Integer.toString(tableView.getSelectionModel().getSelectedItem().getProjectID()));
 		pdts.setProjectCategory(tableView.getSelectionModel().getSelectedItem().getProjectCategory());
-		pdts.setSection(tableView.getSelectionModel().getSelectedItem().getCustomerEmail());
+		pdts.setSection(tableView.getSelectionModel().getSelectedItem().getEmail());
 		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectDetails.fxml"));
 	    Parent root = loader.load();
@@ -596,19 +524,19 @@ public class CurrentProjectsController implements Initializable {
     void Update_Status(ActionEvent event) throws SQLException {
     	if(tableView.getSelectionModel().getSelectedItem()!= null) {System.out.println("if");
     	for(Project p : CarpentryLogic.getInstance().getProjects()) {
-    		if(tableView.getSelectionModel().getSelectedItem().getProjectID().equals(Integer.toString(p.getProjectID()))) {System.out.println("update status");
+    		if(Integer.toString(tableView.getSelectionModel().getSelectedItem().getProjectID()).equals(Integer.toString(p.getProjectID()))) {
     			CarpentryLogic.getInstance().updateProjectStatus(p, statusList.getSelectionModel().getSelectedItem().toString());
     		}
     	}
     	
-    	 ObservableList<CurrentProjectsToShow> orders = FXCollections.observableArrayList();
-	        ArrayList<CurrentProjectsToShow> arraylistOrders =  new ArrayList<>();
+    	 ObservableList<Project> orders = FXCollections.observableArrayList();
+	        ArrayList<Project> arraylistOrders =  new ArrayList<>();
 	        for (Project p : CarpentryLogic.getInstance().getProjects()) {
 				for (Customer c : CarpentryLogic.getInstance().getCustomers()) {
 					
 					if (c.getName().equals(p.getCustomerID()) && c.getEmail().equals(p.getEmail())) {
-						CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
-								Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getPrice());
+						Project cp = new Project(p.getCustomerID(),
+							p.getProjectID(), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getPrice());
 						
 						arraylistOrders.add(cp);
 					}
@@ -641,7 +569,7 @@ public class CurrentProjectsController implements Initializable {
 	    NotesController controller = loader.getController();
 	    
 	    // Send data
-	    String myData = tableView.getSelectionModel().getSelectedItem().getProjectID();
+	    String myData = Integer.toString(tableView.getSelectionModel().getSelectedItem().getProjectID());
 	   
 	    controller.setData(myData);
 	    Scene scene = new Scene(root);
@@ -654,10 +582,10 @@ public class CurrentProjectsController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		
-		Buttons.add(CurrentProjects);
+		Buttons.add(Projects);
 		Buttons.add(Stock);
 		Buttons.add(NewProject);
-		Buttons.add(Inbox);
+		Buttons.add(Email);
 		Buttons.add(BackButton);
 		Buttons.add(GenerateByAI);
 		Buttons.add(Settings);
@@ -667,22 +595,22 @@ public class CurrentProjectsController implements Initializable {
 		filter1.getItems().addAll(Filter);
 		filter2.getItems().addAll(Filter);
 
-		customerName.setCellValueFactory(new PropertyValueFactory<>("customerName"));
-		customerEmail.setCellValueFactory(new PropertyValueFactory<>("customerEmail"));
+		customerName.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+		customerEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
 		projectID.setCellValueFactory(new PropertyValueFactory<>("projectID"));
 		projectCategory.setCellValueFactory(new PropertyValueFactory<>("projectCategory"));
 		projectStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
 		projectPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
 		
 
-		ObservableList<CurrentProjectsToShow> ObservableList_CP = FXCollections.observableArrayList();
-		ArrayList<CurrentProjectsToShow> arraylistToShow = new ArrayList<>();
+		ObservableList<Project> ObservableList_CP = FXCollections.observableArrayList();
+		ArrayList<Project> arraylistToShow = new ArrayList<>();
 		for (Project p : CarpentryLogic.getInstance().getProjects()) {
 			for (Customer c : CarpentryLogic.getInstance().getCustomers()) {
 				
 				if (c.getName().equals(p.getCustomerID()) && c.getEmail().equals(p.getEmail())) {
-					CurrentProjectsToShow cp = new CurrentProjectsToShow(p.getCustomerID(),
-							Integer.toString(p.getProjectID()), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getPrice());
+					Project cp = new Project(p.getCustomerID(),
+							p.getProjectID(), p.getProjectCategory(), c.getEmail(),p.getStatus(),p.getPrice());
 					
 					arraylistToShow.add(cp);
 				}
