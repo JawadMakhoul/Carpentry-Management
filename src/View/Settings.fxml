@@ -98,6 +98,11 @@
                               <Font size="36.0" />
                            </font>
                         </Label>
+                        <CheckBox fx:id="needAPaint" layoutX="130.0" layoutY="125.0" mnemonicParsing="false" text="Need a paint">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </CheckBox>
                      </children>
                   </Pane>
                   <TextField fx:id="WoodType" alignment="CENTER" layoutX="137.0" layoutY="282.0" prefHeight="45.0" prefWidth="211.0" styleClass="textField" />

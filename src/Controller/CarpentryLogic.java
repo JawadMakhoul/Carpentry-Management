@@ -142,7 +142,7 @@ public class CarpentryLogic {
 
 			            while (rs.next()) {
 						int i = 1;
-						results.add(new WoodType(rs.getInt(i++),rs.getString(i++),rs.getInt(i++)));
+						results.add(new WoodType(rs.getInt(i++),rs.getString(i++),rs.getInt(i++),rs.getInt(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -364,13 +364,13 @@ public class CarpentryLogic {
 				Class.forName("com.mysql.jdbc.Driver");
 				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
 			           //  Statement stmt = con.createStatement()
-					CallableStatement stmt = con.prepareCall("Insert into woodtype values(?, ?, ?)")){ 
+					CallableStatement stmt = con.prepareCall("Insert into woodtype values(?, ?, ?,?)")){ 
 
 					// int i = 1;
 					stmt.setInt(1, c.getIdWoodType()); // can't be null
 					stmt.setString(2, c.getWoodTypeName());
 					stmt.setInt(3, c.getWoodTypeCost());
-					
+					stmt.setInt(4, c.getNeedToBePainted());
 
 					stmt.executeUpdate();
 					return true;
@@ -567,6 +567,62 @@ public class CarpentryLogic {
 				stmt.setInt(3,s.getStockID());
 				stmt.setString(2, s.getWoodName());
 		        stmt.setInt(1, newQuantity);
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
+		public boolean updateProjectCost(Project p,int cost) throws SQLException {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			           //  Statement stmt = con.createStatement()
+					CallableStatement stmt = con.prepareCall("UPDATE project SET cost = ? WHERE ProjectID=? ;")){
+
+		        // set the parameter values for the prepared statement
+				
+				stmt.setInt(2, p.getProjectID());
+		        stmt.setInt(1, cost);
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
+		public boolean updateProjectPrice(Project p,int price) throws SQLException {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			           //  Statement stmt = con.createStatement()
+					CallableStatement stmt = con.prepareCall("UPDATE project SET price = ? WHERE ProjectID=? ;")){
+
+		        // set the parameter values for the prepared statement
+				
+				stmt.setInt(2, p.getProjectID());
+		        stmt.setInt(1, price);
 		        
 		        // execute the prepared statement
 		        stmt.executeUpdate();
@@ -1004,7 +1060,7 @@ public class CarpentryLogic {
 				Class.forName("com.mysql.jdbc.Driver");
 				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
 			           //  Statement stmt = con.createStatement()
-					CallableStatement stmt = con.prepareCall("UPDATE projectitems SET sectionID = ? WHERE itemID=?")){
+					CallableStatement stmt = con.prepareCall("UPDATE projectitems SET sectionID = ? WHERE itemID=?;")){
 
 		        // set the parameter values for the prepared statement
 				
@@ -1178,7 +1234,7 @@ public class CarpentryLogic {
 
 
 		        // set the parameter values for the prepared statement
-				System.out.println("test1");
+				
 				
 		        stmt.setString(1, name);
 		        stmt.setString(2, phone);
@@ -1186,7 +1242,7 @@ public class CarpentryLogic {
 		        stmt.setString(4, email);
 		        stmt.setInt(5, c.getID());
 		        // execute the prepared statement
-		        stmt.executeUpdate();System.out.println("test2");
+		        stmt.executeUpdate();
 		        return true;
 		        // check if any rows were updated
 		        

@@ -70,12 +70,13 @@ public class ProjectItemsController implements Initializable{
 	
 	@FXML
     private Button Settings,GenerateByAI,ShowProjectDetails,BackButton,Projects,Email,NewProject,Stock,addItem,addSection,finish;
+	
 	private HashSet<Button> Buttons = new HashSet<Button>();
     
 	 @FXML
 	    private TextArea notes;
     @FXML
-    private TextField orderStatus,ItemName,handsQuantity,axleQuantity,height,quantity,width,CUSTOMERID,ORDERID,PROJECTID,orderCost;
+    private TextField suggestedPrice,orderStatus,ItemName,handsQuantity,axleQuantity,height,quantity,width,CUSTOMERID,ORDERID,PROJECTID;
 
     @FXML
     private ComboBox<ProjectSection> projectSection;
@@ -168,28 +169,6 @@ public class ProjectItemsController implements Initializable{
 	        		break;
 	    		}
 	    		
-	    		case "OrderedMaterials":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/OrderedMaterials.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work - Ordered Materials");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
-	    		case "OrdersCatalog":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/OrdersCatalog.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work - Projects Catalog");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
 	    		case "GenerateByAI":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/AI.fxml"));
 	        		Scene scene = new Scene(pane);
@@ -197,17 +176,6 @@ public class ProjectItemsController implements Initializable{
 	        		stage.setScene(scene);
 	        		stage.setResizable(false);
 	        		stage.setTitle("Awni Wood Work - Generate By Images Ai");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
-	    		case "ProjectDetails":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetailsButton.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work");
 	        		stage.show();
 	        		break;
 	    		}
@@ -225,28 +193,6 @@ public class ProjectItemsController implements Initializable{
 	    		
 	    		case "BackButton":{
 	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/Menu.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work");
-	        		stage.show();
-	        		break;
-	    		}	
-	    		
-	    		case "EditCustomer":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/EditCustomer.fxml"));
-	        		Scene scene = new Scene(pane);
-	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	        		stage.setScene(scene);
-	        		stage.setResizable(false);
-	        		stage.setTitle("Awni Wood Work");
-	        		stage.show();
-	        		break;
-	    		}
-	    		
-	    		case "UpdateProjectDetails":{
-	    			Parent pane = FXMLLoader.load(getClass().getResource("/View/UpdateProjectDetails.fxml"));
 	        		Scene scene = new Scene(pane);
 	        		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 	        		stage.setScene(scene);
@@ -352,6 +298,8 @@ public class ProjectItemsController implements Initializable{
         	String s = i.toString();
         	pi2.setProjectID(s);
         	saveProjectID=i;
+        	
+        	
         	CarpentryLogic.getInstance().addProjectItems(pi2);
         	PI_Array.add(pi2);
         	sectionPressed=true;
@@ -417,7 +365,8 @@ public class ProjectItemsController implements Initializable{
 	    	CarpentryLogic.getInstance().addSection(s);
     	    
 	    	for(ProjectItems piIndex : CarpentryLogic.getInstance().getProjectItems()) {
-	    		CarpentryLogic.getInstance().iNSERTItemSectionID(piIndex, s.getSectionID());
+	    		if(Integer.toString(saveProjectID).equals(piIndex.getProjectID()))
+	    			CarpentryLogic.getInstance().iNSERTItemSectionID(piIndex, s.getSectionID());
 	    	}
     	    switch(color.getSelectionModel().getSelectedItem().toString()) { // To send to the AI
     	  
@@ -480,7 +429,10 @@ public class ProjectItemsController implements Initializable{
         	
         	for(Project p : CarpentryLogic.getInstance().getProjects()){
                 if(Integer.toString(p.getProjectID()).equals(s.getProjectID())) {
-                        cost.setText(Integer.toString(p.getPrice()));
+                        cost.setText(Integer.toString(p.CalculateCost()));
+                        p.setCost(p.CalculateCost());
+                        CarpentryLogic.getInstance().updateProjectCost(p, p.CalculateCost());
+                        suggestedPrice.setText(Integer.toString(p.CalculateSuggestedPrice()));
                 }
         	}
                 
@@ -507,11 +459,16 @@ public class ProjectItemsController implements Initializable{
     @FXML
     void Finish(MouseEvent event) throws IOException, InterruptedException, SQLException {
         
+    	if(price.getText().equals(""))
+			JOptionPane.showMessageDialog(null, "Please add project price first .", "Alert", JOptionPane.WARNING_MESSAGE);
+    	
+    	else {
+    		
     		for(Project p1 : CarpentryLogic.getInstance().getProjects()) {
     			if(p1.getProjectID()==saveProjectID) {
     				CarpentryLogic.getInstance().updateProjectNotes(p1, notes.getText());
     				p1.setPrice(Integer.parseInt(price.getText()));
-    				
+    				CarpentryLogic.getInstance().updateProjectPrice(p1, p1.getPrice());
     			}
     		}
             // Set initial loading image
@@ -595,7 +552,7 @@ public class ProjectItemsController implements Initializable{
 
             new Thread(task).start(); // Start the task in a new thread
     
-    	
+    	}
     }
 
     
@@ -609,7 +566,6 @@ public class ProjectItemsController implements Initializable{
 		Buttons.add(NewProject);
 		Buttons.add(Email);
 		Buttons.add(BackButton);
-		Buttons.add(ShowProjectDetails);
 		Buttons.add(finish);
 		Buttons.add(GenerateByAI);
 		Buttons.add(Settings);
@@ -624,6 +580,8 @@ public class ProjectItemsController implements Initializable{
 		
 		ObservableList<Stock> woodTypeList = FXCollections.observableArrayList(stockArrayList);
 		woodType.getItems().addAll(woodTypeList);
+		
+		
 		
 		ArrayList<Hands> HandsArrayList = new ArrayList<>();
 		for (Hands h : CarpentryLogic.getInstance().getHands()) {

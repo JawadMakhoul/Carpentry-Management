@@ -59,6 +59,11 @@ public class Stock {
 		this.quantity = quantity;
 	}
 	
+	@Override
+	public String toString() {
+		return "" + woodName;
+	}
+
 	static {
         // Load the idCounter value from a file
         try {

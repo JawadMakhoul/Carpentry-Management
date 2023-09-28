@@ -203,14 +203,6 @@ public class AIAutoController implements Initializable{
 		 	
 		 }
 		 
-		
-//		Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetails.fxml"));
-// 		Scene scene = new Scene(pane);
-// 		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-// 		stage.setScene(scene);
-// 		stage.setResizable(false);
-// 		stage.setTitle("Awni Wood Work - Generate Images By Ai");
-// 		stage.show();
  		
  		FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectDetails.fxml"));
 	    Parent root = loader.load();
@@ -228,30 +220,6 @@ public class AIAutoController implements Initializable{
 	    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 	    stage.setScene(scene);
 	    stage.show();
-	    
-//	    Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectDetails.fxml"));
-//		Scene scene = new Scene(pane);
-//		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//		stage.setScene(scene);
-//		stage.setResizable(false);
-//		stage.setTitle("Awni Wood Work - Inbox");
-//		stage.show();
-		 
-//		 FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectDetails.fxml"));
-//		 Parent root = loader.load();
-//
-//		 // Get the controller of the second scene
-//		 String myData = Integer.toString(GlobalProjectID.getId());
-//		 ProjectDetailsToShowController controller = loader.getController();
-//
-//		 // Send data
-//		 controller.setData(myData);
-//
-//		 // Get the current stage
-//		 Stage currentStage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-//
-//		 // Set new root on the current stage's scene
-//		 currentStage.getScene().setRoot(root);
 
 	 }
 	 }

@@ -47,7 +47,7 @@ public class SettingsController implements Initializable{
     @FXML
     private ComboBox<WoodType> woodType;
     @FXML
-    private CheckBox AutomaticOrderCheckbox;
+    private CheckBox AutomaticOrderCheckbox,needAPaint;
 
     @FXML
     private TextField AxleCost;
@@ -77,6 +77,10 @@ public class SettingsController implements Initializable{
     					WoodType wt = new WoodType();
     					wt.setWoodTypeName(WoodType.getText());
     					wt.setWoodTypeCost(Integer.parseInt(WoodTypeCost.getText()));
+    					if(needAPaint.isSelected())
+    						wt.setNeedToBePainted(1);
+    					else wt.setNeedToBePainted(0);
+    					
     					CarpentryLogic.getInstance().addWoodType(wt);
     	      
     					JOptionPane.showMessageDialog(null, "WoodType added successfully.", "Alert",

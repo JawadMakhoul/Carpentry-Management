@@ -158,124 +158,150 @@ public class Project {
     }
 	
 	public int CalculateCost() {
-		 int p_ID= this.projectID;
-		 boolean flag=true;
-		 int price = 0;
-		 
-		 for(Section s : CarpentryLogic.getInstance().getSections()) {
-			 		if(s.getProjectID().equals(Integer.toString(p_ID))) {flag=true;
-			 			switch (s.getAxleDegree()) {		 
-			 			
-			 			 case  "Degree_45" :{
-			 				 price = price + s.getQuantityOFaxle()*10;
-			 				 System.out.println("45/ "+price);
-			 				 break;}
-			 			 case  "Degree_155" :{
-			 				 price = price + s.getQuantityOFaxle()*11;
-			 				System.out.println("155/ "+price);
-			 				 break;}
-			 			 case  "Degree_180" :{
-			 				 price = price + s.getQuantityOFaxle()*13;
-			 				System.out.println("180/ "+price);
-			 				 break;}
-			 			 }
-			 		
-			 		
-			 		
-				 		for(ProjectItems  i : CarpentryLogic.getInstance().getProjectItems()) {
-							 if (i.getSection()==s.getSectionName()) {
-									 switch (i.getWoodType()) {
-									 
-									 	case  "Sandwich" :
-									 	{
-									 		price = price + i.getQuantity()*125;
-									 		System.out.println("Sandwich "+price);
-									 		break;
-									 	}
-									 	
-									 	case  "Mdf" :
-									 	{
-									 		price = price + i.getQuantity()*170;
-									 		System.out.println("Mdf "+price);
-									 		break;
-									 	}
-									 	
-									 	case  "Solid_Wood" :
-									 	{
-									 		price = price + i.getQuantity()*110;
-									 		System.out.println("Solid "+price);
-									 		break;
-									 	}
-									 	
-									 	case  "Melamine" :
-									 	{
-									 		price = price + i.getQuantity()*115;
-									 		System.out.println("melamine "+price);
-									 		break;
-										}
-									 
-									 	case  "Particleboard" :
-									 	{
-									 		price = price + i.getQuantity()*80;
-									 		System.out.println("Particleboard "+price);
-									 		break;
-									 	}
-								 } // end of switch
-									 if(flag) {
-										 
-										 switch (i.getHandsmodel()) {
+
+		String axles= "", handsmodel= "",woodType= "";
+
+		int axlesQuantity=0,handsQuantity=0,woodQuantity=0,cost = 0;
+
+		int axlesCost=0, handsCost=0, woodCost=0;
+
+		int axlesPrice=0, handsprice=0, woodprice=0;
+
 		
-										 	case  "s125" :
-										 	{
-										 		price = price + s.getQuantityOFhands()*10;
-										 		System.out.println("s125 "+price);
-										 		flag=false;
-										 		break;
-										 	}
-										 	
-										 	case  "f120" :
-										 	{
-										 		price = price + s.getQuantityOFhands()*11;
-										 		System.out.println("f120 "+price);
-										 		flag=false;
-										 		break;
-										 	}
-										 	
-										 	case  "r452" :
-										 	{
-										 		price = price + s.getQuantityOFhands()*12;
-										 		System.out.println("r452 "+price);
-										 		flag=false;
-										 		break;
-										 	}
-									 
-										 	case  "gh32" :
-										 	{
-										 		price = price + s.getQuantityOFhands()*14;
-										 		System.out.println("gh32 "+price);
-										 		flag=false;
-										 		break;
-										 	}
-									 
-										 	case  "a17" :
-										 	{
-										 		price = price + s.getQuantityOFhands()*15;
-										 		System.out.println("a17 "+price);
-										 		flag=false;
-										 		break;
-										 	}
-									 
-									 
-										 }// end of switch
-									 } // end of if flag
-							 } // end of is id ==
-						 } // end of projectitems for loop
-			 			
-			 		}
-			 	}
-		 //this.cost=price;
-		return price;
+
+		for(Section s :CarpentryLogic.getInstance().getSections()) {
+
+			if(s.getProjectID().equals(Integer.toString( this.projectID))){
+
+				axles=s.getAxleDegree();
+
+				axlesQuantity=s.getQuantityOFaxle();
+
+				handsQuantity = s.getQuantityOFhands();
+
+			}
+
+		}
+
+		for(ProjectItems i : CarpentryLogic.getInstance().getProjectItems() ) {
+
+			if(i.getProjectID().equals(Integer.toString( this.projectID))) {
+
+				handsmodel = i.getHandsmodel();
+
+				woodType = i.getWoodType();
+
+				woodQuantity = i.getQuantity();
+
+			}
+
+		}
+
+		for(Axles a: CarpentryLogic.getInstance().getAxles()) {
+
+			if(a.getAxleName().equals(axles)) {
+
+				axlesPrice = a.getAxleCost();
+
+			}
+
+		}
+
+		for(Hands h : CarpentryLogic.getInstance().getHands() ) {
+
+			if(h.getHandsName().equals(handsmodel)) {
+
+				handsprice = h.getHandsCost();
+
+			}
+
+		}
+
+		for(WoodType h :CarpentryLogic.getInstance().getWoodType() ) {
+
+			if(h.getWoodTypeName().equals(woodType)) {
+
+				woodprice = h.getWoodTypeCost();
+
+			}
+
+		}
+
+		axlesCost = axlesPrice * axlesQuantity;
+
+		handsCost = handsprice * handsQuantity; 
+
+		woodCost = woodprice * woodQuantity ; 
+
+		cost = cost + axlesCost + handsCost + woodCost;
+
+		
+
+		return cost;
+
+		
+
 	}
+	
+	public int CalculateSuggestedPrice() {
+
+		String Wood= "" ;
+
+		int quantity=0;
+
+		boolean flag = false;
+
+		int suggested;
+
+		int hight=0, width=0;
+
+		for(ProjectItems i : CarpentryLogic.getInstance().getProjectItems() ) {
+
+			if(i.getProjectID().equals(Integer.toString( this.projectID))) {
+
+				Wood = i.getWoodType();
+
+				quantity = i.getQuantity();
+
+				hight = i.getHeight();
+
+				width = i.getWidth();
+
+			}
+
+		}
+
+		for(WoodType h :CarpentryLogic.getInstance().getWoodType() ) {
+
+			if(h.getWoodTypeName().equals(Wood)) {
+
+			if(h.getNeedToBePainted() == 1) {
+
+				flag = true;
+
+			}
+
+		}
+
+		}
+
+		suggested = CalculateCost();
+
+		if (flag == true) {
+
+			suggested += ((hight*width)/100) * 200;
+
+		}
+
+		suggested += (quantity/4)*750;
+
+		
+
+	return suggested;
+
+	}
+
+
 	
 
 }

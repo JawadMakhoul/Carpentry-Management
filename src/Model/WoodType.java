@@ -17,6 +17,7 @@ public class WoodType {
 	private int idWoodType;
 	private String WoodTypeName;
 	private int WoodTypeCost;
+	private int needToBePainted;
 	public static int getIdCounter() {
 		return idCounter;
 	}
@@ -64,11 +65,18 @@ public class WoodType {
             e.printStackTrace();
         }
     }
-	public WoodType(int idWoodType, String woodTypeName, int woodTypeCost) {
+	public int getNeedToBePainted() {
+		return needToBePainted;
+	}
+	public void setNeedToBePainted(int needToBePainted) {
+		this.needToBePainted = needToBePainted;
+	}
+	public WoodType(int idWoodType, String woodTypeName, int woodTypeCost, int needToBePainted) {
 		super();
 		this.idWoodType = idWoodType;
-		WoodTypeName = woodTypeName;
-		WoodTypeCost = woodTypeCost;
+		this.WoodTypeName = woodTypeName;
+		this.WoodTypeCost = woodTypeCost;
+		this.needToBePainted=needToBePainted;
 	}
 	
 	public WoodType() {

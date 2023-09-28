@@ -3,9 +3,7 @@ package Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.ResourceBundle;
 
@@ -27,7 +25,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -200,6 +197,7 @@ public class NewProjectController implements Initializable {
 									p.setPhoneNumber(c.getPhoneNUMBER());
 									p.setCost(p.CalculateCost());
 									p.setPrice(0);
+									p.setDate();
 									p.setStatus(Enumeration.OrderStatus.WaitingProcess.toString());
 									CarpentryLogic.getInstance().addProject(p);
 									FXMLLoader loader = new FXMLLoader(
@@ -247,7 +245,6 @@ public class NewProjectController implements Initializable {
 									// System.out.println(GlobalProjectID.getCustomerName());
 									//try {
 										if(phoneNumber.getText().matches("^05\\d{8}$")) {
-											int num = Integer.parseInt((phoneNumber.getText()));
 											c.setPhoneNUMBER(phoneNumber.getText());
 											c.setAddress(address.getText());
 											if (email.getText().matches("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b")) {
@@ -267,6 +264,7 @@ public class NewProjectController implements Initializable {
 												p.setStatus(Enumeration.OrderStatus.WaitingProcess.toString());
 												p.setCost(p.CalculateCost());
 												p.setPrice(0);
+												p.setDate();
 												CarpentryLogic.getInstance().addProject(p);
 
 												FXMLLoader loader = new FXMLLoader(
@@ -426,7 +424,7 @@ public class NewProjectController implements Initializable {
 	
 	public void CustomersEmails() {
 		emailsarray.clear();
-		customersemails.getItems().clear();
+		//customersemails.getItems().clear();
 		for (Customer c : CarpentryLogic.getInstance().getCustomers()) {
 
 			emailsarray.add(c.getEmail());

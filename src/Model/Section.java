@@ -55,16 +55,6 @@ public class Section {
 		this.sectionName = sectionName;
 	}
 
-//	public String getProjectSection() {
-//		return ProjectSection;
-//	}
-//
-//
-//	public void setProjectSection(String projectSection) {
-//		ProjectSection = projectSection;
-//	}
-
-
 	public String getProjectID() {
 		return projectID;
 	}

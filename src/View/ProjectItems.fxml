@@ -171,13 +171,19 @@
                      </font>
                   </Text>
                   <TextField fx:id="cost" alignment="CENTER_RIGHT" layoutX="943.0" layoutY="680.0" styleClass="textField" />
-                  <Text fill="#d96e3a" layoutX="814.0" layoutY="709.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Cost" textAlignment="CENTER">
+                  <Text fill="#d96e3a" layoutX="763.0" layoutY="703.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Cost" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="price" alignment="CENTER_RIGHT" layoutX="943.0" layoutY="749.0" styleClass="textField" />
-                  <Text fill="#d96e3a" layoutX="814.0" layoutY="778.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Price" textAlignment="CENTER">
+                  <TextField fx:id="price" alignment="CENTER_RIGHT" layoutX="943.0" layoutY="793.0" styleClass="textField" />
+                  <Text fill="#d96e3a" layoutX="763.0" layoutY="816.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Price" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="suggestedPrice" alignment="CENTER_RIGHT" layoutX="943.0" layoutY="737.0" styleClass="textField" />
+                  <Text fill="#d96e3a" layoutX="763.0" layoutY="760.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suggested Price" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
