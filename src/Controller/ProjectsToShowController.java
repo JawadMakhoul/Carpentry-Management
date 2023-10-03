@@ -553,13 +553,6 @@ public class ProjectsToShowController implements Initializable {
 	 
 	@FXML
     void Open_Notes(ActionEvent event) throws IOException {
-//		Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectNotes.fxml"));
-//		Scene scene = new Scene(pane);
-//		Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//		stage.setScene(scene);
-//		stage.setResizable(false);
-//		stage.setTitle("Awni Wood Work - Project Notes");
-//		stage.show();
 		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectNotes.fxml"));
 		

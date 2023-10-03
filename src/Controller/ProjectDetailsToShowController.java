@@ -407,7 +407,7 @@ public class ProjectDetailsToShowController implements Initializable{
 	    			    	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
 	    			    	s.setAxleDegree(brzolDegree.getSelectionModel().getSelectedItem().toString());
 	    			    	CarpentryLogic.getInstance().addSection(s);
-	    			    	CarpentryLogic.getInstance().iNSERTItemSectionID(pi, s.getSectionID());
+	    			    	CarpentryLogic.getInstance().updateItemSectionID(pi, s.getSectionID());
 	    			    	pi.setSectionID(Integer.toString(s.getSectionID()));
 	    			    	
 	    		        	ArrayList<Stock> stock = new ArrayList<Stock>();
@@ -463,7 +463,7 @@ public class ProjectDetailsToShowController implements Initializable{
 	        			pi2.setSectionID(tableView.getSelectionModel().getSelectedItem().getSectionID());
 	        			CarpentryLogic.getInstance().addProjectItems(pi2);
 	        			int sID = Integer.parseInt(tableView.getSelectionModel().getSelectedItem().getSectionID());
-	        			CarpentryLogic.getInstance().iNSERTItemSectionID(pi2, sID);
+	        			CarpentryLogic.getInstance().updateItemSectionID(pi2, sID);
 	        			colorField.setValue(null);
     		        	projectSection.setValue(null);
     		        	brzolDegree.setValue(null);	

@@ -46,7 +46,7 @@ public class WoodType {
 	static {
         // Load the idCounter value from a file
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("WoodType.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("idCounterWoodType.txt"));
             idCounter = Integer.parseInt(reader.readLine());
             reader.close();
         } catch (IOException e) {
@@ -58,7 +58,7 @@ public class WoodType {
 	public static void saveIdCounter() {
         // Save the idCounter value to a file
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("WoodType.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("idCounterWoodType.txt"));
             writer.write(Integer.toString(idCounter));
             writer.close();
         } catch (IOException e) {

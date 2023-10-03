@@ -128,7 +128,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Button fx:id="addWoodType" layoutX="710.0" layoutY="282.0" mnemonicParsing="false" onMousePressed="#AddButton" prefHeight="45.0" prefWidth="97.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Add" />
+                  <Button fx:id="addWoodType" layoutX="710.0" layoutY="282.0" mnemonicParsing="false" onMousePressed="#AddORDeleteButton" prefHeight="45.0" prefWidth="97.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Add" />
                   <TextField fx:id="AxleName" alignment="CENTER" layoutX="137.0" layoutY="407.0" prefHeight="45.0" prefWidth="211.0" styleClass="textField" />
                   <TextField fx:id="AxleCost" alignment="CENTER" layoutX="388.0" layoutY="407.0" prefHeight="45.0" prefWidth="300.0" styleClass="textField" />
                   <Text fill="#d96e3a" layoutX="137.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="223.99999999999994">
@@ -141,7 +141,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Button fx:id="addAxle" layoutX="710.0" layoutY="407.0" mnemonicParsing="false" onMousePressed="#AddButton" prefHeight="45.0" prefWidth="97.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Add" />
+                  <Button fx:id="addAxle" layoutX="710.0" layoutY="407.0" mnemonicParsing="false" onMousePressed="#AddORDeleteButton" prefHeight="45.0" prefWidth="97.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Add" />
                   <Text fill="#d96e3a" layoutX="18.0" layoutY="571.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hands" wrappingWidth="143.0">
                      <font>
                         <Font name="System Bold" size="18.0" />
@@ -159,7 +159,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Button fx:id="addHand" layoutX="710.0" layoutY="549.0" mnemonicParsing="false" onMousePressed="#AddButton" prefHeight="45.0" prefWidth="97.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Add" />
+                  <Button fx:id="addHand" layoutX="710.0" layoutY="549.0" mnemonicParsing="false" onMousePressed="#AddORDeleteButton" prefHeight="45.0" prefWidth="97.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Add" />
                   <CheckBox fx:id="AutomaticOrderCheckbox" layoutX="18.0" layoutY="673.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="282.0" text="Automatic Materials Order">
                      <font>
                         <Font size="20.0" />
@@ -170,11 +170,11 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Text>
-                  <Button fx:id="addSupplierEmail" layoutX="710.0" layoutY="666.0" mnemonicParsing="false" onMousePressed="#AddButton" prefHeight="45.0" prefWidth="97.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Add" />
-                  <Button fx:id="deleteWoodType" layoutX="1113.0" layoutY="282.0" mnemonicParsing="false" onMousePressed="#AddButton" prefHeight="45.0" prefWidth="97.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Delete" />
-                  <Button fx:id="deleteAxle" layoutX="1113.0" layoutY="407.0" mnemonicParsing="false" onMousePressed="#AddButton" prefHeight="45.0" prefWidth="97.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Delete" />
-                  <Button fx:id="deleteHand" layoutX="1113.0" layoutY="549.0" mnemonicParsing="false" onMousePressed="#AddButton" prefHeight="45.0" prefWidth="97.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Delete" />
-                  <Button fx:id="deleteSupplier" layoutX="1113.0" layoutY="666.0" mnemonicParsing="false" onMousePressed="#AddButton" prefHeight="45.0" prefWidth="97.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Delete" />
+                  <Button fx:id="addSupplierEmail" layoutX="710.0" layoutY="666.0" mnemonicParsing="false" onMousePressed="#AddORDeleteButton" prefHeight="45.0" prefWidth="97.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Add" />
+                  <Button fx:id="deleteWoodType" layoutX="1113.0" layoutY="282.0" mnemonicParsing="false" onMousePressed="#AddORDeleteButton" prefHeight="45.0" prefWidth="97.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Delete" />
+                  <Button fx:id="deleteAxle" layoutX="1113.0" layoutY="407.0" mnemonicParsing="false" onMousePressed="#AddORDeleteButton" prefHeight="45.0" prefWidth="97.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Delete" />
+                  <Button fx:id="deleteHand" layoutX="1113.0" layoutY="549.0" mnemonicParsing="false" onMousePressed="#AddORDeleteButton" prefHeight="45.0" prefWidth="97.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Delete" />
+                  <Button fx:id="deleteSupplier" layoutX="1113.0" layoutY="666.0" mnemonicParsing="false" onMousePressed="#AddORDeleteButton" prefHeight="45.0" prefWidth="97.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Delete" />
                   <ComboBox fx:id="woodType" layoutX="867.0" layoutY="284.0" prefHeight="45.0" prefWidth="224.0" promptText="Wood Type" styleClass="comboBox" stylesheets="@../Controller/style.css" />
                   <ComboBox fx:id="handsModelNumber" layoutX="867.0" layoutY="555.0" prefHeight="39.0" prefWidth="224.0" promptText="Hands Model" styleClass="comboBox" stylesheets="@../Controller/style.css" />
                   <ComboBox fx:id="brzolDegree" layoutX="867.0" layoutY="413.0" prefHeight="39.0" prefWidth="224.0" promptText="Axles Degree" styleClass="comboBox" stylesheets="@../Controller/style.css" />

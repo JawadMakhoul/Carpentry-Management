@@ -366,7 +366,7 @@ public class ProjectItemsController implements Initializable{
     	    
 	    	for(ProjectItems piIndex : CarpentryLogic.getInstance().getProjectItems()) {
 	    		if(Integer.toString(saveProjectID).equals(piIndex.getProjectID()))
-	    			CarpentryLogic.getInstance().iNSERTItemSectionID(piIndex, s.getSectionID());
+	    			CarpentryLogic.getInstance().updateItemSectionID(piIndex, s.getSectionID());
 	    	}
     	    switch(color.getSelectionModel().getSelectedItem().toString()) { // To send to the AI
     	  
@@ -482,22 +482,22 @@ public class ProjectItemsController implements Initializable{
                     try {
                     	
                     	if(sec.getSectionName().equals("Room")) {
-                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py",  "Bedroom that includes bed and desk, closet with a mirror in" + pi.getColor());
+                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Bedroom that includes bed and desk, closet with a mirror in" + pi.getColor());
                             p = pb.start();
                     	}
                     	
                     	if(sec.getSectionName().equals("Kitchen")) {
-                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py",  "Kitchen that includes island in" + pi.getColor());
+                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Kitchen that includes island in" + pi.getColor());
                             p = pb.start();
                     	}
                     	
                     	if(sec.getSectionName().equals("LivingRoom")) {
-                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py",  "LivingRoom that includes TV furniture and a salon table in" + pi.getColor());
+                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "LivingRoom that includes TV furniture and a salon table in" + pi.getColor());
                             p = pb.start();
                     	}
                     	
                     	if(sec.getSectionName().equals("Bathroom")) {
-                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py",  "Bathroom that includes sink cabinets with a mirror in" + pi.getColor());
+                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Bathroom that includes sink cabinets with a mirror in" + pi.getColor());
                             p = pb.start();
                     	}
                     		

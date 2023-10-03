@@ -439,36 +439,6 @@ public class CarpentryLogic {
 			return false;
 		}
 		
-		public  boolean addProjectItemsByProjectID(int projectID) {
-			try {
-				Class.forName("com.mysql.jdbc.Driver");
-				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
-			           //  Statement stmt = con.createStatement()
-					CallableStatement stmt = con.prepareCall("Insert into projectitems values(?)")){
-
-					// int i = 1;
-//					stmt.setString(1, null); // can't be null
-//					stmt.setInt(2, null);
-//					stmt.setInt(3, null);
-//					stmt.setString(4, null);
-//					stmt.setInt(5, null);
-					stmt.setInt(6, projectID);
-//					stmt.setString(7, null);
-//					stmt.setString(8, null);
-//					stmt.setString(9, null);
-					
-					
-					stmt.executeUpdate();
-					return true;
-
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			return false;
-		}
 		public  boolean addProjectItems(ProjectItems pi) {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
@@ -1055,7 +1025,7 @@ public class CarpentryLogic {
 
 	}
 		
-		public boolean iNSERTItemSectionID(ProjectItems pi,int s) throws SQLException {
+		public boolean updateItemSectionID(ProjectItems pi,int s) throws SQLException {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");

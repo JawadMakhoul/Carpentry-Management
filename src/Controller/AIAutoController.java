@@ -135,7 +135,7 @@ public class AIAutoController implements Initializable{
     }
  
  @FXML
- void UpdateProjectImage(MouseEvent event) throws SQLException, IOException {System.out.println("image buuton");
+ void UpdateProjectImage(MouseEvent event) throws SQLException, IOException {
 
 	 for(Button b : imagebtns) {
 		 if(b.isPressed()) {

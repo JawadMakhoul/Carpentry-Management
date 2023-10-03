@@ -65,7 +65,7 @@ public class SettingsController implements Initializable{
     private Button deleteAxle,deleteHand,deleteSupplier,deleteWoodType;
 
     @FXML
-    void AddButton(MouseEvent event) throws IOException, ClassNotFoundException {
+    void AddORDeleteButton(MouseEvent event) throws IOException, ClassNotFoundException {
 
     	for (Button b : Buttons) {
     		if (b.isPressed()) {
