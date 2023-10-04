@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -46,6 +47,7 @@ import Model.Section;
 import Model.Stock;
 import Model.Axles;
 import Model.BackgroundColorEvent;
+import Model.BackgroundColorEvent2;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -79,7 +81,10 @@ public class ProjectDetailsToShowController implements Initializable{
     @FXML
     private ComboBox<String> ComboBoxObject;
 
-
+    @FXML
+    private ComboBox<Integer> month;
+    @FXML
+    private Button reportByMonth;
     @FXML
     private ComboBox<String> adddeleteitem;
 
@@ -649,11 +654,6 @@ public class ProjectDetailsToShowController implements Initializable{
 	      							ProjectDetailsToShowNonStatic pdtsToArray = new ProjectDetailsToShowNonStatic(p.getCustomerID(),pi.getProjectID(),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel(),pi.getSectionID());
 	      							arraylistToShow.add(pdtsToArray);
 	      				
-	      						
-	      						
-	          					
-	          					
-	          					
 	                  		}
 	          			}
 	          	
@@ -856,8 +856,183 @@ public class ProjectDetailsToShowController implements Initializable{
 				
 
 		     }
-	    }
+	    	}
 	    
+	    private PdfPCell getCenterAlignedCell(String content, Font font) {
+	        PdfPCell cell = new PdfPCell(new Phrase(content, font));
+	        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        return cell;
+	    }
+
+	    
+	    @FXML
+	    void GetProjectReportByMonth(ActionEvent event) {
+
+
+
+	    	Document document = new Document();
+
+	    	String desktopPath="";
+
+	    	PdfWriter writer = null;
+
+	    	try {
+
+	    	    desktopPath = System.getProperty("user.home") + "/Downloads/Project_Report.pdf";
+
+	    	    writer= PdfWriter.getInstance(document, new FileOutputStream(desktopPath));
+
+	    	    writer.setPageEvent(new BackgroundColorEvent2());
+
+	    	    document.open();
+
+	    	    ArrayList <Project> projectsList = new ArrayList<>();
+
+	    	  
+	    	    
+
+	    	    for(Project p : CarpentryLogic.getInstance().getProjects()) {
+	    	    	if(Integer.toString(p.getDate().getMonth()+1).equals(month.getSelectionModel().getSelectedItem().toString()))  {
+	    	    		
+	    	    		projectsList.add(p);
+	    	    	}
+
+	    	    }
+
+	    	    // 1. Bold center title "Project Report"
+
+	    	    Font titleFont = new Font(Font.FontFamily.HELVETICA, 32, Font.BOLD);
+
+	    	    Paragraph title = new Paragraph("Project Report", titleFont);
+
+	    	    title.setAlignment(Element.ALIGN_CENTER);
+
+	    	    title.setSpacingAfter(10);
+
+	    	    document.add(title);
+
+
+
+	    	    // 2. The date the report was created
+
+	    	    String currentDate = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+
+	    	    Paragraph dateParagraph = new Paragraph("Report Date: " + currentDate);
+
+	    	    dateParagraph.setSpacingAfter(10);
+
+	    	    document.add(dateParagraph);
+
+
+
+	    	    
+
+	    	    // The rest of your table generation code...
+
+	    	    PdfPTable table = new PdfPTable(8);
+
+	    	    table.setWidthPercentage(108);
+
+	    	    Font boldFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
+
+	    	    PdfPCell headerCell1 = new PdfPCell(new Phrase("Project ID", boldFont));
+    	        headerCell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+    	        table.addCell(headerCell1);
+	    	    
+    	        PdfPCell headerCell2 = new PdfPCell(new Phrase("Customer Name", boldFont));
+    	        headerCell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+    	        table.addCell(headerCell2);
+    	        
+    	        PdfPCell headerCell3 = new PdfPCell(new Phrase("Project Category", boldFont));
+    	        headerCell3.setHorizontalAlignment(Element.ALIGN_CENTER);
+    	        table.addCell(headerCell3);
+    	        
+    	        
+    	        PdfPCell headerCell5 = new PdfPCell(new Phrase("Project Status", boldFont));
+    	        headerCell5.setHorizontalAlignment(Element.ALIGN_CENTER);
+    	        table.addCell(headerCell5);
+    	        
+    	        PdfPCell headerCell6 = new PdfPCell(new Phrase("Project Cost", boldFont));
+    	        headerCell6.setHorizontalAlignment(Element.ALIGN_CENTER);
+    	        table.addCell(headerCell6);
+    	        
+    	        PdfPCell headerCell7 = new PdfPCell(new Phrase("Project Price", boldFont));
+    	        headerCell7.setHorizontalAlignment(Element.ALIGN_CENTER);
+    	        table.addCell(headerCell7);
+    	        
+    	        PdfPCell headerCell8 = new PdfPCell(new Phrase("Project Date", boldFont));
+    	        headerCell8.setHorizontalAlignment(Element.ALIGN_CENTER);
+    	        table.addCell(headerCell8);
+    	        
+    	        PdfPCell headerCell9 = new PdfPCell(new Phrase("Phone Number", boldFont));
+    	        headerCell9.setHorizontalAlignment(Element.ALIGN_CENTER);
+    	        table.addCell(headerCell9);
+    	        
+    	        for (Project project : projectsList) {
+    	            table.addCell(getCenterAlignedCell(Integer.toString(project.getProjectID()), boldFont));
+    	            table.addCell(getCenterAlignedCell(project.getCustomerID(), boldFont));
+    	            table.addCell(getCenterAlignedCell(project.getProjectCategory(), boldFont));
+    	            table.addCell(getCenterAlignedCell(project.getStatus(), boldFont));
+    	            table.addCell(getCenterAlignedCell(Integer.toString(project.getCost()), boldFont));
+    	            table.addCell(getCenterAlignedCell(Integer.toString(project.getPrice()), boldFont));
+    	            table.addCell(getCenterAlignedCell(project.getDate().toString(), boldFont));
+    	            table.addCell(getCenterAlignedCell(project.getPhoneNumber(), boldFont));
+    	        }
+
+    	        
+    	        document.add(table);
+
+
+    	        int totalCost=0, totalPrice=0, revenue=0;
+
+        	    for(Project p : projectsList) {
+
+        	    	totalCost+=p.getCost();
+
+        	    	totalPrice=p.getPrice();
+
+        	    }
+
+        	    revenue= totalPrice-totalCost;
+
+        	    
+
+        	    Paragraph monthRevenueParagraph = new Paragraph("Month revenue: " + revenue);
+
+        	    monthRevenueParagraph.setSpacingAfter(20);  // Add some spacing after this before the table
+
+        	    document.add(monthRevenueParagraph);
+	    	} catch (DocumentException | FileNotFoundException e) {
+
+	    	    e.printStackTrace();
+
+	    	} finally {
+
+	    	    document.close();
+
+	    	    try {
+
+	    	        if (Desktop.isDesktopSupported()) {
+
+	    	            Desktop.getDesktop().open(new File(desktopPath));
+
+	    	        }
+
+	    	    } catch (IOException e) {
+
+	    	        e.printStackTrace();
+
+	    	    }
+
+
+
+	    	}
+
+
+
+	    
+
+	}
 	    @FXML
 	    void showProjectImage(ActionEvent event) throws IOException {
 	    	
@@ -892,7 +1067,7 @@ public class ProjectDetailsToShowController implements Initializable{
 	    	String desktopPath="";
 	    	PdfWriter writer = null;
 	    	try {
-	    	    desktopPath = System.getProperty("user.home") + "/Downloads/Project_Report.pdf";
+	    	    desktopPath = System.getProperty("user.home") + "/Downloads/Project_Details_Report.pdf";
 	    	    writer= PdfWriter.getInstance(document, new FileOutputStream(desktopPath));
 	    	    writer.setPageEvent(new BackgroundColorEvent());
 	    	    document.open();
@@ -907,7 +1082,7 @@ public class ProjectDetailsToShowController implements Initializable{
 	    	    }
 	    	    // 1. Bold center title "Project Report"
 	    	    Font titleFont = new Font(Font.FontFamily.HELVETICA, 32, Font.BOLD);
-	    	    Paragraph title = new Paragraph("Project Report", titleFont);
+	    	    Paragraph title = new Paragraph("Project Details Report", titleFont);
 	    	    title.setAlignment(Element.ALIGN_CENTER);
 	    	    title.setSpacingAfter(10);
 	    	    document.add(title);
@@ -1106,6 +1281,10 @@ public class ProjectDetailsToShowController implements Initializable{
 			}
 			ObservableList<Axles> axlesDegree = FXCollections.observableArrayList(AxlesArrayList);
 			brzolDegree.getItems().addAll(axlesDegree);
+			
+			
+			ObservableList<Integer> months = FXCollections.observableArrayList(1,2,3,4,5,6,7,8,9,10,11,12);
+			month.getItems().addAll(months);
 			
 			ObservableList<SectionColor> section_Colors = FXCollections.observableArrayList(SectionColor.Aspen_Tan,SectionColor.Avocado,SectionColor.Beige_Gray,SectionColor.Black_Oak,SectionColor.Black_Walnut,SectionColor.Blueridge_Gray,SectionColor.Brick_Red,SectionColor.Caramel,SectionColor.Cedar_Naturaltone,SectionColor.Cinder,SectionColor.Cinnamon,SectionColor.Clove_Brown,SectionColor.Coffee,SectionColor.Dark_Mahogany,SectionColor.Dark_Oak,SectionColor.Dark_Tahoe,SectionColor.Desert_Sand,SectionColor.Drift_Gray,SectionColor.Ebony,SectionColor.Espresso,SectionColor.Ginger,SectionColor.Light_Mocha,SectionColor.Light_Oak,SectionColor.Mushroom,SectionColor.Naturaltone_Fir,SectionColor.Olive_Brown,SectionColor.Oxford_Brown,SectionColor.Pearl_Gray,SectionColor.Polar_Gray,SectionColor.Redwood,SectionColor.Redwood_Naturaltone,SectionColor.Rosewood,SectionColor.Russet,SectionColor.Sierra,SectionColor.Smoke_Blue,SectionColor.Storm_Gray,SectionColor.Teak,SectionColor.Tobacco,SectionColor.Walnut,SectionColor.Weathered_Barnboard);
 			colorField.getItems().addAll(section_Colors);
