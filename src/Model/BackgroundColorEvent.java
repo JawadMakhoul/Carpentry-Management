@@ -44,11 +44,11 @@ public class BackgroundColorEvent extends PdfPageEventHelper {
         cb.setGState(state);
         
         cb.setColorFill(paneColor1);
-        cb.roundRectangle(30, 525, 270, 220, 10f);
+        cb.roundRectangle(30, 25, 530, 800, 10f);
         cb.fill();
         
-        cb.setColorFill(paneColor2);
-        cb.roundRectangle(310, 525, 240, 220, 10f);
-        cb.fill();
+//        cb.setColorFill(paneColor2);
+//        cb.roundRectangle(310, 525, 240, 220, 10f);
+//        cb.fill();
     }
 }

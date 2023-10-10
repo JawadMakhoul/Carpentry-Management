@@ -9,6 +9,8 @@ public class ProjectDetailsToShowNonStatic {
 	private  String itemName;
 	private  String itemHeight;
 	private  String itemWidth;
+	private  String itemDepth;
+	
 	private  String woodType;
 	private  String quantity;
 	private  String section;
@@ -93,9 +95,18 @@ public class ProjectDetailsToShowNonStatic {
 	public void setModelNumberOFhands(String modelNumberOFhands) {
 		this.modelNumberOFhands = modelNumberOFhands;
 	}
+	
+	public String getItemDepth() {
+		return itemDepth;
+	}
+	public void setItemDepth(String itemDepth) {
+		this.itemDepth = itemDepth;
+	}
+	
+	
 	public ProjectDetailsToShowNonStatic(String customerName, String projectID, String projectCategory, String itemID,
 			String itemName, String itemHeight, String itemWidth, String woodType, String quantity, String section,
-			String color, String modelNumberOFhands,String sectionID) {
+			String color, String modelNumberOFhands,String sectionID, String itemDepth) {
 		super();
 		this.customerName = customerName;
 		this.ProjectID = projectID;
@@ -110,6 +121,7 @@ public class ProjectDetailsToShowNonStatic {
 		this.color = color;
 		this.modelNumberOFhands = modelNumberOFhands;
 		this.sectionID=sectionID;
+		this.itemDepth=itemDepth;
 	}
 	
 	

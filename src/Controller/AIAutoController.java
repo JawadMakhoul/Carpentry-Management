@@ -43,6 +43,14 @@ public class AIAutoController implements Initializable{
 		AIAutoController.pdts = pdts;
 	}
 
+	private int data;
+
+    public void setData(int data) {
+        this.data = data;
+       
+        // Maybe update some UI elements here based on the data
+    }
+    
     @FXML
  void MoveTo(MouseEvent event) throws IOException {
     	
@@ -142,84 +150,255 @@ public class AIAutoController implements Initializable{
 		 
 		 switch(b.getId()) {
 		 	case "image1btn":{
-		 		CarpentryLogic.getInstance().addProjectImage(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_1.jpg");
-		 		ProjectItemsController.getPdts().setImage("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_1.jpg");
+		 		
+		 		if(data==1) {
+		 			CarpentryLogic.getInstance().addProjectImage1(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_1.jpg");
+		 			ProjectItemsController.getPdts().setImage1("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_1.jpg");
+		 		}
+		 		
+		 		else if(data==2) {
+		 			CarpentryLogic.getInstance().addProjectImage2(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_1.jpg");
+		 			ProjectItemsController.getPdts().setImage2("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_1.jpg");
+		 		}
+		 		
+		 		else if(data==3) {
+		 			CarpentryLogic.getInstance().addProjectImage3(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_1.jpg");
+		 			ProjectItemsController.getPdts().setImage3("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_1.jpg");
+		 		}
+		 		
+		 		else if(data==4) {
+		 			CarpentryLogic.getInstance().addProjectImage4(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_1.jpg");
+		 			ProjectItemsController.getPdts().setImage4("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_1.jpg");
+		 		}
 		 		break;
 		 	}
 		 	
 		 	case "image2btn":{
-		 		CarpentryLogic.getInstance().addProjectImage(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_2.jpg");
-		 		ProjectItemsController.getPdts().setImage("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_2.jpg");
+		 		
+		 		if(data==1) {
+		 			CarpentryLogic.getInstance().addProjectImage1(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_2.jpg");
+		 			ProjectItemsController.getPdts().setImage1("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_2.jpg");
+		 		}
+		 		
+		 		else if(data==2) {
+		 			CarpentryLogic.getInstance().addProjectImage2(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_2.jpg");
+		 			ProjectItemsController.getPdts().setImage2("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_2.jpg");
+		 		}
+		 		
+		 		else if(data==3) {
+		 			CarpentryLogic.getInstance().addProjectImage3(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_2.jpg");
+		 			ProjectItemsController.getPdts().setImage3("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_2.jpg");
+		 		}
+		 		
+		 		else if(data==4) {
+		 			CarpentryLogic.getInstance().addProjectImage4(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_2.jpg");
+		 			ProjectItemsController.getPdts().setImage4("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_2.jpg");
+		 		}
 		 		break;
 		 	}
 
 		 	case "image3btn":{
-		 		CarpentryLogic.getInstance().addProjectImage(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_3.jpg");
-		 		ProjectItemsController.getPdts().setImage("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_3.jpg");
+		 		
+		 		if(data==1) {
+		 			CarpentryLogic.getInstance().addProjectImage1(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_3.jpg");
+		 			ProjectItemsController.getPdts().setImage1("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_3.jpg");
+		 		}
+		 		
+		 		else if(data==2) {
+		 			CarpentryLogic.getInstance().addProjectImage2(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_3.jpg");
+		 			ProjectItemsController.getPdts().setImage2("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_3.jpg");
+		 		}
+		 		
+		 		else if(data==3) {
+		 			CarpentryLogic.getInstance().addProjectImage3(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_3.jpg");
+		 			ProjectItemsController.getPdts().setImage3("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_3.jpg");
+		 		}
+		 		
+		 		else if(data==4) {
+		 			CarpentryLogic.getInstance().addProjectImage4(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_3.jpg");
+		 			ProjectItemsController.getPdts().setImage4("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_3.jpg");
+		 		}
 		 		break;
 		 	}
 
 		 	case "image4btn":{
-		 		CarpentryLogic.getInstance().addProjectImage(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_4.jpg");
-		 		ProjectItemsController.getPdts().setImage("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_4.jpg");
+		 		
+		 		if(data==1) {
+		 			CarpentryLogic.getInstance().addProjectImage1(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_4.jpg");
+		 			ProjectItemsController.getPdts().setImage1("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_4.jpg");
+		 		}
+		 		
+		 		else if(data==2) {
+		 			CarpentryLogic.getInstance().addProjectImage2(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_4.jpg");
+		 			ProjectItemsController.getPdts().setImage2("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_4.jpg");
+		 		}
+		 		
+		 		else if(data==3) {
+		 			CarpentryLogic.getInstance().addProjectImage3(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_4.jpg");
+		 			ProjectItemsController.getPdts().setImage3("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_4.jpg");
+		 		}
+		 		
+		 		else if(data==4) {
+		 			CarpentryLogic.getInstance().addProjectImage4(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_4.jpg");
+		 			ProjectItemsController.getPdts().setImage4("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_4.jpg");
+		 		}
 		 		break;
 		 	}
 
 		 	case "image5btn":{
-		 		CarpentryLogic.getInstance().addProjectImage(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_5.jpg");
-		 		ProjectItemsController.getPdts().setImage("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_5.jpg");
+		 		if(data==1) {
+		 			CarpentryLogic.getInstance().addProjectImage1(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_5.jpg");
+		 			ProjectItemsController.getPdts().setImage1("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_5.jpg");
+		 		}
+		 		
+		 		else if(data==2) {
+		 			CarpentryLogic.getInstance().addProjectImage2(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_5.jpg");
+		 			ProjectItemsController.getPdts().setImage2("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_5.jpg");
+		 		}
+		 		
+		 		else if(data==3) {
+		 			CarpentryLogic.getInstance().addProjectImage3(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_5.jpg");
+		 			ProjectItemsController.getPdts().setImage3("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_5.jpg");
+		 		}
+		 		
+		 		else if(data==4) {
+		 			CarpentryLogic.getInstance().addProjectImage4(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_5.jpg");
+		 			ProjectItemsController.getPdts().setImage4("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_5.jpg");
+		 		}
 		 		break;
 		 	}
 
 		 	case "image6btn":{
-		 		CarpentryLogic.getInstance().addProjectImage(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_6.jpg");
-		 		ProjectItemsController.getPdts().setImage("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_6.jpg");
+		 		if(data==1) {
+		 			CarpentryLogic.getInstance().addProjectImage1(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_6.jpg");
+		 			ProjectItemsController.getPdts().setImage1("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_6.jpg");
+		 		}
+		 		
+		 		else if(data==2) {
+		 			CarpentryLogic.getInstance().addProjectImage2(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_6.jpg");
+		 			ProjectItemsController.getPdts().setImage2("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_6.jpg");
+		 		}
+		 		
+		 		else if(data==3) {
+		 			CarpentryLogic.getInstance().addProjectImage3(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_6.jpg");
+		 			ProjectItemsController.getPdts().setImage3("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_6.jpg");
+		 		}
+		 		
+		 		else if(data==4) {
+		 			CarpentryLogic.getInstance().addProjectImage4(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_6.jpg");
+		 			ProjectItemsController.getPdts().setImage4("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_6.jpg");
+		 		}
 		 		break;
 		 	}
 
 		 	case "image7btn":{
-		 		CarpentryLogic.getInstance().addProjectImage(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_7.jpg");
-		 		ProjectItemsController.getPdts().setImage("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_7.jpg");
+		 		if(data==1) {
+		 			CarpentryLogic.getInstance().addProjectImage1(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_7.jpg");
+		 			ProjectItemsController.getPdts().setImage1("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_7.jpg");
+		 		}
+		 		
+		 		else if(data==2) {
+		 			CarpentryLogic.getInstance().addProjectImage2(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_7.jpg");
+		 			ProjectItemsController.getPdts().setImage2("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_7.jpg");
+		 		}
+		 		
+		 		else if(data==3) {
+		 			CarpentryLogic.getInstance().addProjectImage3(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_7.jpg");
+		 			ProjectItemsController.getPdts().setImage3("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_7.jpg");
+		 		}
+		 		
+		 		else if(data==4) {
+		 			CarpentryLogic.getInstance().addProjectImage4(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_7.jpg");
+		 			ProjectItemsController.getPdts().setImage4("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_7.jpg");
+		 		}
 		 		break;
 		 	}
 
 		 	case "image8btn":{
-		 		CarpentryLogic.getInstance().addProjectImage(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_8.jpg");
-		 		ProjectItemsController.getPdts().setImage("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_8.jpg");
+		 		if(data==1) {
+		 			CarpentryLogic.getInstance().addProjectImage1(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_8.jpg");
+		 			ProjectItemsController.getPdts().setImage1("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_8.jpg");
+		 		}
+		 		
+		 		else if(data==2) {
+		 			CarpentryLogic.getInstance().addProjectImage2(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_8.jpg");
+		 			ProjectItemsController.getPdts().setImage2("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_8.jpg");
+		 		}
+		 		
+		 		else if(data==3) {
+		 			CarpentryLogic.getInstance().addProjectImage3(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_8.jpg");
+		 			ProjectItemsController.getPdts().setImage3("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_8.jpg");
+		 		}
+		 		
+		 		else if(data==4) {
+		 			CarpentryLogic.getInstance().addProjectImage4(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_8.jpg");
+		 			ProjectItemsController.getPdts().setImage4("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_8.jpg");
+		 		}
 		 		break;
 		 	}
 
 		 	case "image9btn":{
-		 		CarpentryLogic.getInstance().addProjectImage(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_9.jpg");
-		 		ProjectItemsController.getPdts().setImage("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_9.jpg");
+		 		if(data==1) {
+		 			CarpentryLogic.getInstance().addProjectImage1(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_9.jpg");
+		 			ProjectItemsController.getPdts().setImage1("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_9.jpg");
+		 		}
+		 		
+		 		else if(data==2) {
+		 			CarpentryLogic.getInstance().addProjectImage2(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_9.jpg");
+		 			ProjectItemsController.getPdts().setImage2("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_9.jpg");
+		 		}
+		 		
+		 		else if(data==3) {
+		 			CarpentryLogic.getInstance().addProjectImage3(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_9.jpg");
+		 			ProjectItemsController.getPdts().setImage3("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_9.jpg");
+		 		}
+		 		
+		 		else if(data==4) {
+		 			CarpentryLogic.getInstance().addProjectImage4(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_9.jpg");
+		 			ProjectItemsController.getPdts().setImage4("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_9.jpg");
+		 		}
 		 		break;
 		 	}
 
 		 	case "image10btn":{
-		 		CarpentryLogic.getInstance().addProjectImage(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_10.jpg");
-		 		ProjectItemsController.getPdts().setImage("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_10.jpg");
+		 		if(data==1) {
+		 			CarpentryLogic.getInstance().addProjectImage1(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_10.jpg");
+		 			ProjectItemsController.getPdts().setImage1("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_10.jpg");
+		 		}
+		 		
+		 		else if(data==2) {
+		 			CarpentryLogic.getInstance().addProjectImage2(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_10.jpg");
+		 			ProjectItemsController.getPdts().setImage2("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_10.jpg");
+		 		}
+		 		
+		 		else if(data==3) {
+		 			CarpentryLogic.getInstance().addProjectImage3(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_10.jpg");
+		 			ProjectItemsController.getPdts().setImage3("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_10.jpg");
+		 		}
+		 		
+		 		else if(data==4) {
+		 			CarpentryLogic.getInstance().addProjectImage4(GlobalProjectID.getId(), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_10.jpg");
+		 			ProjectItemsController.getPdts().setImage4("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images\\demo_10.jpg");
+		 		}
 		 		break;
 		 	}
 		 	
 		 }
 		 
- 		
- 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectDetails.fxml"));
-	    Parent root = loader.load();
-	    
-	    // Get the controller of the second scene
-	    String myData = Integer.toString(GlobalProjectID.getId());
-	    ProjectDetailsToShowController controller = loader.getController();
-	    
-	    // Send data
-	    
-	    
-	    controller.setData(myData);
+		// Get the current stage using the event source
+		 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-	    Scene scene = new Scene(root);
-	    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	    stage.setScene(scene);
-	    stage.show();
+		 // Close the current stage
+		 currentStage.close();
+
+//		 Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectItems.fxml"));
+//         Scene scene = new Scene(pane);
+//         Stage stage12 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//         stage12.setScene(scene);
+//         stage12.setResizable(false);
+//         stage12.setTitle("Awni Wood Work");
+//         stage12.show();
+ 		
 
 	 }
 	 }

@@ -119,6 +119,7 @@
                                     <TableColumn fx:id="itemName" minWidth="0.0" prefWidth="127.0" text="Item Name" />
                                     <TableColumn fx:id="itemHeight" prefWidth="132.0" text="Item Height" />
                                     <TableColumn fx:id="itemWidth" prefWidth="121.0" text="Item Width" />
+                                    <TableColumn fx:id="itemDepth" prefWidth="121.0" text="Item Depth" />
                                     <TableColumn fx:id="woodType" prefWidth="136.0" text="Wood Type" />
                                     <TableColumn fx:id="quantity" minWidth="8.0" prefWidth="112.0" text="Quantity" />
                                     <TableColumn fx:id="color" minWidth="8.0" prefWidth="98.0" text="Color" />
@@ -130,44 +131,44 @@
                     </content>
                   </ScrollPane>
                   <ComboBox fx:id="adddeleteitem" layoutX="441.0" layoutY="238.0" onAction="#CheckIfDelete" prefHeight="31.0" prefWidth="155.0" promptText="Add / Delete / Edit" style="-fx-background-color: white;" styleClass="comboBox" />
-                  <TextField fx:id="itemNameField" layoutX="109.0" layoutY="623.0" prefHeight="50.0" prefWidth="213.0" promptText="Item Name" styleClass="textField" />
-                  <TextField fx:id="itemHeightField" layoutX="600.0" layoutY="623.0" prefHeight="50.0" prefWidth="213.0" promptText="Height" styleClass="textField" />
-                  <TextField fx:id="itemWidthField" layoutX="840.0" layoutY="623.0" prefHeight="50.0" prefWidth="213.0" promptText="Width" styleClass="textField" />
-                  <TextField fx:id="itemQuantity" layoutX="354.0" layoutY="623.0" prefHeight="50.0" prefWidth="213.0" promptText="Quantity" styleClass="textField" />
-                  <ComboBox fx:id="colorField" layoutX="600.0" layoutY="684.0" prefHeight="50.0" prefWidth="213.0" promptText="Color" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                  <ComboBox fx:id="woodTypeField" layoutX="353.0" layoutY="684.0" prefHeight="50.0" prefWidth="213.0" promptText="Wood Type" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                  <ComboBox fx:id="projectSection" layoutX="106.0" layoutY="799.0" prefHeight="50.0" prefWidth="213.0" promptText="Project Section" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                  <ComboBox fx:id="handsModelNumber" layoutX="109.0" layoutY="684.0" prefHeight="50.0" prefWidth="213.0" promptText="Hands Model" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                  <CheckBox fx:id="newSection" layoutX="106.0" layoutY="765.0" mnemonicParsing="false" onAction="#NewSectionEvent" text="New Section" />
-                  <ComboBox fx:id="brzolDegree" layoutX="354.0" layoutY="799.0" prefHeight="50.0" prefWidth="224.0" promptText="Axles Degree" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                  <TextField fx:id="handsQuantity" alignment="CENTER_RIGHT" layoutX="840.0" layoutY="799.0" prefHeight="50.0" prefWidth="213.0" styleClass="textField" />
-                  <TextField fx:id="axleQuantity" alignment="CENTER_RIGHT" layoutX="601.0" layoutY="799.0" prefHeight="50.0" prefWidth="213.0" styleClass="textField" />
-                  <Text fill="#d96e3a" layoutX="638.0" layoutY="786.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Axles Quantity" textAlignment="CENTER">
+                  <TextField fx:id="itemNameField" layoutX="63.0" layoutY="623.0" prefHeight="50.0" prefWidth="213.0" promptText="Item Name" styleClass="textField" />
+                  <TextField fx:id="itemHeightField" layoutX="532.0" layoutY="623.0" prefHeight="50.0" prefWidth="213.0" promptText="Height" styleClass="textField" />
+                  <TextField fx:id="itemWidthField" layoutX="768.0" layoutY="623.0" prefHeight="50.0" prefWidth="213.0" promptText="Width" styleClass="textField" />
+                  <TextField fx:id="itemQuantity" layoutX="296.0" layoutY="623.0" prefHeight="50.0" prefWidth="213.0" promptText="Quantity" styleClass="textField" />
+                  <ComboBox fx:id="colorField" layoutX="532.0" layoutY="684.0" prefHeight="50.0" prefWidth="213.0" promptText="Color" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                  <ComboBox fx:id="woodTypeField" layoutX="295.0" layoutY="684.0" prefHeight="50.0" prefWidth="213.0" promptText="Wood Type" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                  <ComboBox fx:id="projectSection" layoutX="60.0" layoutY="799.0" prefHeight="50.0" prefWidth="213.0" promptText="Project Section" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                  <ComboBox fx:id="handsModelNumber" layoutX="63.0" layoutY="684.0" prefHeight="50.0" prefWidth="213.0" promptText="Hands Model" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                  <CheckBox fx:id="newSection" layoutX="60.0" layoutY="765.0" mnemonicParsing="false" onAction="#NewSectionEvent" text="New Section" />
+                  <ComboBox fx:id="brzolDegree" layoutX="296.0" layoutY="799.0" prefHeight="50.0" prefWidth="213.0" promptText="Axles Degree" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                  <TextField fx:id="handsQuantity" alignment="CENTER_RIGHT" layoutX="768.0" layoutY="799.0" prefHeight="50.0" prefWidth="213.0" styleClass="textField" />
+                  <TextField fx:id="axleQuantity" alignment="CENTER_RIGHT" layoutX="533.0" layoutY="799.0" prefHeight="50.0" prefWidth="213.0" styleClass="textField" />
+                  <Text fill="#d96e3a" layoutX="570.0" layoutY="786.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Axles Quantity" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text fill="#d96e3a" layoutX="873.0" layoutY="786.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hands Quantity" textAlignment="CENTER">
+                  <Text fill="#d96e3a" layoutX="801.0" layoutY="786.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hands Quantity" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text fill="#d96e3a" layoutX="163.0" layoutY="611.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Name" textAlignment="CENTER">
+                  <Text fill="#d96e3a" layoutX="117.0" layoutY="611.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Name" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text fill="#d96e3a" layoutX="650.0" layoutY="611.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Height" textAlignment="CENTER">
+                  <Text fill="#d96e3a" layoutX="582.0" layoutY="611.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Height" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text fill="#d96e3a" layoutX="892.0" layoutY="611.0" strokeType="OUTSIDE" strokeWidth="0.0" text="item Width" textAlignment="CENTER">
+                  <Text fill="#d96e3a" layoutX="820.0" layoutY="611.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Width" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <Text fill="#d96e3a" layoutX="395.0" layoutY="611.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Quantity" textAlignment="CENTER">
+                  <Text fill="#d96e3a" layoutX="337.0" layoutY="611.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Quantity" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -184,6 +185,12 @@
                   </Text>
                   <Button fx:id="reportByMonth" layoutX="1005.0" layoutY="155.0" mnemonicParsing="false" onAction="#GetProjectReportByMonth" prefHeight="51.0" prefWidth="202.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Report By Month" />
                   <ComboBox fx:id="month" layoutX="840.0" layoutY="155.0" prefHeight="51.0" prefWidth="155.0" promptText="Choose month" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                  <TextField fx:id="itemDepthField" layoutX="1003.0" layoutY="623.0" prefHeight="50.0" prefWidth="213.0" promptText="Depth" styleClass="textField" />
+                  <Text fill="#d96e3a" layoutX="1055.0" layoutY="611.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Depth" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Text>
          </children>
       </AnchorPane>
         </items>

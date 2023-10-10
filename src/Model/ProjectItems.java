@@ -16,6 +16,7 @@ public class ProjectItems {
 	private String ItemName;
 	private int height;
 	private int width;
+	private int depth;
 	private String woodType;
 	private int quantity;
 	private String projectID;
@@ -25,7 +26,7 @@ public class ProjectItems {
 	private String sectionID;
 	
 
-	public ProjectItems(int itemID,String ItemName, int height, int width, String woodType, int quantity, String projectID,
+	public ProjectItems(int itemID,String ItemName, int height, int width,  int depth,String woodType, int quantity, String projectID,
 			String section, String color,String handsmodel,String sectionid) {
 		super();
 		this.itemID=itemID;
@@ -39,6 +40,15 @@ public class ProjectItems {
 		this.color = color;
 		this.handsmodel=handsmodel;
 		this.sectionID=sectionid;
+		this.depth=depth;
+	}
+
+	public int getDepth() {
+		return depth;
+	}
+
+	public void setDepth(int depth) {
+		this.depth = depth;
 	}
 
 	public String getSectionID() {

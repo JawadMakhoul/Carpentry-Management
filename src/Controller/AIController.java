@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -19,6 +20,7 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 import Model.Project;
+import Model.Section;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +30,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Control;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
@@ -43,6 +46,9 @@ public class AIController implements Initializable{
     @FXML
     private Button image1btn,image2btn,image3btn,image4btn,image5btn,image6btn,image7btn,image8btn,image9btn,image10btn;
 
+    @FXML
+    private ComboBox<String> projectSection;
+    
     @FXML
     private ImageView image1,image2,image3,image4,image5,image6,image7,image8,image9,image10, loading;
 
@@ -292,6 +298,19 @@ public class AIController implements Initializable{
 		 }
 	 }
 	 }
+ }
+ 
+ 
+ @FXML
+ void FillProjectSectionsComboBox(ActionEvent event) {
+	 projectSection.getItems().clear();
+	 
+	 for(Section s : CarpentryLogic.getInstance().getSections()) {
+		 if(Integer.toString(projectID.getSelectionModel().getSelectedItem()).equals(s.getProjectID())) {
+			 projectSection.getItems().add(s.getSectionName());
+		 }
+	 }
+	 projectSection.setPrefWidth(Control.USE_COMPUTED_SIZE);
  }
 @Override
 public void initialize(URL arg0, ResourceBundle arg1) {

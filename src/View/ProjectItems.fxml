@@ -85,14 +85,14 @@
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="axleQuantity" alignment="CENTER_RIGHT" layoutX="222.0" layoutY="310.0" styleClass="textField" />
+                        <TextField fx:id="axleQuantity" alignment="CENTER_RIGHT" layoutX="222.0" layoutY="310.0" prefHeight="39.0" prefWidth="224.0" styleClass="textField" />
                         <Text fill="#d96e3a" layoutX="43.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Axles Quantity" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <ComboBox fx:id="brzolDegree" layoutX="222.0" layoutY="234.0" prefHeight="39.0" prefWidth="224.0" promptText="Axles Degree" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                        <Text fill="#d96e3a" layoutX="43.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Axles Degree" textAlignment="CENTER">
+                        <ComboBox fx:id="brzolDegree" layoutX="222.0" layoutY="234.0" prefHeight="39.0" prefWidth="224.0" promptText="Axles Model" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                        <Text fill="#d96e3a" layoutX="43.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Axles Model" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -103,7 +103,7 @@
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="handsQuantity" alignment="CENTER_RIGHT" layoutX="222.0" layoutY="451.0" styleClass="textField" />
+                        <TextField fx:id="handsQuantity" alignment="CENTER_RIGHT" layoutX="222.0" layoutY="451.0" prefHeight="39.0" prefWidth="224.0" styleClass="textField" />
                         <Text fill="#d96e3a" layoutX="43.0" layoutY="478.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hands Quantity" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="20.0" />
@@ -118,22 +118,22 @@
                               <Font name="System Bold" size="40.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="height" layoutX="203.0" layoutY="155.0" styleClass="textField" />
-                        <TextField fx:id="width" layoutX="203.0" layoutY="225.0" styleClass="textField" />
+                        <TextField fx:id="height" layoutX="203.0" layoutY="139.0" prefHeight="39.0" prefWidth="224.0" styleClass="textField" />
+                        <TextField fx:id="width" layoutX="203.0" layoutY="194.0" prefHeight="39.0" prefWidth="224.0" styleClass="textField" />
                         <ComboBox fx:id="woodType" layoutX="203.0" layoutY="376.0" prefHeight="39.0" prefWidth="224.0" promptText="Wood Type" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                        <TextField fx:id="ItemName" layoutX="203.0" layoutY="84.0" styleClass="textField" />
-                        <TextField fx:id="quantity" layoutX="203.0" layoutY="300.0" styleClass="textField" />
+                        <TextField fx:id="ItemName" layoutX="203.0" layoutY="84.0" prefHeight="39.0" prefWidth="224.0" styleClass="textField" />
+                        <TextField fx:id="quantity" layoutX="203.0" layoutY="300.0" prefHeight="39.0" prefWidth="224.0" styleClass="textField" />
                         <Text fill="#d96e3a" layoutX="42.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Name" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <Text fill="#d96e3a" layoutX="42.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Height" textAlignment="CENTER">
+                        <Text fill="#d96e3a" layoutX="42.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Height" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <Text fill="#d96e3a" layoutX="42.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Width" textAlignment="CENTER">
+                        <Text fill="#d96e3a" layoutX="42.0" layoutY="221.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Width" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -149,6 +149,12 @@
                            </font>
                         </Text>
                         <Button fx:id="addItem" layoutX="145.0" layoutY="436.0" mnemonicParsing="false" onMousePressed="#AddAnotherItem" prefHeight="51.0" prefWidth="202.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Add item" />
+                        <TextField fx:id="depth" layoutX="203.0" layoutY="248.0" prefHeight="39.0" prefWidth="224.0" styleClass="textField" />
+                        <Text fill="#d96e3a" layoutX="42.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Depth" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Text>
                      </children>
                   </Pane>
                   <Button fx:id="finish" layoutX="943.0" layoutY="877.0" mnemonicParsing="false" onMousePressed="#Finish" prefHeight="51.0" prefWidth="230.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Create Project" />
@@ -170,19 +176,19 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="cost" alignment="CENTER_RIGHT" layoutX="943.0" layoutY="680.0" styleClass="textField" />
+                  <TextField fx:id="cost" alignment="CENTER_RIGHT" layoutX="943.0" layoutY="680.0" prefHeight="39.0" prefWidth="224.0" styleClass="textField" />
                   <Text fill="#d96e3a" layoutX="763.0" layoutY="703.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Cost" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="price" alignment="CENTER_RIGHT" layoutX="943.0" layoutY="793.0" styleClass="textField" />
+                  <TextField fx:id="price" alignment="CENTER_RIGHT" layoutX="943.0" layoutY="793.0" prefHeight="39.0" prefWidth="224.0" styleClass="textField" />
                   <Text fill="#d96e3a" layoutX="763.0" layoutY="816.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Price" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="suggestedPrice" alignment="CENTER_RIGHT" layoutX="943.0" layoutY="737.0" styleClass="textField" />
+                  <TextField fx:id="suggestedPrice" alignment="CENTER_RIGHT" layoutX="943.0" layoutY="737.0" prefHeight="39.0" prefWidth="224.0" styleClass="textField" />
                   <Text fill="#d96e3a" layoutX="763.0" layoutY="760.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suggested Price" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="20.0" />

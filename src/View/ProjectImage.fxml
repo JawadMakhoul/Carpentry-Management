@@ -5,13 +5,36 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" styleClass="backgroundColor" stylesheets="@../Controller/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProjectImageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="1300.0" styleClass="backgroundColor" stylesheets="@../Controller/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProjectImageController">
       <children>
-      <Text fill="#d96e3a" layoutX="270.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Image" textAlignment="CENTER">
+      <Text fill="#d96e3a" layoutX="520.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Images" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="40.0" />
          </font>
       </Text>
-      <ImageView fx:id="projectImage" fitHeight="436.0" fitWidth="560.0" layoutX="182.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="projectImage1" fitHeight="310.0" fitWidth="310.0" layoutX="7.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="projectImage2" fitHeight="310.0" fitWidth="310.0" layoutX="342.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="projectImage3" fitHeight="310.0" fitWidth="310.0" layoutX="667.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="projectImage4" fitHeight="310.0" fitWidth="310.0" layoutX="983.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fill="#d96e3a" layoutX="91.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kitchen" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Text>
+      <Text fill="#d96e3a" layoutX="441.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Text>
+      <Text fill="#d96e3a" layoutX="714.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Livingroom" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Text>
+      <Text fill="#d96e3a" layoutX="1044.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bathroom" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

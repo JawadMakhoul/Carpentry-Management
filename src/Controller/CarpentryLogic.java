@@ -164,7 +164,7 @@ public class CarpentryLogic {
 		            ResultSet rs = stmt.executeQuery(sql);
 					while (rs.next()) {
 						int i = 1;
-						results.add(new Project(rs.getInt(i++),rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getInt(i++), rs.getInt(i++), rs.getString(i++), rs.getDate(i++), rs.getString(i++)));
+						results.add(new Project(rs.getInt(i++),rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getInt(i++), rs.getInt(i++), rs.getString(i++), rs.getDate(i++), rs.getString(i++)));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -186,7 +186,7 @@ public class CarpentryLogic {
 		            ResultSet rs = stmt.executeQuery(sql);
 					while (rs.next()) {
 						int i = 1;
-						results.add(new ProjectItems(rs.getInt(i++),rs.getString(i++),rs.getInt(i++),rs.getInt(i++), rs.getString(i++),rs.getInt(i++),rs.getString(i++),
+						results.add(new ProjectItems(rs.getInt(i++),rs.getString(i++),rs.getInt(i++),rs.getInt(i++),rs.getInt(i++), rs.getString(i++),rs.getInt(i++),rs.getString(i++),
 								rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++)));
 					}
 				} catch (SQLException e) {
@@ -386,20 +386,23 @@ public class CarpentryLogic {
 			try {Class.forName("com.mysql.jdbc.Driver");
 			try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
 			           //  Statement stmt = con.createStatement()
-					CallableStatement stmt = con.prepareCall("Insert into project values(?, ?, ?, ?,?,?,?,?,?,?,?)")){ 
+					CallableStatement stmt = con.prepareCall("Insert into project values(?, ?, ?, ?,?,?,?,?,?,?,?,?,?,?)")){ 
 
 					// int i = 1;
 					stmt.setInt(1, p.getProjectID());
 					stmt.setString(2, p.getCustomerID());
 					stmt.setString(3, p.getProjectCategory()); // can't be null
 					stmt.setString(4, null);
-					stmt.setString(5, p.getEmail());
-					stmt.setString(6, p.getStatus());
-					stmt.setInt(7, p.getCost());
-					stmt.setString(8, p.getNotes());
-					stmt.setInt(9, p.getPrice());
-					stmt.setDate(10, p.getDate());
-					stmt.setString(11, p.getPhoneNumber());
+					stmt.setString(5, null);
+					stmt.setString(6, null);
+					stmt.setString(7, null);
+					stmt.setString(8, p.getEmail());
+					stmt.setString(9, p.getStatus());
+					stmt.setInt(10, p.getCost());
+					stmt.setString(11, p.getNotes());
+					stmt.setInt(12, p.getPrice());
+					stmt.setDate(13, p.getDate());
+					stmt.setString(14, p.getPhoneNumber());
 					stmt.executeUpdate();
 					return true;
 
@@ -444,20 +447,22 @@ public class CarpentryLogic {
 				Class.forName("com.mysql.jdbc.Driver");
 				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
 			           //  Statement stmt = con.createStatement()
-					CallableStatement stmt = con.prepareCall("Insert into projectitems values(?,?, ?, ?, ?, ?, ?, ?, ?, ?,?)")){
+					CallableStatement stmt = con.prepareCall("Insert into projectitems values(?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)")){
 
 					// int i = 1;
 					stmt.setInt(1, pi.getItemID()); // can't be null
 					stmt.setString(2, pi.getItemName());
 					stmt.setInt(3, pi.getHeight());
 					stmt.setInt(4, pi.getWidth());
-					stmt.setString(5, pi.getWoodType());
-					stmt.setInt(6, pi.getQuantity());
-					stmt.setString(7, pi.getProjectID());
-					stmt.setString(8, pi.getSection());
-					stmt.setString(9, pi.getColor());
-					stmt.setString(10, pi.getHandsmodel());
-					stmt.setString(11, pi.getSectionID());
+					stmt.setInt(5, pi.getDepth());
+					stmt.setString(6, pi.getWoodType());
+					stmt.setInt(7, pi.getQuantity());
+					stmt.setString(8, pi.getProjectID());
+					stmt.setString(9, pi.getSection());
+					stmt.setString(10, pi.getColor());
+					stmt.setString(11, pi.getHandsmodel());
+					stmt.setString(12, pi.getSectionID());
+					
 					
 					stmt.executeUpdate();
 					return true;
@@ -610,12 +615,99 @@ public class CarpentryLogic {
 
 	}
 		
-		public boolean addProjectImage(int p, String image) throws SQLException {
+		public boolean addProjectImage1(int p, String image) throws SQLException {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
 			           //  Statement stmt = con.createStatement()
-					CallableStatement stmt = con.prepareCall("UPDATE project SET image = ? WHERE ProjectID=?;"
+					CallableStatement stmt = con.prepareCall("UPDATE project SET image1 = ? WHERE ProjectID=?;"
+							)){
+
+		        // set the parameter values for the prepared statement
+				
+				stmt.setString(1, image);
+		        stmt.setInt(2, p);
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
+		public boolean addProjectImage2(int p, String image) throws SQLException {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			           //  Statement stmt = con.createStatement()
+					CallableStatement stmt = con.prepareCall("UPDATE project SET image2 = ? WHERE ProjectID=?;"
+							)){
+
+		        // set the parameter values for the prepared statement
+				
+				stmt.setString(1, image);
+		        stmt.setInt(2, p);
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
+		public boolean addProjectImage3(int p, String image) throws SQLException {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			           //  Statement stmt = con.createStatement()
+					CallableStatement stmt = con.prepareCall("UPDATE project SET image3 = ? WHERE ProjectID=?;"
+							)){
+
+		        // set the parameter values for the prepared statement
+				
+				stmt.setString(1, image);
+		        stmt.setInt(2, p);
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
+		public boolean addProjectImage4(int p, String image) throws SQLException {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			           //  Statement stmt = con.createStatement()
+					CallableStatement stmt = con.prepareCall("UPDATE project SET image4 = ? WHERE ProjectID=?;"
 							)){
 
 		        // set the parameter values for the prepared statement
@@ -924,6 +1016,34 @@ public class CarpentryLogic {
 				
 				stmt.setInt(2, pi.getItemID());
 		        stmt.setInt(1, height);
+		        
+		        // execute the prepared statement
+		        stmt.executeUpdate();
+		        return true;
+		        // check if any rows were updated
+		        
+		}
+				} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	 catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	return false;
+
+	}
+		
+		public boolean updateItemDepth(ProjectItems pi,int depth) throws SQLException {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			           //  Statement stmt = con.createStatement()
+					CallableStatement stmt = con.prepareCall("UPDATE projectitems SET depth = ? WHERE itemID=?")){
+
+		        // set the parameter values for the prepared statement
+				
+				stmt.setInt(2, pi.getItemID());
+		        stmt.setInt(1, depth);
 		        
 		        // execute the prepared statement
 		        stmt.executeUpdate();
@@ -1293,14 +1413,14 @@ public class CarpentryLogic {
 			return false;
 		}
 		
-		public  String GetImage(Project p) {
+		public  String GetImage1(Project p) {
 			
 			String result = null;
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
 			           //  Statement stmt = con.createStatement()
-					CallableStatement stmt = con.prepareCall("SELECT Image FROM project WHERE ProjectID = ?")){
+					CallableStatement stmt = con.prepareCall("SELECT Image1 FROM project WHERE ProjectID = ?")){
 					
 					stmt.setInt(1, p.getProjectID());
 					
@@ -1319,5 +1439,82 @@ public class CarpentryLogic {
 			    return result;
 		}
 
+public  String GetImage2(Project p) {
+			
+			String result = null;
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			           //  Statement stmt = con.createStatement()
+					CallableStatement stmt = con.prepareCall("SELECT Image2 FROM project WHERE ProjectID = ?")){
+					
+					stmt.setInt(1, p.getProjectID());
+					
+					 ResultSet rs = stmt.executeQuery();
+			            
+			            // If the ResultSet has a result, assign it to the 'result' variable
+			            if (rs.next()) {
+			                result = rs.getString(1); // Adjust this if your image is not the first column in the ResultSet
+			            }
+			        } catch (SQLException e) {
+			            e.printStackTrace();
+			        }
+			    } catch (ClassNotFoundException e) {
+			        e.printStackTrace();
+			    }
+			    return result;
+		}
+
+public  String GetImage3(Project p) {
+	
+	String result = null;
+	try {
+		Class.forName("com.mysql.jdbc.Driver");
+		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+	           //  Statement stmt = con.createStatement()
+			CallableStatement stmt = con.prepareCall("SELECT Image3 FROM project WHERE ProjectID = ?")){
+			
+			stmt.setInt(1, p.getProjectID());
+			
+			 ResultSet rs = stmt.executeQuery();
+	            
+	            // If the ResultSet has a result, assign it to the 'result' variable
+	            if (rs.next()) {
+	                result = rs.getString(1); // Adjust this if your image is not the first column in the ResultSet
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    } catch (ClassNotFoundException e) {
+	        e.printStackTrace();
+	    }
+	    return result;
+}
+
+public  String GetImage4(Project p) {
+	
+	String result = null;
+	try {
+		Class.forName("com.mysql.jdbc.Driver");
+		try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+	           //  Statement stmt = con.createStatement()
+			CallableStatement stmt = con.prepareCall("SELECT Image4 FROM project WHERE ProjectID = ?")){
+			
+			stmt.setInt(1, p.getProjectID());
+			
+			 ResultSet rs = stmt.executeQuery();
+	            
+	            // If the ResultSet has a result, assign it to the 'result' variable
+	            if (rs.next()) {
+	                result = rs.getString(1); // Adjust this if your image is not the first column in the ResultSet
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    } catch (ClassNotFoundException e) {
+	        e.printStackTrace();
+	    }
+	    return result;
+}
 }
 

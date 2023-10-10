@@ -177,7 +177,7 @@
                   <Button fx:id="deleteSupplier" layoutX="1113.0" layoutY="666.0" mnemonicParsing="false" onMousePressed="#AddORDeleteButton" prefHeight="45.0" prefWidth="97.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Delete" />
                   <ComboBox fx:id="woodType" layoutX="867.0" layoutY="284.0" prefHeight="45.0" prefWidth="224.0" promptText="Wood Type" styleClass="comboBox" stylesheets="@../Controller/style.css" />
                   <ComboBox fx:id="handsModelNumber" layoutX="867.0" layoutY="555.0" prefHeight="39.0" prefWidth="224.0" promptText="Hands Model" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                  <ComboBox fx:id="brzolDegree" layoutX="867.0" layoutY="413.0" prefHeight="39.0" prefWidth="224.0" promptText="Axles Degree" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                  <ComboBox fx:id="brzolDegree" layoutX="867.0" layoutY="413.0" prefHeight="39.0" prefWidth="224.0" promptText="Axles Model" styleClass="comboBox" stylesheets="@../Controller/style.css" />
                   <ComboBox fx:id="suppliers" layoutX="867.0" layoutY="673.0" prefHeight="39.0" prefWidth="224.0" promptText="Suppliers" styleClass="comboBox" stylesheets="@../Controller/style.css" />
                </children></AnchorPane>
         </items>

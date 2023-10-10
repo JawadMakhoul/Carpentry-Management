@@ -18,7 +18,10 @@ public class Project {
 	private String customerID;
 	private String projectCategory;
 	private String email;
-	private String image;
+	private String image1;
+	private String image2;
+	private String image3;
+	private String image4;
 	private String status;
 	private int cost;
 	private int price;
@@ -26,13 +29,16 @@ public class Project {
 	private String notes;
 	private String phoneNumber;
 
-	public Project(int projectID,String customerID, String projectCategory,String image,String email, String status, int cost, int price, String notes,Date date,String phoneNumber) {
+	public Project(int projectID,String customerID, String projectCategory,String image1,String image2,String image3,String image4,String email, String status, int cost, int price, String notes,Date date,String phoneNumber) {
 		super();
 		this.projectID = projectID;
 		this.customerID = customerID;
 		this.projectCategory = projectCategory;
 		this.email=email;
-		this.image="";
+		this.image1="";
+		this.image2="";
+		this.image3="";
+		this.image4="";
 		this.status=status;
 		this.cost=cost;
 		this.notes=notes;
@@ -41,6 +47,38 @@ public class Project {
 		this.phoneNumber=phoneNumber;
 		}
 	
+	public String getImage1() {
+		return image1;
+	}
+
+	public void setImage1(String image1) {
+		this.image1 = image1;
+	}
+
+	public String getImage2() {
+		return image2;
+	}
+
+	public void setImage2(String image2) {
+		this.image2 = image2;
+	}
+
+	public String getImage3() {
+		return image3;
+	}
+
+	public void setImage3(String image3) {
+		this.image3 = image3;
+	}
+
+	public String getImage4() {
+		return image4;
+	}
+
+	public void setImage4(String image4) {
+		this.image4 = image4;
+	}
+
 	public Project(String customerID,int projectID, String projectCategory ,String email, String status, int price) {
 		super();
 		this.projectID = projectID;
@@ -59,12 +97,7 @@ public class Project {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
+	
 	public int getPrice() {
 		return price;
 	}

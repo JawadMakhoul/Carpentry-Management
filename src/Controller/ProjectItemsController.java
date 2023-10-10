@@ -76,7 +76,7 @@ public class ProjectItemsController implements Initializable{
 	 @FXML
 	    private TextArea notes;
     @FXML
-    private TextField suggestedPrice,orderStatus,ItemName,handsQuantity,axleQuantity,height,quantity,width,CUSTOMERID,ORDERID,PROJECTID;
+    private TextField suggestedPrice,orderStatus,ItemName,handsQuantity,axleQuantity,height,quantity,width,depth,CUSTOMERID,ORDERID,PROJECTID;
 
     @FXML
     private ComboBox<ProjectSection> projectSection;
@@ -108,7 +108,6 @@ public class ProjectItemsController implements Initializable{
     private ArrayList<ProjectItems> PI_Array = new ArrayList<ProjectItems>();
     private  static ProjectDetailsToShow pdts;
 
-    private ImageView trueORfalse,failedToSend2;
 	public static ProjectDetailsToShow getPdts() {
 		return pdts;
 	}
@@ -220,7 +219,7 @@ public class ProjectItemsController implements Initializable{
     	    if (projectSection.getSelectionModel().getSelectedItem() == null ||
     	            ItemName.getText().isEmpty() ||
     	            height.getText().isEmpty() ||
-    	            width.getText().isEmpty() ||
+    	            width.getText().isEmpty() || depth.getText().isEmpty() ||
     	            woodType.getSelectionModel().getSelectedItem() == null ||
     	            quantity.getText().isEmpty() ||
     	            color.getValue() == null || handsModelNumber.getSelectionModel().getSelectedItem() == null) 
@@ -232,6 +231,7 @@ public class ProjectItemsController implements Initializable{
     	    pi2.setItemName(ItemName.getText());
     	    pi2.setHeight(Integer.parseInt(height.getText()));
     	    pi2.setWidth(Integer.parseInt(width.getText()));
+    	    pi2.setDepth(Integer.parseInt(depth.getText()));
     	    pi2.setWoodType(woodType.getSelectionModel().getSelectedItem().toString());
     	    pi2.setQuantity(Integer.parseInt(quantity.getText()));
     	    
@@ -266,15 +266,6 @@ public class ProjectItemsController implements Initializable{
     		    	newStage.setResizable(false);
     		    	newStage.setTitle("Awni Wood Work - Project Image");
     		    	newStage.show();
-    		    	
-    		    	
-    		    	
-    		    	
-    	    		
-
-    			
-
-    	    	
     	    
     	}
     	    	
@@ -306,8 +297,7 @@ public class ProjectItemsController implements Initializable{
         	ItemName.setText(null);
         	height.setText(null);
         	width.setText(null);
-        	//quantity.setText(null);
-        	//woodType.setValue(null);
+        	depth.setText(null);
         	pdts.setSection(pi2.getSection());
         	
     	    // Rest of the code when all fields are valid
@@ -321,7 +311,7 @@ public class ProjectItemsController implements Initializable{
     }
 
     @FXML
-    void AddSection(MouseEvent event) throws NumberFormatException, SQLException {
+    void AddSection(MouseEvent event) throws NumberFormatException, SQLException, IOException {
     	
     	if(sectionPressed) {
     	Section s = new Section();
@@ -364,10 +354,11 @@ public class ProjectItemsController implements Initializable{
 	    	
 	    	CarpentryLogic.getInstance().addSection(s);
     	    
-	    	for(ProjectItems piIndex : CarpentryLogic.getInstance().getProjectItems()) {
+	    	for(ProjectItems piIndex : PI_Array) {
 	    		if(Integer.toString(saveProjectID).equals(piIndex.getProjectID()))
 	    			CarpentryLogic.getInstance().updateItemSectionID(piIndex, s.getSectionID());
 	    	}
+	    	PI_Array.clear();
     	    switch(color.getSelectionModel().getSelectedItem().toString()) { // To send to the AI
     	  
     	    	case "Weathered_Barnboard","Pearl_Gray","Desert_Sand","Drift_Gray","Beige_Gray","Mushroom","Blueridge_Gray","Light_Oak","Smoke_Blue","Aspen_Tan":{
@@ -425,6 +416,7 @@ public class ProjectItemsController implements Initializable{
         	ItemName.setText(null);
         	height.setText(null);
         	width.setText(null);
+        	depth.setText(null);
         	quantity.setText(null);
         	
         	for(Project p : CarpentryLogic.getInstance().getProjects()){
@@ -445,6 +437,128 @@ public class ProjectItemsController implements Initializable{
     	    alert.showAndWait();
    	}
     	
+//    	Parent pane = FXMLLoader.load(getClass().getResource("/View/AI_Auto.fxml"));
+//        Scene scene = new Scene(pane);
+//        Stage stage12 = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        stage12.setScene(scene);
+//        stage12.setResizable(false);
+//        stage12.setTitle("Awni Wood Work");
+//        stage12.show();
+       
+
+    	
+	    Image loadingImage = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\737.gif");
+        loading.setImage(loadingImage);
+
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                Process p = null;
+                try {
+                	
+                	if(sec.getSectionName().equals("Room")) {
+                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Bedroom that includes bed and desk, closet with a mirror in" + pi.getColor());
+                        p = pb.start();
+                	}
+                	
+                	if(sec.getSectionName().equals("Kitchen")) {
+                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Kitchen that includes island in" + pi.getColor());
+                        p = pb.start();
+                	}
+                	
+                	if(sec.getSectionName().equals("LivingRoom")) {
+                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "LivingRoom that includes TV furniture and a salon table in" + pi.getColor());
+                        p = pb.start();
+                	}
+                	
+                	if(sec.getSectionName().equals("Bathroom")) {
+                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Bathroom that includes sink cabinets with a mirror in" + pi.getColor());
+                        p = pb.start();
+                	}
+                		
+//                    ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py", sec.getSectionName() +" with " + pi.getColor() + "color.");
+//                    p = pb.start();
+
+                    // Read output
+                    BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                    String output;
+                    while ((output = in.readLine()) != null) {
+                        System.out.println(output);
+                    }
+
+                    // Read any errors from the attempted command
+                    BufferedReader err = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+                    String error;
+                    while ((error = err.readLine()) != null) {
+                        System.err.println("Error: " + error);
+                    }
+
+                    p.waitFor();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Platform.runLater(() -> {
+                    try {
+                        loading.setImage(null);  // Set loading image to null
+
+                        // Open new Scene
+                        try {
+                        	FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AI_Auto.fxml"));
+                    	    Parent root = loader.load();
+                    	    int myData=0;
+                    	    // Get the controller of the second scene
+                    	    switch(s.getSectionName()) {
+                    	    
+                    	    case "Kitchen":{
+                    	    	myData = 1;
+                    	    	break;
+                    	    }
+                    	    
+                    	    case "Room":{
+                    	    	myData = 2;
+                    	    	break;
+                    	    }
+                    	    
+                    	    case "LivingRoom":{
+                    	    	myData = 3;
+                    	    	break;
+                    	    }
+                    	    
+                    	    case "Bathroom":{
+                    	    	myData = 4;
+                    	    	break;
+                    	    }
+                    	    }
+                    	    //String myData = Integer.toString(GlobalProjectID.getId());
+                    	    AIAutoController controller = loader.getController();
+                    	    
+                    	    // Send data
+                    	    
+                    	    
+                    	    controller.setData(myData);
+
+                    	    Scene scene = new Scene(root);
+                    	    Stage stage3 = new Stage();
+                    	    stage3.setScene(scene);
+                    	    stage3.show();
+                            
+                            
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        // Do the same for other ImageViews...
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+
+                return null;
+            }
+        };
+
+        new Thread(task).start(); // Start the task in a new thread
     	}
     	
     	else {
@@ -471,87 +585,25 @@ public class ProjectItemsController implements Initializable{
     				CarpentryLogic.getInstance().updateProjectPrice(p1, p1.getPrice());
     			}
     		}
-            // Set initial loading image
-            Image loadingImage = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\737.gif");
-            loading.setImage(loadingImage);
+            
+                                
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectDetails.fxml"));
+                        	    Parent root = loader.load();
+                        	    
+                        	    // Get the controller of the second scene
+                        	    String myData = Integer.toString(GlobalProjectID.getId());
+                        	    ProjectDetailsToShowController controller = loader.getController();
+                        	    
+                        	    // Send data
+                        	    
+                        	    
+                        	    controller.setData(myData);
 
-            Task<Void> task = new Task<Void>() {
-                @Override
-                protected Void call() throws Exception {
-                    Process p = null;
-                    try {
-                    	
-                    	if(sec.getSectionName().equals("Room")) {
-                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Bedroom that includes bed and desk, closet with a mirror in" + pi.getColor());
-                            p = pb.start();
-                    	}
-                    	
-                    	if(sec.getSectionName().equals("Kitchen")) {
-                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Kitchen that includes island in" + pi.getColor());
-                            p = pb.start();
-                    	}
-                    	
-                    	if(sec.getSectionName().equals("LivingRoom")) {
-                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "LivingRoom that includes TV furniture and a salon table in" + pi.getColor());
-                            p = pb.start();
-                    	}
-                    	
-                    	if(sec.getSectionName().equals("Bathroom")) {
-                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Bathroom that includes sink cabinets with a mirror in" + pi.getColor());
-                            p = pb.start();
-                    	}
-                    		
-//                        ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py", sec.getSectionName() +" with " + pi.getColor() + "color.");
-//                        p = pb.start();
-
-                        // Read output
-                        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-                        String output;
-                        while ((output = in.readLine()) != null) {
-                            System.out.println(output);
-                        }
-
-                        // Read any errors from the attempted command
-                        BufferedReader err = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-                        String error;
-                        while ((error = err.readLine()) != null) {
-                            System.err.println("Error: " + error);
-                        }
-
-                        p.waitFor();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    Platform.runLater(() -> {
-                        try {
-                            loading.setImage(null);  // Set loading image to null
-
-                            // Open new Scene
-                            try {
-                                Parent pane = FXMLLoader.load(getClass().getResource("/View/AI_Auto.fxml"));
-                                Scene scene = new Scene(pane);
-                                Stage stage12 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                                stage12.setScene(scene);
-                                stage12.setResizable(false);
-                                stage12.setTitle("Awni Wood Work");
-                                stage12.show();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-
-                            // Do the same for other ImageViews...
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    });
-
-                    return null;
-                }
-            };
-
-            new Thread(task).start(); // Start the task in a new thread
-    
+                        	    Scene scene = new Scene(root);
+                        	    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        	    stage.setScene(scene);
+                        	    stage.show();
+                            
     	}
     }
 

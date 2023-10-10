@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -120,7 +121,7 @@ public class ProjectDetailsToShowController implements Initializable{
     
 
     @FXML
-    private TextField itemWidthField;
+    private TextField itemWidthField,itemDepthField;
 
     @FXML
     private CheckBox newSection;
@@ -155,7 +156,7 @@ public class ProjectDetailsToShowController implements Initializable{
     private TableColumn<ProjectDetailsToShowNonStatic, String> itemName;
 
     @FXML
-    private TableColumn<ProjectDetailsToShowNonStatic, String> itemWidth;
+    private TableColumn<ProjectDetailsToShowNonStatic, String> itemWidth,itemDepth;
 
     @FXML
     private Pane pnlOverview;
@@ -318,12 +319,13 @@ public class ProjectDetailsToShowController implements Initializable{
         					itemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
         					itemHeight.setCellValueFactory(new PropertyValueFactory<>("itemHeight"));
         					itemWidth.setCellValueFactory(new PropertyValueFactory<>("itemWidth"));
+        					itemDepth.setCellValueFactory(new PropertyValueFactory<>("itemDepth"));
         					woodType.setCellValueFactory(new PropertyValueFactory<>("woodType"));
         					quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         					color.setCellValueFactory(new PropertyValueFactory<>("color"));
         					
         					
-    							ProjectDetailsToShowNonStatic pdtsToArray = new ProjectDetailsToShowNonStatic(p.getCustomerID(),pi.getProjectID(),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel(),pi.getSectionID());
+    							ProjectDetailsToShowNonStatic pdtsToArray = new ProjectDetailsToShowNonStatic(p.getCustomerID(),pi.getProjectID(),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel(),pi.getSectionID(),Integer.toString(pi.getDepth()));
     							
     							arraylistToShow.add(pdtsToArray);
     						
@@ -359,7 +361,7 @@ public class ProjectDetailsToShowController implements Initializable{
 	    	switch(adddeleteitem.getSelectionModel().getSelectedItem()) {
 	    	
 	    	case "Add":{
-	    		if(itemNameField.getText() !="" && itemHeightField.getText() !="" && itemWidthField.getText() != "" && woodTypeField.getSelectionModel().getSelectedItem() != null
+	    		if(itemNameField.getText() !="" && itemHeightField.getText() !="" && itemWidthField.getText() != "" && itemDepthField.getText() !="" && woodTypeField.getSelectionModel().getSelectedItem() != null
 	    				 && itemQuantity.getText()!= ""  
 	    				 && colorField.getSelectionModel().getSelectedItem() != null && handsModelNumber.getSelectionModel().getSelectedItem()!= null) {
 	    			
@@ -370,6 +372,7 @@ public class ProjectDetailsToShowController implements Initializable{
 	    			pi.setItemName(itemNameField.getText());
 	    			pi.setHeight(Integer.parseInt(itemHeightField.getText()));
 	    			pi.setWidth(Integer.parseInt(itemWidthField.getText()));
+	    			pi.setDepth(Integer.parseInt(itemDepthField.getText()));
 	    			pi.setWoodType(woodTypeField.getSelectionModel().getSelectedItem().toString());
 	    			pi.setQuantity(Integer.parseInt(itemQuantity.getText()));
 	    			pi.setProjectID(projectIDField.getText().toString());
@@ -435,6 +438,7 @@ public class ProjectDetailsToShowController implements Initializable{
 	    		        	itemNameField.setText(null);
 	    		        	itemHeightField.setText(null);
 	    		        	itemWidthField.setText(null);
+	    		        	itemDepthField.setText(null);
 	    		        	itemQuantity.setText(null);
 	    		   
 	    		    	}
@@ -459,6 +463,7 @@ public class ProjectDetailsToShowController implements Initializable{
 	        			pi2.setItemName(itemNameField.getText());
 	        			pi2.setHeight(Integer.parseInt(itemHeightField.getText()));
 	        			pi2.setWidth(Integer.parseInt(itemWidthField.getText()));
+	        			pi2.setDepth(Integer.parseInt(itemDepthField.getText()));
 	        			pi2.setWoodType(woodTypeField.getSelectionModel().getSelectedItem().toString());
 	        			pi2.setQuantity(Integer.parseInt(itemQuantity.getText()));
 	        			pi2.setProjectID(projectIDField.getText().toString());
@@ -477,6 +482,7 @@ public class ProjectDetailsToShowController implements Initializable{
     		        	itemNameField.setText(null);
     		        	itemHeightField.setText(null);
     		        	itemWidthField.setText(null);
+    		        	itemDepthField.setText(null);
     		        	itemQuantity.setText(null);
 	        			ShowProjectDetails();
 	    				}
@@ -648,10 +654,11 @@ public class ProjectDetailsToShowController implements Initializable{
 	          					itemName.setCellValueFactory(new PropertyValueFactory<>("itemName"));
 	          					itemHeight.setCellValueFactory(new PropertyValueFactory<>("itemHeight"));
 	          					itemWidth.setCellValueFactory(new PropertyValueFactory<>("itemWidth"));
+	          					itemDepth.setCellValueFactory(new PropertyValueFactory<>("itemDepth"));
 	          					woodType.setCellValueFactory(new PropertyValueFactory<>("woodType"));
 	          					quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
 	          					color.setCellValueFactory(new PropertyValueFactory<>("color"));
-	      							ProjectDetailsToShowNonStatic pdtsToArray = new ProjectDetailsToShowNonStatic(p.getCustomerID(),pi.getProjectID(),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel(),pi.getSectionID());
+	      							ProjectDetailsToShowNonStatic pdtsToArray = new ProjectDetailsToShowNonStatic(p.getCustomerID(),pi.getProjectID(),p.getProjectCategory(),Integer.toString(pi.getItemID()),pi.getItemName(),Integer.toString(pi.getHeight()),Integer.toString(pi.getWidth()),pi.getWoodType(),Integer.toString(pi.getQuantity()),pi.getSection(),pi.getColor(),pi.getHandsmodel(),pi.getSectionID(),Integer.toString(pi.getDepth()));
 	      							arraylistToShow.add(pdtsToArray);
 	      				
 	                  		}
@@ -677,6 +684,7 @@ public class ProjectDetailsToShowController implements Initializable{
 	    		itemNameField.setDisable(true);
 	    		itemQuantity.setDisable(true);
 	    		itemWidthField.setDisable(true);
+	    		itemDepthField.setDisable(true);
 	    		axleQuantity.setDisable(true);
 	    		handsQuantity.setDisable(true);
 	    		colorField.setDisable(true);
@@ -692,6 +700,7 @@ public class ProjectDetailsToShowController implements Initializable{
 	    		itemNameField.setDisable(true);
 	    		itemQuantity.setDisable(true);
 	    		itemWidthField.setDisable(true);
+	    		itemDepthField.setDisable(true);
 	    		axleQuantity.setDisable(true);
 	    		handsQuantity.setDisable(true);
 	    		colorField.setDisable(true);
@@ -706,6 +715,7 @@ public class ProjectDetailsToShowController implements Initializable{
 		     itemHeight.setCellFactory(TextFieldTableCell.forTableColumn());
 		     itemName.setCellFactory(TextFieldTableCell.forTableColumn());
 		     itemWidth.setCellFactory(TextFieldTableCell.forTableColumn());
+		     itemDepth.setCellFactory(TextFieldTableCell.forTableColumn());
 		     
 		     ObservableList<String> woodTypes = FXCollections.observableArrayList(
 		    		    "Mdf", "Melamine", "Particleboard", "Sandwich","Solid_Wood"
@@ -729,6 +739,7 @@ public class ProjectDetailsToShowController implements Initializable{
 		 		itemNameField.setDisable(false);
 		 		itemQuantity.setDisable(false);
 		 		itemWidthField.setDisable(false);
+		 		itemDepthField.setDisable(false);
 		 		colorField.setDisable(false);
 		 		handsModelNumber.setDisable(false);
 		 		woodTypeField.setDisable(false);
@@ -849,6 +860,22 @@ public class ProjectDetailsToShowController implements Initializable{
 								e1.printStackTrace();
 							}
 						    e.getRowValue().setItemWidth(newValue);
+						});
+						
+						itemDepth.setOnEditCommit(e -> {
+						    String newValue = e.getNewValue();
+						    System.out.println(newValue);
+						    //if( !Integer.toString(pi.getQuantity()).equals(e.getNewValue())) {
+						    try {
+								CarpentryLogic.getInstance().updateItemDepth(pi,Integer.parseInt(e.getNewValue()));
+							} catch (NumberFormatException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						    e.getRowValue().setItemDepth(newValue);
 						});
 						
 					}
@@ -1045,7 +1072,29 @@ public class ProjectDetailsToShowController implements Initializable{
 	    	
 	    	for(Project p : CarpentryLogic.getInstance().getProjects()) {
 	    		if(Integer.toString(p.getProjectID()).equals(projectIDField.getText())) {
-	    			controller.setData(CarpentryLogic.getInstance().GetImage(p));  // Replace 'Your String Data Here' with the actual data you want to send
+	    			String image1,image2,image3,image4;
+	    			String imagePath1,imagePath2,imagePath3,imagePath4;
+	    			image1=CarpentryLogic.getInstance().GetImage1(p);
+	    			image2=CarpentryLogic.getInstance().GetImage2(p);
+	    			image3=CarpentryLogic.getInstance().GetImage3(p);
+	    			image4=CarpentryLogic.getInstance().GetImage4(p);
+	    			if(image1==null)
+	    				 imagePath1="";
+	    			else imagePath1=image1;
+	    			
+	    			if(image2==null)
+	    				 imagePath2="";
+	    			else imagePath2=image2;
+	    			
+	    			if(image3==null)
+	    				 imagePath3="";
+	    			else imagePath3=image3;
+	    			
+	    			if(image4==null)
+	    				 imagePath4="";
+	    			else imagePath4=image4;
+	    			
+	    			controller.setData(imagePath1,imagePath2,imagePath3,imagePath4);  // Replace 'Your String Data Here' with the actual data you want to send
 	    	    	
 	    		}
 	    	}
@@ -1061,7 +1110,7 @@ public class ProjectDetailsToShowController implements Initializable{
 	    }
 	    
 	    @FXML
-	    void GetProjectReport(ActionEvent event) {
+	    void GetProjectReport(ActionEvent event) throws MalformedURLException, IOException {
 
 	    	Document document = new Document();
 	    	String desktopPath="";
@@ -1089,7 +1138,7 @@ public class ProjectDetailsToShowController implements Initializable{
 
 	    	    // 2. The date the report was created
 	    	    String currentDate = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-	    	    Paragraph dateParagraph = new Paragraph("Report Date: " + currentDate + "                                                                   Project Image");
+	    	    Paragraph dateParagraph = new Paragraph("Report Date: " + currentDate);
 	    	    dateParagraph.setSpacingAfter(10);
 	    	    document.add(dateParagraph);
 
@@ -1103,7 +1152,7 @@ public class ProjectDetailsToShowController implements Initializable{
 	    	    String customerEmail="";
 	    	    String projectCategory="";
 	    	    String projectNotes="";
-	    	    String imagePath="";
+	    	    String image1Path="",image2Path="",image3Path="",image4Path="";
 	    	    
 	    	    for(Project p : CarpentryLogic.getInstance().getProjects()) {
 	    	    	for(Customer c : CarpentryLogic.getInstance().getCustomers()) {
@@ -1164,28 +1213,15 @@ public class ProjectDetailsToShowController implements Initializable{
 	    	    projectNotesParagraph.setSpacingAfter(20);  // Add some spacing after this before the table
 	    	    document.add(projectNotesParagraph);
 
-	    	    
+
 	    	    for(Project p : CarpentryLogic.getInstance().getProjects()) {
 		    		if(Integer.toString(p.getProjectID()).equals(projectIDField.getText())) {
-		    			 imagePath=CarpentryLogic.getInstance().GetImage(p);  // Replace 'Your String Data Here' with the actual data you want to send
-		    	    	
+		    			 image1Path=CarpentryLogic.getInstance().GetImage1(p);
+		    			 image2Path=CarpentryLogic.getInstance().GetImage2(p);
+		    			 image3Path=CarpentryLogic.getInstance().GetImage3(p);
+		    			 image4Path=CarpentryLogic.getInstance().GetImage4(p);
 		    		}
 		    	}
-	    	    
-	    	    try {
-	    	        // Create an Image instance
-	    	        Image image = Image.getInstance(imagePath);
-	    	        
-	    	        // Set the image's position and size if needed
-	    	        image.setAbsolutePosition(335, 535); // x and y position
-	    	        image.scaleToFit(200, 185); // width and height
-
-	    	        // Add the image to the document
-	    	        document.add(image);
-	    	    } catch (Exception e) {
-	    	        e.printStackTrace();
-	    	    }
-	    	    // The rest of your table generation code...
 	    	    PdfPTable table = new PdfPTable(tableView.getColumns().size());
 	    	    table.setWidthPercentage(100);
 	    	    ObservableList<TableColumn<ProjectDetailsToShowNonStatic, ?>> columns = tableView.getColumns();
@@ -1206,6 +1242,98 @@ public class ProjectDetailsToShowController implements Initializable{
 	    	        }
 	    	    }
 	    	    document.add(table);
+	    	    
+	    	    try {
+	    	    	
+	    	    	if (image1Path != null) {
+	    	            // Create an Image instance for image1
+	    	            Image image1 = Image.getInstance(image1Path);
+	    	            image1.setAbsolutePosition(45, 235); // x and y position
+	    	            image1.scaleToFit(500, 500); // width and height
+
+	    	            // Add a new page
+	    	            document.newPage();
+
+	    	            // Add a title or any other content before the image
+	    	            Paragraph image1title = new Paragraph("Kitchen Image", new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD));
+	    	            image1title.setAlignment(Element.ALIGN_CENTER);
+	    	            document.add(image1title);
+
+	    	            // Add some spacing after the title if needed
+	    	            document.add(new Paragraph("\n"));
+
+	    	            // Add the image to the document
+	    	            document.add(image1);
+	    	        }
+	    	    	
+	    	    	if (image2Path != null) {
+	    	            // Create an Image instance for image1
+	    	            Image image2 = Image.getInstance(image2Path);
+	    	            image2.setAbsolutePosition(45, 235); // x and y position
+	    	            image2.scaleToFit(500, 500); // width and height
+
+	    	            // Add a new page
+	    	            document.newPage();
+
+	    	            // Add a title or any other content before the image
+	    	            Paragraph image2title = new Paragraph("Room Image", new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD));
+	    	            image2title.setAlignment(Element.ALIGN_CENTER);
+	    	            document.add(image2title);
+
+	    	            // Add some spacing after the title if needed
+	    	            document.add(new Paragraph("\n"));
+
+	    	            // Add the image to the document
+	    	            document.add(image2);
+	    	        }
+	    	    	
+	    	    	if (image3Path != null) {
+	    	            // Create an Image instance for image1
+	    	            Image image3 = Image.getInstance(image3Path);
+	    	            image3.setAbsolutePosition(45, 235); // x and y position
+	    	            image3.scaleToFit(500, 500); // width and height
+
+	    	            // Add a new page
+	    	            document.newPage();
+
+	    	            // Add a title or any other content before the image
+	    	            Paragraph image3title = new Paragraph("Livingroom Image", new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD));
+	    	            image3title.setAlignment(Element.ALIGN_CENTER);
+	    	            document.add(image3title);
+
+	    	            // Add some spacing after the title if needed
+	    	            document.add(new Paragraph("\n"));
+
+	    	            // Add the image to the document
+	    	            document.add(image3);
+	    	        }
+	    	    	
+	    	    	if (image4Path != null) {
+	    	            // Create an Image instance for image1
+	    	            Image image4 = Image.getInstance(image4Path);
+	    	            image4.setAbsolutePosition(45, 235); // x and y position
+	    	            image4.scaleToFit(500, 500); // width and height
+
+	    	            // Add a new page
+	    	            document.newPage();
+
+	    	            // Add a title or any other content before the image
+	    	            Paragraph image4title = new Paragraph("Bathroom Image", new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD));
+	    	            image4title.setAlignment(Element.ALIGN_CENTER);
+	    	            document.add(image4title);
+
+	    	            // Add some spacing after the title if needed
+	    	            document.add(new Paragraph("\n"));
+
+	    	            // Add the image to the document
+	    	            document.add(image4);
+	    	        }
+	    	        
+	    	    } catch (Exception e) {
+	    	        e.printStackTrace();
+	    	    }
+	    	    // The rest of your table generation code...
+	    	    
 	    	} catch (DocumentException | FileNotFoundException e) {
 	    	    e.printStackTrace();
 	    	} finally {
@@ -1243,6 +1371,7 @@ public class ProjectDetailsToShowController implements Initializable{
 			itemNameField.setDisable(true);
 			itemQuantity.setDisable(true);
 			itemWidthField.setDisable(true);
+			itemDepthField.setDisable(true);
 			axleQuantity.setDisable(true);
 			handsQuantity.setDisable(true);
 			colorField.setDisable(true);
