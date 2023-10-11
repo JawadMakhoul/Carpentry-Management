@@ -99,10 +99,10 @@
                   <ImageView fx:id="image9" fitHeight="200.0" fitWidth="200.0" layoutX="755.0" layoutY="503.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="image10" fitHeight="200.0" fitWidth="200.0" layoutX="983.0" layoutY="503.0" pickOnBounds="true" preserveRatio="true" />
                   <Button fx:id="image1btn" layoutX="58.0" layoutY="269.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
-                  <Button fx:id="image2btn" layoutX="291.0" layoutY="503.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
+                  <Button fx:id="image7btn" layoutX="291.0" layoutY="503.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
                   <Button fx:id="image9btn" layoutX="755.0" layoutY="503.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
                   <Button fx:id="image8btn" layoutX="524.0" layoutY="503.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
-                  <Button fx:id="image7btn" layoutX="291.0" layoutY="269.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
+                  <Button fx:id="image2btn" layoutX="291.0" layoutY="269.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
                   <Button fx:id="image6btn" layoutX="58.0" layoutY="503.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
                   <Button fx:id="image5btn" layoutX="983.0" layoutY="269.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
                   <Button fx:id="image4btn" layoutX="755.0" layoutY="269.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />

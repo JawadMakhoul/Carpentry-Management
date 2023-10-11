@@ -530,13 +530,13 @@ public class ProjectItemsController implements Initializable{
                     	    	break;
                     	    }
                     	    }
-                    	    //String myData = Integer.toString(GlobalProjectID.getId());
+                    	    
                     	    AIAutoController controller = loader.getController();
                     	    
                     	    // Send data
                     	    
-                    	    
-                    	    controller.setData(myData);
+                    	   
+                    	    controller.setData(myData,s.getProjectID());
 
                     	    Scene scene = new Scene(root);
                     	    Stage stage3 = new Stage();

@@ -191,6 +191,7 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
+                  <ImageView fx:id="loading" fitHeight="192.0" fitWidth="202.0" layoutX="1022.0" layoutY="682.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
         </items>

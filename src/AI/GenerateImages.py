@@ -7,6 +7,7 @@ from base64 import b64decode
 import openai
 from openai.error import InvalidRequestError
 
+import shutil
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 
@@ -52,7 +53,8 @@ SIZES = ('1024x1024', '512x512', '256x256')
 # Get image description from user
 image_description = sys.argv[1]
 # Specify the folder where you want to save the images
-output_folder = os.path.join("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\images")
+output_folder = os.path.join("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib")
+
 # Generate images (byte output)
 response = generate_image(image_description, num_image=10, size=SIZES[1], output_format='b64_json')
 if response is not None:

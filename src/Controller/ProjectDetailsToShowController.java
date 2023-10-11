@@ -1,10 +1,12 @@
 package Controller;
 
 import java.awt.Desktop;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -16,8 +18,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.scene.image.ImageView;
 import javax.swing.JOptionPane;
-
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -31,7 +33,6 @@ import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPageEventHelper;
 import com.itextpdf.text.BaseColor;
-
 import Enumeration.AxleDegree;
 import Enumeration.ProjectSection;
 import Enumeration.SectionColor;
@@ -46,11 +47,12 @@ import Model.ProjectDetailsToShowNonStatic;
 import Model.ProjectItems;
 import Model.Section;
 import Model.Stock;
-import Model.Axles;
 import Model.BackgroundColorEvent;
 import Model.BackgroundColorEvent2;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -69,12 +71,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import com.itextpdf.text.Image;
 public class ProjectDetailsToShowController implements Initializable{
 
 	
@@ -126,7 +126,8 @@ public class ProjectDetailsToShowController implements Initializable{
     @FXML
     private CheckBox newSection;
 
-   
+    @FXML
+    private ImageView loading;
 
     @FXML
     private ComboBox<ProjectSection> projectSection;
@@ -428,9 +429,119 @@ public class ProjectDetailsToShowController implements Initializable{
 	    		        		}
 
 	    		        	}
-	    		        	
+	    		        	javafx.scene.image.Image loadingImage = new  javafx.scene.image.Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\737.gif");
+	    		        	loading.setImage(loadingImage);
+
+	    		            Task<Void> task = new Task<Void>() {
+	    		                @Override
+	    		                protected Void call() throws Exception {
+	    		                    Process p = null;
+	    		                    try {
+	    		                    	
+	    		                    	if(projectSection.getSelectionModel().getSelectedItem().toString().equals("Room")) {
+	    		                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Bedroom that includes bed and desk, closet with a mirror in" + pi.getColor());
+	    		                            p = pb.start();
+	    		                    	}
+	    		                    	
+	    		                    	else if(projectSection.getSelectionModel().getSelectedItem().toString().equals("Kitchen")) {
+	    		                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Kitchen that includes island in" + pi.getColor());
+	    		                            p = pb.start();
+	    		                    	}
+	    		                    	
+	    		                    	else if(projectSection.getSelectionModel().getSelectedItem().toString().equals("LivingRoom")) {
+	    		                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "LivingRoom that includes TV furniture and a salon table in" + pi.getColor());
+	    		                            p = pb.start();
+	    		                    	}
+	    		                    	
+	    		                    	else if(projectSection.getSelectionModel().getSelectedItem().toString().equals("Bathroom")) {
+	    		                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Bathroom that includes sink cabinets with a mirror in" + pi.getColor());
+	    		                            p = pb.start();
+	    		                    	}
+	    		                    		
+
+	    		                        // Read output
+	    		                        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+	    		                        String output;
+	    		                        while ((output = in.readLine()) != null) {
+	    		                            System.out.println(output);
+	    		                        }
+
+	    		                        // Read any errors from the attempted command
+	    		                        BufferedReader err = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+	    		                        String error;
+	    		                        while ((error = err.readLine()) != null) {
+	    		                            System.err.println(error);
+	    		                        }
+
+	    		                        p.waitFor();
+	    		                    } catch (IOException e) {
+	    		                        e.printStackTrace();
+	    		                    }
+
+	    		                    Platform.runLater(() -> {
+	    		                        try {
+	    		                            loading.setImage(null);  // Set loading image to null
+
+	    		                            // Open new Scene
+	    		                            try {
+	    		                            	FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AI_Auto.fxml"));
+	    		                        	    Parent root = loader.load();
+	    		                        	    int myData=0;
+	    		                        	    // Get the controller of the second scene
+	    		                        	    switch(s.getSectionName()) {
+	    		                        	    
+	    		                        	    case "Kitchen":{
+	    		                        	    	myData = 1;
+	    		                        	    	break;
+	    		                        	    }
+	    		                        	    
+	    		                        	    case "Room":{
+	    		                        	    	myData = 2;
+	    		                        	    	break;
+	    		                        	    }
+	    		                        	    
+	    		                        	    case "LivingRoom":{
+	    		                        	    	myData = 3;
+	    		                        	    	break;
+	    		                        	    }
+	    		                        	    
+	    		                        	    case "Bathroom":{
+	    		                        	    	myData = 4;
+	    		                        	    	break;
+	    		                        	    }
+	    		                        	    }
+	    		                        	    //String myData = Integer.toString(GlobalProjectID.getId());
+	    		                        	    AIAutoController controller = loader.getController();
+	    		                        	    
+	    		                        	    // Send data
+	    		                        	    
+	    		                        	    
+	    		                        	    controller.setData(myData,projectIDField.getText().toString());
+
+	    		                        	    Scene scene = new Scene(root);
+	    		                        	    Stage stage3 = new Stage();
+	    		                        	    stage3.setScene(scene);
+	    		                        	    stage3.show();
+	    		                                
+	    		                                
+	    		                            } catch (IOException e) {
+	    		                                e.printStackTrace();
+	    		                            }
+
+	    		                            // Do the same for other ImageViews...
+	    		                        } catch (Exception e) {
+	    		                            e.printStackTrace();
+	    		                        }
+	    		                    });
+
+	    		                    return null;
+	    		                }
+	    		            };
+
+	    		            new Thread(task).start();
+	    		            
 	    		        	colorField.setValue(null);
-	    		        	projectSection.setValue(null);
+	    		        	//projectSection.setValue(null);
 	    		        	brzolDegree.setValue(null);
 	    		        	handsModelNumber.setValue(null);
 	    		        	handsQuantity.setText(null);
@@ -1247,7 +1358,7 @@ public class ProjectDetailsToShowController implements Initializable{
 	    	    	
 	    	    	if (image1Path != null) {
 	    	            // Create an Image instance for image1
-	    	            Image image1 = Image.getInstance(image1Path);
+	    	    		com.itextpdf.text.Image image1 = com.itextpdf.text.Image.getInstance(image1Path);
 	    	            image1.setAbsolutePosition(45, 235); // x and y position
 	    	            image1.scaleToFit(500, 500); // width and height
 
@@ -1268,7 +1379,7 @@ public class ProjectDetailsToShowController implements Initializable{
 	    	    	
 	    	    	if (image2Path != null) {
 	    	            // Create an Image instance for image1
-	    	            Image image2 = Image.getInstance(image2Path);
+	    	    		com.itextpdf.text.Image image2 = com.itextpdf.text.Image.getInstance(image2Path);
 	    	            image2.setAbsolutePosition(45, 235); // x and y position
 	    	            image2.scaleToFit(500, 500); // width and height
 
@@ -1289,7 +1400,7 @@ public class ProjectDetailsToShowController implements Initializable{
 	    	    	
 	    	    	if (image3Path != null) {
 	    	            // Create an Image instance for image1
-	    	            Image image3 = Image.getInstance(image3Path);
+	    	    		com.itextpdf.text.Image image3 = com.itextpdf.text.Image.getInstance(image3Path);
 	    	            image3.setAbsolutePosition(45, 235); // x and y position
 	    	            image3.scaleToFit(500, 500); // width and height
 
@@ -1310,7 +1421,7 @@ public class ProjectDetailsToShowController implements Initializable{
 	    	    	
 	    	    	if (image4Path != null) {
 	    	            // Create an Image instance for image1
-	    	            Image image4 = Image.getInstance(image4Path);
+	    	    		com.itextpdf.text.Image image4 = com.itextpdf.text.Image.getInstance(image4Path);
 	    	            image4.setAbsolutePosition(45, 235); // x and y position
 	    	            image4.scaleToFit(500, 500); // width and height
 
