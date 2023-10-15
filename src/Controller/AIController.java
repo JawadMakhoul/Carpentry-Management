@@ -230,16 +230,15 @@ public class AIController implements Initializable{
  @FXML
  void UpdateProjectImage(MouseEvent event) throws SQLException {
 
+	 File oldFile = null;
 	 for(Button b : imagebtns) {
 		 if(b.isPressed()) {
 		 
 		 switch(b.getId()) {
 		 	case "image1btn":{
 		 		
-		 		File oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  // Replace with your old filename's path
-	 	        File newFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image1_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");  // Replace with your new filename's path
-
-	 	        oldFile.renameTo(newFile); 
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  // Replace with your old filename's path
+	 	         
 	 	       File fileToDelete2 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_2.jpg");  
 	 	        fileToDelete2.delete();
 	 	        
@@ -266,35 +265,15 @@ public class AIController implements Initializable{
 	 	        
 	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
 	 	        fileToDelete10.delete();
-		 		if(projectSection.getSelectionModel().getSelectedItem().equals("Kitchen")) {
-		 			
-			 		CarpentryLogic.getInstance().addProjectImage1(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image1_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
+	 	        
 		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("Room")) {
-		 			CarpentryLogic.getInstance().addProjectImage2(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image1_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
-		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("LivingRoom")) {
-		 			CarpentryLogic.getInstance().addProjectImage3(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image1_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
-		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("Bathroom")) {
-		 			CarpentryLogic.getInstance().addProjectImage4(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image1_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
 		 		break;
 		 	}
 		 	
 		 	case "image2btn":{
 		 		
-		 		File oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_2.jpg");  // Replace with your old filename's path
-	 	        File newFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image2_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");  // Replace with your new filename's path
-
-	 	        oldFile.renameTo(newFile);
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_2.jpg");  // Replace with your old filename's path
+	 	        
 	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
 	 	        fileToDelete1.delete();
 	 	        
@@ -321,35 +300,14 @@ public class AIController implements Initializable{
 	 	        
 	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
 	 	        fileToDelete10.delete();
-		 		if(projectSection.getSelectionModel().getSelectedItem().equals("Kitchen")) {
-		 			CarpentryLogic.getInstance().addProjectImage1(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image2_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
 		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("Room")) {
-		 			CarpentryLogic.getInstance().addProjectImage2(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image2_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
-		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("LivingRoom")) {
-		 			CarpentryLogic.getInstance().addProjectImage3(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image2_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
-		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("Bathroom")) {
-		 			CarpentryLogic.getInstance().addProjectImage4(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image2_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
 		 		break;
 		 	}
 
 		 	case "image3btn":{
 		 		
-		 		File oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_3.jpg");  // Replace with your old filename's path
-	 	        File newFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image3_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");  // Replace with your new filename's path
-
-	 	        oldFile.renameTo(newFile);
-	 	        
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_3.jpg");  // Replace with your old filename's path
+	 	       
 	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
 	 	        fileToDelete1.delete();
 	 	        
@@ -376,33 +334,12 @@ public class AIController implements Initializable{
 	 	        
 	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
 	 	        fileToDelete10.delete();
-		 		if(projectSection.getSelectionModel().getSelectedItem().equals("Kitchen")) {
-		 			CarpentryLogic.getInstance().addProjectImage1(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image3_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
 		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("Room")) {
-		 			CarpentryLogic.getInstance().addProjectImage2(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image3_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
-		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("LivingRoom")) {
-		 			CarpentryLogic.getInstance().addProjectImage3(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image3_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
-		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("Bathroom")) {
-		 			CarpentryLogic.getInstance().addProjectImage4(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image3_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
 		 		break;
 		 	}
 
 		 	case "image4btn":{
-		 		File oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_4.jpg");  // Replace with your old filename's path
-	 	        File newFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image4"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");  // Replace with your new filename's path
-
-	 	        oldFile.renameTo(newFile);
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_4.jpg");  // Replace with your old filename's path
 	 	        
 	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
 	 	        fileToDelete1.delete();
@@ -431,34 +368,13 @@ public class AIController implements Initializable{
 	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
 	 	        fileToDelete10.delete();
 	 	        
-		 		if(projectSection.getSelectionModel().getSelectedItem().equals("Kitchen")) {
-		 			CarpentryLogic.getInstance().addProjectImage1(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image4_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
 		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("Room")) {
-		 			CarpentryLogic.getInstance().addProjectImage2(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image4_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
-		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("LivingRoom")) {
-		 			CarpentryLogic.getInstance().addProjectImage3(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image4_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
-		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("Bathroom")) {
-		 			CarpentryLogic.getInstance().addProjectImage4(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image4_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
 		 		break;
 		 	}
 
 		 	case "image5btn":{
-		 		File oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_5.jpg");  // Replace with your old filename's path
-	 	        File newFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image5_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");  // Replace with your new filename's path
-
-	 	        oldFile.renameTo(newFile);
-	 	        
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_5.jpg");  // Replace with your old filename's path
+	 	       
 	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
 	 	        fileToDelete1.delete();
 	 	        
@@ -485,34 +401,12 @@ public class AIController implements Initializable{
 	 	        
 	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
 	 	        fileToDelete10.delete();
-	 	        
-		 		if(projectSection.getSelectionModel().getSelectedItem().equals("Kitchen")) {
-		 			CarpentryLogic.getInstance().addProjectImage1(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image5_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
-		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("Room")) {
-		 			CarpentryLogic.getInstance().addProjectImage2(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image5_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
-		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("LivingRoom")) {
-		 			CarpentryLogic.getInstance().addProjectImage3(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image5_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
-		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("Bathroom")) {
-		 			CarpentryLogic.getInstance().addProjectImage4(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image5_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
+	 	       
 		 		break;
 		 	}
 
 		 	case "image6btn":{
-		 		File oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  // Replace with your old filename's path
-	 	        File newFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image6_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");  // Replace with your new filename's path
-
-	 	        oldFile.renameTo(newFile);
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  // Replace with your old filename's path
 	 	        
 	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
 	 	        fileToDelete1.delete();
@@ -541,33 +435,12 @@ public class AIController implements Initializable{
 	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
 	 	        fileToDelete10.delete();
 	 	        
-		 		if(projectSection.getSelectionModel().getSelectedItem().equals("Kitchen")) {
-		 			CarpentryLogic.getInstance().addProjectImage1(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image6_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
 		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("Room")) {
-		 			CarpentryLogic.getInstance().addProjectImage2(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image6_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
-		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("LivingRoom")) {
-		 			CarpentryLogic.getInstance().addProjectImage3(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image6_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
-		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("Bathroom")) {
-		 			CarpentryLogic.getInstance().addProjectImage4(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image6_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
 		 		break;
 		 	}
 
 		 	case "image7btn":{
-		 		File oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  // Replace with your old filename's path
-	 	        File newFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image7_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");  // Replace with your new filename's path
-
-	 	        oldFile.renameTo(newFile);
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  // Replace with your old filename's path
 	 	        
 	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
 	 	        fileToDelete1.delete();
@@ -595,33 +468,12 @@ public class AIController implements Initializable{
 	 	        
 	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
 	 	        fileToDelete10.delete();
-		 		if(projectSection.getSelectionModel().getSelectedItem().equals("Kitchen")) {
-		 			CarpentryLogic.getInstance().addProjectImage1(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image7_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
 		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("Room")) {
-		 			CarpentryLogic.getInstance().addProjectImage2(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image7_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
-		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("LivingRoom")) {
-		 			CarpentryLogic.getInstance().addProjectImage3(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image7_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
-		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("Bathroom")) {
-		 			CarpentryLogic.getInstance().addProjectImage4(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image7_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
 		 		break;
 		 	}
 
 		 	case "image8btn":{
-		 		File oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  // Replace with your old filename's path
-	 	        File newFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image8_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");  // Replace with your new filename's path
-
-	 	        oldFile.renameTo(newFile);
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  // Replace with your old filename's path
 	 	        
 	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
 	 	        fileToDelete1.delete();
@@ -650,33 +502,13 @@ public class AIController implements Initializable{
 	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
 	 	        fileToDelete10.delete();
 	 	        
-		 		if(projectSection.getSelectionModel().getSelectedItem().equals("Kitchen")) {
-		 			CarpentryLogic.getInstance().addProjectImage1(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image8_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
 		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("Room")) {
-		 			CarpentryLogic.getInstance().addProjectImage2(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image8_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
-		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("LivingRoom")) {
-		 			CarpentryLogic.getInstance().addProjectImage3(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image8_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
-		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("Bathroom")) {
-		 			CarpentryLogic.getInstance().addProjectImage4(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image8_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
 		 		break;
 		 	}
 
 		 	case "image9btn":{
-		 		File oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  // Replace with your old filename's path
-	 	        File newFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image9_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");  // Replace with your new filename's path
-
-	 	        oldFile.renameTo(newFile);
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  // Replace with your old filename's path
+	 	        
 	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
 	 	        fileToDelete1.delete();
 	 	        
@@ -703,33 +535,12 @@ public class AIController implements Initializable{
 	 	        
 	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
 	 	        fileToDelete10.delete();
-		 		if(projectSection.getSelectionModel().getSelectedItem().equals("Kitchen")) {
-		 			CarpentryLogic.getInstance().addProjectImage1(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image9_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
 		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("Room")) {
-		 			CarpentryLogic.getInstance().addProjectImage2(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image9_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
-		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("LivingRoom")) {
-		 			CarpentryLogic.getInstance().addProjectImage3(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image9_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
-		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("Bathroom")) {
-		 			CarpentryLogic.getInstance().addProjectImage4(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image9_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
 		 		break;
 		 	}
 
 		 	case "image10btn":{
-		 		File oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  // Replace with your old filename's path
-	 	        File newFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image10_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");  // Replace with your new filename's path
-
-	 	        oldFile.renameTo(newFile);
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  // Replace with your old filename's path
 	 	        
 	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
 	 	        fileToDelete1.delete();
@@ -758,28 +569,45 @@ public class AIController implements Initializable{
 	 	       File fileToDelete9 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  
 	 	        fileToDelete9.delete();
 	 	        
-		 		if(projectSection.getSelectionModel().getSelectedItem().equals("Kitchen")) {
-		 			CarpentryLogic.getInstance().addProjectImage1(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image10_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
 		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("Room")) {
-		 			CarpentryLogic.getInstance().addProjectImage2(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image10_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
-		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("LivingRoom")) {
-		 			CarpentryLogic.getInstance().addProjectImage3(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image10_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
-		 		
-		 		else if(projectSection.getSelectionModel().getSelectedItem().equals("Bathroom")) {
-		 			CarpentryLogic.getInstance().addProjectImage4(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image10_"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg");
-			 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
-		 		}
 		 		break;
 		 	}
 		 }
+		 
+		 if(projectSection.getSelectionModel().getSelectedItem().equals("Kitchen")) {
+	 			String path = "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Kitchen_ProjectID"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg";
+	 			File newFile = new File(path);  
+	 	        oldFile.renameTo(newFile);
+	 	        
+		 		CarpentryLogic.getInstance().addProjectImage1(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), path);
+		 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
+	 		}
+	 		
+	 		else if(projectSection.getSelectionModel().getSelectedItem().equals("Room")) {
+	 			String path = "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Room_ProjectID"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg";
+	 			File newFile = new File(path);
+	 			oldFile.renameTo(newFile);
+	 			
+	 			CarpentryLogic.getInstance().addProjectImage2(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), path);
+		 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
+	 		}
+	 		
+	 		else if(projectSection.getSelectionModel().getSelectedItem().equals("LivingRoom")) {
+	 			String path = "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\LivingRoom_ProjectID"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg";
+	 			File newFile = new File(path);
+	 			oldFile.renameTo(newFile);
+	 			
+	 			CarpentryLogic.getInstance().addProjectImage3(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), path);
+		 		JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
+	 		}
+	 		
+	 		else if(projectSection.getSelectionModel().getSelectedItem().equals("Bathroom")) {
+	 			String path = "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Bathroom_ProjectID"+projectID.getSelectionModel().getSelectedItem().toString()+".jpg";
+	 			File newFile = new File(path);
+	 			oldFile.renameTo(newFile);
+	 			
+	 			CarpentryLogic.getInstance().addProjectImage4(Integer.parseInt(projectID.getSelectionModel().getSelectedItem().toString()), path);JOptionPane.showMessageDialog(null, "Image added to the project.", "Adding image", JOptionPane.INFORMATION_MESSAGE);
+	 		}
 	 }
 	 }
  }

@@ -436,15 +436,6 @@ public class ProjectItemsController implements Initializable{
     	    alert.setHeaderText(e.getMessage());
     	    alert.showAndWait();
    	}
-    	
-//    	Parent pane = FXMLLoader.load(getClass().getResource("/View/AI_Auto.fxml"));
-//        Scene scene = new Scene(pane);
-//        Stage stage12 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        stage12.setScene(scene);
-//        stage12.setResizable(false);
-//        stage12.setTitle("Awni Wood Work");
-//        stage12.show();
-       
 
     	
 	    Image loadingImage = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\737.gif");
@@ -457,22 +448,22 @@ public class ProjectItemsController implements Initializable{
                 try {
                 	
                 	if(sec.getSectionName().equals("Room")) {
-                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Bedroom that includes bed and desk, closet with a mirror in" + pi.getColor());
+                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : Bedroom that includes bed and desk, closet with a mirror in" + pi.getColor());
                         p = pb.start();
                 	}
                 	
                 	if(sec.getSectionName().equals("Kitchen")) {
-                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Kitchen that includes island in" + pi.getColor());
+                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : Kitchen that includes island in" + pi.getColor());
                         p = pb.start();
                 	}
                 	
                 	if(sec.getSectionName().equals("LivingRoom")) {
-                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "LivingRoom that includes TV furniture and a salon table in" + pi.getColor());
+                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : LivingRoom that includes TV furniture and a salon table in" + pi.getColor());
                         p = pb.start();
                 	}
                 	
                 	if(sec.getSectionName().equals("Bathroom")) {
-                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Bathroom that includes sink cabinets with a mirror in" + pi.getColor());
+                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : Bathroom that includes sink cabinets with a mirror in" + pi.getColor());
                         p = pb.start();
                 	}
                 		

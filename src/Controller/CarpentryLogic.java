@@ -1370,6 +1370,90 @@ public class CarpentryLogic {
 			return false;
 		}
 		
+		public  boolean DeleteSectionImage1(Project p) {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			           //  Statement stmt = con.createStatement()
+					CallableStatement stmt = con.prepareCall("UPDATE project SET Image1 = NULL WHERE ProjectID=?")){
+					
+					stmt.setInt(1, p.getProjectID());
+					
+					stmt.executeUpdate();
+					return true;
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+		
+		public  boolean DeleteSectionImage2(Project p) {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			           //  Statement stmt = con.createStatement()
+					CallableStatement stmt = con.prepareCall("UPDATE project SET Image2 = NULL WHERE ProjectID=?")){
+					
+					stmt.setInt(1, p.getProjectID());
+					
+					stmt.executeUpdate();
+					return true;
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+		
+		public  boolean DeleteSectionImage3(Project p) {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			           //  Statement stmt = con.createStatement()
+					CallableStatement stmt = con.prepareCall("UPDATE project SET Image3 = NULL WHERE ProjectID=?")){
+					
+					stmt.setInt(1, p.getProjectID());
+					
+					stmt.executeUpdate();
+					return true;
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+		
+		public  boolean DeleteSectionImage4(Project p) {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/carpentrydatabase","root","AwniWoodWork");
+			           //  Statement stmt = con.createStatement()
+					CallableStatement stmt = con.prepareCall("UPDATE project SET Image4 = NULL WHERE ProjectID=?")){
+					
+					stmt.setInt(1, p.getProjectID());
+					
+					stmt.executeUpdate();
+					return true;
+
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			return false;
+		}
+		
 		public  boolean DeleteProjectItems(ProjectItems pi) {
 			try {
 				Class.forName("com.mysql.jdbc.Driver");

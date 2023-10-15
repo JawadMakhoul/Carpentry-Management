@@ -149,17 +149,15 @@ public class AIAutoController implements Initializable{
  @FXML
  void UpdateProjectImage(MouseEvent event) throws SQLException, IOException {
 
+	 File oldFile = null;
 	 for(Button b : imagebtns) {
 		 if(b.isPressed()) {
 		 
 		 switch(b.getId()) {
 		 	case "image1btn":{
-		 		
-		 		File oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
-	 	        File newFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image1_"+projectid+".jpg");  
-
-	 	        oldFile.renameTo(newFile); 
 	 	        
+		 	    oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg"); 
+		 		
 	 	       File fileToDelete2 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_2.jpg");  
 	 	        fileToDelete2.delete();
 	 	        
@@ -187,34 +185,14 @@ public class AIAutoController implements Initializable{
 	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
 	 	        fileToDelete10.delete();
 	 	        
-		 		if(data==1) {    
-		 			CarpentryLogic.getInstance().addProjectImage1(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image1_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage1("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image1_"+projectid+".jpg");
-		 		}
 		 		
-		 		else if(data==2) {
-		 			CarpentryLogic.getInstance().addProjectImage2(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image1_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage2("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image1_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==3) {
-		 			CarpentryLogic.getInstance().addProjectImage3(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image1_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage3("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image1_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==4) {
-		 			CarpentryLogic.getInstance().addProjectImage4(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image1_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage4("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image1_"+projectid+".jpg");
-		 		}
 		 		break;
 		 	}
 		 	
 		 	case "image2btn":{
 		 		
-		 		File oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_2.jpg");  // Replace with your old filename's path
-	 	        File newFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image2_"+projectid+".jpg");  // Replace with your new filename's path
-
-	 	        oldFile.renameTo(newFile);
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_2.jpg");  // Replace with your old filename's path
+	 	        
 	 	        
 	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
 	 	        fileToDelete1.delete();
@@ -243,34 +221,14 @@ public class AIAutoController implements Initializable{
 	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
 	 	        fileToDelete10.delete();
 	 	        
-		 		if(data==1) {
-		 			CarpentryLogic.getInstance().addProjectImage1(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image2_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage1("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image2_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==2) {
-		 			CarpentryLogic.getInstance().addProjectImage2(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image2_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage2("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image2_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==3) {
-		 			CarpentryLogic.getInstance().addProjectImage3(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image2_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage3("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image2_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==4) {
-		 			CarpentryLogic.getInstance().addProjectImage4(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image2_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage4("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image2_"+projectid+".jpg");
-		 		}
+	 	       
 		 		break;
 		 	}
 
 		 	case "image3btn":{
 		 		
-		 		File oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_3.jpg");  // Replace with your old filename's path
-	 	        File newFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image3_"+projectid+".jpg");  // Replace with your new filename's path
-
-	 	        oldFile.renameTo(newFile);
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_3.jpg");  // Replace with your old filename's path
+	 	        
 	 	        
 	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
 	 	        fileToDelete1.delete();
@@ -298,34 +256,14 @@ public class AIAutoController implements Initializable{
 	 	        
 	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
 	 	        fileToDelete10.delete();
-		 		if(data==1) {
-		 			CarpentryLogic.getInstance().addProjectImage1(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image3_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage1("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image3_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==2) {
-		 			CarpentryLogic.getInstance().addProjectImage2(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image3_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage2("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image3_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==3) {
-		 			CarpentryLogic.getInstance().addProjectImage3(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image3_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage3("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image3_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==4) {
-		 			CarpentryLogic.getInstance().addProjectImage4(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image3_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage4("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image3_"+projectid+".jpg");
-		 		}
+	 	       
 		 		break;
 		 	}
 
 		 	case "image4btn":{
 		 		
-		 		File oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_4.jpg");  // Replace with your old filename's path
-	 	        File newFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image4_"+projectid+".jpg");  // Replace with your new filename's path
-
-	 	        oldFile.renameTo(newFile);
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_4.jpg");  // Replace with your old filename's path
+	 	        
 		 		
 	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
 	 	        fileToDelete1.delete();
@@ -353,35 +291,14 @@ public class AIAutoController implements Initializable{
 	 	        
 	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
 	 	        fileToDelete10.delete();
-	 	        
-		 		if(data==1) {
-		 			CarpentryLogic.getInstance().addProjectImage1(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image4_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage1("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image4_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==2) {
-		 			CarpentryLogic.getInstance().addProjectImage2(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image4_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage2("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image4_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==3) {
-		 			CarpentryLogic.getInstance().addProjectImage3(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image4_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage3("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image4_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==4) {
-		 			CarpentryLogic.getInstance().addProjectImage4(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image4_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage4("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image4_"+projectid+".jpg");
-		 		}
+	 	       
 		 		break;
 		 	}
 
 		 	case "image5btn":{
 		 		
-		 		File oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_5.jpg");  // Replace with your old filename's path
-	 	        File newFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image5_"+projectid+".jpg");  // Replace with your new filename's path
-
-	 	        oldFile.renameTo(newFile);
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_5.jpg");  // Replace with your old filename's path
+	 	        
 	 	        
 	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
 	 	        fileToDelete1.delete();
@@ -410,34 +327,14 @@ public class AIAutoController implements Initializable{
 	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
 	 	        fileToDelete10.delete();
 	 	        
-		 		if(data==1) {
-		 			CarpentryLogic.getInstance().addProjectImage1(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image5_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage1("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image5_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==2) {
-		 			CarpentryLogic.getInstance().addProjectImage2(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image5_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage2("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image5_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==3) {
-		 			CarpentryLogic.getInstance().addProjectImage3(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image5_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage3("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image5_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==4) {
-		 			CarpentryLogic.getInstance().addProjectImage4(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image5_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage4("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image5_"+projectid+".jpg");
-		 		}
+	 	       
 		 		break;
 		 	}
 
 		 	case "image6btn":{
 		 		
-		 		File oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  // Replace with your old filename's path
-	 	        File newFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image6_"+projectid+".jpg");  // Replace with your new filename's path
-
-	 	        oldFile.renameTo(newFile);
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  // Replace with your old filename's path
+	 	        
 	 	        
 	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
 	 	        fileToDelete1.delete();
@@ -465,34 +362,14 @@ public class AIAutoController implements Initializable{
 	 	        
 	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
 	 	        fileToDelete10.delete();
-		 		if(data==1) {
-		 			CarpentryLogic.getInstance().addProjectImage1(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image6_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage1("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image6_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==2) {
-		 			CarpentryLogic.getInstance().addProjectImage2(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image6_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage2("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image6_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==3) {
-		 			CarpentryLogic.getInstance().addProjectImage3(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image6_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage3("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image6_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==4) {
-		 			CarpentryLogic.getInstance().addProjectImage4(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image6_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage4("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image6_"+projectid+".jpg");
-		 		}
+	 	       
 		 		break;
 		 	}
 
 		 	case "image7btn":{
 		 		
-		 		File oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  // Replace with your old filename's path
-	 	        File newFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image7_"+projectid+".jpg");  // Replace with your new filename's path
-
-	 	        oldFile.renameTo(newFile);
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  // Replace with your old filename's path
+	 	        
 	 	        
 	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
 	 	        fileToDelete1.delete();
@@ -520,34 +397,14 @@ public class AIAutoController implements Initializable{
 	 	        
 	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
 	 	        fileToDelete10.delete();
-		 		if(data==1) {
-		 			CarpentryLogic.getInstance().addProjectImage1(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image7_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage1("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image7_"+projectid+".jpg");
-		 		}
 		 		
-		 		else if(data==2) {
-		 			CarpentryLogic.getInstance().addProjectImage2(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image7_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage2("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image7_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==3) {
-		 			CarpentryLogic.getInstance().addProjectImage3(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image7_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage3("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image7_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==4) {
-		 			CarpentryLogic.getInstance().addProjectImage4(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image7_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage4("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image7_"+projectid+".jpg");
-		 		}
 		 		break;
 		 	}
 
 		 	case "image8btn":{
 		 		
-		 		File oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  // Replace with your old filename's path
-	 	        File newFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image8_"+projectid+".jpg");  // Replace with your new filename's path
-
-	 	        oldFile.renameTo(newFile);
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  // Replace with your old filename's path
+	 	       
 	 	        
 	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
 	 	        fileToDelete1.delete();
@@ -575,34 +432,14 @@ public class AIAutoController implements Initializable{
 	 	        
 	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
 	 	        fileToDelete10.delete();
-		 		if(data==1) {
-		 			CarpentryLogic.getInstance().addProjectImage1(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image8_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage1("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image8_"+projectid+".jpg");
-		 		}
 		 		
-		 		else if(data==2) {
-		 			CarpentryLogic.getInstance().addProjectImage2(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image8_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage2("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image8_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==3) {
-		 			CarpentryLogic.getInstance().addProjectImage3(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image8_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage3("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image8_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==4) {
-		 			CarpentryLogic.getInstance().addProjectImage4(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image8_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage4("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image8_"+projectid+".jpg");
-		 		}
 		 		break;
 		 	}
 
 		 	case "image9btn":{
 		 		
-		 		File oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  // Replace with your old filename's path
-	 	        File newFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image9_"+projectid+".jpg");  // Replace with your new filename's path
-
-	 	        oldFile.renameTo(newFile);
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  // Replace with your old filename's path
+	 	        
 	 	        
 	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
 	 	        fileToDelete1.delete();
@@ -630,34 +467,14 @@ public class AIAutoController implements Initializable{
 	 	        
 	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
 	 	        fileToDelete10.delete();
-		 		if(data==1) {
-		 			CarpentryLogic.getInstance().addProjectImage1(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image9_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage1("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image9_"+projectid+".jpg");
-		 		}
 		 		
-		 		else if(data==2) {
-		 			CarpentryLogic.getInstance().addProjectImage2(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image9_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage2("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image9_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==3) {
-		 			CarpentryLogic.getInstance().addProjectImage3(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image9_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage3("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image9_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==4) {
-		 			CarpentryLogic.getInstance().addProjectImage4(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image9_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage4("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image9_"+projectid+".jpg");
-		 		}
 		 		break;
 		 	}
 
 		 	case "image10btn":{
 		 		
-		 		File oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  // Replace with your old filename's path
-	 	        File newFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image10_"+projectid+".jpg");  // Replace with your new filename's path
-
-	 	        oldFile.renameTo(newFile);
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  // Replace with your old filename's path
+	 	        
 	 	        
 	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
 	 	        fileToDelete1.delete();
@@ -685,45 +502,67 @@ public class AIAutoController implements Initializable{
 	 	        
 	 	       File fileToDelete9 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  
 	 	        fileToDelete9.delete();
-		 		if(data==1) {
-		 			CarpentryLogic.getInstance().addProjectImage1(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image10_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage1("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image10_"+projectid+".jpg");
-		 		}
 		 		
-		 		else if(data==2) {
-		 			CarpentryLogic.getInstance().addProjectImage2(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image10_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage2("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image10_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==3) {
-		 			CarpentryLogic.getInstance().addProjectImage3(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image10_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage3("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image10_"+projectid+".jpg");
-		 		}
-		 		
-		 		else if(data==4) {
-		 			CarpentryLogic.getInstance().addProjectImage4(Integer.parseInt(projectid), "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image10_"+projectid+".jpg");
-		 			ProjectItemsController.getPdts().setImage4("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Image10_"+projectid+".jpg");
-		 		}
 		 		break;
 		 	}
 		 	
+		 	
 		 }
 		 
+		 if(data==1) {    
+	 			String path = "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Kitchen_"+projectid+".jpg";
+	 	        File newFile = new File(path);  
+
+	 	        oldFile.renameTo(newFile); 
+	 			CarpentryLogic.getInstance().addProjectImage1(Integer.parseInt(projectid), path);
+	 			ProjectItemsController.getPdts().setImage1(path);
+	 		}
+	 		
+	 		else if(data==2) {
+	 			String path = "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Room_"+projectid+".jpg";
+	 			File newFile = new File(path);  
+
+	 	        oldFile.renameTo(newFile);
+	 			CarpentryLogic.getInstance().addProjectImage2(Integer.parseInt(projectid), path);
+	 			ProjectItemsController.getPdts().setImage2(path);
+	 		}
+	 		
+	 		else if(data==3) {
+	 			String path = "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\LivingRoom_"+projectid+".jpg";
+	 			File newFile = new File(path);  
+
+	 	        oldFile.renameTo(newFile);
+	 			CarpentryLogic.getInstance().addProjectImage3(Integer.parseInt(projectid), path);
+	 			ProjectItemsController.getPdts().setImage3(path);
+	 		}
+	 		
+	 		else if(data==4) {
+	 			String path = "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Bathroom_"+projectid+".jpg";
+	 			File newFile = new File(path);  
+
+	 	        oldFile.renameTo(newFile);
+	 			CarpentryLogic.getInstance().addProjectImage4(Integer.parseInt(projectid), path);
+	 			ProjectItemsController.getPdts().setImage4(path);
+	 		}
 		// Get the current stage using the event source
 		 Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
 		 // Close the current stage
 		 currentStage.close();
 
-//		 Parent pane = FXMLLoader.load(getClass().getResource("/View/ProjectItems.fxml"));
-//         Scene scene = new Scene(pane);
-//         Stage stage12 = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//         stage12.setScene(scene);
-//         stage12.setResizable(false);
-//         stage12.setTitle("Awni Wood Work");
-//         stage12.show();
- 		
+		 FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectCost.fxml"));
+ 	    Parent root = loader.load();
+ 		ProjectCostController controller = loader.getController();
+ 	    
+ 	    // Send data
+ 	    
+ 	   
+ 	    controller.setData(Integer.parseInt(projectid));
 
+ 	    Scene scene = new Scene(root);
+ 	    Stage stage3 = new Stage();
+ 	    stage3.setScene(scene);
+ 	    stage3.show();
 	 }
 	 }
  }

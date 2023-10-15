@@ -18,11 +18,7 @@ public class ProjectImageController implements Initializable{
     private ImageView projectImage1,projectImage2,projectImage3,projectImage4;
     private String data1,data2,data3,data4;
     public void setData(String data1,String data2,String data3,String data4) {
-    	
-    	System.out.println(data1);
-    	System.out.println(data2);
-    	System.out.println(data3);
-    	System.out.println(data4);
+    
         this.data1 = data1;
         if (data1.endsWith(".jpg")) {
         	Image i1 = new Image(data1);

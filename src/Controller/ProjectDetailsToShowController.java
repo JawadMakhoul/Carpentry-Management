@@ -353,7 +353,7 @@ public class ProjectDetailsToShowController implements Initializable{
     }
     
 	 @FXML
-	    void SubmitProjectDetails(ActionEvent event) throws SQLException {
+	    void SubmitProjectDetails(ActionEvent event) throws SQLException, IOException {
 
 	    	if(tableView.getSelectionModel().getSelectedItem()== null && !newSection.isSelected()) {
 				 JOptionPane.showMessageDialog(null, "Please select an item before submiting.", "A project reminder", JOptionPane.WARNING_MESSAGE);
@@ -439,22 +439,22 @@ public class ProjectDetailsToShowController implements Initializable{
 	    		                    try {
 	    		                    	
 	    		                    	if(projectSection.getSelectionModel().getSelectedItem().toString().equals("Room")) {
-	    		                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Bedroom that includes bed and desk, closet with a mirror in" + pi.getColor());
+	    		                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : Full bedroom that includes bed and desk, closet with a mirror in" + pi.getColor());
 	    		                            p = pb.start();
 	    		                    	}
 	    		                    	
 	    		                    	else if(projectSection.getSelectionModel().getSelectedItem().toString().equals("Kitchen")) {
-	    		                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Kitchen that includes island in" + pi.getColor());
+	    		                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : Kitchen that includes island in" + pi.getColor());
 	    		                            p = pb.start();
 	    		                    	}
 	    		                    	
 	    		                    	else if(projectSection.getSelectionModel().getSelectedItem().toString().equals("LivingRoom")) {
-	    		                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "LivingRoom that includes TV furniture and a salon table in" + pi.getColor());
+	    		                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : LivingRoom that includes TV furniture and a salon table in" + pi.getColor());
 	    		                            p = pb.start();
 	    		                    	}
 	    		                    	
 	    		                    	else if(projectSection.getSelectionModel().getSelectedItem().toString().equals("Bathroom")) {
-	    		                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Bathroom that includes sink cabinets with a mirror in" + pi.getColor());
+	    		                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : Bathroom that includes sink cabinets with a mirror in" + pi.getColor());
 	    		                            p = pb.start();
 	    		                    	}
 	    		                    		
@@ -599,6 +599,13 @@ public class ProjectDetailsToShowController implements Initializable{
 	    				}
 	    			}
 	    		}
+	
+	    		for(Project p : CarpentryLogic.getInstance().getProjects()) {
+	    			if(Integer.toString(p.getProjectID()).equals(projectIDField.getText())) {
+	    				ProjectPrice.setText(Integer.toString(p.getPrice()));
+	    			}
+	    		}
+	    		
 	    		break;
 	    	
 	    	}
@@ -620,12 +627,38 @@ public class ProjectDetailsToShowController implements Initializable{
 	    		case "Item":{
 	    			DeleteItem();
 	    			ShowProjectDetails();
+	    			FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectCost.fxml"));
+	    	 	    Parent root = loader.load();
+	    	 		ProjectCostController controller = loader.getController();
+	    	 	    
+	    	 	    // Send data
+	    	 	    
+	    	 	   
+	    	 	    controller.setData(Integer.parseInt(projectIDField.getText()));
+
+	    	 	    Scene scene = new Scene(root);
+	    	 	    Stage stage3 = new Stage();
+	    	 	    stage3.setScene(scene);
+	    	 	    stage3.show();
 	    			break;
 	    		}
 	    		
 	    		case "Section":{
 	    			DeleteSection();
 	    			ShowProjectDetails();
+	    			FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectCost.fxml"));
+	    	 	    Parent root = loader.load();
+	    	 		ProjectCostController controller = loader.getController();
+	    	 	    
+	    	 	    // Send data
+	    	 	    
+	    	 	   
+	    	 	    controller.setData(Integer.parseInt(projectIDField.getText()));
+
+	    	 	    Scene scene = new Scene(root);
+	    	 	    Stage stage3 = new Stage();
+	    	 	    stage3.setScene(scene);
+	    	 	    stage3.show();
 	    			break;
 	    		}
 	    		
@@ -711,14 +744,36 @@ public class ProjectDetailsToShowController implements Initializable{
 				}
 					
 			}
-	    	
+	    	String sectionName="",sectionProjectID="";
 	    	for(Section s : CarpentryLogic.getInstance().getSections()) {
-				if(sectionId.equals(Integer.toString(s.getSectionID()))) 
+				if(sectionId.equals(Integer.toString(s.getSectionID()))) {
+					 sectionName = s.getSectionName();
+					 sectionProjectID= s.getProjectID();
 					CarpentryLogic.getInstance().DeleteSection(s);
-				
-					
+				}
 												
 			}
+	    	
+	    	for(Project p : CarpentryLogic.getInstance().getProjects()) {
+	    		if(Integer.toString(p.getProjectID()).equals(sectionProjectID)) {
+	    			if(sectionName.equals("Kitchen")) {
+	    				CarpentryLogic.getInstance().DeleteSectionImage1(p);
+	    			}
+	    			
+	    			else if(sectionName.equals("Room")) {
+	    				CarpentryLogic.getInstance().DeleteSectionImage2(p);
+	    			}
+	    			
+	    			else if(sectionName.equals("LivingRoom")) {
+	    				CarpentryLogic.getInstance().DeleteSectionImage3(p);
+	    			}
+	    			
+	    			else if(sectionName.equals("Bathroom")) {
+	    				CarpentryLogic.getInstance().DeleteSectionImage4(p);
+	    			}
+	    			
+	    		}
+	    	}
 	    }
 	    public void DeleteItem() throws SQLException {
 	    	for(ProjectItems pi: CarpentryLogic.getInstance().getProjectItems()) {
