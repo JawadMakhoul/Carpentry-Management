@@ -4,7 +4,6 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,6 +11,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -79,6 +79,10 @@
             </AnchorPane>
           <AnchorPane layoutX="258.0" prefHeight="948.0" prefWidth="1109.0" styleClass="backgroundColor" stylesheets="@../Controller/style.css">
          <children>
+                  <Pane layoutX="58.0" layoutY="586.0" prefHeight="181.0" prefWidth="1167.0" styleClass="container" />
+                  <Pane layoutX="56.0" layoutY="772.0" prefHeight="104.0" prefWidth="1167.0" styleClass="container" />
+                  <Pane layoutX="53.0" layoutY="293.0" prefHeight="285.0" prefWidth="1172.0" styleClass="container" />
+                  <Pane layoutX="54.0" layoutY="120.0" prefHeight="168.0" prefWidth="1167.0" styleClass="container" />
             <Label alignment="CENTER" layoutX="431.0" layoutY="39.0" prefHeight="87.0" prefWidth="405.0" text="Project Details" textAlignment="CENTER" textFill="#d96e3a">
                <font>
                   <Font size="48.0" />
@@ -108,28 +112,6 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <ScrollPane layoutX="62.0" layoutY="302.0" prefHeight="275.0" prefWidth="1116.0">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="271.0" prefWidth="1116.0">
-                           <children>
-                              <TableView fx:id="tableView" onMousePressed="#callFunction" prefHeight="271.0" prefWidth="1116.0">
-                                <columns>
-                                    <TableColumn fx:id="sectionField" minWidth="0.0" prefWidth="110.0" text="Section" />
-                                    <TableColumn fx:id="itemID" minWidth="0.0" prefWidth="110.0" text="Item ID" />
-                                    <TableColumn fx:id="itemName" minWidth="0.0" prefWidth="127.0" text="Item Name" />
-                                    <TableColumn fx:id="itemHeight" prefWidth="132.0" text="Item Height" />
-                                    <TableColumn fx:id="itemWidth" prefWidth="121.0" text="Item Width" />
-                                    <TableColumn fx:id="itemDepth" prefWidth="121.0" text="Item Depth" />
-                                    <TableColumn fx:id="woodType" prefWidth="136.0" text="Wood Type" />
-                                    <TableColumn fx:id="quantity" minWidth="8.0" prefWidth="112.0" text="Quantity" />
-                                    <TableColumn fx:id="color" minWidth="8.0" prefWidth="98.0" text="Color" />
-                                    <TableColumn fx:id="handsField" minWidth="8.0" prefWidth="150.0" text="Hands Model" />
-                                </columns>
-                              </TableView>
-                           </children>
-                        </AnchorPane>
-                    </content>
-                  </ScrollPane>
                   <ComboBox fx:id="adddeleteitem" layoutX="441.0" layoutY="238.0" onAction="#CheckIfDelete" prefHeight="31.0" prefWidth="155.0" promptText="Add / Delete / Edit" style="-fx-background-color: white;" styleClass="comboBox" />
                   <TextField fx:id="itemNameField" layoutX="63.0" layoutY="623.0" prefHeight="50.0" prefWidth="213.0" promptText="Item Name" styleClass="textField" />
                   <TextField fx:id="itemHeightField" layoutX="532.0" layoutY="623.0" prefHeight="50.0" prefWidth="213.0" promptText="Height" styleClass="textField" />
@@ -173,9 +155,9 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
-                  <ComboBox fx:id="ComboBoxObject" layoutX="614.0" layoutY="238.0" prefHeight="31.0" prefWidth="131.0" promptText="Choose Object" style="-fx-background-color: white;" styleClass="comboBox" />
+                  <ComboBox fx:id="ComboBoxObject" layoutX="614.0" layoutY="238.0" prefHeight="31.0" prefWidth="152.0" promptText="Choose Object" style="-fx-background-color: white;" styleClass="comboBox" />
                   <Button fx:id="submit" layoutX="1060.0" layoutY="880.0" mnemonicParsing="false" onAction="#SubmitProjectDetails" prefHeight="50.0" prefWidth="160.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Submit" />
-                  <Button fx:id="image" layoutX="836.0" layoutY="880.0" mnemonicParsing="false" onAction="#showProjectImage" prefHeight="51.0" prefWidth="202.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Project Image" />
+                  <Button fx:id="image" layoutX="836.0" layoutY="880.0" mnemonicParsing="false" onAction="#showProjectImage" prefHeight="51.0" prefWidth="202.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Project Images" />
                   <Button fx:id="reportButton" layoutX="1005.0" layoutY="228.0" mnemonicParsing="false" onAction="#GetProjectReport" prefHeight="51.0" prefWidth="202.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Project Report" />
                   <TextField fx:id="ProjectPrice" editable="false" layoutX="270.0" layoutY="238.0" styleClass="textField" />
                   <Text fill="#d96e3a" layoutX="71.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Cost" textAlignment="CENTER" wrappingWidth="157.05078125">
@@ -217,6 +199,20 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Text>
+                  <TableView fx:id="tableView" layoutX="56.0" layoutY="301.0" onMousePressed="#callFunction" prefHeight="271.0" prefWidth="1163.0">
+                    <columns>
+                        <TableColumn fx:id="sectionField" minWidth="0.0" prefWidth="110.0" text="Section" />
+                        <TableColumn fx:id="itemID" minWidth="0.0" prefWidth="56.0" text="Item ID" />
+                        <TableColumn fx:id="itemName" minWidth="0.0" prefWidth="139.0" text="Item Name" />
+                        <TableColumn fx:id="itemHeight" prefWidth="87.0" text="Item Height" />
+                        <TableColumn fx:id="itemWidth" prefWidth="90.0" text="Item Width" />
+                        <TableColumn fx:id="itemDepth" prefWidth="88.0" text="Item Depth" />
+                        <TableColumn fx:id="woodType" prefWidth="148.0" text="Wood Type" />
+                        <TableColumn fx:id="quantity" minWidth="8.0" prefWidth="72.0" text="Quantity" />
+                        <TableColumn fx:id="color" minWidth="8.0" prefWidth="135.0" text="Color" />
+                        <TableColumn fx:id="handsField" minWidth="8.0" prefWidth="219.6666259765625" text="Hands Model" />
+                    </columns>
+                  </TableView>
          </children>
       </AnchorPane>
         </items>

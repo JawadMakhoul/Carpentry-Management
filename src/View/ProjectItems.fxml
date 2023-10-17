@@ -157,6 +157,16 @@
                         </Text>
                      </children>
                   </Pane>
+                  <Pane layoutX="211.0" layoutY="660.0" prefHeight="206.0" prefWidth="806.0" styleClass="container">
+                     <children>
+                        <TextArea fx:id="notes" layoutX="93.0" layoutY="48.0" prefHeight="124.0" prefWidth="590.0" />
+                        <Text fill="#d96e3a" layoutX="105.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes:" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </Pane>
                   <Button fx:id="finish" layoutX="943.0" layoutY="877.0" mnemonicParsing="false" onMousePressed="#Finish" prefHeight="51.0" prefWidth="230.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Create Project" />
                   <ComboBox fx:id="projectSection" layoutX="257.0" layoutY="115.0" prefHeight="39.0" prefWidth="224.0" promptText="Project Section" styleClass="comboBox" stylesheets="@../Controller/style.css" />
                   <Text fill="#d96e3a" layoutX="78.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Section" textAlignment="CENTER">
@@ -170,30 +180,6 @@
                      </font>
                   </Text>
                   <ImageView fx:id="loading" fitHeight="256.0" fitWidth="256.0" layoutX="450.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" />
-                  <TextArea fx:id="notes" layoutX="80.0" layoutY="717.0" prefHeight="124.0" prefWidth="590.0" />
-                  <Text fill="#d96e3a" layoutX="81.0" layoutY="711.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes:" textAlignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Text>
-                  <TextField fx:id="cost" alignment="CENTER_RIGHT" layoutX="943.0" layoutY="680.0" prefHeight="39.0" prefWidth="224.0" styleClass="textField" />
-                  <Text fill="#d96e3a" layoutX="763.0" layoutY="703.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Cost" textAlignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Text>
-                  <TextField fx:id="price" alignment="CENTER_RIGHT" layoutX="943.0" layoutY="793.0" prefHeight="39.0" prefWidth="224.0" styleClass="textField" />
-                  <Text fill="#d96e3a" layoutX="763.0" layoutY="816.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Price" textAlignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Text>
-                  <TextField fx:id="suggestedPrice" alignment="CENTER_RIGHT" layoutX="943.0" layoutY="737.0" prefHeight="39.0" prefWidth="224.0" styleClass="textField" />
-                  <Text fill="#d96e3a" layoutX="763.0" layoutY="760.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suggested Price" textAlignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Text>
                </children></AnchorPane>
         </items>
       </SplitPane>

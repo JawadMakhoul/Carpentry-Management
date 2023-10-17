@@ -111,10 +111,10 @@
                               <TableColumn fx:id="orderStatus" prefWidth="248.0" text="Order Status" />
                            </columns>
                         </TableView>
-                        <Button fx:id="orderWood" layoutX="770.0" layoutY="229.0" mnemonicParsing="false" onMousePressed="#order_Wood" prefHeight="51.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Order wood" />
+                        <Button fx:id="orderWood" layoutX="770.0" layoutY="240.0" mnemonicParsing="false" onMousePressed="#order_Wood" prefHeight="51.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Order wood" />
                         <Button fx:id="updateWoodQuantity" layoutX="770.0" layoutY="325.0" mnemonicParsing="false" onMousePressed="#UpdateWoodQuantity" prefHeight="51.0" prefWidth="234.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Update quantity" />
-                        <TextField fx:id="quantityOFWood" layoutX="914.0" layoutY="135.0" prefHeight="51.0" prefWidth="234.0" promptText="Quantity" styleClass="textField" />
-                        <ComboBox fx:id="woodType" layoutX="626.0" layoutY="135.0" prefHeight="51.0" prefWidth="234.0" promptText="Wood Type" styleClass="comboBox" />
+                        <TextField fx:id="quantityOFWood" layoutX="770.0" layoutY="155.0" prefHeight="51.0" prefWidth="234.0" promptText="Quantity" styleClass="textField" />
+                        <ComboBox fx:id="woodType" layoutX="770.0" layoutY="77.0" prefHeight="51.0" prefWidth="234.0" promptText="Wood Type" styleClass="comboBox" />
                         <Text fill="#d96e3a" layoutX="448.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order Materials" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="38.0" />

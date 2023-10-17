@@ -96,8 +96,8 @@ public class ProjectItemsController implements Initializable{
     @FXML
     private ComboBox<SectionColor> color;
     
-    @FXML
-    private TextField price,cost;
+//    @FXML
+//    private TextField price,cost;
     
     private Section sec = new Section();
     private ProjectItems pi = new ProjectItems();
@@ -419,14 +419,14 @@ public class ProjectItemsController implements Initializable{
         	depth.setText(null);
         	quantity.setText(null);
         	
-        	for(Project p : CarpentryLogic.getInstance().getProjects()){
-                if(Integer.toString(p.getProjectID()).equals(s.getProjectID())) {
-                        cost.setText(Integer.toString(p.CalculateCost()));
-                        p.setCost(p.CalculateCost());
-                        CarpentryLogic.getInstance().updateProjectCost(p, p.CalculateCost());
-                        suggestedPrice.setText(Integer.toString(p.CalculateSuggestedPrice()));
-                }
-        	}
+//        	for(Project p : CarpentryLogic.getInstance().getProjects()){
+//                if(Integer.toString(p.getProjectID()).equals(s.getProjectID())) {
+//                        cost.setText(Integer.toString(p.CalculateCost()));
+//                        p.setCost(p.CalculateCost());
+//                        CarpentryLogic.getInstance().updateProjectCost(p, p.CalculateCost());
+//                        suggestedPrice.setText(Integer.toString(p.CalculateSuggestedPrice()));
+//                }
+//        	}
                 
     	}
     	catch (IllegalArgumentException e) {
@@ -564,18 +564,18 @@ public class ProjectItemsController implements Initializable{
     @FXML
     void Finish(MouseEvent event) throws IOException, InterruptedException, SQLException {
         
-    	if(price.getText().equals(""))
-			JOptionPane.showMessageDialog(null, "Please add project price first .", "Alert", JOptionPane.WARNING_MESSAGE);
-    	
-    	else {
-    		
-    		for(Project p1 : CarpentryLogic.getInstance().getProjects()) {
-    			if(p1.getProjectID()==saveProjectID) {
-    				CarpentryLogic.getInstance().updateProjectNotes(p1, notes.getText());
-    				p1.setPrice(Integer.parseInt(price.getText()));
-    				CarpentryLogic.getInstance().updateProjectPrice(p1, p1.getPrice());
-    			}
-    		}
+//    	if(price.getText().equals(""))
+//			JOptionPane.showMessageDialog(null, "Please add project price first .", "Alert", JOptionPane.WARNING_MESSAGE);
+//    	
+//    	else {
+//    		
+//    		for(Project p1 : CarpentryLogic.getInstance().getProjects()) {
+//    			if(p1.getProjectID()==saveProjectID) {
+//    				CarpentryLogic.getInstance().updateProjectNotes(p1, notes.getText());
+//    				p1.setPrice(Integer.parseInt(price.getText()));
+//    				CarpentryLogic.getInstance().updateProjectPrice(p1, p1.getPrice());
+//    			}
+//    		}
             
                                 
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectDetails.fxml"));
@@ -596,7 +596,7 @@ public class ProjectItemsController implements Initializable{
                         	    stage.show();
                             
     	}
-    }
+    //}
 
     
 

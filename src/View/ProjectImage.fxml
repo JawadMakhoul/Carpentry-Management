@@ -2,20 +2,22 @@
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="677.0" prefWidth="1300.0" styleClass="backgroundColor" stylesheets="@../Controller/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProjectImageController">
       <children>
+      <Pane layoutX="2.0" layoutY="277.0" prefHeight="333.0" prefWidth="1294.0" styleClass="container" />
       <Text fill="#d96e3a" layoutX="520.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Images" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="40.0" />
          </font>
       </Text>
-      <ImageView fx:id="projectImage1" fitHeight="310.0" fitWidth="310.0" layoutX="7.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="projectImage2" fitHeight="310.0" fitWidth="310.0" layoutX="342.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="projectImage3" fitHeight="310.0" fitWidth="310.0" layoutX="667.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="projectImage4" fitHeight="310.0" fitWidth="310.0" layoutX="983.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="projectImage1" fitHeight="310.0" fitWidth="310.0" layoutX="10.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="projectImage2" fitHeight="310.0" fitWidth="310.0" layoutX="334.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="projectImage3" fitHeight="310.0" fitWidth="310.0" layoutX="658.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="projectImage4" fitHeight="310.0" fitWidth="310.0" layoutX="980.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true" />
       <Text fill="#d96e3a" layoutX="91.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kitchen" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="36.0" />

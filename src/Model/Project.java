@@ -208,9 +208,9 @@ public class Project {
 
 				axles=s.getAxleDegree();
 
-				axlesQuantity=s.getQuantityOFaxle();
+				axlesQuantity+=s.getQuantityOFaxle();
 
-				handsQuantity = s.getQuantityOFhands();
+				handsQuantity += s.getQuantityOFhands();
 
 			}
 
@@ -224,7 +224,7 @@ public class Project {
 
 				woodType = i.getWoodType();
 
-				woodQuantity = i.getQuantity();
+				woodQuantity += i.getQuantity();
 
 			}
 

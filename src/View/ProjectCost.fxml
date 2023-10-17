@@ -3,11 +3,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="800.0" styleClass="backgroundColor" stylesheets="@../Controller/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ProjectCostController">
       <children>
+      <Pane layoutX="174.0" layoutY="140.0" prefHeight="200.0" prefWidth="450.0" styleClass="container" />
       <Text fill="#d96e3a" layoutX="282.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Cost" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="40.0" />
