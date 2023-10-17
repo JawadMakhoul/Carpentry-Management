@@ -56,7 +56,7 @@ image_description = sys.argv[1]
 output_folder = os.path.join("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib")
 
 # Generate images (byte output)
-response = generate_image(image_description, num_image=10, size=SIZES[1], output_format='b64_json')
+response = generate_image(image_description, num_image=5, size=SIZES[1], output_format='b64_json')
 if response is not None:
     prefix = 'demo'
     for indx, image in enumerate(response['images']):

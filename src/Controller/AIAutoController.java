@@ -27,10 +27,10 @@ public class AIAutoController implements Initializable{
     private Button Settings,BackButton,Projects,Email,NewProject,Stock,generate;
     
     @FXML
-    private Button image1btn,image2btn,image3btn,image4btn,image5btn,image6btn,image7btn,image8btn,image9btn,image10btn;
+    private Button image1btn,image2btn,image3btn,image4btn,image5btn;
 
     @FXML
-    private ImageView image1,image2,image3,image4,image5,image6,image7,image8,image9,image10;
+    private ImageView image1,image2,image3,image4,image5;
     
     private  static ProjectDetailsToShow pdts;
 
@@ -170,20 +170,20 @@ public class AIAutoController implements Initializable{
 	 	       File fileToDelete5 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_5.jpg");  
 	 	        fileToDelete5.delete();
 	 	        
-	 	       File fileToDelete6 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  
-	 	        fileToDelete6.delete();
-	 	        
-	 	       File fileToDelete7 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  
-	 	        fileToDelete7.delete();
-	 	        
-	 	       File fileToDelete8 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  
-	 	        fileToDelete8.delete();
-	 	        
-	 	       File fileToDelete9 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  
-	 	        fileToDelete9.delete();
-	 	        
-	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
-	 	        fileToDelete10.delete();
+//	 	       File fileToDelete6 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  
+//	 	        fileToDelete6.delete();
+//	 	        
+//	 	       File fileToDelete7 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  
+//	 	        fileToDelete7.delete();
+//	 	        
+//	 	       File fileToDelete8 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  
+//	 	        fileToDelete8.delete();
+//	 	        
+//	 	       File fileToDelete9 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  
+//	 	        fileToDelete9.delete();
+//	 	        
+//	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
+//	 	        fileToDelete10.delete();
 	 	        
 		 		
 		 		break;
@@ -206,20 +206,20 @@ public class AIAutoController implements Initializable{
 	 	       File fileToDelete5 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_5.jpg");  
 	 	        fileToDelete5.delete();
 	 	        
-	 	       File fileToDelete6 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  
-	 	        fileToDelete6.delete();
-	 	        
-	 	       File fileToDelete7 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  
-	 	        fileToDelete7.delete();
-	 	        
-	 	       File fileToDelete8 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  
-	 	        fileToDelete8.delete();
-	 	        
-	 	       File fileToDelete9 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  
-	 	        fileToDelete9.delete();
-	 	        
-	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
-	 	        fileToDelete10.delete();
+//	 	       File fileToDelete6 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  
+//	 	        fileToDelete6.delete();
+//	 	        
+//	 	       File fileToDelete7 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  
+//	 	        fileToDelete7.delete();
+//	 	        
+//	 	       File fileToDelete8 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  
+//	 	        fileToDelete8.delete();
+//	 	        
+//	 	       File fileToDelete9 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  
+//	 	        fileToDelete9.delete();
+//	 	        
+//	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
+//	 	        fileToDelete10.delete();
 	 	        
 	 	       
 		 		break;
@@ -242,20 +242,20 @@ public class AIAutoController implements Initializable{
 	 	       File fileToDelete5 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_5.jpg");  
 	 	        fileToDelete5.delete();
 	 	        
-	 	       File fileToDelete6 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  
-	 	        fileToDelete6.delete();
-	 	        
-	 	       File fileToDelete7 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  
-	 	        fileToDelete7.delete();
-	 	        
-	 	       File fileToDelete8 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  
-	 	        fileToDelete8.delete();
-	 	        
-	 	       File fileToDelete9 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  
-	 	        fileToDelete9.delete();
-	 	        
-	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
-	 	        fileToDelete10.delete();
+//	 	       File fileToDelete6 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  
+//	 	        fileToDelete6.delete();
+//	 	        
+//	 	       File fileToDelete7 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  
+//	 	        fileToDelete7.delete();
+//	 	        
+//	 	       File fileToDelete8 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  
+//	 	        fileToDelete8.delete();
+//	 	        
+//	 	       File fileToDelete9 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  
+//	 	        fileToDelete9.delete();
+//	 	        
+//	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
+//	 	        fileToDelete10.delete();
 	 	       
 		 		break;
 		 	}
@@ -277,20 +277,20 @@ public class AIAutoController implements Initializable{
 	 	       File fileToDelete5 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_5.jpg");  
 	 	        fileToDelete5.delete();
 	 	        
-	 	       File fileToDelete6 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  
-	 	        fileToDelete6.delete();
-	 	        
-	 	       File fileToDelete7 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  
-	 	        fileToDelete7.delete();
-	 	        
-	 	       File fileToDelete8 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  
-	 	        fileToDelete8.delete();
-	 	        
-	 	       File fileToDelete9 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  
-	 	        fileToDelete9.delete();
-	 	        
-	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
-	 	        fileToDelete10.delete();
+//	 	       File fileToDelete6 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  
+//	 	        fileToDelete6.delete();
+//	 	        
+//	 	       File fileToDelete7 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  
+//	 	        fileToDelete7.delete();
+//	 	        
+//	 	       File fileToDelete8 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  
+//	 	        fileToDelete8.delete();
+//	 	        
+//	 	       File fileToDelete9 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  
+//	 	        fileToDelete9.delete();
+//	 	        
+//	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
+//	 	        fileToDelete10.delete();
 	 	       
 		 		break;
 		 	}
@@ -312,205 +312,205 @@ public class AIAutoController implements Initializable{
 	 	       File fileToDelete4 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_4.jpg");  
 	 	        fileToDelete4.delete();
 	 	        
-	 	       File fileToDelete6 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  
-	 	        fileToDelete6.delete();
-	 	        
-	 	       File fileToDelete7 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  
-	 	        fileToDelete7.delete();
-	 	        
-	 	       File fileToDelete8 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  
-	 	        fileToDelete8.delete();
-	 	        
-	 	       File fileToDelete9 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  
-	 	        fileToDelete9.delete();
-	 	        
-	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
-	 	        fileToDelete10.delete();
+//	 	       File fileToDelete6 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  
+//	 	        fileToDelete6.delete();
+//	 	        
+//	 	       File fileToDelete7 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  
+//	 	        fileToDelete7.delete();
+//	 	        
+//	 	       File fileToDelete8 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  
+//	 	        fileToDelete8.delete();
+//	 	        
+//	 	       File fileToDelete9 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  
+//	 	        fileToDelete9.delete();
+//	 	        
+//	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
+//	 	        fileToDelete10.delete();
 	 	        
 	 	       
 		 		break;
 		 	}
 
-		 	case "image6btn":{
-		 		
-		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  // Replace with your old filename's path
-	 	        
-	 	        
-	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
-	 	        fileToDelete1.delete();
-	 	        
-	 	       File fileToDelete2 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_2.jpg");  
-	 	        fileToDelete2.delete();
-	 	        
-	 	       File fileToDelete3 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_3.jpg");  
-	 	        fileToDelete3.delete();
-	 	        
-	 	       File fileToDelete4 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_4.jpg");  
-	 	        fileToDelete4.delete();
-	 	        
-	 	       File fileToDelete5 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_5.jpg");  
-	 	        fileToDelete5.delete();
-	 	        
-	 	       File fileToDelete7 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  
-	 	        fileToDelete7.delete();
-	 	        
-	 	       File fileToDelete8 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  
-	 	        fileToDelete8.delete();
-	 	        
-	 	       File fileToDelete9 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  
-	 	        fileToDelete9.delete();
-	 	        
-	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
-	 	        fileToDelete10.delete();
-	 	       
-		 		break;
-		 	}
-
-		 	case "image7btn":{
-		 		
-		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  // Replace with your old filename's path
-	 	        
-	 	        
-	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
-	 	        fileToDelete1.delete();
-	 	        
-	 	       File fileToDelete2 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_2.jpg");  
-	 	        fileToDelete2.delete();
-	 	        
-	 	       File fileToDelete3 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_3.jpg");  
-	 	        fileToDelete3.delete();
-	 	        
-	 	       File fileToDelete4 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_4.jpg");  
-	 	        fileToDelete4.delete();
-	 	        
-	 	       File fileToDelete5 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_5.jpg");  
-	 	        fileToDelete5.delete();
-	 	        
-	 	       File fileToDelete6 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  
-	 	        fileToDelete6.delete();
-	 	        
-	 	       File fileToDelete8 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  
-	 	        fileToDelete8.delete();
-	 	        
-	 	       File fileToDelete9 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  
-	 	        fileToDelete9.delete();
-	 	        
-	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
-	 	        fileToDelete10.delete();
-		 		
-		 		break;
-		 	}
-
-		 	case "image8btn":{
-		 		
-		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  // Replace with your old filename's path
-	 	       
-	 	        
-	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
-	 	        fileToDelete1.delete();
-	 	        
-	 	       File fileToDelete2 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_2.jpg");  
-	 	        fileToDelete2.delete();
-	 	        
-	 	       File fileToDelete3 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_3.jpg");  
-	 	        fileToDelete3.delete();
-	 	        
-	 	       File fileToDelete4 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_4.jpg");  
-	 	        fileToDelete4.delete();
-	 	        
-	 	       File fileToDelete5 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_5.jpg");  
-	 	        fileToDelete5.delete();
-	 	        
-	 	       File fileToDelete6 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  
-	 	        fileToDelete6.delete();
-	 	        
-	 	       File fileToDelete7 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  
-	 	        fileToDelete7.delete();
-	 	        
-	 	       File fileToDelete9 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  
-	 	        fileToDelete9.delete();
-	 	        
-	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
-	 	        fileToDelete10.delete();
-		 		
-		 		break;
-		 	}
-
-		 	case "image9btn":{
-		 		
-		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  // Replace with your old filename's path
-	 	        
-	 	        
-	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
-	 	        fileToDelete1.delete();
-	 	        
-	 	       File fileToDelete2 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_2.jpg");  
-	 	        fileToDelete2.delete();
-	 	        
-	 	       File fileToDelete3 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_3.jpg");  
-	 	        fileToDelete3.delete();
-	 	        
-	 	       File fileToDelete4 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_4.jpg");  
-	 	        fileToDelete4.delete();
-	 	        
-	 	       File fileToDelete5 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_5.jpg");  
-	 	        fileToDelete5.delete();
-	 	        
-	 	       File fileToDelete6 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  
-	 	        fileToDelete6.delete();
-	 	        
-	 	       File fileToDelete7 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  
-	 	        fileToDelete7.delete();
-	 	        
-	 	       File fileToDelete8 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  
-	 	        fileToDelete8.delete();
-	 	        
-	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
-	 	        fileToDelete10.delete();
-		 		
-		 		break;
-		 	}
-
-		 	case "image10btn":{
-		 		
-		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  // Replace with your old filename's path
-	 	        
-	 	        
-	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
-	 	        fileToDelete1.delete();
-	 	        
-	 	       File fileToDelete2 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_2.jpg");  
-	 	        fileToDelete2.delete();
-	 	        
-	 	       File fileToDelete3 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_3.jpg");  
-	 	        fileToDelete3.delete();
-	 	        
-	 	       File fileToDelete4 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_4.jpg");  
-	 	        fileToDelete4.delete();
-	 	        
-	 	       File fileToDelete5 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_5.jpg");  
-	 	        fileToDelete5.delete();
-	 	        
-	 	       File fileToDelete6 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  
-	 	        fileToDelete6.delete();
-	 	        
-	 	       File fileToDelete7 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  
-	 	        fileToDelete7.delete();
-	 	        
-	 	       File fileToDelete8 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  
-	 	        fileToDelete8.delete();
-	 	        
-	 	       File fileToDelete9 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  
-	 	        fileToDelete9.delete();
-		 		
-		 		break;
-		 	}
+//		 	case "image6btn":{
+//		 		
+//		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  // Replace with your old filename's path
+//	 	        
+//	 	        
+//	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
+//	 	        fileToDelete1.delete();
+//	 	        
+//	 	       File fileToDelete2 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_2.jpg");  
+//	 	        fileToDelete2.delete();
+//	 	        
+//	 	       File fileToDelete3 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_3.jpg");  
+//	 	        fileToDelete3.delete();
+//	 	        
+//	 	       File fileToDelete4 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_4.jpg");  
+//	 	        fileToDelete4.delete();
+//	 	        
+//	 	       File fileToDelete5 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_5.jpg");  
+//	 	        fileToDelete5.delete();
+//	 	        
+//	 	       File fileToDelete7 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  
+//	 	        fileToDelete7.delete();
+//	 	        
+//	 	       File fileToDelete8 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  
+//	 	        fileToDelete8.delete();
+//	 	        
+//	 	       File fileToDelete9 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  
+//	 	        fileToDelete9.delete();
+//	 	        
+//	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
+//	 	        fileToDelete10.delete();
+//	 	       
+//		 		break;
+//		 	}
+//
+//		 	case "image7btn":{
+//		 		
+//		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  // Replace with your old filename's path
+//	 	        
+//	 	        
+//	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
+//	 	        fileToDelete1.delete();
+//	 	        
+//	 	       File fileToDelete2 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_2.jpg");  
+//	 	        fileToDelete2.delete();
+//	 	        
+//	 	       File fileToDelete3 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_3.jpg");  
+//	 	        fileToDelete3.delete();
+//	 	        
+//	 	       File fileToDelete4 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_4.jpg");  
+//	 	        fileToDelete4.delete();
+//	 	        
+//	 	       File fileToDelete5 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_5.jpg");  
+//	 	        fileToDelete5.delete();
+//	 	        
+//	 	       File fileToDelete6 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  
+//	 	        fileToDelete6.delete();
+//	 	        
+//	 	       File fileToDelete8 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  
+//	 	        fileToDelete8.delete();
+//	 	        
+//	 	       File fileToDelete9 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  
+//	 	        fileToDelete9.delete();
+//	 	        
+//	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
+//	 	        fileToDelete10.delete();
+//		 		
+//		 		break;
+//		 	}
+//
+//		 	case "image8btn":{
+//		 		
+//		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  // Replace with your old filename's path
+//	 	       
+//	 	        
+//	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
+//	 	        fileToDelete1.delete();
+//	 	        
+//	 	       File fileToDelete2 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_2.jpg");  
+//	 	        fileToDelete2.delete();
+//	 	        
+//	 	       File fileToDelete3 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_3.jpg");  
+//	 	        fileToDelete3.delete();
+//	 	        
+//	 	       File fileToDelete4 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_4.jpg");  
+//	 	        fileToDelete4.delete();
+//	 	        
+//	 	       File fileToDelete5 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_5.jpg");  
+//	 	        fileToDelete5.delete();
+//	 	        
+//	 	       File fileToDelete6 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  
+//	 	        fileToDelete6.delete();
+//	 	        
+//	 	       File fileToDelete7 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  
+//	 	        fileToDelete7.delete();
+//	 	        
+//	 	       File fileToDelete9 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  
+//	 	        fileToDelete9.delete();
+//	 	        
+//	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
+//	 	        fileToDelete10.delete();
+//		 		
+//		 		break;
+//		 	}
+//
+//		 	case "image9btn":{
+//		 		
+//		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  // Replace with your old filename's path
+//	 	        
+//	 	        
+//	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
+//	 	        fileToDelete1.delete();
+//	 	        
+//	 	       File fileToDelete2 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_2.jpg");  
+//	 	        fileToDelete2.delete();
+//	 	        
+//	 	       File fileToDelete3 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_3.jpg");  
+//	 	        fileToDelete3.delete();
+//	 	        
+//	 	       File fileToDelete4 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_4.jpg");  
+//	 	        fileToDelete4.delete();
+//	 	        
+//	 	       File fileToDelete5 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_5.jpg");  
+//	 	        fileToDelete5.delete();
+//	 	        
+//	 	       File fileToDelete6 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  
+//	 	        fileToDelete6.delete();
+//	 	        
+//	 	       File fileToDelete7 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  
+//	 	        fileToDelete7.delete();
+//	 	        
+//	 	       File fileToDelete8 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  
+//	 	        fileToDelete8.delete();
+//	 	        
+//	 	       File fileToDelete10 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  
+//	 	        fileToDelete10.delete();
+//		 		
+//		 		break;
+//		 	}
+//
+//		 	case "image10btn":{
+//		 		
+//		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");  // Replace with your old filename's path
+//	 	        
+//	 	        
+//	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
+//	 	        fileToDelete1.delete();
+//	 	        
+//	 	       File fileToDelete2 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_2.jpg");  
+//	 	        fileToDelete2.delete();
+//	 	        
+//	 	       File fileToDelete3 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_3.jpg");  
+//	 	        fileToDelete3.delete();
+//	 	        
+//	 	       File fileToDelete4 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_4.jpg");  
+//	 	        fileToDelete4.delete();
+//	 	        
+//	 	       File fileToDelete5 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_5.jpg");  
+//	 	        fileToDelete5.delete();
+//	 	        
+//	 	       File fileToDelete6 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");  
+//	 	        fileToDelete6.delete();
+//	 	        
+//	 	       File fileToDelete7 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");  
+//	 	        fileToDelete7.delete();
+//	 	        
+//	 	       File fileToDelete8 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");  
+//	 	        fileToDelete8.delete();
+//	 	        
+//	 	       File fileToDelete9 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");  
+//	 	        fileToDelete9.delete();
+//		 		
+//		 		break;
+//		 	}
 		 	
 		 	
 		 }
 		 
 		 if(data==1) {    
-	 			String path = "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Kitchen_"+projectid+".jpg";
+	 			String path = "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Kitchen_ProjectID"+projectid+".jpg";
 	 	        File newFile = new File(path);  
 
 	 	        oldFile.renameTo(newFile); 
@@ -519,7 +519,7 @@ public class AIAutoController implements Initializable{
 	 		}
 	 		
 	 		else if(data==2) {
-	 			String path = "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Room_"+projectid+".jpg";
+	 			String path = "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Room_ProjectID"+projectid+".jpg";
 	 			File newFile = new File(path);  
 
 	 	        oldFile.renameTo(newFile);
@@ -528,7 +528,7 @@ public class AIAutoController implements Initializable{
 	 		}
 	 		
 	 		else if(data==3) {
-	 			String path = "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\LivingRoom_"+projectid+".jpg";
+	 			String path = "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\LivingRoom_ProjectID"+projectid+".jpg";
 	 			File newFile = new File(path);  
 
 	 	        oldFile.renameTo(newFile);
@@ -537,7 +537,7 @@ public class AIAutoController implements Initializable{
 	 		}
 	 		
 	 		else if(data==4) {
-	 			String path = "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Bathroom_"+projectid+".jpg";
+	 			String path = "C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\Bathroom_ProjectID"+projectid+".jpg";
 	 			File newFile = new File(path);  
 
 	 	        oldFile.renameTo(newFile);
@@ -582,11 +582,11 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	imagebtns.add(image3btn);
 	imagebtns.add(image4btn);
 	imagebtns.add(image5btn);
-	imagebtns.add(image6btn);
-	imagebtns.add(image7btn);
-	imagebtns.add(image8btn);
-	imagebtns.add(image9btn);
-	imagebtns.add(image10btn);
+//	imagebtns.add(image6btn);
+//	imagebtns.add(image7btn);
+//	imagebtns.add(image8btn);
+//	imagebtns.add(image9btn);
+//	imagebtns.add(image10btn);
 	
 	Image i1 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");
 	 image1.setImage(i1);
@@ -603,20 +603,20 @@ public void initialize(URL arg0, ResourceBundle arg1) {
 	 Image i5 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_5.jpg");
 	 image5.setImage(i5);
 	 
-	 Image i6 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");
-	 image6.setImage(i6);
-   
-	 Image i7 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");
-	 image7.setImage(i7);
-	 
-	 Image i8 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");
-	 image8.setImage(i8);
-   
-	 Image i9 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");
-	 image9.setImage(i9);
-	 
-	 Image i10 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");
-	 image10.setImage(i10);
+//	 Image i6 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_6.jpg");
+//	 image6.setImage(i6);
+//   
+//	 Image i7 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_7.jpg");
+//	 image7.setImage(i7);
+//	 
+//	 Image i8 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_8.jpg");
+//	 image8.setImage(i8);
+//   
+//	 Image i9 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_9.jpg");
+//	 image9.setImage(i9);
+//	 
+//	 Image i10 = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_10.jpg");
+//	 image10.setImage(i10);
 }
 
 

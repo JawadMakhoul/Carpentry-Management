@@ -92,38 +92,23 @@
                   <Pane layoutX="511.0" layoutY="447.0" prefHeight="222.0" prefWidth="218.0" styleClass="container1" />
                   <Pane layoutX="742.0" layoutY="447.0" prefHeight="222.0" prefWidth="218.0" styleClass="container1" />
                   <Pane layoutX="970.0" layoutY="447.0" prefHeight="222.0" prefWidth="218.0" styleClass="container1" />
-                  <Pane layoutX="45.0" layoutY="681.0" prefHeight="222.0" prefWidth="218.0" styleClass="container1" />
-                  <Pane layoutX="278.0" layoutY="681.0" prefHeight="222.0" prefWidth="218.0" styleClass="container1" />
-                  <Pane layoutX="511.0" layoutY="681.0" prefHeight="222.0" prefWidth="218.0" styleClass="container1" />
-                  <Pane layoutX="742.0" layoutY="681.0" prefHeight="222.0" prefWidth="218.0" styleClass="container1" />
-                  <Pane layoutX="970.0" layoutY="681.0" prefHeight="222.0" prefWidth="218.0" styleClass="container1" />
                   <ImageView fx:id="image1" fitHeight="200.0" fitWidth="200.0" layoutX="54.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="image2" fitHeight="200.0" fitWidth="200.0" layoutX="287.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="image3" fitHeight="200.0" fitWidth="200.0" layoutX="520.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="image4" fitHeight="200.0" fitWidth="200.0" layoutX="751.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="image6" fitHeight="200.0" fitWidth="200.0" layoutX="54.0" layoutY="692.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="image7" fitHeight="200.0" fitWidth="200.0" layoutX="287.0" layoutY="692.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="image8" fitHeight="200.0" fitWidth="200.0" layoutX="520.0" layoutY="692.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="image5" fitHeight="200.0" fitWidth="200.0" layoutX="979.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="image9" fitHeight="200.0" fitWidth="200.0" layoutX="751.0" layoutY="692.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="image10" fitHeight="200.0" fitWidth="200.0" layoutX="979.0" layoutY="692.0" pickOnBounds="true" preserveRatio="true" />
                   <Button fx:id="image1btn" layoutX="54.0" layoutY="458.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
                   <Button fx:id="image2btn" layoutX="287.0" layoutY="458.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
-                  <Button fx:id="image9btn" layoutX="751.0" layoutY="692.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
-                  <Button fx:id="image8btn" layoutX="520.0" layoutY="692.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
-                  <Button fx:id="image7btn" layoutX="287.0" layoutY="692.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
-                  <Button fx:id="image6btn" layoutX="54.0" layoutY="692.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
                   <Button fx:id="image5btn" layoutX="979.0" layoutY="458.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
                   <Button fx:id="image4btn" layoutX="751.0" layoutY="458.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
                   <Button fx:id="image3btn" layoutX="520.0" layoutY="458.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
-                  <Button fx:id="image10btn" layoutX="979.0" layoutY="692.0" mnemonicParsing="false" onMousePressed="#UpdateProjectImage" opacity="0.0" prefHeight="200.0" prefWidth="200.0" text="Button" />
                   <ComboBox fx:id="projectID" layoutX="989.0" layoutY="165.0" onAction="#FillProjectSectionsComboBox" prefHeight="51.0" prefWidth="234.0" promptText="Project ID" styleClass="comboBox" />
                   <Text fill="#d96e3a" layoutX="405.0" layoutY="415.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose image to the project">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <ImageView fx:id="loading" fitHeight="250.0" fitWidth="250.0" layoutX="511.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="loading" fitHeight="250.0" fitWidth="250.0" layoutX="495.0" layoutY="684.0" pickOnBounds="true" preserveRatio="true" />
                   <ComboBox fx:id="projectSection" layoutX="989.0" layoutY="239.0" prefHeight="51.0" prefWidth="234.0" promptText="Project Section" styleClass="comboBox" />
                </children>
             </AnchorPane>
