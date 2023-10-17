@@ -157,10 +157,10 @@
                         </Text>
                      </children>
                   </Pane>
-                  <Pane layoutX="211.0" layoutY="660.0" prefHeight="206.0" prefWidth="806.0" styleClass="container">
+                  <Pane layoutX="362.0" layoutY="660.0" prefHeight="206.0" prefWidth="524.0" styleClass="container">
                      <children>
-                        <TextArea fx:id="notes" layoutX="93.0" layoutY="48.0" prefHeight="124.0" prefWidth="590.0" />
-                        <Text fill="#d96e3a" layoutX="105.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes:" textAlignment="CENTER">
+                        <TextArea fx:id="notes" layoutX="13.0" layoutY="38.0" prefHeight="158.0" prefWidth="499.0" />
+                        <Text fill="#d96e3a" layoutX="14.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes:" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
