@@ -418,15 +418,6 @@ public class ProjectItemsController implements Initializable{
         	width.setText(null);
         	depth.setText(null);
         	quantity.setText(null);
-        	
-//        	for(Project p : CarpentryLogic.getInstance().getProjects()){
-//                if(Integer.toString(p.getProjectID()).equals(s.getProjectID())) {
-//                        cost.setText(Integer.toString(p.CalculateCost()));
-//                        p.setCost(p.CalculateCost());
-//                        CarpentryLogic.getInstance().updateProjectCost(p, p.CalculateCost());
-//                        suggestedPrice.setText(Integer.toString(p.CalculateSuggestedPrice()));
-//                }
-//        	}
                 
     	}
     	catch (IllegalArgumentException e) {
@@ -448,22 +439,22 @@ public class ProjectItemsController implements Initializable{
                 try {
                 	
                 	if(sec.getSectionName().equals("Room")) {
-                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : Bedroom that includes bed and desk, closet with a mirror in" + pi.getColor());
+                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : "+pi.getColor()+"Bedroom that includes bed and desk, closet with a mirror");
                         p = pb.start();
                 	}
                 	
                 	if(sec.getSectionName().equals("Kitchen")) {
-                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : Kitchen that includes island in" + pi.getColor());
+                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : "+ pi.getColor()+"Kitchen that includes island in" );
                         p = pb.start();
                 	}
                 	
                 	if(sec.getSectionName().equals("LivingRoom")) {
-                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : LivingRoom that includes TV furniture and a salon table in" + pi.getColor());
+                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : "+ pi.getColor()+"LivingRoom that includes TV furniture and a salon table in" );
                         p = pb.start();
                 	}
                 	
                 	if(sec.getSectionName().equals("Bathroom")) {
-                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : Bathroom that includes sink cabinets with a mirror in" + pi.getColor());
+                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project :"+ pi.getColor()+" Bathroom that includes sink cabinets with a mirror in" );
                         p = pb.start();
                 	}
                 		
@@ -472,17 +463,17 @@ public class ProjectItemsController implements Initializable{
 
                     // Read output
                     BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-                    String output;
-                    while ((output = in.readLine()) != null) {
-                        System.out.println(output);
-                    }
+//                    String output;
+//                    while ((output = in.readLine()) != null) {
+//                        System.out.println(output);
+//                    }
 
                     // Read any errors from the attempted command
                     BufferedReader err = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-                    String error;
-                    while ((error = err.readLine()) != null) {
-                        System.err.println("Error: " + error);
-                    }
+//                    String error;
+//                    while ((error = err.readLine()) != null) {
+//                        System.err.println("Error: " + error);
+//                    }
 
                     p.waitFor();
                 } catch (IOException e) {
@@ -564,18 +555,18 @@ public class ProjectItemsController implements Initializable{
     @FXML
     void Finish(MouseEvent event) throws IOException, InterruptedException, SQLException {
         
-//    	if(price.getText().equals(""))
-//			JOptionPane.showMessageDialog(null, "Please add project price first .", "Alert", JOptionPane.WARNING_MESSAGE);
-//    	
-//    	else {
-//    		
-//    		for(Project p1 : CarpentryLogic.getInstance().getProjects()) {
-//    			if(p1.getProjectID()==saveProjectID) {
-//    				CarpentryLogic.getInstance().updateProjectNotes(p1, notes.getText());
+    	
+    		
+    		for(Project p1 : CarpentryLogic.getInstance().getProjects()) {
+    			if(p1.getProjectID()==saveProjectID) {
+    				if(notes.getText().equals(null))
+    					CarpentryLogic.getInstance().updateProjectNotes(p1, "Null");
+    				
+    				else CarpentryLogic.getInstance().updateProjectNotes(p1, notes.getText());
 //    				p1.setPrice(Integer.parseInt(price.getText()));
 //    				CarpentryLogic.getInstance().updateProjectPrice(p1, p1.getPrice());
-//    			}
-//    		}
+    			}
+    		}
             
                                 
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/ProjectDetails.fxml"));

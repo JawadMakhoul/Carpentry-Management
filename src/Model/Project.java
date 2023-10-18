@@ -208,67 +208,73 @@ public class Project {
 
 				axles=s.getAxleDegree();
 
-				axlesQuantity+=s.getQuantityOFaxle();
+				axlesQuantity=s.getQuantityOFaxle();
 
-				handsQuantity += s.getQuantityOFhands();
+				handsQuantity = s.getQuantityOFhands();
+
+			
+
+				for(Axles a: CarpentryLogic.getInstance().getAxles()) {
+
+					if(a.getAxleName().equals(axles)) {
+
+						axlesPrice = a.getAxleCost();
+
+					}
+
+				}
+
+				for(ProjectItems i : CarpentryLogic.getInstance().getProjectItems() ) {
+
+					if(i.getProjectID().equals(Integer.toString( this.projectID)) && Integer.toString(s.getSectionID()).equals(i.getSectionID())) {
+
+						handsmodel = i.getHandsmodel();
+
+						woodType = i.getWoodType();
+
+						woodQuantity += i.getQuantity();
+
+						for(Hands h : CarpentryLogic.getInstance().getHands() ) {
+
+							if(h.getHandsName().equals(handsmodel)) {
+
+								handsprice = h.getHandsCost();
+
+								handsCost = handsprice * handsQuantity; 
+
+							}
+
+							
+
+						}
+
+						for(WoodType h :CarpentryLogic.getInstance().getWoodType() ) {
+
+							if(h.getWoodTypeName().equals(woodType)) {
+
+								woodprice = h.getWoodTypeCost();
+
+							}
+
+						}
+
+						
+
+						
+
+					}
+
+				}
+
+				axlesCost = axlesPrice * axlesQuantity;
+
+				woodCost = woodprice * woodQuantity ; 
+
+				cost = cost + axlesCost + handsCost + woodCost;
 
 			}
 
 		}
-
-		for(ProjectItems i : CarpentryLogic.getInstance().getProjectItems() ) {
-
-			if(i.getProjectID().equals(Integer.toString( this.projectID))) {
-
-				handsmodel = i.getHandsmodel();
-
-				woodType = i.getWoodType();
-
-				woodQuantity += i.getQuantity();
-
-			}
-
-		}
-
-		for(Axles a: CarpentryLogic.getInstance().getAxles()) {
-
-			if(a.getAxleName().equals(axles)) {
-
-				axlesPrice = a.getAxleCost();
-
-			}
-
-		}
-
-		for(Hands h : CarpentryLogic.getInstance().getHands() ) {
-
-			if(h.getHandsName().equals(handsmodel)) {
-
-				handsprice = h.getHandsCost();
-
-			}
-
-		}
-
-		for(WoodType h :CarpentryLogic.getInstance().getWoodType() ) {
-
-			if(h.getWoodTypeName().equals(woodType)) {
-
-				woodprice = h.getWoodTypeCost();
-
-			}
-
-		}
-
-		axlesCost = axlesPrice * axlesQuantity;
-
-		handsCost = handsprice * handsQuantity; 
-
-		woodCost = woodprice * woodQuantity ; 
-
-		cost = cost + axlesCost + handsCost + woodCost;
-
-		
 
 		return cost;
 

@@ -85,8 +85,10 @@
                   <TextField fx:id="searchField1" layoutX="32.0" layoutY="84.0" onKeyReleased="#SearchEmailByLetter" prefHeight="51.0" prefWidth="165.0" promptText="Search field" styleClass="textField" />
                         <ComboBox fx:id="filter2" layoutX="230.0" layoutY="20.0" prefHeight="51.0" prefWidth="165.0" promptText="Choose search field" style="-fx-background-color: white;" styleClass="comboBox" />
                         <TextField fx:id="searchField2" layoutX="230.0" layoutY="84.0" onKeyReleased="#SearchByLetter" prefHeight="51.0" prefWidth="165.0" promptText="Search field" styleClass="textField" />
-                        <ComboBox fx:id="statusList" layoutX="921.0" layoutY="20.0" prefHeight="51.0" prefWidth="173.0" promptText="Status" styleClass="comboBox" />
-                        <Button fx:id="updateStatus" layoutX="922.0" layoutY="87.0" mnemonicParsing="false" onAction="#Update_Status" prefHeight="51.0" prefWidth="173.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Update Status" />
+                        <ComboBox fx:id="statusList" layoutX="706.0" layoutY="89.0" prefHeight="51.0" prefWidth="173.0" promptText="Status" styleClass="comboBox" />
+                        <Button fx:id="updateStatus" layoutX="893.0" layoutY="87.0" mnemonicParsing="false" onAction="#Update_Status" prefHeight="51.0" prefWidth="202.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Update Status" />
+                        <ComboBox fx:id="month" layoutX="706.0" layoutY="20.0" prefHeight="51.0" prefWidth="173.0" promptText="Choose month" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                        <Button fx:id="reportByMonth" layoutX="893.0" layoutY="20.0" mnemonicParsing="false" onAction="#GetProjectReportByMonth" prefHeight="51.0" prefWidth="202.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Report By Month" />
                      </children>
                   </Pane>
                   <Pane layoutX="67.0" layoutY="328.0" prefHeight="405.0" prefWidth="1108.0" styleClass="container" />

@@ -92,7 +92,7 @@
                         <TextField fx:id="CustomerName" alignment="CENTER" layoutX="433.0" layoutY="116.0" prefHeight="45.0" prefWidth="300.0" styleClass="textField" />
                         <TextField fx:id="phoneNumber" alignment="CENTER" layoutX="433.0" layoutY="183.0" prefHeight="45.0" prefWidth="300.0" styleClass="textField" />
                         <TextField fx:id="address" alignment="CENTER" layoutX="433.0" layoutY="248.0" prefHeight="45.0" prefWidth="300.0" styleClass="textField" />
-                        <TextField fx:id="email" layoutX="433.0" layoutY="313.0" prefHeight="45.0" prefWidth="300.0" styleClass="textField" />
+                        <TextField fx:id="email" alignment="CENTER" layoutX="433.0" layoutY="313.0" prefHeight="45.0" prefWidth="300.0" styleClass="textField" />
                         <ComboBox fx:id="projectCategory" layoutX="433.0" layoutY="384.0" prefHeight="45.0" prefWidth="300.0" promptText="Project Category" styleClass="comboBox" />
                         <Text fill="#d96e3a" layoutX="143.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name" wrappingWidth="224.0">
                            <font>

@@ -82,8 +82,7 @@ public class ProjectDetailsToShowController implements Initializable{
     @FXML
     private ComboBox<String> ComboBoxObject;
 
-    @FXML
-    private ComboBox<Integer> month;
+    
     @FXML
     private Button reportByMonth;
     @FXML
@@ -1058,174 +1057,7 @@ public class ProjectDetailsToShowController implements Initializable{
 	    }
 
 	    
-	    @FXML
-	    void GetProjectReportByMonth(ActionEvent event) {
-
-
-
-	    	Document document = new Document();
-
-	    	String desktopPath="";
-
-	    	PdfWriter writer = null;
-
-	    	try {
-
-	    	    desktopPath = System.getProperty("user.home") + "/Downloads/Project_Report.pdf";
-
-	    	    writer= PdfWriter.getInstance(document, new FileOutputStream(desktopPath));
-
-	    	    writer.setPageEvent(new BackgroundColorEvent2());
-
-	    	    document.open();
-
-	    	    ArrayList <Project> projectsList = new ArrayList<>();
-
-	    	  
-	    	    
-
-	    	    for(Project p : CarpentryLogic.getInstance().getProjects()) {
-	    	    	if(Integer.toString(p.getDate().getMonth()+1).equals(month.getSelectionModel().getSelectedItem().toString()))  {
-	    	    		
-	    	    		projectsList.add(p);
-	    	    	}
-
-	    	    }
-
-	    	    // 1. Bold center title "Project Report"
-
-	    	    Font titleFont = new Font(Font.FontFamily.HELVETICA, 32, Font.BOLD);
-
-	    	    Paragraph title = new Paragraph("Project Report", titleFont);
-
-	    	    title.setAlignment(Element.ALIGN_CENTER);
-
-	    	    title.setSpacingAfter(10);
-
-	    	    document.add(title);
-
-
-
-	    	    // 2. The date the report was created
-
-	    	    String currentDate = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-
-	    	    Paragraph dateParagraph = new Paragraph("Report Date: " + currentDate);
-
-	    	    dateParagraph.setSpacingAfter(10);
-
-	    	    document.add(dateParagraph);
-
-
-
-	    	    
-
-	    	    // The rest of your table generation code...
-
-	    	    PdfPTable table = new PdfPTable(8);
-
-	    	    table.setWidthPercentage(108);
-
-	    	    Font boldFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
-
-	    	    PdfPCell headerCell1 = new PdfPCell(new Phrase("Project ID", boldFont));
-    	        headerCell1.setHorizontalAlignment(Element.ALIGN_CENTER);
-    	        table.addCell(headerCell1);
-	    	    
-    	        PdfPCell headerCell2 = new PdfPCell(new Phrase("Customer Name", boldFont));
-    	        headerCell2.setHorizontalAlignment(Element.ALIGN_CENTER);
-    	        table.addCell(headerCell2);
-    	        
-    	        PdfPCell headerCell3 = new PdfPCell(new Phrase("Project Category", boldFont));
-    	        headerCell3.setHorizontalAlignment(Element.ALIGN_CENTER);
-    	        table.addCell(headerCell3);
-    	        
-    	        
-    	        PdfPCell headerCell5 = new PdfPCell(new Phrase("Project Status", boldFont));
-    	        headerCell5.setHorizontalAlignment(Element.ALIGN_CENTER);
-    	        table.addCell(headerCell5);
-    	        
-    	        PdfPCell headerCell6 = new PdfPCell(new Phrase("Project Cost", boldFont));
-    	        headerCell6.setHorizontalAlignment(Element.ALIGN_CENTER);
-    	        table.addCell(headerCell6);
-    	        
-    	        PdfPCell headerCell7 = new PdfPCell(new Phrase("Project Price", boldFont));
-    	        headerCell7.setHorizontalAlignment(Element.ALIGN_CENTER);
-    	        table.addCell(headerCell7);
-    	        
-    	        PdfPCell headerCell8 = new PdfPCell(new Phrase("Project Date", boldFont));
-    	        headerCell8.setHorizontalAlignment(Element.ALIGN_CENTER);
-    	        table.addCell(headerCell8);
-    	        
-    	        PdfPCell headerCell9 = new PdfPCell(new Phrase("Phone Number", boldFont));
-    	        headerCell9.setHorizontalAlignment(Element.ALIGN_CENTER);
-    	        table.addCell(headerCell9);
-    	        
-    	        for (Project project : projectsList) {
-    	            table.addCell(getCenterAlignedCell(Integer.toString(project.getProjectID()), boldFont));
-    	            table.addCell(getCenterAlignedCell(project.getCustomerID(), boldFont));
-    	            table.addCell(getCenterAlignedCell(project.getProjectCategory(), boldFont));
-    	            table.addCell(getCenterAlignedCell(project.getStatus(), boldFont));
-    	            table.addCell(getCenterAlignedCell(Integer.toString(project.getCost()), boldFont));
-    	            table.addCell(getCenterAlignedCell(Integer.toString(project.getPrice()), boldFont));
-    	            table.addCell(getCenterAlignedCell(project.getDate().toString(), boldFont));
-    	            table.addCell(getCenterAlignedCell(project.getPhoneNumber(), boldFont));
-    	        }
-
-    	        
-    	        document.add(table);
-
-
-    	        int totalCost=0, totalPrice=0, revenue=0;
-
-        	    for(Project p : projectsList) {
-
-        	    	totalCost+=p.getCost();
-
-        	    	totalPrice=p.getPrice();
-
-        	    }
-
-        	    revenue= totalPrice-totalCost;
-
-        	    
-
-        	    Paragraph monthRevenueParagraph = new Paragraph("Month revenue: " + revenue);
-
-        	    monthRevenueParagraph.setSpacingAfter(20);  // Add some spacing after this before the table
-
-        	    document.add(monthRevenueParagraph);
-	    	} catch (DocumentException | FileNotFoundException e) {
-
-	    	    e.printStackTrace();
-
-	    	} finally {
-
-	    	    document.close();
-
-	    	    try {
-
-	    	        if (Desktop.isDesktopSupported()) {
-
-	    	            Desktop.getDesktop().open(new File(desktopPath));
-
-	    	        }
-
-	    	    } catch (IOException e) {
-
-	    	        e.printStackTrace();
-
-	    	    }
-
-
-
-	    	}
-
-
-
 	    
-
-	}
 	    @FXML
 	    void showProjectImage(ActionEvent event) throws IOException {
 	    	
@@ -1288,13 +1120,13 @@ public class ProjectDetailsToShowController implements Initializable{
 	    	    document.open();
 
 	    	    ProjectDetailsToShow pdts = ProjectsToShowController.getPdts();
-	    	    String projectID="";
+	    	    String projectID=projectIDField.getText().toString();
 	    	    
-	    	    for(Project p : CarpentryLogic.getInstance().getProjects()) {
-	    	    	if(Integer.toString(p.getProjectID()).equals(pdts.getProjectID())) {
-	    	    		projectID=pdts.getProjectID();
-	    	    	}
-	    	    }
+//	    	    for(Project p : CarpentryLogic.getInstance().getProjects()) {
+//	    	    	if(Integer.toString(p.getProjectID()).equals(pdts.getProjectID())) {
+//	    	    		projectID=pdts.getProjectID();
+//	    	    	}
+//	    	    }
 	    	    // 1. Bold center title "Project Report"
 	    	    Font titleFont = new Font(Font.FontFamily.HELVETICA, 32, Font.BOLD);
 	    	    Paragraph title = new Paragraph("Project Details Report", titleFont);
@@ -1336,39 +1168,23 @@ public class ProjectDetailsToShowController implements Initializable{
 	    	    	}
 	    	    }
 	    	    
-	    	    Paragraph customerNameParagraph = new Paragraph("Customer Name: " + customerName);
+	    	    Paragraph customerNameParagraph = new Paragraph("Project ID: " + projectID+"                                             Customer Name: " + customerName );
 	    	    document.add(customerNameParagraph);
 
 	    	    // 4. Customer phone number
 	    	    
-	    	    Paragraph customerPhoneParagraph = new Paragraph("Customer Phone Number: " + customerPhoneNumber);
+	    	    Paragraph customerPhoneParagraph = new Paragraph("Project Cost: " + projectCost+"                                 Customer Phone Number: " + customerPhoneNumber);
 	    	    document.add(customerPhoneParagraph);
 
 	    	 // Customer address
-	    	    Paragraph customerAddressParagraph = new Paragraph("Customer Address: " + customerAddress);
+	    	    Paragraph customerAddressParagraph = new Paragraph("Project Date: " + projectDate+"                         Customer Address: " + customerAddress);
 	    	    document.add(customerAddressParagraph);
 
 	    	    // Customer email
-	    	    Paragraph customerEmailParagraph = new Paragraph("Customer Email: " + customerEmail);
-	    	    customerEmailParagraph.setSpacingAfter(10);
+	    	    Paragraph customerEmailParagraph = new Paragraph("Project Status: " + projectStatus+"                Customer Email: " + customerEmail);
+	    	   // customerEmailParagraph.setSpacingAfter(10);
 	    	    document.add(customerEmailParagraph);
 	    	    
-	    	    Paragraph projectIDParagraph = new Paragraph("Project ID: " + projectID);
-	    	    document.add(projectIDParagraph);
-	    	    
-	    	    Paragraph projectCostParagraph = new Paragraph("Project Cost: " + projectCost);
-	    	    document.add(projectCostParagraph);
-	    	    
-	    	    // 6. Project date
-	    	    Paragraph projectDateParagraph = new Paragraph("Project Date: " + projectDate);
-	    	    document.add(projectDateParagraph);
-
-	    	    // 7. Project status
-	    	    Paragraph projectStatusParagraph = new Paragraph("Project Status: " + projectStatus);
-	    	  //  projectStatusParagraph.setSpacingAfter(20);  // Add some spacing after this before the table
-	    	    document.add(projectStatusParagraph);
-	    	    
-	    	    // Project category
 	    	    
 	    	    Paragraph projectCategoryParagraph = new Paragraph("Project Category: " + projectCategory);
 	    	    document.add(projectCategoryParagraph);
@@ -1578,8 +1394,7 @@ public class ProjectDetailsToShowController implements Initializable{
 			brzolDegree.getItems().addAll(axlesDegree);
 			
 			
-			ObservableList<Integer> months = FXCollections.observableArrayList(1,2,3,4,5,6,7,8,9,10,11,12);
-			month.getItems().addAll(months);
+			
 			
 			ObservableList<SectionColor> section_Colors = FXCollections.observableArrayList(SectionColor.Aspen_Tan,SectionColor.Avocado,SectionColor.Beige_Gray,SectionColor.Black_Oak,SectionColor.Black_Walnut,SectionColor.Blueridge_Gray,SectionColor.Brick_Red,SectionColor.Caramel,SectionColor.Cedar_Naturaltone,SectionColor.Cinder,SectionColor.Cinnamon,SectionColor.Clove_Brown,SectionColor.Coffee,SectionColor.Dark_Mahogany,SectionColor.Dark_Oak,SectionColor.Dark_Tahoe,SectionColor.Desert_Sand,SectionColor.Drift_Gray,SectionColor.Ebony,SectionColor.Espresso,SectionColor.Ginger,SectionColor.Light_Mocha,SectionColor.Light_Oak,SectionColor.Mushroom,SectionColor.Naturaltone_Fir,SectionColor.Olive_Brown,SectionColor.Oxford_Brown,SectionColor.Pearl_Gray,SectionColor.Polar_Gray,SectionColor.Redwood,SectionColor.Redwood_Naturaltone,SectionColor.Rosewood,SectionColor.Russet,SectionColor.Sierra,SectionColor.Smoke_Blue,SectionColor.Storm_Gray,SectionColor.Teak,SectionColor.Tobacco,SectionColor.Walnut,SectionColor.Weathered_Barnboard);
 			colorField.getItems().addAll(section_Colors);
