@@ -81,7 +81,8 @@ public class ProjectDetailsToShowController implements Initializable{
 
     @FXML
     private ComboBox<String> ComboBoxObject;
-
+    @FXML
+    private Button generateImages;
     
     @FXML
     private Button reportByMonth;
@@ -90,7 +91,7 @@ public class ProjectDetailsToShowController implements Initializable{
 
     @FXML
     private TextField axleQuantity;
-
+    private String toAI="";
     @FXML
     private ComboBox<Axles> brzolDegree;
 
@@ -118,7 +119,8 @@ public class ProjectDetailsToShowController implements Initializable{
     private TextField itemQuantity;
 
     
-
+    private String saveSectionID="";
+    private String saveColor="";
     @FXML
     private TextField itemWidthField,itemDepthField;
 
@@ -133,7 +135,7 @@ public class ProjectDetailsToShowController implements Initializable{
 
 
     @FXML
-    private Button image,submit,reportButton;
+    private Button image,submit,reportButton,additem;
 
     @FXML
     private ComboBox<WoodType> woodTypeField;
@@ -186,7 +188,10 @@ public class ProjectDetailsToShowController implements Initializable{
     @FXML
     private ImageView projectImage;
 
-
+    private ArrayList<ProjectItems> PI_Array = new ArrayList<ProjectItems>();
+    private ArrayList<ProjectItems> NewProjectItems_Array = new ArrayList<ProjectItems>();
+    private int sID=0;
+    private String itemsSectionName="", itemsColor="";
 	@FXML
     void MoveTo(MouseEvent event) throws IOException {
     	
@@ -351,6 +356,414 @@ public class ProjectDetailsToShowController implements Initializable{
     	tableView.setItems(ObservableList_CP);
     }
     
+    
+    @FXML
+    void GenerateImages(ActionEvent event) {
+    	PI_Array.clear();
+		toAI="";
+		for(ProjectItems sectionItems : CarpentryLogic.getInstance().getProjectItems()) {
+    		if(sectionItems.getSectionID().equals(Integer.toString(sID))){
+    			PI_Array.add(sectionItems);
+    			toAI+= sectionItems.getItemName()+", ";
+    		}
+    	}
+    	
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                Process p = null;
+                try {
+                	
+                	if(itemsSectionName.equals("Room")) {
+                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : "+itemsColor+" Bedroom that includes "+ toAI);
+                        p = pb.start();
+                	}
+                	
+                	else if(itemsSectionName.equals("Kitchen")) {
+                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : "+ itemsColor+" Kitchen that includes "+ toAI);
+                        p = pb.start();
+                	}
+                	
+                	else if(itemsSectionName.equals("LivingRoom")) {
+                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py", "Carpentry Project : "+ itemsColor+" LivingRoom that includes "+ toAI );
+                        p = pb.start();
+                	}
+                	
+                	else if(itemsSectionName.equals("Bathroom")) {
+                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project :"+ itemsColor+" Bathroom that includes "+ toAI);
+                        p = pb.start();
+                	}
+                		
+
+                    // Read output
+                    BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                    String output;
+                    while ((output = in.readLine()) != null) {
+                        System.out.println(output);
+                    }
+
+                    // Read any errors from the attempted command
+                    BufferedReader err = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+                    String error;
+                    while ((error = err.readLine()) != null) {
+                        System.err.println(error);
+                    }
+
+                    p.waitFor();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                Platform.runLater(() -> {
+                    try {
+                        loading.setImage(null);  // Set loading image to null
+
+                        // Open new Scene
+                        try {
+                        	FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AI_Auto.fxml"));
+                    	    Parent root = loader.load();
+                    	    int myData=0;
+                    	    // Get the controller of the second scene
+                    	    switch(itemsSectionName) {
+                    	    
+                    	    case "Kitchen":{
+                    	    	myData = 1;
+                    	    	break;
+                    	    }
+                    	    
+                    	    case "Room":{
+                    	    	myData = 2;
+                    	    	break;
+                    	    }
+                    	    
+                    	    case "LivingRoom":{
+                    	    	myData = 3;
+                    	    	break;
+                    	    }
+                    	    
+                    	    case "Bathroom":{
+                    	    	myData = 4;
+                    	    	break;
+                    	    }
+                    	    }
+                    	    //String myData = Integer.toString(GlobalProjectID.getId());
+                    	    AIAutoController controller = loader.getController();
+                    	    
+                    	    // Send data
+                    	    
+                    	    
+                    	    controller.setData(myData,projectIDField.getText().toString());
+
+                    	    Scene scene = new Scene(root);
+                    	    Stage stage3 = new Stage();
+                    	    stage3.setScene(scene);
+                    	    stage3.show();
+                            
+                            
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        // Do the same for other ImageViews...
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+
+                return null;
+            }
+        };
+        new Thread(task).start();
+    }
+    @FXML
+    void addSection(ActionEvent event) throws SQLException {
+
+		Section s = new Section();
+    	try {
+    	    if (projectSection.getSelectionModel().getSelectedItem() == null) {
+    	      	 throw new IllegalArgumentException("Please enter all required fields.");
+    	    }
+    	 	s.setSectionName(projectSection.getSelectionModel().getSelectedItem().toString());
+    	 	//sec.setSectionName(projectSection.getSelectionModel().getSelectedItem().toString());
+
+    	}catch (IllegalArgumentException e) {
+    	    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    	    alert.setTitle("Error!");
+    	    alert.setContentText("Press OK to try again.");
+    	    alert.setHeaderText(e.getMessage());
+    	    alert.showAndWait();
+        }
+
+    	s.setProjectID(projectIDField.getText().toString());
+    	try {
+    	    if (projectSection.getSelectionModel().getSelectedItem() == null || 
+    	            handsQuantity.getText().equals("")|| 
+    	            !handsQuantity.getText().matches(".*\\d+.*")
+    	            || axleQuantity.getText().equals("")|| 
+    	            !axleQuantity.getText().matches(".*\\d+.*")|| 
+    	            brzolDegree.getSelectionModel().getSelectedItem()==null
+    	            )
+    	            {
+    	    	 		throw new IllegalArgumentException("Please enter all required fields.");
+    	            }
+	    	s.setQuantityOFhands(Integer.parseInt(handsQuantity.getText()));
+	    	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
+	    	s.setAxleDegree(brzolDegree.getSelectionModel().getSelectedItem().toString());
+	    	saveSectionID=Integer.toString(s.getSectionID());
+	    	CarpentryLogic.getInstance().addSection(s);
+	    	
+	    	for(ProjectItems pi : CarpentryLogic.getInstance().getProjectItems()) {
+	    		if(pi.getProjectID().equals(s.getProjectID()) && pi.getSection().equals(s.getSectionName())) {
+	    			CarpentryLogic.getInstance().updateItemSectionID(pi, Integer.parseInt(saveSectionID));
+	    		}
+	    	}
+	    	
+	    	
+        	ArrayList<Stock> stock = new ArrayList<Stock>();
+        	stock= CarpentryLogic.getInstance().getStocks();
+        	for(Stock s11 : stock) {
+        		if (s11.getWoodName().equals(woodTypeField.getSelectionModel().getSelectedItem().toString())) {
+        			s11.setQuantity(s11.getQuantity()-Integer.parseInt(itemQuantity.getText().toString()));
+        			CarpentryLogic.getInstance().updateStockQuantity(s11, s11.getQuantity());
+        			ShowProjectDetails();
+        		}
+
+        	}
+        	javafx.scene.image.Image loadingImage = new  javafx.scene.image.Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\737.gif");
+        	loading.setImage(loadingImage);
+        	PI_Array.clear();
+        	for(ProjectItems sectionItems : CarpentryLogic.getInstance().getProjectItems()) {
+        		if(sectionItems.getSectionID().equals(Integer.toString(s.getSectionID()))){
+        			PI_Array.add(sectionItems);
+        			toAI+= sectionItems.getItemName()+", ";
+        		}
+        	}
+        	
+            Task<Void> task = new Task<Void>() {
+                @Override
+                protected Void call() throws Exception {
+                    Process p = null;
+                    try {
+                    	
+                    	if(projectSection.getSelectionModel().getSelectedItem().toString().equals("Room")) {
+                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : "+saveColor+" Bedroom that includes "+ toAI);
+                            p = pb.start();
+                    	}
+                    	
+                    	else if(projectSection.getSelectionModel().getSelectedItem().toString().equals("Kitchen")) {
+                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : "+ saveColor+" Kitchen that includes "+ toAI);
+                            p = pb.start();
+                    	}
+                    	
+                    	else if(projectSection.getSelectionModel().getSelectedItem().toString().equals("LivingRoom")) {
+                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py", "Carpentry Project : "+ saveColor+" LivingRoom that includes "+ toAI );
+                            p = pb.start();
+                    	}
+                    	
+                    	else if(projectSection.getSelectionModel().getSelectedItem().toString().equals("Bathroom")) {
+                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project :"+ saveColor+" Bathroom that includes "+ toAI);
+                            p = pb.start();
+                    	}
+                    		
+
+                        // Read output
+                        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+                        String output;
+                        while ((output = in.readLine()) != null) {
+                            System.out.println(output);
+                        }
+
+                        // Read any errors from the attempted command
+                        BufferedReader err = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+                        String error;
+                        while ((error = err.readLine()) != null) {
+                            System.err.println(error);
+                        }
+
+                        p.waitFor();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    Platform.runLater(() -> {
+                        try {
+                            loading.setImage(null);  // Set loading image to null
+
+                            // Open new Scene
+                            try {
+                            	FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AI_Auto.fxml"));
+                        	    Parent root = loader.load();
+                        	    int myData=0;
+                        	    // Get the controller of the second scene
+                        	    switch(s.getSectionName()) {
+                        	    
+                        	    case "Kitchen":{
+                        	    	myData = 1;
+                        	    	break;
+                        	    }
+                        	    
+                        	    case "Room":{
+                        	    	myData = 2;
+                        	    	break;
+                        	    }
+                        	    
+                        	    case "LivingRoom":{
+                        	    	myData = 3;
+                        	    	break;
+                        	    }
+                        	    
+                        	    case "Bathroom":{
+                        	    	myData = 4;
+                        	    	break;
+                        	    }
+                        	    }
+                        	    //String myData = Integer.toString(GlobalProjectID.getId());
+                        	    AIAutoController controller = loader.getController();
+                        	    
+                        	    // Send data
+                        	    
+                        	    
+                        	    controller.setData(myData,projectIDField.getText().toString());
+
+                        	    Scene scene = new Scene(root);
+                        	    Stage stage3 = new Stage();
+                        	    stage3.setScene(scene);
+                        	    stage3.show();
+                                
+                                
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            // Do the same for other ImageViews...
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    });
+
+                    return null;
+                }
+            };
+
+            new Thread(task).start();
+            
+        	colorField.setValue(null);
+        	//projectSection.setValue(null);
+        	brzolDegree.setValue(null);
+        	handsModelNumber.setValue(null);
+        	handsQuantity.setText(null);
+        	axleQuantity.setText(null);
+        	itemNameField.setText(null);
+        	itemHeightField.setText(null);
+        	itemWidthField.setText(null);
+        	itemDepthField.setText(null);
+        	itemQuantity.setText(null);
+   
+    	}
+    	catch (IllegalArgumentException e) {
+    	    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    	    alert.setTitle("Error!");
+    	    alert.setContentText("Press OK to try again.");
+    	    alert.setHeaderText(e.getMessage());
+    	    alert.showAndWait();
+   	}
+    
+    }
+
+    
+    @FXML
+    void addItem(ActionEvent event) throws SQLException {
+
+    	if(itemNameField.getText() !="" && itemHeightField.getText() !="" && itemWidthField.getText() != "" && itemDepthField.getText() !="" && woodTypeField.getSelectionModel().getSelectedItem() != null
+				 && itemQuantity.getText()!= ""  
+				 && colorField.getSelectionModel().getSelectedItem() != null && handsModelNumber.getSelectionModel().getSelectedItem()!= null) {
+			
+			
+			if(newSection.isSelected()) {
+				ProjectItems pi2 = new ProjectItems();
+				pi2.setItemName(itemNameField.getText());
+				pi2.setHeight(Integer.parseInt(itemHeightField.getText()));
+				pi2.setWidth(Integer.parseInt(itemWidthField.getText()));
+				pi2.setDepth(Integer.parseInt(itemDepthField.getText()));
+				pi2.setWoodType(woodTypeField.getSelectionModel().getSelectedItem().toString());
+				pi2.setQuantity(Integer.parseInt(itemQuantity.getText()));
+				pi2.setProjectID(projectIDField.getText().toString());
+				pi2.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
+				pi2.setColor(colorField.getSelectionModel().getSelectedItem().toString());
+				saveColor = pi2.getColor();
+				pi2.setHandsmodel(handsModelNumber.getSelectionModel().getSelectedItem().toString());
+				//pi2.setSectionID(tableView.getSelectionModel().getSelectedItem().getSectionID());
+				CarpentryLogic.getInstance().addProjectItems(pi2);
+				
+				//sID = Integer.parseInt(tableView.getSelectionModel().getSelectedItem().getSectionID());
+				//itemsSectionName = tableView.getSelectionModel().getSelectedItem().getSection();
+				//itemsColor = tableView.getSelectionModel().getSelectedItem().getColor();
+				
+				
+				
+				colorField.setValue(null);
+	        	itemNameField.setText(null);
+	        	itemHeightField.setText(null);
+	        	itemWidthField.setText(null);
+	        	itemDepthField.setText(null);
+	        	//itemQuantity.setText(null);
+				//ShowProjectDetails();
+			}
+		    	
+		    	
+   			
+    	
+    	else if(!newSection.isSelected()) {
+
+		 		
+			if(tableView.getSelectionModel().getSelectedItem()== null) {
+				 JOptionPane.showMessageDialog(null, "Please select an item before submiting.", "A project reminder", JOptionPane.WARNING_MESSAGE);
+			}
+			else {
+			ProjectItems pi2 = new ProjectItems();
+			pi2.setItemName(itemNameField.getText());
+			pi2.setHeight(Integer.parseInt(itemHeightField.getText()));
+			pi2.setWidth(Integer.parseInt(itemWidthField.getText()));
+			pi2.setDepth(Integer.parseInt(itemDepthField.getText()));
+			pi2.setWoodType(woodTypeField.getSelectionModel().getSelectedItem().toString());
+			pi2.setQuantity(Integer.parseInt(itemQuantity.getText()));
+			pi2.setProjectID(projectIDField.getText().toString());
+			pi2.setSection(tableView.getSelectionModel().getSelectedItem().getSection());
+			pi2.setColor(colorField.getSelectionModel().getSelectedItem().toString());
+			pi2.setHandsmodel(handsModelNumber.getSelectionModel().getSelectedItem().toString());
+			pi2.setSectionID(tableView.getSelectionModel().getSelectedItem().getSectionID());
+			CarpentryLogic.getInstance().addProjectItems(pi2);
+			
+			sID = Integer.parseInt(tableView.getSelectionModel().getSelectedItem().getSectionID());
+			itemsSectionName = tableView.getSelectionModel().getSelectedItem().getSection();
+			itemsColor = tableView.getSelectionModel().getSelectedItem().getColor();
+			
+			CarpentryLogic.getInstance().updateItemSectionID(pi2, sID);
+			
+			colorField.setValue(null);
+        	itemNameField.setText(null);
+        	itemHeightField.setText(null);
+        	itemWidthField.setText(null);
+        	itemDepthField.setText(null);
+        	//itemQuantity.setText(null);
+			ShowProjectDetails();
+			
+			}
+		
+    	}
+			
+		
+
+		for(Project p : CarpentryLogic.getInstance().getProjects()) {
+			if(Integer.toString(p.getProjectID()).equals(projectIDField.getText())) {
+				ProjectPrice.setText(Integer.toString(p.getPrice()));
+			}
+		}
+    	}
+		
+	
+	}
+    
 	 @FXML
 	    void SubmitProjectDetails(ActionEvent event) throws SQLException, IOException {
 
@@ -359,267 +772,13 @@ public class ProjectDetailsToShowController implements Initializable{
 			}
 	    	else {
 	    	switch(adddeleteitem.getSelectionModel().getSelectedItem()) {
-	    	
-	    	case "Add":{
-	    		if(itemNameField.getText() !="" && itemHeightField.getText() !="" && itemWidthField.getText() != "" && itemDepthField.getText() !="" && woodTypeField.getSelectionModel().getSelectedItem() != null
-	    				 && itemQuantity.getText()!= ""  
-	    				 && colorField.getSelectionModel().getSelectedItem() != null && handsModelNumber.getSelectionModel().getSelectedItem()!= null) {
-	    			
-	    			
-	    			if(newSection.isSelected()) {
-	    				
-	    			ProjectItems pi = new ProjectItems();
-	    			pi.setItemName(itemNameField.getText());
-	    			pi.setHeight(Integer.parseInt(itemHeightField.getText()));
-	    			pi.setWidth(Integer.parseInt(itemWidthField.getText()));
-	    			pi.setDepth(Integer.parseInt(itemDepthField.getText()));
-	    			pi.setWoodType(woodTypeField.getSelectionModel().getSelectedItem().toString());
-	    			pi.setQuantity(Integer.parseInt(itemQuantity.getText()));
-	    			pi.setProjectID(projectIDField.getText().toString());
-	    			pi.setSection(projectSection.getSelectionModel().getSelectedItem().toString());
-	    			pi.setColor(colorField.getSelectionModel().getSelectedItem().toString());
-	    			pi.setHandsmodel(handsModelNumber.getSelectionModel().getSelectedItem().toString());
-	    			
-	    			CarpentryLogic.getInstance().addProjectItems(pi);
-	    			
-	    			
-	    				Section s = new Section();
-	    		    	try {
-	    		    	    if (projectSection.getSelectionModel().getSelectedItem() == null) {
-	    		    	      	 throw new IllegalArgumentException("Please enter all required fields.");
-	    		    	    }
-	    		    	 	s.setSectionName(projectSection.getSelectionModel().getSelectedItem().toString());
-	    		    	 	//sec.setSectionName(projectSection.getSelectionModel().getSelectedItem().toString());
-
-	    		    	}catch (IllegalArgumentException e) {
-	    		    	    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
-	    		    	    alert.setTitle("Error!");
-	    		    	    alert.setContentText("Press OK to try again.");
-	    		    	    alert.setHeaderText(e.getMessage());
-	    		    	    alert.showAndWait();
-	    		        }
-
-	    		    	s.setProjectID(projectIDField.getText().toString());
-	    		    	try {
-	    		    	    if (projectSection.getSelectionModel().getSelectedItem() == null || 
-	    		    	            handsQuantity.getText().equals("")|| 
-	    		    	            !handsQuantity.getText().matches(".*\\d+.*")
-	    		    	            || axleQuantity.getText().equals("")|| 
-	    		    	            !axleQuantity.getText().matches(".*\\d+.*")|| 
-	    		    	            brzolDegree.getSelectionModel().getSelectedItem()==null
-	    		    	            )
-	    		    	            {
-	    		    	    	 		throw new IllegalArgumentException("Please enter all required fields.");
-	    		    	            }
-	    			    	s.setQuantityOFhands(Integer.parseInt(handsQuantity.getText()));
-	    			    	s.setQuantityOFaxle(Integer.parseInt(axleQuantity.getText()));
-	    			    	s.setAxleDegree(brzolDegree.getSelectionModel().getSelectedItem().toString());
-	    			    	CarpentryLogic.getInstance().addSection(s);
-	    			    	CarpentryLogic.getInstance().updateItemSectionID(pi, s.getSectionID());
-	    			    	pi.setSectionID(Integer.toString(s.getSectionID()));
-	    			    	
-	    		        	ArrayList<Stock> stock = new ArrayList<Stock>();
-	    		        	stock= CarpentryLogic.getInstance().getStocks();
-	    		        	for(Stock s11 : stock) {
-	    		        		if (s11.getWoodName().equals(woodTypeField.getSelectionModel().getSelectedItem().toString())) {
-	    		        			s11.setQuantity(s11.getQuantity()-Integer.parseInt(itemQuantity.getText()));
-	    		        			CarpentryLogic.getInstance().updateStockQuantity(s11, s11.getQuantity());
-	    		        			ShowProjectDetails();
-	    		        		}
-
-	    		        	}
-	    		        	javafx.scene.image.Image loadingImage = new  javafx.scene.image.Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\737.gif");
-	    		        	loading.setImage(loadingImage);
-
-	    		            Task<Void> task = new Task<Void>() {
-	    		                @Override
-	    		                protected Void call() throws Exception {
-	    		                    Process p = null;
-	    		                    try {
-	    		                    	
-	    		                    	if(projectSection.getSelectionModel().getSelectedItem().toString().equals("Room")) {
-	    		                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : Full bedroom that includes bed and desk, closet with a mirror in" + pi.getColor());
-	    		                            p = pb.start();
-	    		                    	}
-	    		                    	
-	    		                    	else if(projectSection.getSelectionModel().getSelectedItem().toString().equals("Kitchen")) {
-	    		                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : Kitchen that includes island in" + pi.getColor());
-	    		                            p = pb.start();
-	    		                    	}
-	    		                    	
-	    		                    	else if(projectSection.getSelectionModel().getSelectedItem().toString().equals("LivingRoom")) {
-	    		                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : LivingRoom that includes TV furniture and a salon table in" + pi.getColor());
-	    		                            p = pb.start();
-	    		                    	}
-	    		                    	
-	    		                    	else if(projectSection.getSelectionModel().getSelectedItem().toString().equals("Bathroom")) {
-	    		                    		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : Bathroom that includes sink cabinets with a mirror in" + pi.getColor());
-	    		                            p = pb.start();
-	    		                    	}
-	    		                    		
-
-	    		                        // Read output
-	    		                        BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-	    		                        String output;
-	    		                        while ((output = in.readLine()) != null) {
-	    		                            System.out.println(output);
-	    		                        }
-
-	    		                        // Read any errors from the attempted command
-	    		                        BufferedReader err = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-	    		                        String error;
-	    		                        while ((error = err.readLine()) != null) {
-	    		                            System.err.println(error);
-	    		                        }
-
-	    		                        p.waitFor();
-	    		                    } catch (IOException e) {
-	    		                        e.printStackTrace();
-	    		                    }
-
-	    		                    Platform.runLater(() -> {
-	    		                        try {
-	    		                            loading.setImage(null);  // Set loading image to null
-
-	    		                            // Open new Scene
-	    		                            try {
-	    		                            	FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/AI_Auto.fxml"));
-	    		                        	    Parent root = loader.load();
-	    		                        	    int myData=0;
-	    		                        	    // Get the controller of the second scene
-	    		                        	    switch(s.getSectionName()) {
-	    		                        	    
-	    		                        	    case "Kitchen":{
-	    		                        	    	myData = 1;
-	    		                        	    	break;
-	    		                        	    }
-	    		                        	    
-	    		                        	    case "Room":{
-	    		                        	    	myData = 2;
-	    		                        	    	break;
-	    		                        	    }
-	    		                        	    
-	    		                        	    case "LivingRoom":{
-	    		                        	    	myData = 3;
-	    		                        	    	break;
-	    		                        	    }
-	    		                        	    
-	    		                        	    case "Bathroom":{
-	    		                        	    	myData = 4;
-	    		                        	    	break;
-	    		                        	    }
-	    		                        	    }
-	    		                        	    //String myData = Integer.toString(GlobalProjectID.getId());
-	    		                        	    AIAutoController controller = loader.getController();
-	    		                        	    
-	    		                        	    // Send data
-	    		                        	    
-	    		                        	    
-	    		                        	    controller.setData(myData,projectIDField.getText().toString());
-
-	    		                        	    Scene scene = new Scene(root);
-	    		                        	    Stage stage3 = new Stage();
-	    		                        	    stage3.setScene(scene);
-	    		                        	    stage3.show();
-	    		                                
-	    		                                
-	    		                            } catch (IOException e) {
-	    		                                e.printStackTrace();
-	    		                            }
-
-	    		                            // Do the same for other ImageViews...
-	    		                        } catch (Exception e) {
-	    		                            e.printStackTrace();
-	    		                        }
-	    		                    });
-
-	    		                    return null;
-	    		                }
-	    		            };
-
-	    		            new Thread(task).start();
-	    		            
-	    		        	colorField.setValue(null);
-	    		        	//projectSection.setValue(null);
-	    		        	brzolDegree.setValue(null);
-	    		        	handsModelNumber.setValue(null);
-	    		        	handsQuantity.setText(null);
-	    		        	axleQuantity.setText(null);
-	    		        	itemNameField.setText(null);
-	    		        	itemHeightField.setText(null);
-	    		        	itemWidthField.setText(null);
-	    		        	itemDepthField.setText(null);
-	    		        	itemQuantity.setText(null);
-	    		   
-	    		    	}
-	    		    	catch (IllegalArgumentException e) {
-	    		    	    final Alert alert = new Alert(Alert.AlertType.INFORMATION);
-	    		    	    alert.setTitle("Error!");
-	    		    	    alert.setContentText("Press OK to try again.");
-	    		    	    alert.setHeaderText(e.getMessage());
-	    		    	    alert.showAndWait();
-	    		   	}
-	    		    	
-	        			
-	    			}
-	    			
-	    			else if(!newSection.isSelected()) {
-	 		 		
-	    				if(tableView.getSelectionModel().getSelectedItem()== null) {
-	    					 JOptionPane.showMessageDialog(null, "Please select an item before submiting.", "A project reminder", JOptionPane.WARNING_MESSAGE);
-	    				}
-	    				else {
-	    				ProjectItems pi2 = new ProjectItems();
-	        			pi2.setItemName(itemNameField.getText());
-	        			pi2.setHeight(Integer.parseInt(itemHeightField.getText()));
-	        			pi2.setWidth(Integer.parseInt(itemWidthField.getText()));
-	        			pi2.setDepth(Integer.parseInt(itemDepthField.getText()));
-	        			pi2.setWoodType(woodTypeField.getSelectionModel().getSelectedItem().toString());
-	        			pi2.setQuantity(Integer.parseInt(itemQuantity.getText()));
-	        			pi2.setProjectID(projectIDField.getText().toString());
-	        			pi2.setSection(tableView.getSelectionModel().getSelectedItem().getSection());
-	        			pi2.setColor(colorField.getSelectionModel().getSelectedItem().toString());
-	        			pi2.setHandsmodel(handsModelNumber.getSelectionModel().getSelectedItem().toString());
-	        			pi2.setSectionID(tableView.getSelectionModel().getSelectedItem().getSectionID());
-	        			CarpentryLogic.getInstance().addProjectItems(pi2);
-	        			int sID = Integer.parseInt(tableView.getSelectionModel().getSelectedItem().getSectionID());
-	        			CarpentryLogic.getInstance().updateItemSectionID(pi2, sID);
-	        			colorField.setValue(null);
-    		        	projectSection.setValue(null);
-    		        	brzolDegree.setValue(null);	
-    		        	handsQuantity.setText(null);
-    		        	axleQuantity.setText(null);
-    		        	itemNameField.setText(null);
-    		        	itemHeightField.setText(null);
-    		        	itemWidthField.setText(null);
-    		        	itemDepthField.setText(null);
-    		        	itemQuantity.setText(null);
-	        			ShowProjectDetails();
-	    				}
-	    			}
-	    		}
-	
-	    		for(Project p : CarpentryLogic.getInstance().getProjects()) {
-	    			if(Integer.toString(p.getProjectID()).equals(projectIDField.getText())) {
-	    				ProjectPrice.setText(Integer.toString(p.getPrice()));
-	    			}
-	    		}
-	    		
-	    		break;
-	    	
-	    	}
-	    	case "Edit":{
-	    	     
-	    	break;
-	    	}
-
 	    	case "Delete":{
 	    		
 	    		switch(ComboBoxObject.getSelectionModel().getSelectedItem()) {
 	    		
 	    		case "Project":{
 	    			DeleteProject();
-	    		ShowProjectDetails();
+	    			ShowProjectDetails();
 	    			break;
 	    		}
 	    		

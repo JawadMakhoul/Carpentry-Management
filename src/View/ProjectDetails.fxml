@@ -79,126 +79,130 @@
             </AnchorPane>
           <AnchorPane layoutX="258.0" prefHeight="948.0" prefWidth="1109.0" styleClass="backgroundColor" stylesheets="@../Controller/style.css">
          <children>
-                  <Pane layoutX="58.0" layoutY="586.0" prefHeight="181.0" prefWidth="1167.0" styleClass="container">
+                  <Pane layoutX="43.0" layoutY="541.0" prefHeight="400.0" prefWidth="843.0" styleClass="container">
                      <children>
-                        <Text fill="#d96e3a" layoutX="5.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Name">
+                        <Pane layoutX="289.0" layoutY="10.0" prefHeight="380.0" prefWidth="543.0" styleClass="container1">
+                           <children>
+                              <Text fill="#d96e3a" layoutX="16.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Name">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#d96e3a" layoutX="250.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Depth">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <ComboBox fx:id="handsModelNumber" layoutX="18.0" layoutY="254.0" prefHeight="50.0" prefWidth="213.0" promptText="Hands Model" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                              <Button fx:id="additem" layoutX="18.0" layoutY="315.0" mnemonicParsing="false" onAction="#addItem" prefHeight="51.0" prefWidth="213.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Add Item" />
+                              <Text fill="#d96e3a" layoutX="251.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Color">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="itemNameField" layoutX="18.0" layoutY="35.0" prefHeight="50.0" prefWidth="213.0" promptText="Item Name" styleClass="textField" />
+                              <TextField fx:id="itemHeightField" layoutX="250.0" layoutY="35.0" prefHeight="50.0" prefWidth="279.0" promptText="Height" styleClass="textField" />
+                              <TextField fx:id="itemWidthField" layoutX="18.0" layoutY="108.0" prefHeight="50.0" prefWidth="213.0" promptText="Width" styleClass="textField" />
+                              <TextField fx:id="itemQuantity" layoutX="18.0" layoutY="182.0" prefHeight="50.0" prefWidth="213.0" promptText="Quantity" styleClass="textField" />
+                              <Text fill="#d96e3a" layoutX="251.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Height">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#d96e3a" layoutX="18.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Width">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text fill="#d96e3a" layoutX="18.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Quantity">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="itemDepthField" layoutX="250.0" layoutY="108.0" prefHeight="50.0" prefWidth="279.0" promptText="Depth" styleClass="textField" />
+                              <ComboBox fx:id="colorField" layoutX="250.0" layoutY="254.0" prefHeight="50.0" prefWidth="279.0" promptText="Color" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                              <Text fill="#d96e3a" layoutX="18.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hands Model">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <ComboBox fx:id="woodTypeField" layoutX="250.0" layoutY="182.0" prefHeight="50.0" prefWidth="279.0" promptText="Wood Type" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                              <Text fill="#d96e3a" layoutX="250.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wood Type">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Text>
+                              <Button fx:id="generateImages" layoutX="251.0" layoutY="315.0" mnemonicParsing="false" onAction="#GenerateImages" prefHeight="51.0" prefWidth="279.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Generate New the Items" />
+                           </children>
+                        </Pane>
+                        <Text fill="#d96e3a" layoutX="45.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Axles">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Text>
-                        <Text fill="#d96e3a" layoutX="946.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Depth">
+                        <ComboBox fx:id="projectSection" layoutX="44.0" layoutY="44.0" prefHeight="50.0" prefWidth="213.0" promptText="Project Section" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                        <ComboBox fx:id="brzolDegree" layoutX="45.0" layoutY="262.0" prefHeight="50.0" prefWidth="213.0" promptText="Axles" styleClass="comboBox" stylesheets="@../Controller/style.css" />
+                        <TextField fx:id="axleQuantity" alignment="CENTER_RIGHT" layoutX="44.0" layoutY="117.0" prefHeight="50.0" prefWidth="213.0" styleClass="textField" />
+                        <Text fill="#d96e3a" layoutX="45.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Axles Quantity">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Text>
-                        <Text fill="#d96e3a" layoutX="474.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Color">
+                        <Text fill="#d96e3a" layoutX="45.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Section">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Text>
-                     </children></Pane>
-                  <Pane layoutX="56.0" layoutY="772.0" prefHeight="104.0" prefWidth="1167.0" styleClass="container">
+                        <TextField fx:id="handsQuantity" alignment="CENTER_RIGHT" layoutX="45.0" layoutY="190.0" prefHeight="50.0" prefWidth="213.0" styleClass="textField" />
+                        <Text fill="#d96e3a" layoutX="44.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hands Quantity">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <CheckBox fx:id="newSection" layoutX="44.0" layoutY="6.0" mnemonicParsing="false" onAction="#NewSectionEvent" text="New Section" />
+                        <Button fx:id="addsection" layoutX="44.0" layoutY="325.0" mnemonicParsing="false" onAction="#addSection" prefHeight="51.0" prefWidth="213.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Add Section" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="42.0" layoutY="250.0" prefHeight="285.0" prefWidth="1192.0" styleClass="container" />
+                  <Pane layoutX="40.0" layoutY="120.0" prefHeight="68.0" prefWidth="1192.0" styleClass="container">
                      <children>
-                        <Text fill="#d96e3a" layoutX="399.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Axles">
+                        <TextField fx:id="customerNameField" editable="false" layoutX="713.0" layoutY="23.0" prefHeight="40.0" prefWidth="202.0" styleClass="textField" />
+                        <TextField fx:id="projectIDField" editable="false" layoutX="16.0" layoutY="24.0" prefHeight="40.0" prefWidth="202.0" styleClass="textField" />
+                        <TextField fx:id="phoneNumber" editable="false" layoutX="950.0" layoutY="22.0" prefHeight="40.0" prefWidth="202.0" styleClass="textField" />
+                        <Text fill="#d96e3a" layoutX="714.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Text>
-                        <ComboBox fx:id="projectSection" layoutX="128.0" layoutY="40.0" prefHeight="50.0" prefWidth="213.0" promptText="Project Section" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                        <ComboBox fx:id="brzolDegree" layoutX="399.0" layoutY="40.0" prefHeight="50.0" prefWidth="213.0" promptText="Axles" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                        <TextField fx:id="axleQuantity" alignment="CENTER_RIGHT" layoutX="661.0" layoutY="40.0" prefHeight="50.0" prefWidth="213.0" styleClass="textField" />
-                        <Text fill="#d96e3a" layoutX="662.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Axles Quantity">
+                        <Text fill="#d96e3a" layoutX="951.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" wrappingWidth="157.05078125">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Text>
-                        <Text fill="#d96e3a" layoutX="129.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Section">
+                        <TextField fx:id="ProjectPrice" editable="false" layoutX="478.0" layoutY="24.0" prefHeight="40.0" prefWidth="202.0" styleClass="textField" />
+                        <Text fill="#d96e3a" layoutX="478.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Cost" wrappingWidth="157.05078125">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="handsQuantity" alignment="CENTER_RIGHT" layoutX="926.0" layoutY="40.0" prefHeight="50.0" prefWidth="213.0" styleClass="textField" />
-                        <Text fill="#d96e3a" layoutX="925.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hands Quantity">
+                        <Text fill="#d96e3a" layoutX="243.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Category" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Text>
-                        <CheckBox fx:id="newSection" layoutX="21.0" layoutY="39.0" mnemonicParsing="false" onAction="#NewSectionEvent" text="New Section" />
-                     </children></Pane>
-                  <Pane layoutX="53.0" layoutY="293.0" prefHeight="285.0" prefWidth="1172.0" styleClass="container" />
-                  <Pane layoutX="54.0" layoutY="120.0" prefHeight="96.0" prefWidth="1167.0" styleClass="container">
-                     <children>
-                        <TextField fx:id="customerNameField" editable="false" layoutX="713.0" layoutY="38.0" prefHeight="40.0" prefWidth="202.0" styleClass="textField" />
-                        <TextField fx:id="projectIDField" editable="false" layoutX="16.0" layoutY="39.0" prefHeight="40.0" prefWidth="202.0" styleClass="textField" />
-                        <TextField fx:id="phoneNumber" editable="false" layoutX="950.0" layoutY="37.0" prefHeight="40.0" prefWidth="202.0" styleClass="textField" />
-                        <Text fill="#d96e3a" layoutX="714.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name">
+                        <Text fill="#d96e3a" layoutX="16.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project ID" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font>
                         </Text>
-                        <Text fill="#d96e3a" layoutX="951.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" wrappingWidth="157.05078125">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Text>
-                        <TextField fx:id="ProjectPrice" editable="false" layoutX="478.0" layoutY="39.0" prefHeight="40.0" prefWidth="202.0" styleClass="textField" />
-                        <Text fill="#d96e3a" layoutX="478.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Cost" wrappingWidth="157.05078125">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Text>
-                        <Text fill="#d96e3a" layoutX="243.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Category" textAlignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Text>
-                        <Text fill="#d96e3a" layoutX="16.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project ID" textAlignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Text>
-                        <TextField fx:id="projectCategoryField" editable="false" layoutX="243.0" layoutY="39.0" prefHeight="40.0" prefWidth="202.0" styleClass="textField" />
+                        <TextField fx:id="projectCategoryField" editable="false" layoutX="243.0" layoutY="24.0" prefHeight="40.0" prefWidth="202.0" styleClass="textField" />
                      </children></Pane>
             <Label alignment="CENTER" layoutX="431.0" layoutY="39.0" prefHeight="87.0" prefWidth="405.0" text="Project Details" textAlignment="CENTER" textFill="#d96e3a">
                <font>
                   <Font size="48.0" />
                </font>
             </Label>
-                  <TextField fx:id="itemNameField" layoutX="63.0" layoutY="623.0" prefHeight="50.0" prefWidth="213.0" promptText="Item Name" styleClass="textField" />
-                  <TextField fx:id="itemHeightField" layoutX="532.0" layoutY="623.0" prefHeight="50.0" prefWidth="213.0" promptText="Height" styleClass="textField" />
-                  <TextField fx:id="itemWidthField" layoutX="768.0" layoutY="623.0" prefHeight="50.0" prefWidth="213.0" promptText="Width" styleClass="textField" />
-                  <TextField fx:id="itemQuantity" layoutX="296.0" layoutY="623.0" prefHeight="50.0" prefWidth="213.0" promptText="Quantity" styleClass="textField" />
-                  <ComboBox fx:id="colorField" layoutX="532.0" layoutY="703.0" prefHeight="50.0" prefWidth="213.0" promptText="Color" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                  <ComboBox fx:id="woodTypeField" layoutX="295.0" layoutY="703.0" prefHeight="50.0" prefWidth="213.0" promptText="Wood Type" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                  <ComboBox fx:id="handsModelNumber" layoutX="63.0" layoutY="703.0" prefHeight="50.0" prefWidth="213.0" promptText="Hands Model" styleClass="comboBox" stylesheets="@../Controller/style.css" />
-                  <Text fill="#d96e3a" layoutX="533.0" layoutY="618.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Height">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Text>
-                  <Text fill="#d96e3a" layoutX="768.0" layoutY="619.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Width">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Text>
-                  <Text fill="#d96e3a" layoutX="296.0" layoutY="618.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Item Quantity">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Text>
-                  <Button fx:id="submit" layoutX="1060.0" layoutY="887.0" mnemonicParsing="false" onAction="#SubmitProjectDetails" prefHeight="50.0" prefWidth="160.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Submit" />
-                  <TextField fx:id="itemDepthField" layoutX="1003.0" layoutY="623.0" prefHeight="50.0" prefWidth="213.0" promptText="Depth" styleClass="textField" />
-                  <Text fill="#d96e3a" layoutX="296.0" layoutY="698.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wood Type">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Text>
-                  <Text fill="#d96e3a" layoutX="64.0" layoutY="698.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hands Model">
-                     <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Text>
-                  <TableView fx:id="tableView" layoutX="56.0" layoutY="301.0" onMousePressed="#callFunction" prefHeight="271.0" prefWidth="1163.0">
+                  <TableView fx:id="tableView" layoutX="56.0" layoutY="258.0" onMousePressed="#callFunction" prefHeight="271.0" prefWidth="1163.0">
                     <columns>
                         <TableColumn fx:id="sectionField" minWidth="0.0" prefWidth="110.0" text="Section" />
                         <TableColumn fx:id="itemID" minWidth="0.0" prefWidth="56.0" text="Item ID" />
@@ -209,14 +213,19 @@
                         <TableColumn fx:id="woodType" prefWidth="148.0" text="Wood Type" />
                         <TableColumn fx:id="quantity" minWidth="8.0" prefWidth="72.0" text="Quantity" />
                         <TableColumn fx:id="color" minWidth="8.0" prefWidth="135.0" text="Color" />
-                        <TableColumn fx:id="handsField" minWidth="8.0" prefWidth="219.6666259765625" text="Hands Model" />
+                        <TableColumn fx:id="handsField" minWidth="8.0" prefWidth="237.0" text="Hands Model" />
                     </columns>
                   </TableView>
-                  <Button fx:id="reportButton" layoutX="615.0" layoutY="888.0" mnemonicParsing="false" onAction="#GetProjectReport" prefHeight="51.0" prefWidth="202.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Project Report" />
-                  <Button fx:id="image" layoutX="837.0" layoutY="887.0" mnemonicParsing="false" onAction="#showProjectImage" prefHeight="51.0" prefWidth="202.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Project Images" />
-                  <ComboBox fx:id="adddeleteitem" layoutX="406.0" layoutY="233.0" onAction="#CheckIfDelete" prefHeight="50.0" prefWidth="202.0" promptText="Add / Delete / Edit" style="-fx-background-color: white;" styleClass="comboBox" />
-                  <ComboBox fx:id="ComboBoxObject" layoutX="635.0" layoutY="233.0" prefHeight="51.0" prefWidth="202.0" promptText="Choose Object" style="-fx-background-color: white;" styleClass="comboBox" />
-                  <ImageView fx:id="loading" fitHeight="110.0" fitWidth="110.0" layoutX="1078.0" layoutY="681.0" pickOnBounds="true" preserveRatio="true" />
+                  <ComboBox fx:id="adddeleteitem" layoutX="422.0" layoutY="195.0" onAction="#CheckIfDelete" prefHeight="50.0" prefWidth="202.0" promptText="Add / Delete / Edit" style="-fx-background-color: white;" styleClass="comboBox" />
+                  <ComboBox fx:id="ComboBoxObject" layoutX="651.0" layoutY="195.0" prefHeight="51.0" prefWidth="202.0" promptText="Choose Object" style="-fx-background-color: white;" styleClass="comboBox" />
+                  <Pane layoutX="895.0" layoutY="541.0" prefHeight="400.0" prefWidth="339.0" styleClass="container">
+                     <children>
+                        <Button fx:id="reportButton" layoutX="78.0" layoutY="254.0" mnemonicParsing="false" onAction="#GetProjectReport" prefHeight="51.0" prefWidth="202.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Project Report" />
+                        <Button fx:id="image" layoutX="78.0" layoutY="186.0" mnemonicParsing="false" onAction="#showProjectImage" prefHeight="51.0" prefWidth="202.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Project Images" />
+                        <Button fx:id="submit" layoutX="78.0" layoutY="323.0" mnemonicParsing="false" onAction="#SubmitProjectDetails" prefHeight="51.0" prefWidth="202.0" styleClass="sale" stylesheets="@../Controller/Buttons.css" text="Submit" />
+                        <ImageView fx:id="loading" fitHeight="151.0" fitWidth="151.0" layoutX="94.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </Pane>
          </children>
       </AnchorPane>
         </items>

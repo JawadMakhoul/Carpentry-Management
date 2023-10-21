@@ -96,9 +96,7 @@ public class ProjectItemsController implements Initializable{
     @FXML
     private ComboBox<SectionColor> color;
     
-//    @FXML
-//    private TextField price,cost;
-    
+    private String toAI="";
     private Section sec = new Section();
     private ProjectItems pi = new ProjectItems();
     
@@ -358,7 +356,7 @@ public class ProjectItemsController implements Initializable{
 	    		if(Integer.toString(saveProjectID).equals(piIndex.getProjectID()))
 	    			CarpentryLogic.getInstance().updateItemSectionID(piIndex, s.getSectionID());
 	    	}
-	    	PI_Array.clear();
+	    	
     	    switch(color.getSelectionModel().getSelectedItem().toString()) { // To send to the AI
     	  
     	    	case "Weathered_Barnboard","Pearl_Gray","Desert_Sand","Drift_Gray","Beige_Gray","Mushroom","Blueridge_Gray","Light_Oak","Smoke_Blue","Aspen_Tan":{
@@ -432,6 +430,10 @@ public class ProjectItemsController implements Initializable{
 	    Image loadingImage = new Image("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\737.gif");
         loading.setImage(loadingImage);
 
+        
+        for(ProjectItems pi : PI_Array) {
+        	toAI+= pi.getItemName()+", ";
+        }
         Task<Void> task = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
@@ -439,41 +441,24 @@ public class ProjectItemsController implements Initializable{
                 try {
                 	
                 	if(sec.getSectionName().equals("Room")) {
-                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : "+pi.getColor()+"Bedroom that includes bed and desk, closet with a mirror");
+                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : "+pi.getColor()+"Bedroom that includes "+ toAI);
                         p = pb.start();
                 	}
                 	
                 	if(sec.getSectionName().equals("Kitchen")) {
-                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : "+ pi.getColor()+"Kitchen that includes island in" );
+                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : "+ pi.getColor()+"Kitchen that includes "+ toAI);
                         p = pb.start();
                 	}
                 	
                 	if(sec.getSectionName().equals("LivingRoom")) {
-                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : "+ pi.getColor()+"LivingRoom that includes TV furniture and a salon table in" );
+                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project : "+ pi.getColor()+"LivingRoom that includes "+ toAI );
                         p = pb.start();
                 	}
                 	
                 	if(sec.getSectionName().equals("Bathroom")) {
-                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project :"+ pi.getColor()+" Bathroom that includes sink cabinets with a mirror in" );
+                		ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\GenerateImages.py",  "Carpentry Project :"+ pi.getColor()+" Bathroom that includes "+ toAI);
                         p = pb.start();
                 	}
-                		
-//                    ProcessBuilder pb = new ProcessBuilder("C:\\Users\\jawad\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe","C:\\Users\\jawad\\git\\Awni-wood-work\\src\\AI\\demo.py", sec.getSectionName() +" with " + pi.getColor() + "color.");
-//                    p = pb.start();
-
-                    // Read output
-                    BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-//                    String output;
-//                    while ((output = in.readLine()) != null) {
-//                        System.out.println(output);
-//                    }
-
-                    // Read any errors from the attempted command
-                    BufferedReader err = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-//                    String error;
-//                    while ((error = err.readLine()) != null) {
-//                        System.err.println("Error: " + error);
-//                    }
 
                     p.waitFor();
                 } catch (IOException e) {
@@ -546,7 +531,7 @@ public class ProjectItemsController implements Initializable{
     	else {
     		JOptionPane.showMessageDialog(null, "Please add the items first .", "Items Reminder", JOptionPane.WARNING_MESSAGE);
     	}
-    	
+    	PI_Array.clear();
     	}
     
     

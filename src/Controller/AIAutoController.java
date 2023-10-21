@@ -177,7 +177,7 @@ public class AIAutoController implements Initializable{
 		 	
 		 	case "image2btn":{
 		 		
-		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_2.jpg");  // Replace with your old filename's path
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_2.jpg");  
 	 	        
 	 	        
 	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
@@ -198,7 +198,7 @@ public class AIAutoController implements Initializable{
 
 		 	case "image3btn":{
 		 		
-		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_3.jpg");  // Replace with your old filename's path
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_3.jpg");  
 	 	        
 	 	        
 	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
@@ -219,7 +219,7 @@ public class AIAutoController implements Initializable{
 
 		 	case "image4btn":{
 		 		
-		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_4.jpg");  // Replace with your old filename's path
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_4.jpg");  
 	 	        
 		 		
 	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
@@ -240,7 +240,7 @@ public class AIAutoController implements Initializable{
 
 		 	case "image5btn":{
 		 		
-		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_5.jpg");  // Replace with your old filename's path
+		 		 oldFile = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_5.jpg");  
 	 	        
 	 	        
 	 	       File fileToDelete1 = new File("C:\\Users\\jawad\\git\\Awni-wood-work\\src\\Lib\\demo_1.jpg");  
