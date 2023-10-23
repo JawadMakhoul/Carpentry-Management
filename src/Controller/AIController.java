@@ -16,7 +16,6 @@ import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
-import Enumeration.ProjectSection;
 import Model.Project;
 import Model.Section;
 import javafx.collections.FXCollections;

@@ -34,7 +34,6 @@ import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfPageEventHelper;
 import com.itextpdf.text.BaseColor;
 import Enumeration.AxleDegree;
-import Enumeration.ProjectSection;
 import Enumeration.SectionColor;
 import Enumeration.handType;
 import Model.Customer;
@@ -131,7 +130,7 @@ public class ProjectDetailsToShowController implements Initializable{
     private ImageView loading;
 
     @FXML
-    private ComboBox<ProjectSection> projectSection;
+    private ComboBox<String> projectSection;
 
 
     @FXML
@@ -1526,7 +1525,7 @@ public class ProjectDetailsToShowController implements Initializable{
 			adddeleteitem.getItems().addAll(toDo);
 			
 			//ProjectDetailsToShow pdts = ProjectItemsController.getPdts();
-			ObservableList<ProjectSection> projectSectionList = FXCollections.observableArrayList(ProjectSection.Kitchen,ProjectSection.Room,ProjectSection.LivingRoom,ProjectSection.Bathroom);
+			ObservableList<String> projectSectionList = FXCollections.observableArrayList("Kitchen","Room","LivingRoom","Bathroom");
 			projectSection.getItems().addAll(projectSectionList);
 			
 			ArrayList<WoodType> woodTypeArrayList = new ArrayList<>();

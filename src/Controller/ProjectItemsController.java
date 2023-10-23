@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import Enumeration.AxleDegree;
 import Enumeration.OrderStatus;
 import Enumeration.ProjectCategory;
-import Enumeration.ProjectSection;
 import Enumeration.SectionColor;
 import Enumeration.handType;
 import Model.Hands;
@@ -79,7 +78,7 @@ public class ProjectItemsController implements Initializable{
     private TextField suggestedPrice,orderStatus,ItemName,handsQuantity,axleQuantity,height,quantity,width,depth,CUSTOMERID,ORDERID,PROJECTID;
 
     @FXML
-    private ComboBox<ProjectSection> projectSection;
+    private ComboBox<String> projectSection;
     
     @FXML
     private ComboBox<Hands> handsModelNumber;
@@ -589,7 +588,7 @@ public class ProjectItemsController implements Initializable{
 		Buttons.add(GenerateByAI);
 		Buttons.add(Settings);
 		
-		ObservableList<ProjectSection> projectSectionList = FXCollections.observableArrayList(ProjectSection.Kitchen,ProjectSection.Room,ProjectSection.LivingRoom,ProjectSection.Bathroom);
+		ObservableList<String> projectSectionList = FXCollections.observableArrayList("Kitchen","Room","LivingRoom","Bathroom");
 		projectSection.getItems().addAll(projectSectionList);
 		
 		ArrayList<Stock> stockArrayList = new ArrayList<>();
